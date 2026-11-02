@@ -1,0 +1,78 @@
+excluded reserve fires: 90 | train slices 43576 fires 12336
+  train: 2013_0.npz 1616
+  train: 2013_1.npz 1252
+  train: 2014_0.npz 1647
+  train: 2014_1.npz 1802
+  train: 2014_2.npz 1571
+  train: 2015_0.npz 1673
+  train: 2015_1.npz 1872
+  train: 2015_2.npz 1397
+  train: 2016_0.npz 1669
+  train: 2016_1.npz 1685
+  train: 2017_0.npz 1555
+  train: 2017_1.npz 1719
+  train: 2017_2.npz 1772
+  train: 2017_3.npz 1996
+  train: 2017_4.npz 534
+  train: 2018_0.npz 1673
+  train: 2018_1.npz 1809
+  train: 2018_2.npz 964
+  train: 2019_0.npz 1678
+  train: 2019_1.npz 1794
+  train: 2019_2.npz 1893
+  train: 2019_3.npz 678
+  train: 2020_0.npz 1601
+  train: 2020_1.npz 1838
+  train: 2020_2.npz 1696
+  train: 2021_0.npz 1633
+  train: 2021_1.npz 1961
+  train: 2021_2.npz 598
+train ready: 43576
+  val: 2022_0.npz 4000
+  val: 2022_1.npz 3069
+val ready: 7069
+  test: 2023_0.npz 4000
+  test: 2023_1.npz 792
+  test: 2024_0.npz 3267
+test ready: 8059
+  reserves: AltynDala_2015_08_28.npz 1
+  reserves: AltynDala_2016_04_16.npz 1
+  reserves: AltynDala_2016_07_07.npz 53
+  reserves: AltynDala_2017_06_06.npz 35
+  reserves: AltynDala_2017_06_08.npz 29
+  reserves: AltynDala_2017_07_04.npz 19
+  reserves: AltynDala_2017_07_24.npz 12
+  reserves: AltynDala_2018_08_08.npz 3
+  reserves: AltynDala_2019_06_30.npz 20
+  reserves: AltynDala_2020_07_26.npz 17
+  reserves: AltynDala_2020_08_06.npz 1
+  reserves: AltynDala_2020_08_06_2.npz 1
+  reserves: AltynDala_2020_08_06_3.npz 1
+  reserves: AltynDala_2021.npz 3
+  reserves: AltynDala_2021_07_01.npz 7
+  reserves: AltynDala_2021_07_01_1.npz 9
+  reserves: AltynDala_2021_07_03.npz 13
+  reserves: AltynDala_2021_07_05.npz 1
+  reserves: Korgalzhyn_2014_08_08.npz 49
+  reserves: Korgalzhyn_2015_08_04.npz 2
+  reserves: Korgalzhyn_2016_05_24.npz 7
+  reserves: Korgalzhyn_2017_06_30.npz 41
+  reserves: Korgalzhyn_2020_07_20.npz 13
+  reserves: Korgalzhyn_2021_11_06.npz 2
+  reserves: Korgalzhyn_2022_06_25.npz 7
+  reserves: Korgalzhyn_2022_09_19.npz 10
+  reserves: Mirgorod_2017.npz 1
+  reserves: Mirgorod_2019.npz 2
+  reserves: Naurzum_2015_08_03.npz 8
+  reserves: Naurzum_2016_08_27.npz 2
+  reserves: Naurzum_2018_04_18.npz 1
+  reserves: Naurzum_2019_07_20.npz 5
+  reserves: Naurzum_2019_07_23.npz 11
+  reserves: Naurzum_2019_07_23_1.npz 4
+  reserves: Naurzum_2021_08_17.npz 2
+reserves ready: 393
+excluded reserve fires: 90 | train slices 43576 fires 12336
+train cached
+val cached
+test cached
+reserves cached

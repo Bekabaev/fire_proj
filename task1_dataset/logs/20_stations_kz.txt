@@ -1,0 +1,15 @@
+KZ stations active 2013–2024: 176
+downloaded 2038 station-years requested
+2013 stations: 95 obs: 210610 | median obs per station-day: 8.0
+2014 stations: 91 obs: 230580 | median obs per station-day: 8.0
+2015 stations: 93 obs: 238080 | median obs per station-day: 8.0
+2016 stations: 90 obs: 237821 | median obs per station-day: 8.0
+2017 stations: 89 obs: 238060 | median obs per station-day: 8.0
+2018 stations: 170 obs: 300422 | median obs per station-day: 7.0
+2019 stations: 172 obs: 346007 | median obs per station-day: 7.0
+2020 stations: 172 obs: 413476 | median obs per station-day: 8.0
+2021 stations: 168 obs: 401924 | median obs per station-day: 8.0
+2022 stations: 167 obs: 393033 | median obs per station-day: 8.0
+2023 stations: 166 obs: 392529 | median obs per station-day: 8.0
+2024 stations: 166 obs: 373228 | median obs per station-day: 8.0
+done

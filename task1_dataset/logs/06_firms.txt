@@ -1,0 +1,53 @@
+AltynDala_2015_08_28     63.0835,49.0523,63.3995,49.3006          2015-08-27..2015-09-03 n_window=35 n_in_poly=35 n_viirs_in_poly=29 n_overpasses=4 first_h=0.0 last_h=15.33 frp_sum=505.3
+AltynDala_2016_04_16     63.8717,49.9002,64.3141,50.1978          2016-04-15..2016-04-21 n_window=16 n_in_poly=16 n_viirs_in_poly=16 n_overpasses=6 first_h=0.0 last_h=25.37 frp_sum=163.3
+AltynDala_2016_07_07     64.5325,49.2076,65.4594,49.7449          2016-07-06..2016-08-12 n_window=195 n_in_poly=182 n_viirs_in_poly=141 n_overpasses=22 first_h=2.0 last_h=506.1 frp_sum=4661.2
+AltynDala_2017_06_06     64.2323,48.3405,65.6144,49.6617          2017-06-05..2017-06-28 n_window=2515 n_in_poly=1706 n_viirs_in_poly=1282 n_overpasses=69 first_h=0.0 last_h=289.25 frp_sum=36507.1
+AltynDala_2017_06_08     62.3757,48.7755,63.8871,49.3607          2017-06-07..2017-06-27 n_window=937 n_in_poly=923 n_viirs_in_poly=811 n_overpasses=47 first_h=0.0 last_h=220.18 frp_sum=12915.3
+AltynDala_2017_07_04     63.7733,49.2063,64.9141,49.7265          2017-07-03..2017-07-23 n_window=832 n_in_poly=806 n_viirs_in_poly=662 n_overpasses=25 first_h=0.0 last_h=84.42 frp_sum=28958.2
+AltynDala_2017_07_24     63.2066,49.0150,63.7928,49.3373          2017-07-23..2017-07-29 n_window=217 n_in_poly=208 n_viirs_in_poly=136 n_overpasses=6 first_h=0.0 last_h=24.7 frp_sum=9876.7
+AltynDala_2018_08_08     63.1162,49.0740,63.7250,49.4022          2018-08-07..2018-08-10 n_window=93 n_in_poly=93 n_viirs_in_poly=79 n_overpasses=9 first_h=0.0 last_h=16.38 frp_sum=1729.2
+AltynDala_2019_06_30     64.0413,50.0955,64.8874,50.5855          2019-06-29..2019-07-08 n_window=501 n_in_poly=470 n_viirs_in_poly=426 n_overpasses=23 first_h=-11.38 last_h=85.03 frp_sum=9941.2
+AltynDala_2020_07_26     64.8719,49.2184,65.4398,49.7134          2020-07-25..2020-08-01 n_window=121 n_in_poly=121 n_viirs_in_poly=89 n_overpasses=19 first_h=0.0 last_h=49.1 frp_sum=2871.6
+AltynDala_2020_08_06     64.5618,49.1860,64.9024,49.4446          2020-08-05..2020-08-16 n_window=60 n_in_poly=40 n_viirs_in_poly=40 n_overpasses=5 first_h=0.0 last_h=14.73 frp_sum=1070.6
+AltynDala_2020_08_06_2   62.9172,49.1087,63.2870,49.3265          2020-08-05..2020-08-16 n_window=23 n_in_poly=18 n_viirs_in_poly=15 n_overpasses=5 first_h=0.0 last_h=13.9 frp_sum=238.3
+AltynDala_2020_08_06_3   63.1082,49.1277,63.4736,49.3580          2020-08-05..2020-08-16 n_window=66 n_in_poly=49 n_viirs_in_poly=41 n_overpasses=9 first_h=0.0 last_h=16.18 frp_sum=299.1
+AltynDala_2020_08_06_1   64.4660,49.3136,64.9001,49.6583          2020-08-05..2020-08-16 n_window=108 n_in_poly=85 n_viirs_in_poly=80 n_overpasses=4 first_h=0.0 last_h=1.67 frp_sum=443.2
+AltynDala_2021           63.9672,49.9489,64.2908,50.2002          2021-05-17..2021-05-23 n_window=48 n_in_poly=48 n_viirs_in_poly=48 n_overpasses=11 first_h=-0.82 last_h=35.15 frp_sum=617.8
+AltynDala_2021_07_01     64.2745,49.2381,65.1624,49.8053          2021-06-30..2021-07-09 n_window=1488 n_in_poly=974 n_viirs_in_poly=877 n_overpasses=36 first_h=0.0 last_h=60.5 frp_sum=25215.6
+AltynDala_2021_07_01_1   64.7714,49.1351,65.3412,49.5049          2021-06-30..2021-07-09 n_window=328 n_in_poly=283 n_viirs_in_poly=241 n_overpasses=27 first_h=0.0 last_h=60.5 frp_sum=15437.4
+AltynDala_2021_07_03     64.8674,49.0964,65.7484,49.9763          2021-07-02..2021-07-09 n_window=1299 n_in_poly=717 n_viirs_in_poly=619 n_overpasses=36 first_h=-15.85 last_h=59.58 frp_sum=13627.3
+AltynDala_2021_07_05     64.9374,49.5313,65.2106,49.7716          2021-07-04..2021-07-09 n_window=88 n_in_poly=88 n_viirs_in_poly=72 n_overpasses=9 first_h=0.0 last_h=12.3 frp_sum=2262.6
+AltynDala_2023           64.0036,49.9374,64.2465,50.1310          2023-07-31..2023-08-06 n_window=46 n_in_poly=45 n_viirs_in_poly=44 n_overpasses=13 first_h=-13.62 last_h=71.07 frp_sum=416.2
+Korgalzhyn_2014_08_08    67.2325,50.3609,68.7385,51.4147          2014-08-07..2014-09-02 n_window=1897 n_in_poly=1885 n_viirs_in_poly=1530 n_overpasses=94 first_h=0.0 last_h=458.42 frp_sum=47282.2
+  http 504 <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</
+  http 504 <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</
+Korgalzhyn_2015_08_04    69.3275,50.4001,69.5488,50.5855          2015-08-03..2015-08-29 n_window=4 n_in_poly=4 n_viirs_in_poly=3 n_overpasses=3 first_h=0.0 last_h=22.02 frp_sum=36.4
+Korgalzhyn_2016_05_24    68.4666,50.2782,68.7956,50.5184          2016-05-23..2016-06-19 n_window=15 n_in_poly=15 n_viirs_in_poly=14 n_overpasses=8 first_h=0.0 last_h=82.53 frp_sum=75.0
+Korgalzhyn_2016_08_28    68.2125,50.3966,68.4459,50.5724          2016-08-27..2016-08-31 n_window=8 n_in_poly=8 n_viirs_in_poly=7 n_overpasses=3 first_h=0.0 last_h=1.67 frp_sum=59.1
+Korgalzhyn_2017_06_30    67.4318,49.7497,69.4348,50.8281          2017-06-29..2017-07-22 n_window=4311 n_in_poly=4168 n_viirs_in_poly=3530 n_overpasses=85 first_h=0.0 last_h=242.3 frp_sum=181505.3
+Korgalzhyn_2020_07_20    67.6326,50.3617,68.7343,50.9305          2020-07-19..2020-08-05 n_window=505 n_in_poly=499 n_viirs_in_poly=390 n_overpasses=34 first_h=-23.08 last_h=77.63 frp_sum=12441.3
+Korgalzhyn_2021_05_01    68.0819,50.1324,68.3135,50.3088          2021-04-30..2021-05-07 n_window=54 n_in_poly=54 n_viirs_in_poly=44 n_overpasses=6 first_h=0.0 last_h=2.88 frp_sum=1342.4
+Korgalzhyn_2021_11_06    68.4572,50.3788,68.8335,50.6453          2021-11-05..2021-11-08 n_window=39 n_in_poly=39 n_viirs_in_poly=33 n_overpasses=9 first_h=0.0 last_h=23.68 frp_sum=702.1
+Korgalzhyn_2022_06_25    68.0467,50.1753,68.4929,50.4779          2022-06-24..2022-06-28 n_window=206 n_in_poly=200 n_viirs_in_poly=196 n_overpasses=7 first_h=0.0 last_h=14.72 frp_sum=2353.0
+Korgalzhyn_2022_09_19    68.0546,50.0971,68.4598,50.3269          2022-09-18..2022-09-24 n_window=123 n_in_poly=123 n_viirs_in_poly=112 n_overpasses=11 first_h=0.0 last_h=13.15 frp_sum=5342.2
+Mirgorod_2017            53.3408,50.8079,53.5931,51.0177          2017-07-29..2017-08-04 n_window=128 n_in_poly=43 n_viirs_in_poly=41 n_overpasses=3 first_h=0.0 last_h=15.7 frp_sum=340.7
+Mirgorod_2019            53.3334,50.7389,53.5932,50.9887          2019-07-28..2019-08-09 n_window=441 n_in_poly=120 n_viirs_in_poly=110 n_overpasses=15 first_h=-0.63 last_h=25.55 frp_sum=2361.0
+Mirgorod_2022            53.3413,50.8268,53.5392,50.9913          2022-07-10..2022-07-12 n_window=20 n_in_poly=8 n_viirs_in_poly=5 n_overpasses=5 first_h=0.0 last_h=2.27 frp_sum=59.6
+Naurzum_2015_08_03       64.3725,51.0193,64.9331,51.5395          2015-08-02..2015-08-09 n_window=408 n_in_poly=405 n_viirs_in_poly=327 n_overpasses=19 first_h=-0.82 last_h=49.05 frp_sum=10222.4
+Naurzum_2016_08_27       63.6359,51.2957,63.9131,51.5554          2016-08-26..2016-09-12 n_window=21 n_in_poly=20 n_viirs_in_poly=11 n_overpasses=3 first_h=0.0 last_h=1.77 frp_sum=1648.0
+Naurzum_2017_08_25       64.2423,51.6307,64.5221,51.8423          2017-08-24..2017-09-21 n_window=32 n_in_poly=28 n_viirs_in_poly=19 n_overpasses=5 first_h=0.0 last_h=2.0 frp_sum=1417.0
+Naurzum_2017_08_25_1     64.2127,51.6205,64.4465,51.7987          2017-08-24..2017-09-21 n_window=32 n_in_poly=4 n_viirs_in_poly=4 n_overpasses=1 first_h=0.0 last_h=0.0 frp_sum=28.7
+Naurzum_2017_09_16       64.6126,51.4417,64.9083,51.6391          2017-09-15..2017-09-21 n_window=16 n_in_poly=16 n_viirs_in_poly=14 n_overpasses=3 first_h=0.0 last_h=1.67 frp_sum=132.6
+Naurzum_2018_04_18       63.4735,51.1944,64.0357,51.5560          2018-04-17..2018-04-19 n_window=16 n_in_poly=16 n_viirs_in_poly=16 n_overpasses=3 first_h=-0.83 last_h=11.37 frp_sum=192.3
+Naurzum_2019_07_20       63.6262,51.4758,64.1058,51.7988          2019-07-19..2019-07-23 n_window=223 n_in_poly=182 n_viirs_in_poly=155 n_overpasses=23 first_h=0.0 last_h=41.33 frp_sum=2669.6
+Naurzum_2019_07_23_1     64.3691,51.1442,64.6523,51.3532          2019-07-22..2019-08-02 n_window=174 n_in_poly=21 n_viirs_in_poly=13 n_overpasses=9 first_h=-2.22 last_h=23.13 frp_sum=718.0
+Naurzum_2019_07_23       63.7924,50.9072,64.6473,51.7013          2019-07-22..2019-08-02 n_window=1173 n_in_poly=128 n_viirs_in_poly=118 n_overpasses=9 first_h=-10.22 last_h=6.17 frp_sum=1689.8
+Naurzum_2021_07_22       64.3035,51.1314,64.6384,51.3972          2021-07-21..2021-08-01 n_window=0
+Naurzum_2021_08_17       64.2226,51.1912,64.5821,51.4852          2021-08-16..2021-08-21 n_window=96 n_in_poly=94 n_viirs_in_poly=69 n_overpasses=12 first_h=-0.57 last_h=24.8 frp_sum=10628.8
+events with >=1 detection in polygon: 43 / 44 | >=3 overpasses: 42 | total points in polygons: 14987

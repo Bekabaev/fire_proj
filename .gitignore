@@ -1,0 +1,18 @@
+# секреты
+.firms_key
+*.key
+.env
+
+# тяжёлые данные (пересобираются скриптами, см. README)
+task1_dataset/data/
+task2_model/cache_v3/
+task2_model/out_v3/probs_*.npy
+task2_model/out_v3/*_last.pt
+task2_model/out/*.npz
+task2_model/out/*.npy
+
+# служебное
+__pycache__/
+*.pyc
+~$*
+CopyFireSpread_Dataset_Presentation.pptx

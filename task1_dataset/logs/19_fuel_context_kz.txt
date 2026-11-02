@@ -1,0 +1,26 @@
+C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task1_dataset\scripts\19_fuel_context_kz.py:30: RuntimeWarning: All-NaN slice encountered
+  clim.append(np.nan_to_num(np.nanmedian(s, 0), nan=-32768).astype(np.int16)); print("clim composite", doys[k], flush=True)
+clim composite 49
+clim composite 65
+clim composite 81
+clim composite 97
+clim composite 113
+clim composite 129
+clim composite 145
+clim composite 161
+clim composite 177
+clim composite 193
+clim composite 209
+clim composite 225
+clim composite 241
+clim composite 257
+clim composite 273
+clim composite 289
+clim composite 305
+C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task1_dataset\scripts\19_fuel_context_kz.py:36: RuntimeWarning: All-NaN slice encountered
+  np.save(fp, np.nan_to_num(np.nanmax(a, 0), nan=-32768).astype(np.int16))
+ndvi done
+last burn done
+places: 7627 roads: 191006
+osm done | median dist settlement / road km: 48.81085944746312 22.276669409945463
+done

@@ -1,0 +1,35 @@
+days needed: 3440
+2013: days 312 (missing 0)
+2014: days 284 (missing 0)
+  2015: 0/1
+2015: days 273 (missing 0)
+2016: days 274 (missing 0)
+2017: days 298 (missing 0)
+2018: days 282 (missing 0)
+2019: days 286 (missing 0)
+2020: days 303 (missing 0)
+2021: days 289 (missing 0)
+2022: days 267 (missing 0)
+2023: days 279 (missing 0)
+  2024: 0/1
+2024: days 293 (missing 0)
+slices_v3_index.csv | slices 111215 | with FWI 0.831
+       gfwed_FFMC  gfwed_DMC  gfwed_DC  gfwed_ISI  gfwed_BUI  gfwed_FWI  gfwed_DSR
+count     92442.0    92442.0   92442.0    92442.0    92442.0    92442.0    92442.0
+mean         87.3       83.6     381.3       13.7      101.6       31.1       17.5
+std           9.5       98.0     346.0       12.0      106.0       26.1       23.7
+min          18.2        0.1       0.5        0.0        0.1        0.0        0.0
+25%          85.3       16.6      43.2        5.4       18.5        9.5        1.5
+50%          89.5       51.6     338.9       10.7       71.0       23.6        7.3
+75%          93.3      115.1     632.6       18.5      151.8       48.0       25.7
+max          99.4      832.2    1525.7      158.1      818.4      193.4      303.0
+slices_v3_reserves_index.csv | slices 393 | with FWI 0.995
+       gfwed_FFMC  gfwed_DMC  gfwed_DC  gfwed_ISI  gfwed_BUI  gfwed_FWI  gfwed_DSR
+count       391.0      391.0     391.0      391.0      391.0      391.0      391.0
+mean         92.1      141.6     530.3       18.5      165.1       51.0       32.1
+std           5.0       77.2     163.6       10.8       69.8       21.4       22.2
+min          66.0        7.5      17.8        1.5        7.5        2.0        0.1
+25%          90.7       82.7     406.0       11.1      120.4       38.7       17.6
+50%          93.7      119.6     553.9       16.8      148.6       50.7       28.3
+75%          95.0      173.2     635.1       24.7      195.1       63.6       42.4
+max          98.6      395.9     986.5       55.4      394.6      108.1      108.3

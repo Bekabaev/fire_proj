@@ -1,0 +1,52 @@
+AltynDala_2015_08_28     pos  5000/   34830 neg  5000/  189621
+AltynDala_2016_04_16     pos  5000/   75598 neg  5000/  394508
+AltynDala_2016_07_07     pos  5000/  793766 neg  5000/ 1780394
+AltynDala_2017_06_06     pos  5000/ 4873587 neg  5000/ 6189848
+AltynDala_2017_06_08     pos  5000/ 1667910 neg  5000/ 2668929
+AltynDala_2017_07_04     pos  5000/  727357 neg  5000/ 2233363
+AltynDala_2017_07_24     pos  5000/  264191 neg  5000/  475251
+AltynDala_2018_08_08     pos  5000/  146146 neg  5000/  643190
+AltynDala_2019_06_30     pos  5000/  389160 neg  5000/ 1620114
+AltynDala_2020_07_26     pos  5000/  257536 neg  5000/ 1057008
+AltynDala_2020_08_06     pos  5000/   54882 neg  5000/  218638
+AltynDala_2020_08_06_2   pos  5000/   30718 neg  5000/  181792
+AltynDala_2020_08_06_3   pos  5000/   36173 neg  5000/  201827
+AltynDala_2020_08_06_1   pos  5000/  130732 neg  5000/  451012
+AltynDala_2021           pos  5000/   32348 neg  5000/  203090
+AltynDala_2021_07_01     pos  5000/  850819 neg  5000/ 1733888
+AltynDala_2021_07_01_1   pos  5000/  157586 neg  5000/  743277
+AltynDala_2021_07_03     pos  5000/ 1427558 neg  5000/ 2800024
+AltynDala_2021_07_05     pos  5000/   20298 neg  5000/  152022
+AltynDala_2023           pos  5000/    5814 neg  5000/   87504
+Korgalzhyn_2014_08_08    pos  5000/ 3597332 neg  5000/ 7748176
+Korgalzhyn_2015_08_04    pos  4860/    4860 neg  5000/   84915
+Korgalzhyn_2016_05_24    pos  5000/   59825 neg  5000/  219355
+Korgalzhyn_2016_08_28    pos  5000/    5307 neg  5000/   81707
+Korgalzhyn_2017_06_30    pos  5000/ 5514752 neg  5000/10547791
+Korgalzhyn_2020_07_20    pos  5000/ 1108814 neg  5000/ 2900690
+Korgalzhyn_2021_05_01    pos  5000/    5276 neg  5000/   81524
+Korgalzhyn_2021_11_06    pos  5000/   74409 neg  5000/  324691
+Korgalzhyn_2022_06_25    pos  5000/  149633 neg  5000/  455169
+Korgalzhyn_2022_09_19    pos  5000/   56290 neg  5000/  285464
+Mirgorod_2017            pos  5000/   15236 neg  5000/  120988
+Mirgorod_2019            pos  5000/   29274 neg  5000/  164934
+Mirgorod_2022            pos   329/     329 neg  5000/   51175
+Naurzum_2015_08_03       pos  5000/  233870 neg  5000/ 1050628
+Naurzum_2016_08_27       pos  5000/   26910 neg  5000/  156906
+Naurzum_2017_08_25       pos  5000/    9882 neg  5000/  123016
+Naurzum_2017_08_25_1     pos  1791/    1791 neg  5000/   68313
+Naurzum_2017_09_16       pos  5000/   12823 neg  5000/  115305
+Naurzum_2018_04_18       pos  5000/  138407 neg  5000/  669550
+Naurzum_2019_07_20       pos  5000/  115244 neg  5000/  448638
+Naurzum_2019_07_23_1     pos  5000/   15176 neg  5000/  120816
+Naurzum_2019_07_23       pos  5000/  971707 neg  5000/ 2465489
+Naurzum_2021_07_22       pos  5000/   42744 neg  5000/  221356
+Naurzum_2021_08_17       pos  5000/   71590 neg  5000/  267562
+rows: 431980 | columns: 90 | burned share: 0.491
+rows with pre-fire fuel: 418614
+            events    rows     pos
+site                              
+AltynDala       20  200000  100000
+Korgalzhyn      10   99860   49860
+Mirgorod         3   25329   10329
+Naurzum         11  106791   51791

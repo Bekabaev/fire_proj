@@ -1,0 +1,45 @@
+loaded 2013 2531
+loaded 2014 5030
+loaded 2015 4837
+loaded 2016 3246
+loaded 2017 7400
+loaded 2018 4228
+loaded 2019 6037
+loaded 2020 4840
+loaded 2021 8241
+loaded 2022 6085
+loaded 2023 4017
+loaded 2024 2658
+train slices 38149 | sel slices 4206 | maps (59150, 16, 96, 96)
+parameters: 292539
+epoch  0 loss 1.3165 sel F1 0.2064 @ 0.625 (79 s)
+epoch  1 loss 0.8789 sel F1 0.2355 @ 0.125 (79 s)
+epoch  2 loss 0.8536 sel F1 0.2646 @ 0.100 (79 s)
+epoch  3 loss 0.8417 sel F1 0.2543 @ 0.950 (79 s)
+epoch  4 loss 0.8351 sel F1 0.2714 @ 0.125 (79 s)
+epoch  5 loss 0.8186 sel F1 0.2823 @ 0.825 (77 s)
+epoch  6 loss 0.8067 sel F1 0.2883 @ 0.900 (77 s)
+epoch  7 loss 0.7999 sel F1 0.3165 @ 0.075 (77 s)
+epoch  8 loss 0.7911 sel F1 0.3179 @ 0.775 (77 s)
+epoch  9 loss 0.7866 sel F1 0.3182 @ 0.050 (77 s)
+epoch 10 loss 0.7831 sel F1 0.3168 @ 0.800 (78 s)
+epoch 11 loss 0.7766 sel F1 0.3357 @ 0.100 (77 s)
+epoch 12 loss 0.7747 sel F1 0.3402 @ 0.750 (77 s)
+epoch 13 loss 0.7679 sel F1 0.3430 @ 0.575 (77 s)
+epoch 14 loss 0.7635 sel F1 0.3447 @ 0.325 (77 s)
+epoch 15 loss 0.7597 sel F1 0.3443 @ 0.800 (77 s)
+epoch 16 loss 0.7586 sel F1 0.3509 @ 0.600 (77 s)
+epoch 17 loss 0.7535 sel F1 0.3495 @ 0.125 (77 s)
+epoch 18 loss 0.7495 sel F1 0.3558 @ 0.175 (77 s)
+epoch 19 loss 0.7496 sel F1 0.3586 @ 0.425 (77 s)
+epoch 20 loss 0.7446 sel F1 0.3487 @ 0.275 (78 s)
+epoch 21 loss 0.7436 sel F1 0.3637 @ 0.600 (78 s)
+epoch 22 loss 0.7407 sel F1 0.3618 @ 0.825 (77 s)
+epoch 23 loss 0.7379 sel F1 0.3587 @ 0.550 (77 s)
+epoch 24 loss 0.7345 sel F1 0.3601 @ 0.525 (77 s)
+epoch 25 loss 0.7328 sel F1 0.3659 @ 0.500 (77 s)
+epoch 26 loss 0.7291 sel F1 0.3597 @ 0.450 (77 s)
+epoch 27 loss 0.7305 sel F1 0.3597 @ 0.400 (77 s)
+epoch 28 loss 0.7285 sel F1 0.3606 @ 0.475 (77 s)
+epoch 29 loss 0.7310 sel F1 0.3606 @ 0.475 (78 s)
+best sel F1 0.3659

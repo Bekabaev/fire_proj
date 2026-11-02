@@ -1,0 +1,46 @@
+                     event        ign_time_utc      af_sensor              ign_src  ign_to_poly_km   area_ha  max_spread_km  az_far_deg  max_duration_h  ros_lb_m_per_h  gee_post_ok  gee_pre_ok split_time
+0     AltynDala_2015_08_28 2015-08-28 06:39:00    MODIS Terra          firms_point           0.000    3133.1           5.86        60.3           143.3            40.9         True        True      train
+1     AltynDala_2016_04_16 2016-04-16 07:12:00    VIIRS SUOMI          firms_point           0.000    6802.1          11.10        44.0           118.8            93.4         True       False      train
+2     AltynDala_2016_07_07 2016-07-07 20:09:00    VIIRS SUOMI          firms_point           0.000   71437.9          39.16        57.8           849.9            46.1         True        True      train
+3     AltynDala_2017_06_06 2017-06-06 21:05:00    VIIRS SUOMI          firms_point           0.000  438619.0         116.90         8.2           512.9           227.9        False       False      train
+4     AltynDala_2017_06_08 2017-06-08 16:47:00    MODIS Terra          firms_point           0.000  150109.3          62.98        92.2           445.2           141.5        False       False      train
+5     AltynDala_2017_07_04 2017-07-04 17:24:00    MODIS Terra          firms_point           0.000   65463.3          58.39       115.4           444.6           131.3         True        True      train
+6     AltynDala_2017_07_24 2017-07-24 17:00:00    MODIS TERRA          firms_point           0.000   23776.2          27.22       108.9           109.0           249.8         True        True      train
+7     AltynDala_2018_08_08 2018-08-08 17:25:00    MODIS Terra          firms_point           0.000   13153.0          29.11       103.5            36.6           795.7         True        True      train
+8     AltynDala_2019_06_30 2019-06-30 20:27:00    VIIRS SUOMI          firms_point           0.000   35026.1          40.34        90.1           177.6           227.2         True        True      train
+9     AltynDala_2020_07_26 2020-07-26 08:11:00     MODIS Aqua          firms_point           0.000   23176.2          35.25       157.4           141.8           248.6         True        True        val
+10    AltynDala_2020_08_06 2020-08-06 08:07:00   VIIRS J1V-C2          firms_point           0.000    4940.0           8.35       305.6           237.9            35.1         True        True        val
+11  AltynDala_2020_08_06_2 2020-08-06 08:07:00   VIIRS J1V-C2          firms_point           0.000    2764.2          10.61       258.1           237.9            44.6         True       False        val
+12  AltynDala_2020_08_06_3 2020-08-06 17:18:00   VIIRS J1V-C2          firms_point           0.000    3255.1          10.07       254.7           228.7            44.0         True       False        val
+13  AltynDala_2020_08_06_1 2020-08-06 21:11:00    VIIRS SUOMI          firms_point           0.000   11765.4          16.28       172.8           224.8            72.4         True        True        val
+14          AltynDala_2021 2021-05-18 22:07:00  VIIRS  J1V-C2          firms_point           0.000    2910.7           6.88       228.4           103.9            66.2        False       False       test
+15    AltynDala_2021_07_01 2021-07-01 20:53:00  VIIRS  J1V-C2          firms_point           0.000   76575.7          42.91       109.3           177.1           242.3         True       False       test
+16  AltynDala_2021_07_01_1 2021-07-01 20:53:00  VIIRS  J1V-C2          firms_point           0.000   14183.4          28.35       126.0           177.1           160.0         True        True       test
+17    AltynDala_2021_07_03 2021-07-03 09:43:00  VIIRS  J1V-C2          firms_point           0.000  128476.4          52.51       174.9           140.3           374.3        False       False       test
+18    AltynDala_2021_07_05 2021-07-05 21:18:00  VIIRS  J1V-C2          firms_point           0.000    1826.0           7.94       205.3            80.7            98.4         True        True       test
+19          AltynDala_2023 2023-08-01 22:15:00    VIIRS SUOMI          firms_point           0.000     523.9           3.13       211.7           103.8            30.1        False       False       test
+20   Korgalzhyn_2014_08_08 2014-08-08 20:40:00    VIIRS Suomi          firms_point           0.000  323754.8          81.85       313.3           585.3           139.8        False       False      train
+21   Korgalzhyn_2015_08_04 2015-08-04 08:56:00    VIIRS Suomi          firms_point           0.000     438.5           3.16       176.6           597.1             5.3        False       False      train
+22   Korgalzhyn_2016_05_24 2016-05-24 22:33:00    VIIRS Suomi          firms_point           0.000    5385.7           7.73       289.0           607.5            12.7         True       False      train
+23   Korgalzhyn_2016_08_28 2016-08-28 06:59:00    VIIRS Suomi          firms_point           0.059     477.2           2.04       305.0            71.0            28.7        False       False      train
+24   Korgalzhyn_2017_06_30 2017-06-30 20:14:00    VIIRS Suomi          firms_point           0.000  496331.0          68.39       108.2           513.8           133.1        False       False      train
+25   Korgalzhyn_2020_07_20 2020-07-20 16:35:00    MODIS Terra          firms_point           0.000   99791.7          45.39       322.5           373.4           121.5        False       False        val
+26   Korgalzhyn_2021_05_01 2021-05-01 06:30:00    Modis Terra          firms_point           0.000     476.0           2.61       283.8           143.5            18.2        False       False       test
+27   Korgalzhyn_2021_11_06 2021-11-06 20:52:00      VIIRS N20          firms_point           0.000    6696.4           8.89        29.6            33.1           268.4        False        True       test
+28   Korgalzhyn_2022_06_25 2022-06-25 08:08:00    VIIRS Suomi          firms_point           0.000   13464.9          18.81       115.0            69.9           269.2         True        True       test
+29   Korgalzhyn_2022_09_19 2022-09-19 20:08:00      VIIRS N20          firms_point           0.000    5065.7          11.05       277.9           105.9           104.4         True        True       test
+30           Mirgorod_2017 2017-07-30 06:51:00    MODIS Terra          firms_point           4.507    1371.5          10.48       135.5           119.2            87.9        False       False      train
+31           Mirgorod_2019 2019-07-29 22:02:00     MODIS Aqua          firms_point           0.000    2635.6           7.32        28.8           248.0            29.5        False       False      train
+32           Mirgorod_2022 2022-07-11 07:33:00          MODIS          firms_point           0.000      29.6           0.73       200.2            22.4            32.5        False       False       test
+33      Naurzum_2015_08_03 2015-08-03 07:34:00    VIIRS SUOMI          firms_point           0.000   21048.7          27.59       144.3           142.4           193.7         True        True      train
+34      Naurzum_2016_08_27 2016-08-27 07:45:00          Terra          firms_point           0.167    2423.1          10.33       193.0           382.2            27.0         True        True      train
+35      Naurzum_2017_08_25 2017-08-25 07:12:00    VIIRS SUOMI          firms_point           0.000     888.8           5.28       316.6           646.8             8.2         True        True      train
+36    Naurzum_2017_08_25_1 2017-08-25 08:52:00    VIIRS SUOMI          firms_point           0.000     161.1           1.40       314.5           645.1             2.2        False       False      train
+37      Naurzum_2017_09_16 2017-09-16 07:00:00    VIIRS SUOMI          firms_point           0.000    1154.3           6.40        79.5           119.0            53.8         True       False      train
+38      Naurzum_2018_04_18 2018-04-18 09:17:00    J1 VIIRS C2          firms_point           0.000   12457.1          18.17       230.4            20.7           877.2         True       False      train
+39      Naurzum_2019_07_20 2019-07-20 16:23:00          Terra          firms_point           0.455   10370.1          16.47       121.9            61.6           267.3         True        True      train
+40    Naurzum_2019_07_23_1 2019-07-23 09:06:00          MODIS          firms_point           0.000    1365.4           3.93       249.6             NaN             NaN         True        True      train
+41      Naurzum_2019_07_23 2019-07-23 17:06:00          MODIS          firms_point           0.000   87453.3          70.29       334.3             NaN             NaN         True       False      train
+42      Naurzum_2021_07_22 2021-07-22 16:45:00          Terra  centroid(bad_coord)        1477.555    3846.9           5.67        20.8             NaN             NaN         True        True       test
+43      Naurzum_2021_08_17 2021-08-17 08:42:00           Aqua          firms_point           0.000    6442.9          12.18       139.4            93.3           130.5         True        True       test
+events: 44 | ign_src: {'firms_point': 43, 'centroid(bad_coord)': 1}

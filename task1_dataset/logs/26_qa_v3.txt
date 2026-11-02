@@ -1,0 +1,387 @@
+{
+ "slices": 111215,
+ "fires": 14247,
+ "by_split": {
+  "test": {
+   "slices": 8059,
+   "fires": 959
+  },
+  "train": {
+   "slices": 96087,
+   "fires": 12414
+  },
+  "val": {
+   "slices": 7069,
+   "fires": 874
+  }
+ },
+ "slices_1km": 3456,
+ "fires_1km": 297,
+ "v2": {
+  "slices": 98699,
+  "fires": 17165,
+  "weather_share": 0.357
+ },
+ "12h": {
+  "share_with_growth": 0.35,
+  "in_scene_area_share": 0.868,
+  "targets_timed_by_af": 0.448,
+  "targets_day_only": 0.148,
+  "ext_share_of_targets": 0.102,
+  "big_fires_in_scene_500m": 0.692,
+  "big_fires_in_scene_1km": 0.933
+ },
+ "24h": {
+  "share_with_growth": 0.54,
+  "in_scene_area_share": 0.85,
+  "targets_timed_by_af": 0.448,
+  "targets_day_only": 0.152,
+  "ext_share_of_targets": 0.101,
+  "big_fires_in_scene_500m": 0.662,
+  "big_fires_in_scene_1km": 0.928
+ },
+ "48h": {
+  "share_with_growth": 0.741,
+  "in_scene_area_share": 0.823,
+  "targets_timed_by_af": 0.45,
+  "targets_day_only": 0.153,
+  "ext_share_of_targets": 0.099,
+  "big_fires_in_scene_500m": 0.623,
+  "big_fires_in_scene_1km": 0.906
+ },
+ "72h": {
+  "share_with_growth": 0.852,
+  "in_scene_area_share": 0.806,
+  "targets_timed_by_af": 0.451,
+  "targets_day_only": 0.152,
+  "ext_share_of_targets": 0.098,
+  "big_fires_in_scene_500m": 0.603,
+  "big_fires_in_scene_1km": 0.894
+ },
+ "weather_ok": 1.0,
+ "station_ok": 0.594,
+ "forecast_ok": 0.029,
+ "weather_by_year": {
+  "2013": 1.0,
+  "2014": 1.0,
+  "2015": 1.0,
+  "2016": 1.0,
+  "2017": 1.0,
+  "2018": 1.0,
+  "2019": 1.0,
+  "2020": 1.0,
+  "2021": 1.0,
+  "2022": 1.0,
+  "2023": 1.0,
+  "2024": 1.0
+ },
+ "label_check_vs_expert": [
+  "events: 44, expert cells: 86601",
+  "area recall (cell-weighted): MCD64A1 0.665 -> MCD64A1+VIIRS ext 0.687",
+  "precision (median over events): MCD64A1 cells 0.986, VIIRS-ext cells 0.935; ext cells total 2675",
+  "timing |error| vs expert FIRMS arrival, hours (all cells pooled): median / p75 / n",
+  "  v2 day label (MCD64A1 date, local noon): 14.7 / 35.1 / 37381  (bias +9.3)",
+  "  v3 src1 VIIRS (not independent): 0.3 / 2.5 / 13469  (bias +0.1)",
+  "  v3 src2 MODIS (not independent): 0.0 / 0.2 / 6896  (bias +0.0)",
+  "  v3 src3 interpolated: 0.0 / 2.1 / 14993  (bias +0.0)",
+  "  v3 src4 MCD64A1 day + offset: 135.2 / 158.3 / 1602  (bias +134.6)",
+  "  v3 src5 VIIRS ext (not independent): 0.6 / 4.1 / 2138  (bias +0.2)"
+ ],
+ "weather_vs_stations": [
+  {
+   "source": "era5",
+   "var": "ws_mean",
+   "n": 65908,
+   "bias": -0.04,
+   "mae": 1.09,
+   "r": 0.677
+  },
+  {
+   "source": "era5",
+   "var": "T_max",
+   "n": 66123,
+   "bias": 0.21,
+   "mae": 1.27,
+   "r": 0.979
+  },
+  {
+   "source": "era5",
+   "var": "RH_min",
+   "n": 65662,
+   "bias": -1.38,
+   "mae": 6.74,
+   "r": 0.805
+  },
+  {
+   "source": "era5_2024",
+   "var": "ws_mean",
+   "n": 2159,
+   "bias": 0.47,
+   "mae": 1.18,
+   "r": 0.658
+  },
+  {
+   "source": "era5_2024",
+   "var": "T_max",
+   "n": 2159,
+   "bias": 0.4,
+   "mae": 1.41,
+   "r": 0.968
+  },
+  {
+   "source": "era5_2024",
+   "var": "RH_min",
+   "n": 2159,
+   "bias": -1.17,
+   "mae": 6.71,
+   "r": 0.811
+  },
+  {
+   "source": "gfs",
+   "var": "ws_mean",
+   "n": 2159,
+   "bias": 1.44,
+   "mae": 1.71,
+   "r": 0.652
+  },
+  {
+   "source": "gfs",
+   "var": "T_max",
+   "n": 2159,
+   "bias": 0.28,
+   "mae": 1.87,
+   "r": 0.95
+  },
+  {
+   "source": "gfs",
+   "var": "RH_min",
+   "n": 2159,
+   "bias": -6.15,
+   "mae": 9.3,
+   "r": 0.73
+  },
+  {
+   "source": "ifs",
+   "var": "ws_mean",
+   "n": 2159,
+   "bias": 0.43,
+   "mae": 1.21,
+   "r": 0.622
+  },
+  {
+   "source": "ifs",
+   "var": "T_max",
+   "n": 2159,
+   "bias": -0.36,
+   "mae": 1.78,
+   "r": 0.955
+  },
+  {
+   "source": "ifs",
+   "var": "RH_min",
+   "n": 2159,
+   "bias": -1.5,
+   "mae": 8.33,
+   "r": 0.727
+  }
+ ],
+ "reserves": {
+  "slices": 393,
+  "events": 35,
+  "slices_1km": 290,
+  "by_split_time": {
+   "test": {
+    "slices": 54,
+    "events": 9
+   },
+   "train": {
+    "slices": 306,
+    "events": 21
+   },
+   "val": {
+    "slices": 33,
+    "events": 5
+   }
+  },
+  "events_in_gfa_train": 26,
+  "events_without_gfa": 7,
+  "weather_ok": 0.972,
+  "station_ok": 0.216,
+  "12h_in_scene_area_share": 0.502,
+  "24h_in_scene_area_share": 0.469,
+  "48h_in_scene_area_share": 0.41,
+  "72h_in_scene_area_share": 0.367,
+  "12h_targets_timed_by_firms": 0.531,
+  "24h_targets_timed_by_firms": 0.52,
+  "48h_targets_timed_by_firms": 0.495,
+  "72h_targets_timed_by_firms": 0.477
+ },
+ "fwi_ok": 0.831,
+ "fwi_median_by_growth_24h": {
+  "no_growth": 19.0,
+  "growth": 28.0
+ },
+ "forecast_gfsa_by_year": {
+  "2022": 1.0,
+  "2023": 1.0,
+  "2024": 1.0
+ },
+ "weather_gfsa_vs_stations": [
+  {
+   "source": "era5",
+   "years": "2022-2023",
+   "var": "ws_mean",
+   "n": 7935,
+   "bias": 0.08,
+   "mae": 1.26,
+   "r": 0.688
+  },
+  {
+   "source": "era5",
+   "years": "2022-2023",
+   "var": "T_max",
+   "n": 7935,
+   "bias": 0.12,
+   "mae": 1.28,
+   "r": 0.979
+  },
+  {
+   "source": "era5",
+   "years": "2022-2023",
+   "var": "RH_min",
+   "n": 7935,
+   "bias": -0.36,
+   "mae": 6.45,
+   "r": 0.855
+  },
+  {
+   "source": "era5",
+   "years": "2024",
+   "var": "ws_mean",
+   "n": 2163,
+   "bias": 0.47,
+   "mae": 1.18,
+   "r": 0.66
+  },
+  {
+   "source": "era5",
+   "years": "2024",
+   "var": "T_max",
+   "n": 2163,
+   "bias": 0.41,
+   "mae": 1.41,
+   "r": 0.968
+  },
+  {
+   "source": "era5",
+   "years": "2024",
+   "var": "RH_min",
+   "n": 2163,
+   "bias": -1.17,
+   "mae": 6.71,
+   "r": 0.811
+  },
+  {
+   "source": "gfs_aws",
+   "years": "2022-2023",
+   "var": "ws_mean",
+   "n": 7935,
+   "bias": 1.05,
+   "mae": 1.59,
+   "r": 0.685
+  },
+  {
+   "source": "gfs_aws",
+   "years": "2022-2023",
+   "var": "T_max",
+   "n": 7935,
+   "bias": -1.27,
+   "mae": 2.11,
+   "r": 0.958
+  },
+  {
+   "source": "gfs_aws",
+   "years": "2022-2023",
+   "var": "RH_min",
+   "n": 7935,
+   "bias": 0.06,
+   "mae": 8.61,
+   "r": 0.759
+  },
+  {
+   "source": "gfs_aws",
+   "years": "2024",
+   "var": "ws_mean",
+   "n": 2163,
+   "bias": 1.38,
+   "mae": 1.68,
+   "r": 0.647
+  },
+  {
+   "source": "gfs_aws",
+   "years": "2024",
+   "var": "T_max",
+   "n": 2163,
+   "bias": -0.52,
+   "mae": 1.9,
+   "r": 0.952
+  },
+  {
+   "source": "gfs_aws",
+   "years": "2024",
+   "var": "RH_min",
+   "n": 2163,
+   "bias": -3.58,
+   "mae": 8.56,
+   "r": 0.759
+  },
+  {
+   "source": "gfs_openmeteo",
+   "years": "2024",
+   "var": "ws_mean",
+   "n": 2159,
+   "bias": 1.44,
+   "mae": 1.71,
+   "r": 0.652
+  },
+  {
+   "source": "gfs_openmeteo",
+   "years": "2024",
+   "var": "T_max",
+   "n": 2159,
+   "bias": 0.28,
+   "mae": 1.87,
+   "r": 0.95
+  },
+  {
+   "source": "gfs_openmeteo",
+   "years": "2024",
+   "var": "RH_min",
+   "n": 2159,
+   "bias": -6.15,
+   "mae": 9.3,
+   "r": 0.73
+  }
+ ],
+ "perims_check": [
+  "events with snapshots: 26, snapshots inside fire window: 79, mid-fire: 70, reliable mid-fire: 14",
+  "late_share = доля гари, видимой на снимке, которую метка к этому моменту ещё не считает сгоревшей (запаздывание метки) - все снимки;",
+  "F1 / acc / early - только надёжные снимки (распознано ≥ 70 % заведомо сгоревшего)",
+  "  expert      late_share 0.070 (n=70) | reliable: F1 0.796, acc 0.742, early 0.226 (n=14)",
+  "  mcd64_day   late_share 0.263 (n=70) | reliable: F1 0.776, acc 0.801, early 0.057 (n=14)",
+  "  v3_gfa      late_share 0.200 (n=70) | reliable: F1 0.788, acc 0.772, early 0.127 (n=14)",
+  "  expert_img  late_share 0.036 (n=70) | reliable: F1 0.879, acc 0.871, early 0.103 (n=14)"
+ ],
+ "perims": {
+  "events": 26,
+  "snapshots": 79,
+  "reliable": 14,
+  "late_share_expert": 0.07,
+  "late_share_expert_img": 0.036,
+  "late_share_mcd64_day": 0.263,
+  "late_share_v3_gfa": 0.2
+ }
+}
+
+channel nan share: {'ndvi': 0.035, 'ndvi_anom': 0.035}
+figures done

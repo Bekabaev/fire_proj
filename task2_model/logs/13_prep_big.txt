@@ -1,0 +1,27 @@
+excluded reserve fires: 90 | train slices 43576 fires 12336
+extra big-growth slices: 7752 fires 2704
+  trainx: 2013_0.npz 347
+  trainx: 2014_0.npz 918
+  trainx: 2014_1.npz 85
+  trainx: 2014_2.npz 2
+  trainx: 2015_0.npz 893
+  trainx: 2015_1.npz 72
+  trainx: 2015_2.npz 1
+  trainx: 2016_0.npz 423
+  trainx: 2017_0.npz 1008
+  trainx: 2017_1.npz 320
+  trainx: 2017_2.npz 26
+  trainx: 2017_3.npz 5
+  trainx: 2018_0.npz 712
+  trainx: 2018_1.npz 43
+  trainx: 2018_2.npz 6
+  trainx: 2019_0.npz 933
+  trainx: 2019_1.npz 181
+  trainx: 2019_2.npz 24
+  trainx: 2019_3.npz 6
+  trainx: 2020_0.npz 799
+  trainx: 2020_1.npz 77
+  trainx: 2020_2.npz 10
+  trainx: 2021_0.npz 783
+  trainx: 2021_1.npz 78
+trainx ready: 7752

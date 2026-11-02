@@ -1,0 +1,5 @@
+2021: fires 1455, slices 8241
+slices: 98699 | fires: 17165 | by split: {'test': {'slices': 6675, 'fires': 1115}, 'train': {'slices': 85939, 'fires': 15042}, 'val': {'slices': 6085, 'fires': 1008}}
+24h: share of slices with growth 0.50, median growth (cells) 1, in-scene share (area) 0.839
+48h: share of slices with growth 0.67, median growth (cells) 2, in-scene share (area) 0.816
+72h: share of slices with growth 0.75, median growth (cells) 3, in-scene share (area) 0.799

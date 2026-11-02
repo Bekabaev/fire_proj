@@ -1,0 +1,26 @@
+{'year': 2013, 'fire_cells': 47545, 'ext_cells': 5524, 'offset_h': -3.3, 'src1': 0.308, 'src2': 0.133, 'src3': 0.282, 'src4': 0.172, 'src5': 0.104, 'mcd_minus_viirs_days_median': 0.14, 'af_viirs': 102655, 'af_modis': 27947}
+{'year': 2014, 'fire_cells': 243104, 'ext_cells': 16307, 'offset_h': -2.8, 'src1': 0.311, 'src2': 0.139, 'src3': 0.358, 'src4': 0.13, 'src5': 0.063, 'mcd_minus_viirs_days_median': 0.12, 'af_viirs': 251808, 'af_modis': 67275}
+{'year': 2015, 'fire_cells': 284571, 'ext_cells': 16865, 'offset_h': -3.5, 'src1': 0.304, 'src2': 0.131, 'src3': 0.371, 'src4': 0.138, 'src5': 0.056, 'mcd_minus_viirs_days_median': 0.14, 'af_viirs': 220233, 'af_modis': 57234}
+{'year': 2016, 'fire_cells': 99128, 'ext_cells': 6479, 'offset_h': -2.4, 'src1': 0.287, 'src2': 0.125, 'src3': 0.31, 'src4': 0.216, 'src5': 0.061, 'mcd_minus_viirs_days_median': 0.1, 'af_viirs': 129654, 'af_modis': 34048}
+{'year': 2017, 'fire_cells': 562869, 'ext_cells': 33825, 'offset_h': -2.2, 'src1': 0.313, 'src2': 0.144, 'src3': 0.364, 'src4': 0.122, 'src5': 0.057, 'mcd_minus_viirs_days_median': 0.09, 'af_viirs': 340940, 'af_modis': 92027}
+{'year': 2018, 'fire_cells': 133143, 'ext_cells': 17656, 'offset_h': -3.5, 'src1': 0.408, 'src2': 0.091, 'src3': 0.274, 'src4': 0.11, 'src5': 0.117, 'mcd_minus_viirs_days_median': 0.14, 'af_viirs': 350719, 'af_modis': 47973}
+{'year': 2019, 'fire_cells': 319554, 'ext_cells': 41502, 'offset_h': -3.0, 'src1': 0.365, 'src2': 0.081, 'src3': 0.281, 'src4': 0.158, 'src5': 0.115, 'mcd_minus_viirs_days_median': 0.13, 'af_viirs': 543678, 'af_modis': 74382}
+{'year': 2020, 'fire_cells': 159585, 'ext_cells': 24472, 'offset_h': -3.4, 'src1': 0.35, 'src2': 0.081, 'src3': 0.253, 'src4': 0.184, 'src5': 0.133, 'mcd_minus_viirs_days_median': 0.14, 'af_viirs': 415256, 'af_modis': 56572}
+{'year': 2021, 'fire_cells': 208368, 'ext_cells': 22557, 'offset_h': -3.1, 'src1': 0.38, 'src2': 0.08, 'src3': 0.298, 'src4': 0.145, 'src5': 0.098, 'mcd_minus_viirs_days_median': 0.13, 'af_viirs': 415142, 'af_modis': 51300}
+{'year': 2022, 'fire_cells': 71101, 'ext_cells': 14418, 'offset_h': -4.3, 'src1': 0.395, 'src2': 0.071, 'src3': 0.219, 'src4': 0.147, 'src5': 0.169, 'mcd_minus_viirs_days_median': 0.18, 'af_viirs': 344689, 'af_modis': 35659}
+{'year': 2023, 'fire_cells': 40175, 'ext_cells': 8718, 'offset_h': -4.0, 'src1': 0.311, 'src2': 0.065, 'src3': 0.205, 'src4': 0.241, 'src5': 0.178, 'mcd_minus_viirs_days_median': 0.17, 'af_viirs': 252928, 'af_modis': 30715}
+{'year': 2024, 'fire_cells': 15236, 'ext_cells': 2389, 'offset_h': -4.2, 'src1': 0.266, 'src2': 0.134, 'src3': 0.223, 'src4': 0.242, 'src5': 0.136, 'mcd_minus_viirs_days_median': 0.17, 'af_viirs': 123064, 'af_modis': 13571}
+    year  fire_cells  ext_cells  offset_h   src1   src2   src3   src4   src5  mcd_minus_viirs_days_median  af_viirs  af_modis
+0   2013       47545       5524      -3.3  0.308  0.133  0.282  0.172  0.104                         0.14    102655     27947
+1   2014      243104      16307      -2.8  0.311  0.139  0.358  0.130  0.063                         0.12    251808     67275
+2   2015      284571      16865      -3.5  0.304  0.131  0.371  0.138  0.056                         0.14    220233     57234
+3   2016       99128       6479      -2.4  0.287  0.125  0.310  0.216  0.061                         0.10    129654     34048
+4   2017      562869      33825      -2.2  0.313  0.144  0.364  0.122  0.057                         0.09    340940     92027
+5   2018      133143      17656      -3.5  0.408  0.091  0.274  0.110  0.117                         0.14    350719     47973
+6   2019      319554      41502      -3.0  0.365  0.081  0.281  0.158  0.115                         0.13    543678     74382
+7   2020      159585      24472      -3.4  0.350  0.081  0.253  0.184  0.133                         0.14    415256     56572
+8   2021      208368      22557      -3.1  0.380  0.080  0.298  0.145  0.098                         0.13    415142     51300
+9   2022       71101      14418      -4.3  0.395  0.071  0.219  0.147  0.169                         0.18    344689     35659
+10  2023       40175       8718      -4.0  0.311  0.065  0.205  0.241  0.178                         0.17    252928     30715
+11  2024       15236       2389      -4.2  0.266  0.134  0.223  0.242  0.136                         0.17    123064     13571
+done

@@ -1,0 +1,15 @@
+2024 238292 {'VIIRS_NOAA20_SP': 114706, 'VIIRS_SNPP_SP': 105024, 'MODIS_SP': 18562}
+  retry 0 HTTPSConnectionPool(host='firms.modaps.eosdis.nasa.gov', port=443): Read timed o
+2023 394317 {'VIIRS_SNPP_SP': 181618, 'VIIRS_NOAA20_SP': 175700, 'MODIS_SP': 36999}
+  http 400 Invalid MAP_KEY.
+  http 400 Invalid MAP_KEY.
+  http 400 Invalid MAP_KEY.
+  http 400 Invalid MAP_KEY.
+  http 400 Invalid MAP_KEY.
+2022 479545 {'VIIRS_NOAA20_SP': 221097, 'VIIRS_SNPP_SP': 216353, 'MODIS_SP': 42095}
+  http 504 <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>50
+2021 583125 {'VIIRS_SNPP_SP': 264320, 'VIIRS_NOAA20_SP': 258960, 'MODIS_SP': 59845}
+done

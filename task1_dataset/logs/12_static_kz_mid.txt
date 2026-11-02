@@ -1,0 +1,8 @@
+grid lon/lat bounds: 45.98 39.98 87.92 56.23
+2018 NDVI composites: 17 items: 221
+2018 saved, finite share: 0.973
+2019 NDVI composites: 17 items: 221
+2019 saved, finite share: 0.975
+2017 NDVI composites: 17 items: 221
+2017 saved, finite share: 0.972
+done

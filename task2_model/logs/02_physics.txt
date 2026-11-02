@@ -1,0 +1,12 @@
+C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task2_model\scripts\02_physics.py:69: RuntimeWarning: overflow encountered in cast
+  np.save(fo, res.astype(np.float16))
+2021 8241 222 s, reachable share 0.906
+C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task2_model\scripts\02_physics.py:69: RuntimeWarning: overflow encountered in cast
+  np.save(fo, res.astype(np.float16))
+2022 6085 157 s, reachable share 0.863
+C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task2_model\scripts\02_physics.py:69: RuntimeWarning: overflow encountered in cast
+  np.save(fo, res.astype(np.float16))
+2023 4017 93 s, reachable share 0.831
+C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task2_model\scripts\02_physics.py:69: RuntimeWarning: overflow encountered in cast
+  np.save(fo, res.astype(np.float16))
+2024 2658 66 s, reachable share 0.859

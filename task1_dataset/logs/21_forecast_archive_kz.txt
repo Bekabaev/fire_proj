@@ -1,0 +1,7 @@
+fires 422 -> requests 305 per model
+  gfs_seamless 0/305
+  gfs_seamless 100/305
+  gfs_seamless 200/305
+  gfs_seamless 300/305
+  ecmwf_ifs025 0/305
+  http 429 {"reason":"Daily API request limit exceeded. Please try again tomorrow.","error":true}

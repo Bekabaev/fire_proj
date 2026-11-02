@@ -1,0 +1,115 @@
+AltynDala_2015_08_28     n_h= 4512 T= 23.2 RH=  28 ws= 2.6 wd=  208 P30=  5.2 FWI= 39.4 align_far=+0.99
+AltynDala_2016_04_16     n_h= 1608 T= 16.4 RH=  45 ws= 1.5 wd=  106 P30= 35.5 FWI=  9.8 align_far=-0.97
+AltynDala_2016_07_07     n_h= 3984 T= 22.1 RH=  63 ws= 2.5 wd=  135 P30= 20.0 FWI= 41.5 align_far=-0.93
+AltynDala_2017_06_06     n_h= 2904 T= 10.6 RH=  57 ws= 3.0 wd=  300 P30=  5.1 FWI= 39.9 align_far=+0.51
+AltynDala_2017_06_08     n_h= 2880 T= 26.7 RH=  27 ws= 4.0 wd=  261 P30= 11.2 FWI= 79.8 align_far=+0.84
+AltynDala_2017_07_04     n_h= 3504 T= 26.4 RH=  36 ws= 2.5 wd=  355 P30=  4.5 FWI= 69.7 align_far=+0.09
+AltynDala_2017_07_24     n_h= 3648 T= 27.7 RH=  30 ws= 5.8 wd=   78 P30= 12.2 FWI= 65.9 align_far=+0.68
+AltynDala_2018_08_08     n_h= 3960 T= 24.0 RH=  52 ws= 2.4 wd=  195 P30= 17.8 FWI= 27.9 align_far=+0.57
+AltynDala_2019_06_30     n_h= 3144 T= 22.2 RH=  40 ws= 6.1 wd=  101 P30=  6.7 FWI= 45.4 align_far=-0.88
+AltynDala_2020_07_26     n_h= 3720 T= 30.9 RH=  24 ws= 3.4 wd=  258 P30= 18.3 FWI= 47.2 align_far=+1.00
+AltynDala_2020_08_06     n_h= 4080 T= 36.4 RH=  19 ws= 5.0 wd=   98 P30=  5.3 FWI= 72.2 align_far=+0.96
+AltynDala_2020_08_06_2   n_h= 4080 T= 35.3 RH=  22 ws= 6.6 wd=   75 P30=  0.6 FWI= 86.5 align_far=+0.91
+AltynDala_2020_08_06_3   n_h= 4080 T= 28.9 RH=  34 ws= 5.9 wd=   65 P30=  1.7 FWI= 86.5 align_far=+0.11
+AltynDala_2020_08_06_1   n_h= 4080 T= 25.3 RH=  42 ws= 5.0 wd=   98 P30=  7.1 FWI= 45.1 align_far=-0.49
+AltynDala_2021           n_h= 2040 T= 18.7 RH=  64 ws= 4.0 wd=   45 P30= 16.2 FWI= 48.0 align_far=+1.00
+AltynDala_2021_07_01     n_h= 3168 T= 25.4 RH=  39 ws= 2.5 wd=  299 P30=  2.4 FWI= 79.1 align_far=+0.66
+AltynDala_2021_07_01_1   n_h= 3168 T= 25.0 RH=  44 ws= 1.1 wd=  255 P30=  3.7 FWI= 80.3 align_far=+0.34
+AltynDala_2021_07_03     n_h= 3168 T= 38.3 RH=  17 ws= 4.0 wd=  313 P30=  3.2 FWI= 82.8 align_far=+0.63
+AltynDala_2021_07_05     n_h= 3168 T= 22.6 RH=  56 ws= 5.7 wd=   19 P30=  1.7 FWI= 62.3 align_far=+0.99
+AltynDala_2023           n_h= 3840 T= 20.3 RH=  51 ws= 3.9 wd=  305 P30= 22.9 FWI= 61.2 align_far=+0.17
+Korgalzhyn_2014_08_08    n_h= 4488 T= 14.8 RH=  64 ws= 3.9 wd=   63 P30= 46.6 FWI= 26.1 align_far=+0.61
+Korgalzhyn_2015_08_04    n_h= 4392 T= 26.8 RH=  36 ws= 4.1 wd=   14 P30= 17.8 FWI= 39.2 align_far=+1.00
+Korgalzhyn_2016_05_24    n_h= 2688 T= 15.5 RH=  61 ws= 5.4 wd=   75 P30=  9.1 FWI= 36.1 align_far=+0.66
+Korgalzhyn_2016_08_28    n_h= 4440 T= 22.7 RH=  49 ws= 4.6 wd=  293 P30=  5.2 FWI= 46.0 align_far=-0.96
+Korgalzhyn_2017_06_30    n_h= 3480 T= 19.7 RH=  76 ws= 4.5 wd=  341 P30=  8.0 FWI= 62.8 align_far=+0.63
+Korgalzhyn_2020_07_20    n_h= 3816 T= 28.7 RH=  31 ws= 2.5 wd=   61 P30= 35.8 FWI= 52.4 align_far=+0.05
+Korgalzhyn_2021_05_01    n_h= 1656 T= 13.9 RH=  36 ws= 3.1 wd=  354 P30=  6.6 FWI= 13.6 align_far=+0.76
+Korgalzhyn_2021_11_06    n_h= 6120 T= -6.7 RH=  63 ws= 4.1 wd=  247 P30=  8.5 FWI=  5.2 align_far=+0.97
+Korgalzhyn_2022_06_25    n_h= 2904 T= 37.9 RH=  19 ws= 7.2 wd=  215 P30= 11.4 FWI= 75.9 align_far=+0.84
+Korgalzhyn_2022_09_19    n_h= 5016 T=  7.8 RH=  63 ws= 2.5 wd=   90 P30=  5.8 FWI= 47.0 align_far=+0.94
+Mirgorod_2017            n_h= 3792 T= 32.9 RH=  34 ws= 4.1 wd=  143 P30= 11.4 FWI= 61.1 align_far=-0.75
+Mirgorod_2019            n_h= 3912 T= 12.4 RH=  69 ws= 3.6 wd=   24 P30= 81.7 FWI= 17.3 align_far=-0.93
+Mirgorod_2022            n_h= 3288 T= 29.5 RH=  37 ws= 3.3 wd=   97 P30= 35.1 FWI= 32.4 align_far=+0.19
+Naurzum_2015_08_03       n_h= 3912 T= 25.6 RH=  46 ws= 6.1 wd=    9 P30= 15.8 FWI= 57.1 align_far=+0.71
+Naurzum_2016_08_27       n_h= 4728 T= 25.4 RH=  39 ws= 1.1 wd=  229 P30=  9.5 FWI= 39.3 align_far=+0.43
+Naurzum_2017_08_25       n_h= 4944 T= 30.3 RH=  29 ws= 0.1 wd=   90 P30= 23.4 FWI= 38.6 align_far=+0.57
+Naurzum_2017_08_25_1     n_h= 4944 T= 31.2 RH=  23 ws= 2.0 wd=  101 P30= 26.6 FWI= 38.3 align_far=+0.70
+Naurzum_2017_09_16       n_h= 4944 T= 24.2 RH=  39 ws= 2.8 wd=  199 P30= 13.6 FWI= 31.3 align_far=+0.67
+Naurzum_2018_04_18       n_h= 1560 T= 10.7 RH=  39 ws= 6.5 wd=  317 P30= 31.2 FWI= 12.8 align_far=+0.84
+Naurzum_2019_07_20       n_h= 3504 T= 31.9 RH=  21 ws= 8.4 wd=  107 P30= 12.8 FWI= 70.1 align_far=-0.98
+Naurzum_2019_07_23_1     n_h= 3576 T= 28.7 RH=  31 ws= 4.4 wd=  319 P30= 14.5 FWI= 52.9 align_far=-0.10
+Naurzum_2019_07_23       n_h= 3576 T= 21.2 RH=  44 ws= 1.9 wd=  354 P30= 15.9 FWI= 54.3 align_far=-0.96
+Naurzum_2021_07_22       n_h= 3552 T= 33.3 RH=  25 ws= 4.2 wd=  165 P30= 30.0 FWI= 58.3 align_far=+0.95
+Naurzum_2021_08_17       n_h= 4200 T= 34.2 RH=  20 ws= 0.3 wd=  180 P30=  4.4 FWI= 40.2 align_far=+0.57
+
+events: 44 | features: 67
+mean cos(spread_az - downwind_24h): far 0.32, centroid 0.27 (n=43; >0 = fire spread downwind)
+share align_centroid>0: 0.67
+                      mean    min     max
+era5_grid_lat        50.29  48.50   51.75
+era5_grid_lon        64.47  53.50   69.50
+era5_grid_elev      188.84  90.00  341.00
+ign_T                24.07  -6.70   38.30
+ign_RH               40.55  17.00   76.00
+ign_VPD               2.16   0.14    5.55
+ign_ws                3.82   0.10    8.45
+ign_wd              174.00   9.00  355.00
+ign_gust              7.15   2.00   13.40
+ign_hour_utc         13.84   6.00   22.00
+T_mean_24h           23.26  -2.85   32.85
+T_max_24h            30.07   4.10   40.20
+RH_min_24h           23.68  12.00   43.00
+RH_mean_24h          42.84  24.83   71.12
+VPD_mean_24h          2.00   0.23    4.10
+ws_mean_24h           3.77   1.88    7.13
+ws_max_24h            5.68   2.69   10.67
+gust_max_24h         10.42   5.30   18.40
+wd_mean_24h         170.42   8.77  353.39
+wd_steadiness_24h     0.80   0.21    1.00
+P_sum_24h             0.40   0.00    3.00
+T_mean_48h           22.92  -1.66   32.15
+T_max_48h            30.91   5.70   40.20
+RH_min_48h           22.00  12.00   43.00
+RH_mean_48h          43.82  25.92   69.29
+VPD_mean_48h          1.90   0.25    3.88
+ws_mean_48h           3.82   1.94    7.13
+ws_max_48h            6.38   3.67   10.67
+gust_max_48h         11.76   7.10   18.40
+wd_mean_48h         200.86   2.50  358.87
+wd_steadiness_48h     0.73   0.19    0.98
+P_sum_48h             0.72   0.00    4.40
+T_mean_72h           22.49  -1.08   31.87
+T_max_72h            31.46   6.70   40.20
+RH_min_72h           21.45  12.00   43.00
+RH_mean_72h          44.92  25.96   61.10
+VPD_mean_72h          1.81   0.25    3.78
+ws_mean_72h           3.90   1.98    7.74
+ws_max_72h            7.03   4.33   11.11
+gust_max_72h         12.72   8.30   19.20
+wd_mean_72h         208.73   3.43  359.39
+wd_steadiness_72h     0.67   0.17    0.98
+P_sum_72h             1.02   0.00    9.10
+P_during_fire         5.21   0.00   33.00
+h_to_rain1mm        200.53   5.00  509.00
+h_to_cum2mm         160.05   6.00  466.00
+P_prev_7d             1.53   0.00   12.60
+P_prev_14d            6.12   0.00   25.10
+P_prev_30d           15.50   0.60   81.70
+P_prev_60d           34.55  11.50  101.80
+days_since_rain1mm   14.09   2.00   57.00
+T_mean_prev30d       20.99  -1.09   28.29
+VPD_mean_prev7d       1.93   0.12    3.46
+SM0_7_prev7d          0.18   0.11    0.36
+SM7_28_prev7d         0.19   0.13    0.37
+FFMC_fire_day        93.62  81.55   98.10
+DMC_fire_day        147.72  13.74  411.45
+DC_fire_day         575.82  36.51  949.01
+ISI_fire_day         17.66   2.70   38.27
+BUI_fire_day        173.10  17.75  408.04
+FWI_fire_day         49.53   5.22   86.50
+FWI_max_3d           57.30   7.31  106.88
+fwi_spinup_days     141.50  60.00  251.00
+downwind_az_24h     186.79   2.79  356.90
+align_far_24h         0.33  -0.98    1.00
+align_centroid_24h    0.28  -0.99    1.00

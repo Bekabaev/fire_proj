@@ -1,0 +1,18 @@
+2012 488024 {'VIIRS_SNPP_SP': 384589, 'MODIS_SP': 103435}
+2013 197340 {'VIIRS_SNPP_SP': 160879, 'MODIS_SP': 36461}
+2014 386343 {'VIIRS_SNPP_SP': 307416, 'MODIS_SP': 78927}
+2015 344447 {'VIIRS_SNPP_SP': 276458, 'MODIS_SP': 67989}
+2016 220395 {'VIIRS_SNPP_SP': 179784, 'MODIS_SP': 40611}
+  retry 0 HTTPSConnectionPool(host='firms.modaps.eosdis.nasa.gov', port=443): Read timed o
+2017 494187 {'VIIRS_SNPP_SP': 391573, 'MODIS_SP': 102614}
+  http 400 Invalid MAP_KEY.
+  http 400 Invalid MAP_KEY.
+  http 400 Invalid MAP_KEY.
+  http 400 Invalid MAP_KEY.
+  http 400 Exceeding allowed transaction limit.
+2018 503930 {'VIIRS_SNPP_SP': 228941, 'VIIRS_NOAA20_SP': 218109, 'MODIS_SP': 56880}
+Traceback (most recent call last):
+  File "C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task1_dataset\scripts\10_firms_kz.py", line 44, in <module>
+    txt = get(f"https://firms.modaps.eosdis.nasa.gov/api/area/csv/{KEY}/{src}/{BBOX}/{n}/{d.date()}")
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] Отказано в доступе: 'C:\\Users\\Ionos Tech\\Desktop\\burned_area\\project_till_nov\\task1_dataset\\data\\ext_cache\\firms_kz\\raw\\VIIRS_NOAA20_SP_2020-09-17_5.csv.part' -> 'C:\\Users\\Ionos Tech\\Desktop\\burned_area\\project_till_nov\\task1_dataset\\data\\ext_cache\\firms_kz\\raw\\VIIRS_NOAA20_SP_2020-09-17_5.csv'

@@ -1,0 +1,45 @@
+AltynDala_2015_08_28     489x459 burned=0.155 ign=0.000 prior=0.000 pre=0.91 post=0.91 dem=1.00 lc=1.00 elev=109.4 slope95=1.58 lc_burn={"30": 0.998, "60": 0.002}
+AltynDala_2016_04_16     637x738 burned=0.161 ign=0.000 prior=0.000 pre=0.00 post=0.92 dem=1.00 lc=1.00 elev=103.8 slope95=1.52 lc_burn={"10": 0.0, "20": 0.001, "30": 0.656, "40": 0.0, "60": 0.002, "80": 0.102, "90": 0.239}
+AltynDala_2016_07_07     1399x1840 burned=0.308 ign=0.000 prior=0.000 pre=0.96 post=0.96 dem=1.00 lc=1.00 elev=180.7 slope95=2.26 lc_burn={"20": 0.0, "30": 0.984, "60": 0.014, "80": 0.0, "90": 0.001}
+AltynDala_2017_06_06     4247x2605 burned=0.441 ign=0.000 prior=0.064 pre=0.00 post=0.00 dem=1.00 lc=1.00 elev=191.9 slope95=1.85 lc_burn={"20": 0.0, "30": 0.998, "50": 0.0, "60": 0.001, "80": 0.0, "90": 0.001}
+AltynDala_2017_06_08     1313x3303 burned=0.385 ign=0.000 prior=0.008 pre=0.00 post=0.00 dem=1.00 lc=1.00 elev=115.0 slope95=1.68 lc_burn={"20": 0.0, "30": 0.966, "60": 0.033, "80": 0.001, "90": 0.0}
+AltynDala_2017_07_04     1244x2380 burned=0.246 ign=0.000 prior=0.057 pre=0.97 post=0.97 dem=1.00 lc=1.00 elev=161.6 slope95=1.6 lc_burn={"20": 0.0, "30": 0.996, "60": 0.003, "80": 0.0, "90": 0.001}
+AltynDala_2017_07_24     671x1102 burned=0.357 ign=0.000 prior=0.087 pre=1.00 post=1.00 dem=1.00 lc=1.00 elev=119.4 slope95=1.42 lc_burn={"20": 0.0, "30": 1.0, "60": 0.0, "90": 0.0}
+AltynDala_2018_08_08     684x1154 burned=0.185 ign=0.000 prior=0.306 pre=0.96 post=0.96 dem=1.00 lc=1.00 elev=119.1 slope95=1.53 lc_burn={"30": 0.997, "60": 0.003, "90": 0.0}
+AltynDala_2019_06_30     1238x1623 burned=0.194 ign=0.000 prior=0.000 pre=0.98 post=0.98 dem=1.00 lc=1.00 elev=115.1 slope95=1.53 lc_burn={"20": 0.0, "30": 0.859, "40": 0.001, "60": 0.006, "80": 0.002, "90": 0.131}
+AltynDala_2020_07_26     1358x968 burned=0.196 ign=0.000 prior=0.513 pre=0.99 post=0.99 dem=1.00 lc=1.00 elev=189.0 slope95=2.56 lc_burn={"20": 0.0, "30": 0.991, "60": 0.009, "80": 0.0, "90": 0.0}
+AltynDala_2020_08_06     526x520 burned=0.201 ign=0.000 prior=0.850 pre=0.96 post=0.96 dem=1.00 lc=1.00 elev=158.0 slope95=1.76 lc_burn={"30": 1.0, "60": 0.0}
+AltynDala_2020_08_06_2   348x614 burned=0.144 ign=0.005 prior=0.259 pre=0.00 post=0.94 dem=1.00 lc=1.00 elev=92.1 slope95=1.36 lc_burn={"20": 0.0, "30": 0.985, "60": 0.015}
+AltynDala_2020_08_06_3   400x595 burned=0.152 ign=0.000 prior=0.414 pre=0.00 post=0.96 dem=1.00 lc=1.00 elev=102.5 slope95=1.74 lc_burn={"20": 0.0, "30": 0.996, "60": 0.004}
+AltynDala_2020_08_06_1   824x706 burned=0.225 ign=0.000 prior=0.395 pre=0.98 post=0.98 dem=1.00 lc=1.00 elev=172.1 slope95=1.52 lc_burn={"20": 0.0, "30": 0.999, "60": 0.001, "80": 0.0}
+AltynDala_2021           502x469 burned=0.137 ign=0.000 prior=0.243 pre=0.00 post=0.00 dem=1.00 lc=1.00 elev=103.5 slope95=1.82 lc_burn={"10": 0.0, "20": 0.004, "30": 0.761, "40": 0.0, "60": 0.011, "80": 0.003, "90": 0.221}
+AltynDala_2021_07_01     1522x1722 burned=0.325 ign=0.014 prior=0.437 pre=0.00 post=0.99 dem=1.00 lc=1.00 elev=169.6 slope95=1.78 lc_burn={"20": 0.0, "30": 0.997, "60": 0.003, "80": 0.0, "90": 0.0}
+AltynDala_2021_07_01_1   877x1039 burned=0.173 ign=0.011 prior=0.623 pre=0.98 post=0.98 dem=1.00 lc=1.00 elev=172.2 slope95=2.06 lc_burn={"20": 0.001, "30": 0.999, "60": 0.0, "80": 0.001, "90": 0.0}
+AltynDala_2021_07_03     2730x1556 burned=0.336 ign=0.005 prior=0.221 pre=0.00 post=0.00 dem=1.00 lc=1.00 elev=191.4 slope95=2.17 lc_burn={"20": 0.0, "30": 0.983, "40": 0.0, "60": 0.012, "80": 0.0, "90": 0.005}
+AltynDala_2021_07_05     480x359 burned=0.118 ign=0.000 prior=0.204 pre=0.84 post=0.84 dem=1.00 lc=1.00 elev=186.3 slope95=1.95 lc_burn={"30": 1.0, "60": 0.0}
+AltynDala_2023           309x302 burned=0.062 ign=0.000 prior=0.514 pre=0.00 post=0.00 dem=1.00 lc=1.00 elev=104.4 slope95=1.9 lc_burn={"20": 0.002, "30": 0.084, "60": 0.002, "80": 0.202, "90": 0.709}
+Korgalzhyn_2014_08_08    3492x3249 burned=0.317 ign=0.000 prior=0.000 pre=0.00 post=0.00 dem=1.00 lc=1.00 elev=307.8 slope95=1.56 lc_burn={"10": 0.0, "30": 0.827, "40": 0.171, "60": 0.0, "80": 0.0, "90": 0.001}
+Korgalzhyn_2015_08_04    315x285 burned=0.054 ign=0.000 prior=0.000 pre=0.00 post=0.00 dem=1.00 lc=1.00 elev=308.5 slope95=1.18 lc_burn={"30": 0.886, "40": 0.099, "60": 0.001, "80": 0.01, "90": 0.004}
+Korgalzhyn_2016_05_24    517x540 burned=0.214 ign=0.000 prior=0.000 pre=0.00 post=0.89 dem=0.99 lc=1.00 elev=337.7 slope95=1.93 lc_burn={"30": 1.0, "40": 0.0, "60": 0.0}
+Korgalzhyn_2016_08_28    278x313 burned=0.061 ign=0.000 prior=0.125 pre=0.00 post=0.00 dem=1.00 lc=1.00 elev=304.6 slope95=1.01 lc_burn={"30": 1.0}
+Korgalzhyn_2017_06_30    3591x4473 burned=0.343 ign=0.000 prior=0.088 pre=0.00 post=0.00 dem=1.00 lc=1.00 elev=343.2 slope95=1.97 lc_burn={"10": 0.0, "20": 0.0, "30": 0.977, "40": 0.012, "60": 0.001, "80": 0.005, "90": 0.004}
+Korgalzhyn_2020_07_20    1712x2342 burned=0.277 ign=0.000 prior=0.614 pre=0.00 post=0.00 dem=1.00 lc=1.00 elev=317.9 slope95=1.62 lc_burn={"30": 0.94, "40": 0.059, "60": 0.0, "80": 0.0, "90": 0.0}
+Korgalzhyn_2021_05_01    280x310 burned=0.061 ign=0.000 prior=0.653 pre=0.00 post=0.00 dem=1.00 lc=1.00 elev=338.8 slope95=1.46 lc_burn={"30": 0.986, "90": 0.014}
+Korgalzhyn_2021_11_06    614x650 burned=0.186 ign=0.000 prior=0.923 pre=0.91 post=0.00 dem=1.00 lc=1.00 elev=325.2 slope95=1.48 lc_burn={"10": 0.0, "30": 0.996, "40": 0.0, "60": 0.0, "80": 0.0, "90": 0.003}
+Korgalzhyn_2022_06_25    743x814 burned=0.247 ign=0.000 prior=0.738 pre=0.94 post=0.94 dem=1.00 lc=1.00 elev=320.9 slope95=1.36 lc_burn={"30": 0.999, "40": 0.0, "80": 0.0, "90": 0.0}
+Korgalzhyn_2022_09_19    474x721 burned=0.165 ign=0.000 prior=0.794 pre=0.93 post=0.93 dem=1.00 lc=1.00 elev=334.1 slope95=1.35 lc_burn={"30": 0.996, "90": 0.004}
+Mirgorod_2017            396x344 burned=0.112 ign=0.000 prior=0.000 pre=0.00 post=0.00 dem=1.00 lc=1.00 elev=182.8 slope95=7.5 lc_burn={"30": 0.973, "40": 0.026, "60": 0.001}
+Mirgorod_2019            544x357 burned=0.151 ign=0.000 prior=0.078 pre=0.00 post=0.00 dem=1.00 lc=1.00 elev=154.4 slope95=6.95 lc_burn={"10": 0.0, "30": 0.99, "40": 0.005, "60": 0.005}
+Mirgorod_2022            232x222 burned=0.006 ign=0.000 prior=0.455 pre=0.00 post=0.00 dem=1.00 lc=1.00 elev=198.9 slope95=8.44 lc_burn={"30": 0.976, "40": 0.024}
+Naurzum_2015_08_03       1458x881 burned=0.182 ign=0.000 prior=0.000 pre=0.97 post=0.97 dem=1.00 lc=1.00 elev=159.4 slope95=1.96 lc_burn={"10": 0.0, "30": 0.916, "40": 0.058, "80": 0.001, "90": 0.026}
+Naurzum_2016_08_27       552x333 burned=0.146 ign=0.000 prior=0.000 pre=0.91 post=0.91 dem=1.00 lc=1.00 elev=228.3 slope95=0.71 lc_burn={"30": 0.811, "40": 0.189}
+Naurzum_2017_08_25       367x367 burned=0.073 ign=0.013 prior=0.000 pre=0.93 post=0.93 dem=1.00 lc=1.00 elev=143.7 slope95=1.89 lc_burn={"30": 0.998, "40": 0.002}
+Naurzum_2017_08_25_1     254x276 burned=0.025 ign=0.000 prior=0.084 pre=0.00 post=0.00 dem=1.00 lc=1.00 elev=184.3 slope95=3.36 lc_burn={"30": 1.0}
+Naurzum_2017_09_16       308x416 burned=0.100 ign=0.000 prior=0.000 pre=0.00 post=0.89 dem=1.00 lc=1.00 elev=190.1 slope95=2.45 lc_burn={"30": 0.988, "40": 0.011, "60": 0.0, "90": 0.001}
+Naurzum_2018_04_18       839x963 burned=0.171 ign=0.000 prior=0.033 pre=0.00 post=0.79 dem=1.00 lc=1.00 elev=223.1 slope95=1.19 lc_burn={"30": 0.974, "40": 0.026, "60": 0.0, "80": 0.0, "90": 0.0}
+Naurzum_2019_07_20       722x781 burned=0.204 ign=0.000 prior=0.000 pre=0.99 post=0.99 dem=1.00 lc=1.00 elev=221.1 slope95=1.41 lc_burn={"10": 0.0, "30": 0.944, "40": 0.055, "60": 0.0, "80": 0.0, "90": 0.0}
+Naurzum_2019_07_23_1     356x382 burned=0.112 ign=0.000 prior=0.348 pre=0.91 post=0.91 dem=1.00 lc=1.00 elev=125.2 slope95=0.44 lc_burn={"30": 0.982, "40": 0.008, "90": 0.01}
+Naurzum_2019_07_23       2407x1428 burned=0.283 ign=0.000 prior=0.010 pre=0.00 post=0.98 dem=1.00 lc=1.00 elev=158.4 slope95=1.29 lc_burn={"10": 0.0, "30": 0.974, "40": 0.024, "60": 0.0, "80": 0.0, "90": 0.001}
+Naurzum_2021_07_22       556x475 burned=0.162 ign=0.000 prior=0.541 pre=0.92 post=0.92 dem=1.00 lc=1.00 elev=124.8 slope95=0.33 lc_burn={"30": 0.897, "40": 0.084, "80": 0.0, "90": 0.019}
+Naurzum_2021_08_17       656x517 burned=0.211 ign=0.000 prior=0.305 pre=0.99 post=0.99 dem=1.00 lc=1.00 elev=124.3 slope95=0.46 lc_burn={"30": 0.952, "40": 0.029, "80": 0.001, "90": 0.018}
+cubes: 44

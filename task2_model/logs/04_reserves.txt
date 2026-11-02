@@ -1,0 +1,21 @@
+reserve slices: 235 events: 43 | new burn share of valid (24h): 0.0437
+horizon_h                                  24     48     72
+group                  model                               
+2014-2020 (годы U-Net) hybrid_nocoords  0.106  0.164  0.197
+                       ml_coords        0.108  0.164  0.197
+                       ml_nocoords      0.109  0.164  0.196
+                       persist          0.173  0.194  0.203
+                       phys             0.000  0.003  0.011
+                       unet             0.108  0.164  0.197
+2021-2023              hybrid_nocoords  0.148  0.200  0.208
+                       ml_coords        0.154  0.199  0.212
+                       ml_nocoords      0.159  0.184  0.192
+                       persist          0.131  0.138  0.144
+                       phys             0.004  0.008  0.034
+                       unet             0.157  0.180  0.187
+all 2014-2023          hybrid_nocoords  0.111  0.169  0.198
+                       ml_coords        0.113  0.169  0.199
+                       ml_nocoords      0.115  0.167  0.196
+                       persist          0.167  0.186  0.196
+                       phys             0.001  0.004  0.014
+                       unet             0.114  0.166  0.196

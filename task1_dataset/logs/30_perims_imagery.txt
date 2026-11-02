@@ -1,0 +1,36 @@
+AltynDala_2016_07_07: snapshots 7 (reliable 0), recall on known-burned [nan, 0.45, 0.26, 0.26, 0.22, 0.28, 0.29], adjusted earlier 46617 / later 0 px of 793766
+AltynDala_2017_06_06: snapshots 3 (reliable 0), recall on known-burned [0.33, 0.12, 0.29], adjusted earlier 157661 / later 0 px of 4873587
+AltynDala_2017_06_08: snapshots 2 (reliable 0), recall on known-burned [0.32, 0.38], adjusted earlier 22818 / later 0 px of 1667910
+AltynDala_2017_07_04: snapshots 6 (reliable 1), recall on known-burned [nan, 0.73, 0.61, 0.54, 0.49, 0.5], adjusted earlier 10867 / later 8005 px of 727357
+AltynDala_2017_07_24: snapshots 2 (reliable 2), recall on known-burned [0.74, 0.72], adjusted earlier 0 / later 5762 px of 264191
+AltynDala_2018_08_08: snapshots 3 (reliable 0), recall on known-burned [nan, 0.06, 0.02], adjusted earlier 0 / later 0 px of 146146
+AltynDala_2019_06_30: snapshots 4 (reliable 4), recall on known-burned [0.77, 0.78, 0.78, 0.75], adjusted earlier 7697 / later 55815 px of 389160
+AltynDala_2020_07_26: snapshots 6 (reliable 4), recall on known-burned [nan, 0.84, 0.66, 0.83, 0.83, 0.85], adjusted earlier 2390 / later 26256 px of 257536
+AltynDala_2020_08_06: snapshots 1 (reliable 0), recall on known-burned [0.5], adjusted earlier 0 / later 0 px of 54882
+AltynDala_2020_08_06_1: snapshots 3 (reliable 0), recall on known-burned [0.17, 0.21, 0.26], adjusted earlier 100 / later 0 px of 130732
+AltynDala_2021: snapshots 2 (reliable 0), recall on known-burned [0.24, 0.35], adjusted earlier 0 / later 0 px of 32348
+AltynDala_2021_07_01: snapshots 4 (reliable 0), recall on known-burned [nan, nan, 0.63, 0.69], adjusted earlier 50837 / later 0 px of 850819
+AltynDala_2021_07_01_1: snapshots 3 (reliable 1), recall on known-burned [nan, nan, 0.74], adjusted earlier 554 / later 5069 px of 157586
+AltynDala_2021_07_03: snapshots 2 (reliable 1), recall on known-burned [nan, 0.88], adjusted earlier 18186 / later 604162 px of 1427558
+Korgalzhyn_2014_08_08: snapshots 9 (reliable 0), recall on known-burned [nan, 0.56, nan, 0.41, 0.33, 0.6, 0.35, 0.37, 0.39], adjusted earlier 42392 / later 0 px of 3597332
+Korgalzhyn_2015_08_04: snapshots 1 (reliable 0), recall on known-burned [nan], adjusted earlier 0 / later 0 px of 4860
+Korgalzhyn_2016_05_24: snapshots 2 (reliable 1), recall on known-burned [0.0, 0.72], adjusted earlier 639 / later 3190 px of 59825
+Korgalzhyn_2017_06_30: snapshots 9 (reliable 1), recall on known-burned [nan, 0.62, 0.25, 0.79, 0.16, 0.5, 0.14, 0.52, 0.09], adjusted earlier 79787 / later 160827 px of 5514752
+Korgalzhyn_2020_07_20: snapshots 8 (reliable 0), recall on known-burned [nan, 0.65, 0.58, 0.7, 0.42, 0.55, 0.59, 0.47], adjusted earlier 124519 / later 0 px of 1108814
+Korgalzhyn_2021_11_06: snapshots 1 (reliable 0), recall on known-burned [0.45], adjusted earlier 0 / later 0 px of 74409
+Korgalzhyn_2022_06_25: snapshots 2 (reliable 1), recall on known-burned [0.9, 0.22], adjusted earlier 0 / later 2753 px of 149633
+Korgalzhyn_2022_09_19: snapshots 2 (reliable 2), recall on known-burned [0.9, 0.9], adjusted earlier 0 / later 1761 px of 56290
+Mirgorod_2017: snapshots 1 (reliable 0), recall on known-burned [nan], adjusted earlier 16 / later 0 px of 15236
+Mirgorod_2019: snapshots 1 (reliable 0), recall on known-burned [nan], adjusted earlier 0 / later 0 px of 29274
+Naurzum_2015_08_03: snapshots 2 (reliable 0), recall on known-burned [0.61, 0.58], adjusted earlier 0 / later 0 px of 233870
+Naurzum_2019_07_20: snapshots 2 (reliable 0), recall on known-burned [nan, 0.45], adjusted earlier 2881 / later 0 px of 115244
+Naurzum_2019_07_23_1: snapshots 1 (reliable 0), recall on known-burned [0.04], adjusted earlier 0 / later 0 px of 15176
+Naurzum_2019_07_23: snapshots 4 (reliable 0), recall on known-burned [0.03, 0.0, 0.03, 0.06], adjusted earlier 14 / later 0 px of 971707
+Naurzum_2021_08_17: snapshots 1 (reliable 0), recall on known-burned [nan], adjusted earlier 0 / later 0 px of 71590
+events with snapshots: 26, snapshots inside fire window: 79, mid-fire: 70, reliable mid-fire: 14
+late_share = доля гари, видимой на снимке, которую метка к этому моменту ещё не считает сгоревшей (запаздывание метки) - все снимки;
+F1 / acc / early - только надёжные снимки (распознано ≥ 70 % заведомо сгоревшего)
+  expert      late_share 0.070 (n=70) | reliable: F1 0.796, acc 0.742, early 0.226 (n=14)
+  mcd64_day   late_share 0.263 (n=70) | reliable: F1 0.776, acc 0.801, early 0.057 (n=14)
+  v3_gfa      late_share 0.200 (n=70) | reliable: F1 0.788, acc 0.772, early 0.127 (n=14)
+  expert_img  late_share 0.036 (n=70) | reliable: F1 0.879, acc 0.871, early 0.103 (n=14)

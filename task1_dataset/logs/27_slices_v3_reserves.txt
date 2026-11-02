@@ -1,0 +1,56 @@
+Korgalzhyn_2014_08_08    cells 12944 amb 1227 slices  49 (1 km 49) t_end  587.3 h  gfa [201404067, 201404288, 201404244, 201404262] train  new24 km2 [10.2, 8.2, 13.5, 20.5, 41.0, 46.0]
+AltynDala_2015_08_28     cells   127 amb   26 slices   1 (1 km  0) t_end   15.3 h  gfa [201506368] train  new24 km2 [3.8]
+Korgalzhyn_2015_08_04    cells    17 amb   13 slices   2 (1 km  0) t_end   22.0 h  gfa []   new24 km2 [1.2, 1.2]
+Naurzum_2015_08_03       cells   833 amb  176 slices   8 (1 km  0) t_end   96.4 h  gfa [201505968, 201506227, 201506445, 201505912] train  new24 km2 [66.5, 67.0, 63.8, 26.5, 0.0, 0.0]
+AltynDala_2016_04_16     cells   267 amb  108 slices   1 (1 km  0) t_end   15.6 h  gfa []   new24 km2 [29.2]
+AltynDala_2016_07_07     cells  2825 amb  324 slices  53 (1 km 53) t_end  635.9 h  gfa [201607594, 201607627, 201607584] train  new24 km2 [31.8, 0.0, 0.0, 0.0, 0.0, 25.2]
+Korgalzhyn_2016_05_24    cells   213 amb   53 slices   7 (1 km  0) t_end   82.5 h  gfa []   new24 km2 [6.5, 14.0, 7.5, 11.0, 19.5, 18.2]
+Korgalzhyn_2016_08_28    cells    18 amb   14 slices   0 (1 km  0) t_end    1.6 h  gfa []   new24 km2 []
+Naurzum_2016_08_27       cells    97 amb   21 slices   2 (1 km  0) t_end   24.2 h  gfa [201607703] train  new24 km2 [0.2, 0.2]
+AltynDala_2017_06_06     cells 17337 amb  990 slices  35 (1 km 35) t_end  418.9 h  gfa [201708743, 201710885, 201711127, 201708806] train  new24 km2 [100.8, 90.8, 94.8, 84.8, 13.0, 73.5]
+AltynDala_2017_06_08     cells  5891 amb  517 slices  29 (1 km 29) t_end  351.2 h  gfa [201708810, 201708979, 201709105, 201709276] train  new24 km2 [54.5, 65.2, 68.2, 84.8, 86.8, 224.0]
+AltynDala_2017_07_04     cells  2595 amb  386 slices  19 (1 km 19) t_end  230.6 h  gfa [201708806, 201709017, 201708898, 201709103] train  new24 km2 [67.2, 203.8, 170.5, 60.0, 98.2, 52.2]
+AltynDala_2017_07_24     cells   939 amb  100 slices  12 (1 km  0) t_end  139.6 h  gfa [201708813] train  new24 km2 [192.8, 15.5, 15.5, 3.2, 3.2, 0.0]
+Korgalzhyn_2017_06_30    cells 19863 amb 1201 slices  41 (1 km 41) t_end  491.8 h  gfa [201708740, 201708787, 201708947, 201709159] train  new24 km2 [226.2, 292.8, 257.8, 105.8, 86.8, 40.8]
+Mirgorod_2017            cells    48 amb   33 slices   1 (1 km  0) t_end   15.7 h  gfa [201709011] train  new24 km2 [11.0]
+Naurzum_2017_08_25       cells    33 amb   28 slices   0 (1 km  0) t_end    1.7 h  gfa []   new24 km2 []
+Naurzum_2017_08_25_1     cells     4 amb   12 slices   0 (1 km  0) t_end    0.0 h  gfa []   new24 km2 []
+Naurzum_2017_09_16       cells    43 amb   27 slices   0 (1 km  0) t_end    1.7 h  gfa [201710333]   new24 km2 []
+AltynDala_2018_08_08     cells   514 amb  115 slices   3 (1 km  0) t_end   38.6 h  gfa [201811486, 201811907] train  new24 km2 [65.2, 23.8, 23.8]
+Naurzum_2018_04_18       cells   492 amb  137 slices   1 (1 km  0) t_end   11.4 h  gfa []   new24 km2 [11.2]
+AltynDala_2019_06_30     cells  1383 amb  240 slices  20 (1 km 20) t_end  232.2 h  gfa [201912910, 201914962, 201912948] train  new24 km2 [33.8, 78.8, 63.8, 54.5, 12.2, 9.5]
+Mirgorod_2019            cells   109 amb   46 slices   2 (1 km  0) t_end   20.6 h  gfa [201912975] train  new24 km2 [19.2, 0.5]
+Naurzum_2019_07_20       cells   407 amb   96 slices   5 (1 km  0) t_end   63.6 h  gfa [201912971] train  new24 km2 [34.0, 66.5, 49.5, 0.5, 0.5]
+Naurzum_2019_07_23_1     cells    55 amb   25 slices   4 (1 km  0) t_end   46.9 h  gfa [201912902] train  new24 km2 [0.0, 0.0, 0.2, 0.2]
+Naurzum_2019_07_23       cells  3446 amb  316 slices  11 (1 km 11) t_end  134.9 h  gfa [201912902, 201913033, 201913057, 201912971] train  new24 km2 [21.2, 6.8, 6.8, 1.5, 1.5, 0.5]
+AltynDala_2020_07_26     cells   908 amb  182 slices  17 (1 km  0) t_end  196.4 h  gfa [202015064, 202015198, 202016515] train  new24 km2 [112.2, 63.0, 87.0, 87.0, 1.5, 3.0]
+AltynDala_2020_08_06     cells   198 amb   58 slices   1 (1 km  0) t_end   13.9 h  gfa [202016505] train  new24 km2 [2.8]
+AltynDala_2020_08_06_2   cells   106 amb   50 slices   1 (1 km  0) t_end   13.1 h  gfa []   new24 km2 [12.8]
+AltynDala_2020_08_06_3   cells   128 amb   43 slices   1 (1 km  0) t_end   16.2 h  gfa [202015500, 202016329] train  new24 km2 [12.5]
+AltynDala_2020_08_06_1   cells   464 amb   99 slices   0 (1 km  0) t_end    0.8 h  gfa [202015826, 202015637]   new24 km2 []
+Korgalzhyn_2020_07_20    cells  3991 amb  394 slices  13 (1 km 13) t_end  159.4 h  gfa [202015026, 202015201, 202015940, 202015078] train  new24 km2 [325.0, 124.2, 69.0, 1.2, 18.8, 21.8]
+AltynDala_2021           cells   110 amb   57 slices   3 (1 km  0) t_end   33.5 h  gfa []   new24 km2 [10.0, 1.2, 0.2]
+AltynDala_2021_07_01     cells  3029 amb  399 slices   7 (1 km  7) t_end   83.1 h  gfa [202116766, 202116891, 202117651, 202118111] train  new24 km2 [315.0, 267.0, 172.8, 33.8, 25.8, 2.8]
+AltynDala_2021_07_01_1   cells   560 amb  143 slices   9 (1 km  0) t_end  107.1 h  gfa [202116861, 202117228] train  new24 km2 [45.0, 88.8, 69.8, 5.2, 5.8, 1.8]
+AltynDala_2021_07_03     cells  5085 amb  450 slices  13 (1 km 13) t_end  146.9 h  gfa [202116763, 202116760, 202116762, 202117570] train  new24 km2 [80.0, 141.8, 159.0, 55.5, 12.5, 2.5]
+AltynDala_2021_07_05     cells    72 amb   24 slices   1 (1 km  0) t_end   10.6 h  gfa [202117439, 202116763] train  new24 km2 [15.8]
+Korgalzhyn_2021_05_01    cells    18 amb   17 slices   0 (1 km  0) t_end    1.8 h  gfa [202117890]   new24 km2 []
+Korgalzhyn_2021_11_06    cells   267 amb   77 slices   2 (1 km  0) t_end   23.7 h  gfa []   new24 km2 [40.5, 6.8]
+Naurzum_2021_07_22       SKIP: arrival time unknown
+Naurzum_2021_08_17       cells   251 amb   55 slices   2 (1 km  0) t_end   24.7 h  gfa [202116873, 202117080] train  new24 km2 [53.2, 6.0]
+Korgalzhyn_2022_06_25    cells   538 amb   83 slices   7 (1 km  0) t_end   76.2 h  gfa [202218257] val  new24 km2 [77.2, 27.0, 7.0, 7.0, 0.0, 1.5]
+Korgalzhyn_2022_09_19    cells   202 amb   76 slices  10 (1 km  0) t_end  112.2 h  gfa [202218341] val  new24 km2 [27.8, 0.0, 0.0, 0.2, 0.2, 0.2]
+Mirgorod_2022            cells     1 amb    5 slices   0 (1 km  0) t_end    0.0 h  gfa [202218986]   new24 km2 []
+AltynDala_2023           cells    21 amb   13 slices   0 (1 km  0) t_end    0.0 h  gfa []   new24 km2 []
+
+slices: 393 | events: 35 | 1 km slices: 290
+            slices  events
+split_time                
+test            54       9
+train          306      21
+val             33       5
+events overlapping GFA train fires: 26 | no GFA match: 7
+12h: share with growth 0.63, in-scene area share 0.502, targets timed by FIRMS 0.53, by MCD64A1 day 0.29
+24h: share with growth 0.83, in-scene area share 0.469, targets timed by FIRMS 0.52, by MCD64A1 day 0.30
+48h: share with growth 0.90, in-scene area share 0.410, targets timed by FIRMS 0.49, by MCD64A1 day 0.31
+72h: share with growth 0.93, in-scene area share 0.367, targets timed by FIRMS 0.48, by MCD64A1 day 0.32

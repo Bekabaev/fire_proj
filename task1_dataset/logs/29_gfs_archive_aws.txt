@@ -1,0 +1,54 @@
+cycles needed: 1551
+  0/1551  0 s, missing 0
+  50/1551  0 s, missing 0
+  100/1551  0 s, missing 0
+  150/1551  0 s, missing 0
+  200/1551  0 s, missing 0
+  250/1551  0 s, missing 0
+  300/1551  0 s, missing 0
+  350/1551  0 s, missing 0
+  400/1551  0 s, missing 0
+  450/1551  0 s, missing 0
+  500/1551  0 s, missing 0
+  550/1551  0 s, missing 0
+  600/1551  0 s, missing 0
+  650/1551  0 s, missing 0
+  700/1551  0 s, missing 0
+  750/1551  0 s, missing 0
+  800/1551  0 s, missing 0
+  850/1551  0 s, missing 0
+  900/1551  0 s, missing 0
+  950/1551  0 s, missing 0
+  1000/1551  0 s, missing 0
+  1050/1551  0 s, missing 0
+  1100/1551  0 s, missing 0
+  1150/1551  0 s, missing 0
+  1200/1551  0 s, missing 0
+  1250/1551  0 s, missing 0
+  1300/1551  0 s, missing 0
+  1350/1551  0 s, missing 0
+  1400/1551  0 s, missing 0
+  1450/1551  0 s, missing 0
+  1500/1551  0 s, missing 0
+  1550/1551  0 s, missing 0
+missing cycles: 0 []
+slices_v3_index.csv | forecast GFS-AWS by year: {2022: 1.0, 2023: 1.0, 2024: 1.0}
+
+vs stations (24 h after t):
+            source      years      var     n  bias   mae      r
+0            era5  2022-2023  ws_mean  7935  0.08  1.26  0.688
+1            era5  2022-2023    T_max  7935  0.12  1.28  0.979
+2            era5  2022-2023   RH_min  7935 -0.36  6.45  0.855
+3            era5       2024  ws_mean  2163  0.47  1.18  0.660
+4            era5       2024    T_max  2163  0.41  1.41  0.968
+5            era5       2024   RH_min  2163 -1.17  6.71  0.811
+6         gfs_aws  2022-2023  ws_mean  7935  1.05  1.59  0.685
+7         gfs_aws  2022-2023    T_max  7935 -1.27  2.11  0.958
+8         gfs_aws  2022-2023   RH_min  7935  0.06  8.61  0.759
+9         gfs_aws       2024  ws_mean  2163  1.38  1.68  0.647
+10        gfs_aws       2024    T_max  2163 -0.52  1.90  0.952
+11        gfs_aws       2024   RH_min  2163 -3.58  8.56  0.759
+12  gfs_openmeteo       2024  ws_mean  2159  1.44  1.71  0.652
+13  gfs_openmeteo       2024    T_max  2159  0.28  1.87  0.950
+14  gfs_openmeteo       2024   RH_min  2159 -6.15  9.30  0.730
+slices_v3_reserves_index.csv | forecast GFS-AWS by year: {2022: 1.0}

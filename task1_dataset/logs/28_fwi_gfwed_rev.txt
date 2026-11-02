@@ -1,0 +1,96 @@
+days needed: 3440
+  2024: 0/293
+  retry 2024-02-16 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-03-20 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-04-22 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-05-11 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  2024: 100/293
+  retry 2024-07-05 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-11 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-11 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-11 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-11 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-16 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Read timed out.
+  retry 2024-08-14 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Read timed out.
+  retry 2024-08-15 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Read timed out.
+  retry 2024-08-11 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-16 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-15 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-14 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-15 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-14 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-11 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-16 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-15 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-16 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-14 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-17 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-15 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-14 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-17 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-08-16 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  2024: 200/293
+  retry 2024-09-05 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Read timed out.
+  retry 2024-09-13 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2024-10-03 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Read timed out.
+  retry 2024-10-04 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Read timed out.
+  retry 2024-10-09 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Read timed out.
+  retry 2024-10-13 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Read timed out.
+2024: days 292 (missing 1)
+  2023: 0/279
+  retry 2023-02-17 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2023-02-23 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2023-03-11 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2023-04-22 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Read timed out.
+  retry 2023-05-10 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  2023: 100/279
+  retry 2023-06-17 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2023-06-24 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2023-06-29 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2023-08-01 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  2023: 200/279
+  retry 2023-10-05 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2023-10-21 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2023-11-05 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+2023: days 279 (missing 0)
+  2022: 0/267
+  retry 2022-04-07 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2022-05-15 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  2022: 100/267
+  retry 2022-07-02 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2022-07-23 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  2022: 200/267
+  retry 2022-09-10 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2022-09-16 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+2022: days 267 (missing 0)
+  2021: 0/289
+  retry 2021-03-05 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2021-03-15 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2021-03-19 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2021-04-17 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2021-05-12 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  2021: 100/289
+  retry 2021-05-24 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2021-07-21 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  2021: 200/289
+  retry 2021-09-06 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2021-09-06 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2021-10-11 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2021-10-24 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+2021: days 289 (missing 0)
+  2020: 0/303
+  retry 2020-03-01 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2020-03-04 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2020-03-17 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2020-04-19 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2020-04-25 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  2020: 100/303
+  retry 2020-06-14 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2020-07-08 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2020-07-11 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  2020: 200/303
+  retry 2020-09-09 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2020-09-26 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  retry 2020-10-05 HTTPSConnectionPool(host='portal.nccs.nasa.gov', port=443): Max retries exceeded
+  2020: 300/303
+2020: days 303 (missing 0)

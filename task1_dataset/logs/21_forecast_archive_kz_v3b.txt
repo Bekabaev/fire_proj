@@ -1,0 +1,5 @@
+fires 422 -> requests 305 per model
+  ecmwf_ifs025 100/305
+  ecmwf_ifs025 200/305
+  ecmwf_ifs025 300/305
+done

@@ -1,0 +1,20 @@
+  0/393
+slices: 393 | ERA5: 0.972 | station: 0.216 | forecast (2024): 0
+by year ERA5 / station share:
+       weather_ok  station_ok
+year                        
+2014        1.00        0.00
+2015        1.00        0.27
+2016        1.00        0.02
+2017        0.99        0.23
+2018        1.00        0.75
+2019        0.83        0.05
+2020        0.91        0.58
+2021        1.00        0.70
+2022        1.00        0.00
+
+weather vs stations (24 h after t):
+   source      var   n  bias   mae      r
+0   era5  ws_mean  81  0.85  1.16  0.777
+1   era5    T_max  81  0.35  1.11  0.952
+2   era5   RH_min  81 -2.27  4.52  0.713

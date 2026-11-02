@@ -1,0 +1,35 @@
+2013: fires 893, slices 6657, 1 km slices 54
+C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task1_dataset\scripts\22_slices_v3_kz.py:53: RuntimeWarning: Mean of empty slice
+  return np.nanmean(b, (-3, -1))
+2014: fires 1787, slices 10982, 1 km slices 337
+C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task1_dataset\scripts\22_slices_v3_kz.py:53: RuntimeWarning: Mean of empty slice
+  return np.nanmean(b, (-3, -1))
+2015: fires 1718, slices 10619, 1 km slices 473
+C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task1_dataset\scripts\22_slices_v3_kz.py:53: RuntimeWarning: Mean of empty slice
+  return np.nanmean(b, (-3, -1))
+2016: fires 1163, slices 7468, 1 km slices 174
+C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task1_dataset\scripts\22_slices_v3_kz.py:53: RuntimeWarning: Mean of empty slice
+  return np.nanmean(b, (-3, -1))
+2017: fires 2635, slices 16962, 1 km slices 830
+C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task1_dataset\scripts\22_slices_v3_kz.py:53: RuntimeWarning: Mean of empty slice
+  return np.nanmean(b, (-3, -1))
+2018: fires 1499, slices 9825, 1 km slices 182
+C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task1_dataset\scripts\22_slices_v3_kz.py:53: RuntimeWarning: Mean of empty slice
+  return np.nanmean(b, (-3, -1))
+2019: fires 2153, slices 13249, 1 km slices 557
+C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task1_dataset\scripts\22_slices_v3_kz.py:53: RuntimeWarning: Mean of empty slice
+  return np.nanmean(b, (-3, -1))
+2020: fires 1739, slices 11229, 1 km slices 290
+C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task1_dataset\scripts\22_slices_v3_kz.py:53: RuntimeWarning: Mean of empty slice
+  return np.nanmean(b, (-3, -1))
+2021: fires 1455, slices 9096, 1 km slices 344
+2022: fires 1008, slices 7069, 1 km slices 144
+C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task1_dataset\scripts\22_slices_v3_kz.py:53: RuntimeWarning: Mean of empty slice
+  return np.nanmean(b, (-3, -1))
+2023: fires 693, slices 4792, 1 km slices 48
+2024: fires 422, slices 3267, 1 km slices 23
+slices: 111215 | fires: 14247 | {'test': {'slices': 8059, 'fires': 959}, 'train': {'slices': 96087, 'fires': 12414}, 'val': {'slices': 7069, 'fires': 874}}
+12h: share with growth 0.35, in-scene area share 0.868, targets (area-weighted) timed by AF 0.45, by day only 0.15
+24h: share with growth 0.54, in-scene area share 0.850, targets (area-weighted) timed by AF 0.45, by day only 0.15
+48h: share with growth 0.74, in-scene area share 0.823, targets (area-weighted) timed by AF 0.45, by day only 0.15
+72h: share with growth 0.85, in-scene area share 0.806, targets (area-weighted) timed by AF 0.45, by day only 0.15

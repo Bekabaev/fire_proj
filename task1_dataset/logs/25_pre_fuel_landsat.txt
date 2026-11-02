@@ -1,0 +1,245 @@
+AltynDala_2017_06_06: 18 Landsat items
+    LC08_L2SP_159026_20170604_02_T1 clear share 0.64
+    LC08_L2SP_159025_20170604_02_T1 clear share 0.16
+    LC08_L2SP_158027_20170528_02_T1 clear share 0.0
+    LC08_L2SP_158026_20170528_02_T1 clear share 0.3
+    LC08_L2SP_158025_20170528_02_T1 clear share 0.01
+    LC08_L2SP_159026_20170519_02_T1 clear share 0.95
+C:\Users\Ionos Tech\Desktop\burned_area\.venv\Lib\site-packages\rasterio\warp.py:390: NotGeoreferencedWarning: Dataset has no geotransform, gcps, or rpcs. The identity matrix will be returned.
+  dest = _reproject(
+    LC08_L2SP_159025_20170519_02_T1 clear share 0.19
+    LC08_L2SP_158027_20170512_02_T1 clear share 0.01
+    LC08_L2SP_158026_20170512_02_T1 clear share 0.8
+    LC08_L2SP_158025_20170512_02_T1 clear share 0.01
+    LC08_L2SP_159026_20170503_02_T1 clear share 0.95
+    LC08_L2SP_159025_20170503_02_T1 clear share 0.19
+AltynDala_2017_06_06: scenes 8/18, cov_pre 0.0 -> 0.989
+AltynDala_2017_06_08: 16 Landsat items
+    LC08_L2SP_159026_20170604_02_T1 clear share 0.66
+    LC08_L2SP_161026_20170602_02_T1 clear share 0.01
+    LC08_L2SP_161025_20170602_02_T1 clear share 0.0
+    LC08_L2SP_160025_20170526_02_T1 clear share 0.0
+    LC08_L2SP_159026_20170519_02_T1 clear share 0.53
+    LC08_L2SP_161026_20170517_02_T1 clear share 0.02
+    LC08_L2SP_161025_20170517_02_T1 clear share 0.0
+    LC08_L2SP_160026_20170510_02_T1 clear share 0.8
+    LC08_L2SP_159026_20170503_02_T1 clear share 0.62
+    LC08_L2SP_161026_20170501_02_T1 clear share 0.02
+    LC08_L2SP_161025_20170501_02_T1 clear share 0.0
+    LC08_L2SP_160026_20170424_02_T1 clear share 0.99
+AltynDala_2017_06_08: scenes 5/16, cov_pre 0.0 -> 0.999
+AltynDala_2020_08_06_2: 5 Landsat items
+    LC08_L2SP_160026_20200721_02_T1 clear share 1.0
+    LC08_L2SP_159026_20200714_02_T1 clear share 0.99
+    LC08_L2SP_160026_20200705_02_T1 clear share 0.48
+    LC08_L2SP_160026_20200619_02_T1 clear share 0.55
+    LC08_L2SP_159026_20200612_02_T1 clear share 0.89
+AltynDala_2020_08_06_2: scenes 5/5, cov_pre 0.0 -> 1.0
+AltynDala_2020_08_06_3: 5 Landsat items
+    LC08_L2SP_160026_20200721_02_T1 clear share 1.0
+    LC08_L2SP_159026_20200714_02_T1 clear share 1.0
+    LC08_L2SP_160026_20200705_02_T1 clear share 0.04
+    LC08_L2SP_160026_20200619_02_T1 clear share 0.76
+    LC08_L2SP_159026_20200612_02_T1 clear share 0.93
+AltynDala_2020_08_06_3: scenes 4/5, cov_pre 0.0 -> 1.0
+AltynDala_2021: 5 Landsat items
+    LC08_L2SP_159025_20210514_02_T1 clear share 1.0
+    LC08_L2SP_160025_20210505_02_T1 clear share 0.0
+    LC08_L2SP_159025_20210428_02_T1 clear share 0.98
+    LC08_L2SP_159025_20210412_02_T1 clear share 0.99
+    LC08_L2SP_160025_20210403_02_T1 clear share 0.0
+AltynDala_2021: scenes 3/5, cov_pre 0.0 -> 1.0
+AltynDala_2021_07_01: 14 Landsat items
+    LC08_L2SP_158026_20210624_02_T1 clear share 0.62
+    LC08_L2SP_158025_20210624_02_T1 clear share 0.16
+    LC08_L2SP_159026_20210615_02_T1 clear share 0.83
+    LC08_L2SP_159025_20210615_02_T1 clear share 0.84
+    LC08_L2SP_158026_20210608_02_T1 clear share 0.28
+    LC08_L2SP_158025_20210608_02_T1 clear share 0.06
+    LC08_L2SP_159026_20210530_02_T1 clear share 0.52
+    LC08_L2SP_159025_20210530_02_T1 clear share 0.52
+    LC08_L2SP_158026_20210523_02_T1 clear share 0.67
+    LC08_L2SP_158025_20210523_02_T1 clear share 0.17
+    LC08_L2SP_159026_20210514_02_T1 clear share 0.87
+    LC08_L2SP_159025_20210514_02_T1 clear share 0.88
+AltynDala_2021_07_01: scenes 12/14, cov_pre 0.0 -> 1.0
+AltynDala_2021_07_03: 16 Landsat items
+    LC08_L2SP_159026_20210701_02_T1 clear share 0.53
+    LC08_L2SP_159025_20210701_02_T1 clear share 0.88
+    LC08_L2SP_158026_20210624_02_T1 clear share 0.8
+    LC08_L2SP_158025_20210624_02_T1 clear share 0.42
+    LC08_L2SP_159026_20210615_02_T1 clear share 0.45
+    LC08_L2SP_159025_20210615_02_T1 clear share 0.79
+    LC08_L2SP_158026_20210608_02_T1 clear share 0.63
+    LC08_L2SP_158025_20210608_02_T1 clear share 0.32
+    LC08_L2SP_159026_20210530_02_T1 clear share 0.23
+    LC08_L2SP_159025_20210530_02_T1 clear share 0.34
+    LC08_L2SP_158026_20210523_02_T1 clear share 0.93
+    LC08_L2SP_158025_20210523_02_T1 clear share 0.5
+AltynDala_2021_07_03: scenes 12/16, cov_pre 0.0 -> 1.0
+AltynDala_2023: 14 Landsat items
+    LC08_L2SP_160025_20230730_02_T1 clear share 1.0
+    LC08_L2SP_159025_20230723_02_T1 clear share 0.92
+    LC09_L2SP_160025_20230722_02_T1 clear share 1.0
+    LC09_L2SP_159025_20230715_02_T1 clear share 0.53
+    LC08_L2SP_160025_20230714_02_T1 clear share 0.12
+    LC08_L2SP_159025_20230707_02_T1 clear share 1.0
+    LC09_L2SP_160025_20230706_02_T1 clear share 1.0
+    LC09_L2SP_159025_20230629_02_T1 clear share 0.73
+    LC08_L2SP_160025_20230628_02_T1 clear share 0.46
+    LC08_L2SP_159025_20230621_02_T1 clear share 0.09
+    LC09_L2SP_159025_20230613_02_T1 clear share 1.0
+    LC08_L2SP_160025_20230612_02_T1 clear share 1.0
+AltynDala_2023: scenes 12/14, cov_pre 0.0 -> 1.0
+Korgalzhyn_2014_08_08: 12 Landsat items
+    LC08_L2SP_157024_20140801_02_T1 clear share 0.16
+    LC08_L2SP_156025_20140725_02_T1 clear share 0.03
+    LC08_L2SP_156025_20140709_02_T1 clear share 0.25
+    LC08_L2SP_156024_20140709_02_T1 clear share 0.04
+    LC08_L2SP_158025_20140707_02_T1 clear share 0.19
+    LC08_L2SP_158024_20140707_02_T1 clear share 0.31
+    LC08_L2SP_157025_20140630_02_T1 clear share 0.15
+    LC08_L2SP_156025_20140623_02_T1 clear share 0.17
+    LC08_L2SP_156024_20140623_02_T1 clear share 0.05
+    LC08_L2SP_158025_20140621_02_T1 clear share 0.18
+    LC08_L2SP_158024_20140621_02_T1 clear share 0.35
+    LC08_L2SP_157024_20140614_02_T1 clear share 0.04
+Korgalzhyn_2014_08_08: scenes 8/12, cov_pre 0.0 -> 0.84
+Korgalzhyn_2015_08_04: 4 Landsat items
+    LC08_L2SP_156025_20150728_02_T1 clear share 0.57
+    LC08_L2SP_156025_20150712_02_T1 clear share 0.99
+    LC08_L2SP_156025_20150626_02_T1 clear share 0.9
+    LC08_L2SP_156025_20150610_02_T1 clear share 0.99
+Korgalzhyn_2015_08_04: scenes 4/4, cov_pre 0.0 -> 0.993
+Korgalzhyn_2016_05_24: 4 Landsat items
+    LC08_L2SP_157025_20160518_02_T1 clear share 0.99
+    LC08_L2SP_156025_20160511_02_T1 clear share 0.0
+    LC08_L2SP_156025_20160425_02_T1 clear share 0.97
+    LC08_L2SP_157025_20160416_02_T1 clear share 0.97
+Korgalzhyn_2016_05_24: scenes 3/4, cov_pre 0.0 -> 0.994
+Korgalzhyn_2016_08_28: 6 Landsat items
+    LC08_L2SP_157025_20160822_02_T1 clear share 0.99
+    LC08_L2SP_156025_20160815_02_T1 clear share 0.68
+    LC08_L2SP_157025_20160806_02_T1 clear share 0.1
+    LC08_L2SP_156025_20160730_02_T1 clear share 0.79
+    LC08_L2SP_156025_20160714_02_T1 clear share 0.99
+    LC08_L2SP_157025_20160705_02_T1 clear share 0.24
+Korgalzhyn_2016_08_28: scenes 6/6, cov_pre 0.0 -> 0.993
+Korgalzhyn_2017_06_30: 20 Landsat items
+    LC08_L2SP_155026_20170624_02_T1 clear share 0.0
+    LC08_L2SP_155025_20170624_02_T1 clear share 0.0
+    LC08_L2SP_157025_20170622_02_T1 clear share 0.53
+    LC08_L2SP_157024_20170622_02_T1 clear share 0.04
+    LC08_L2SP_156026_20170615_02_T1 clear share 0.02
+    LC08_L2SP_156025_20170615_02_T1 clear share 0.65
+    LC08_L2SP_158025_20170613_02_T1 clear share 0.01
+    LC08_L2SP_155026_20170608_02_T1 clear share 0.0
+    LC08_L2SP_155025_20170608_02_T1 clear share 0.0
+    LC08_L2SP_157024_20170606_02_T1 clear share 0.0
+    LC08_L2SP_156026_20170530_02_T1 clear share 0.01
+    LC08_L2SP_158025_20170528_02_T1 clear share 0.02
+Korgalzhyn_2017_06_30: scenes 2/20, cov_pre 0.0 -> 0.878
+Korgalzhyn_2020_07_20: 17 Landsat items
+    LC08_L2SP_157025_20200716_02_T1 clear share 1.0
+    LC08_L2SP_157024_20200716_02_T1 clear share 0.12
+    LC08_L2SP_156025_20200709_02_T1 clear share 0.32
+    LC08_L2SP_158025_20200707_02_T1 clear share 0.11
+    LC08_L2SP_158024_20200707_02_T1 clear share 0.09
+    LC08_L2SP_157025_20200630_02_T1 clear share 0.87
+    LC08_L2SP_157024_20200630_02_T1 clear share 0.12
+    LC08_L2SP_156025_20200623_02_T1 clear share 0.2
+    LC08_L2SP_158025_20200621_02_T1 clear share 0.13
+    LC08_L2SP_158024_20200621_02_T1 clear share 0.1
+    LC08_L2SP_157025_20200614_02_T1 clear share 0.92
+    LC08_L2SP_157024_20200614_02_T1 clear share 0.12
+Korgalzhyn_2020_07_20: scenes 12/17, cov_pre 0.0 -> 0.999
+Korgalzhyn_2021_05_01: 7 Landsat items
+    LC08_L2SP_156025_20210423_02_T1 clear share 0.0
+    LC08_L2SP_157025_20210414_02_T1 clear share 0.99
+    LC08_L2SP_156025_20210407_02_T1 clear share 0.83
+    LC08_L2SP_157025_20210329_02_T2 clear share 0.0
+    LC08_L2SP_156025_20210322_02_T2 clear share 0.0
+    LC08_L2SP_157025_20210313_02_T2 clear share 0.0
+    LC08_L2SP_156025_20210306_02_T2 clear share 0.0
+Korgalzhyn_2021_05_01: scenes 2/7, cov_pre 0.0 -> 0.993
+Mirgorod_2017: 11 Landsat items
+    LC08_L2SP_166025_20170723_02_T1 clear share 0.99
+    LC08_L2SP_166024_20170723_02_T1 clear share 0.03
+    LC08_L2SP_167025_20170714_02_T1 clear share 0.53
+    LC08_L2SP_167024_20170714_02_T1 clear share 0.56
+    LC08_L2SP_166025_20170707_02_T1 clear share 0.81
+    LC08_L2SP_166024_20170707_02_T1 clear share 0.02
+    LC08_L2SP_167025_20170628_02_T1 clear share 0.99
+    LC08_L2SP_167024_20170628_02_T1 clear share 0.99
+    LC08_L2SP_166025_20170621_02_T1 clear share 0.68
+    LC08_L2SP_166024_20170621_02_T1 clear share 0.04
+    LC08_L2SP_167025_20170612_02_T1 clear share 0.0
+Mirgorod_2017: scenes 7/11, cov_pre 0.0 -> 0.995
+Mirgorod_2019: 10 Landsat items
+    LC08_L2SP_167025_20190720_02_T1 clear share 0.09
+    LC08_L2SP_167024_20190720_02_T1 clear share 0.15
+    LC08_L2SP_166025_20190713_02_T1 clear share 0.2
+    LC08_L2SP_167025_20190704_02_T1 clear share 0.28
+    LC08_L2SP_167024_20190704_02_T1 clear share 0.3
+    LC08_L2SP_167025_20190618_02_T1 clear share 0.11
+    LC08_L2SP_167024_20190618_02_T1 clear share 0.12
+    LC08_L2SP_166025_20190611_02_T1 clear share 1.0
+    LC08_L2SP_167025_20190602_02_T1 clear share 0.25
+    LC08_L2SP_167024_20190602_02_T1 clear share 0.26
+Mirgorod_2019: scenes 10/10, cov_pre 0.0 -> 0.995
+Mirgorod_2022: 18 Landsat items
+    LC09_L2SP_167025_20220704_02_T1 clear share 0.92
+    LC09_L2SP_167024_20220704_02_T1 clear share 0.92
+    LC09_L2SP_166025_20220627_02_T1 clear share 0.99
+    LC08_L2SP_167025_20220626_02_T1 clear share 0.36
+    LC08_L2SP_167024_20220626_02_T1 clear share 0.44
+    LC08_L2SP_166025_20220619_02_T1 clear share 0.39
+    LC09_L2SP_167025_20220618_02_T1 clear share 0.54
+    LC09_L2SP_167024_20220618_02_T1 clear share 0.55
+    LC08_L2SP_167025_20220610_02_T1 clear share 0.39
+    LC08_L2SP_167024_20220610_02_T1 clear share 0.44
+    LC08_L2SP_166025_20220603_02_T1 clear share 0.99
+    LC09_L2SP_167025_20220602_02_T1 clear share 0.99
+Mirgorod_2022: scenes 12/18, cov_pre 0.0 -> 0.991
+Naurzum_2017_08_25_1: 6 Landsat items
+    LC08_L2SP_159024_20170823_02_T1 clear share 1.0
+    LC08_L2SP_159024_20170807_02_T1 clear share 0.93
+    LC08_L2SP_160024_20170729_02_T1 clear share 1.0
+    LC08_L2SP_160024_20170713_02_T1 clear share 0.12
+    LC08_L2SP_159024_20170706_02_T1 clear share 1.0
+    LC08_L2SP_160024_20170627_02_T1 clear share 1.0
+Naurzum_2017_08_25_1: scenes 6/6, cov_pre 0.0 -> 1.0
+Naurzum_2017_09_16: 5 Landsat items
+    LC08_L2SP_159024_20170908_02_T1 clear share 0.85
+    LC08_L2SP_160024_20170830_02_T1 clear share 1.0
+    LC08_L2SP_159024_20170823_02_T1 clear share 1.0
+    LC08_L2SP_159024_20170807_02_T1 clear share 0.94
+    LC08_L2SP_160024_20170729_02_T1 clear share 0.99
+Naurzum_2017_09_16: scenes 5/5, cov_pre 0.0 -> 1.0
+Naurzum_2018_04_18: 11 Landsat items
+    LC08_L2SP_160024_20180411_02_T1 clear share 0.56
+    LC08_L2SP_159025_20180404_02_T1 clear share 0.0
+    LC08_L2SP_159024_20180404_02_T1 clear share 0.0
+    LC08_L2SP_161024_20180402_02_T2 clear share 0.0
+    LC08_L2SP_160024_20180326_02_T1 clear share 0.0
+    LC08_L2SP_159024_20180319_02_T2 clear share 0.0
+    LC08_L2SP_160024_20180310_02_T1 clear share 0.0
+    LC08_L2SP_159025_20180303_02_T1 clear share 0.0
+    LC08_L2SP_159024_20180303_02_T2 clear share 0.0
+    LC08_L2SP_161024_20180301_02_T2 clear share 0.0
+    LC08_L2SP_160024_20180222_02_T1 clear share 0.0
+Naurzum_2018_04_18: scenes 1/11, cov_pre 0.0 -> 0.558
+Naurzum_2019_07_23: 11 Landsat items
+    LC08_L2SP_160025_20190719_02_T1 clear share 0.05
+    LC08_L2SP_160024_20190719_02_T1 clear share 1.0
+    LC08_L2SP_159025_20190712_02_T1 clear share 0.46
+    LC08_L2SP_159024_20190712_02_T1 clear share 0.97
+    LC08_L2SP_159025_20190626_02_T1 clear share 0.05
+    LC08_L2SP_159024_20190626_02_T1 clear share 0.13
+    LC08_L2SP_160025_20190617_02_T1 clear share 0.01
+    LC08_L2SP_159025_20190610_02_T1 clear share 0.46
+    LC08_L2SP_159024_20190610_02_T1 clear share 0.97
+    LC08_L2SP_160025_20190601_02_T1 clear share 0.04
+    LC08_L2SP_160024_20190601_02_T1 clear share 0.98
+Naurzum_2019_07_23: scenes 7/11, cov_pre 0.0 -> 1.0
+cov_pre >= 0.5: 44 of 44

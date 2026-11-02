@@ -1,0 +1,33 @@
+2012 burned cells: 327541
+GFA ignition columns: ['fire_ID', 'lat', 'lon', 'size', 'perimeter', 'start_date', 'start_DOY', 'end_date', 'end_DOY', 'duration', 'fire_line', 'spread', 'speed', 'direction', 'direc_frac', 'MODIS_tile', 'landcover', 'landc_frac', 'GFED_regio', 'geometry']
+2012: GFA fires in KZ 7731, duration>=2d & size>=1km2: 3997, matched to raster: 3169
+2013: GFA fires in KZ 2557, duration>=2d & size>=1km2: 1153, matched to raster: 893
+2014: GFA fires in KZ 4360, duration>=2d & size>=1km2: 2224, matched to raster: 1787
+2015: GFA fires in KZ 4670, duration>=2d & size>=1km2: 2289, matched to raster: 1718
+2016: GFA fires in KZ 3128, duration>=2d & size>=1km2: 1502, matched to raster: 1163
+2017: GFA fires in KZ 6939, duration>=2d & size>=1km2: 3548, matched to raster: 2635
+2018: GFA fires in KZ 4080, duration>=2d & size>=1km2: 1917, matched to raster: 1499
+2019: GFA fires in KZ 5520, duration>=2d & size>=1km2: 2893, matched to raster: 2153
+2020: GFA fires in KZ 4983, duration>=2d & size>=1km2: 2326, matched to raster: 1739
+2021: GFA fires in KZ 3617, duration>=2d & size>=1km2: 2006, matched to raster: 1455
+2022: GFA fires in KZ 2872, duration>=2d & size>=1km2: 1276, matched to raster: 1008
+2023: GFA fires in KZ 1872, duration>=2d & size>=1km2: 884, matched to raster: 693
+2024: GFA fires in KZ 1329, duration>=2d & size>=1km2: 519, matched to raster: 422
+
+fires: 20334 | by split: {'train': 18211, 'test': 1115, 'val': 1008}
+area km2 quantiles: {0.1: 1.5, 0.5: 4.2, 0.9: 36.5, 0.99: 502.3} | n_days median: 5.0
+      fires      area
+year                 
+2012   3169   55381.0
+2013    893   11886.0
+2014   1787   60776.0
+2015   1718   71143.0
+2016   1163   24782.0
+2017   2635  140717.0
+2018   1499   33286.0
+2019   2153   79888.0
+2020   1739   39896.0
+2021   1455   52092.0
+2022   1008   17775.0
+2023    693   10044.0
+2024    422    3809.0
