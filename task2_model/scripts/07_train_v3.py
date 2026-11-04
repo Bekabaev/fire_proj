@@ -22,7 +22,7 @@ torch.manual_seed(0); np.random.seed(0)
 
 def load_part(part):
     si = pd.read_csv(os.path.join(CACHE, f"{part}_idx.csv"), parse_dates=["t_utc"], low_memory=False)
-    M, Y, L = (np.load(os.path.join(CACHE, f"{part}_{k}.npy"), mmap_mode="r") for k in "MYL")
+    M, Y, L = (np.load(os.path.join(CACHE, f"{part}_{k}{LAB if k != 'M' and os.path.exists(os.path.join(CACHE, f'{part}_{k}{LAB}.npy')) else ''}.npy"), mmap_mode="r") for k in "MYL")
     return si, M, Y, L
 
 

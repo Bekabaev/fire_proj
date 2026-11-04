@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Симулятор степного пожара</title>
+<style>
+:root{--bg:#f6f4ef;--panel:#fff;--ink:#1d1d1b;--muted:#6b6a65;--line:#e2ded4;--accent:#c1440e;--accent2:#2f5d62}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#171614;--panel:#211f1c;--ink:#ece9e2;--muted:#9c988e;--line:#36332e;--accent:#ff7a3d;--accent2:#7fb7bd}}
+:root[data-theme="dark"]{--bg:#171614;--panel:#211f1c;--ink:#ece9e2;--muted:#9c988e;--line:#36332e;--accent:#ff7a3d;--accent2:#7fb7bd}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{padding:20px 16px 8px;max-width:1180px;margin:0 auto}
+h1{font-size:22px;margin:0 0 4px}
+header p{margin:0;color:var(--muted);max-width:820px}
+nav{max-width:1180px;margin:8px auto 0;padding:0 16px;display:flex;gap:6px;flex-wrap:wrap}
+nav button{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:7px 12px;border-radius:8px;cursor:pointer;font:inherit}
+nav button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+main{max-width:1180px;margin:0 auto;padding:12px 16px 40px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px}
+@media (max-width:820px){.grid{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+canvas{width:100%;height:auto;image-rendering:pixelated;border-radius:8px;display:block;cursor:crosshair}
+label{display:block;font-size:13px;color:var(--muted);margin:10px 0 2px}
+input[type=range]{width:100%}
+select{width:100%;padding:6px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:inherit}
+.row{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap}
+.btn{border:0;background:var(--accent);color:#fff;padding:8px 14px;border-radius:8px;cursor:pointer;font:inherit}
+.btn.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.stat{display:grid;grid-template-columns:1fr auto;gap:2px 10px;font-size:14px;margin-top:10px}
+.stat b{font-variant-numeric:tabular-nums}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-2px}
+.cmp{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:640px){.cmp{grid-template-columns:1fr}}
+.cmp h3{font-size:14px;margin:0 0 6px}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+td,th{padding:5px 6px;border-bottom:1px solid var(--line);text-align:right}
+td:first-child,th:first-child{text-align:left}
+.note{font-size:13px;color:var(--muted);margin-top:8px}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<header>
+  <h1>Симулятор степного пожара</h1>
+  <p>Физическая модель FBP (канадская система, открытая степь O-1b): скорость фронта по ветру и сухости травы, эллипс по ветру, склон.
+     Сетка 500 м, 48 × 48 км. Сравнение с нашими нейросетями — во вкладках «Модели» и «Вероятность выгорания».</p>
+</header>
+<nav>
+  <button class="on" data-tab="play">Песочница</button>
+  <button data-tab="models">Модели против физики</button>
+  <button data-tab="bp">Вероятность выгорания</button>
+</nav>
+<main>
+<section id="tab-play">
+  <div class="grid">
+    <div class="card">
+      <canvas id="cv" width="96" height="96" aria-label="Карта пожара: клик — новая точка возгорания"></canvas>
+      <div class="legend">
+        <span><i style="background:#d9cf9a"></i>трава</span><span><i style="background:#9cc27a"></i>пашня</span>
+        <span><i style="background:#6f8f5a"></i>кусты</span><span><i style="background:#8fb3d9"></i>вода / негорючее</span>
+        <span><i style="background:#c1121f"></i>горит / сгорело</span><span>клик по карте — поджечь</span>
+      </div>
+    </div>
+    <div class="card">
+      <label for="land">Ландшафт</label>
+      <select id="land"></select>
+      <label for="ws">Ветер, м/с: <b id="wsv"></b></label><input id="ws" type="range" min="0" max="15" step="0.5" value="6">
+      <label for="wd">Ветер дует на: <b id="wdv"></b></label><input id="wd" type="range" min="0" max="345" step="15" value="90">
+      <label for="ffmc">Сухость подстилки FFMC: <b id="ffv"></b></label><input id="ffmc" type="range" min="80" max="96" step="0.5" value="92">
+      <label for="ndvi">Зелень травы NDVI: <b id="ndv"></b></label><input id="ndvi" type="range" min="0.15" max="0.6" step="0.01" value="0.3">
+      <label for="t">Время, ч: <b id="tv"></b></label><input id="t" type="range" min="0" max="72" step="1" value="72">
+      <div class="row"><button class="btn" id="play">▶ Запустить</button><button class="btn alt" id="reset">Сброс</button></div>
+      <div class="stat">
+        <span>Площадь к этому времени</span><b id="area">—</b>
+        <span>Скорость головы фронта</span><b id="ros">—</b>
+        <span>Вытянутость эллипса L/B</span><b id="lb">—</b>
+      </div>
+      <p class="note">Множитель скорости k = <span id="kv"></span> подобран по реальным пожарам Казахстана 2022 г.
+        (FBP рассчитан на сплошную траву днём, в степи огонь медленнее).</p>
+    </div>
+  </div>
+</section>
+<section id="tab-models" class="hidden">
+  <div class="card">
+    <label for="scn">Сценарий</label><select id="scn"></select>
+    <div class="cmp" style="margin-top:12px">
+      <div><h3>Физика FBP</h3><canvas id="cv0" width="96" height="96"></canvas></div>
+      <div><h3>U-Net с погодой (wx)</h3><canvas id="cv1" width="96" height="96"></canvas></div>
+      <div><h3>Сеть → скорость → решатель</h3><canvas id="cv2" width="96" height="96"></canvas></div>
+    </div>
+    <div class="legend"><span><i style="background:#f4a261"></i>12 ч</span><span><i style="background:#e76f51"></i>24 ч</span>
+      <span><i style="background:#c1121f"></i>48 ч</span><span><i style="background:#6a040f"></i>72 ч</span></div>
+    <table id="mt" style="margin-top:12px"></table>
+    <p class="note">Sørensen — совпадение площади модели и физики (1 = полное). L/B — вытянутость пожара по ветру.</p>
+  </div>
+</section>
+<section id="tab-bp" class="hidden">
+  <div class="card">
+    <p class="note" style="margin-top:0">100 случайных возгораний на реальном ландшафте из теста 2023–24 с реальной погодой: доля прогонов, в которых ячейка сгорела за 72 ч (как карты Burn-P3 / FSim).</p>
+    <div class="cmp">
+      <div><h3>Физика FBP</h3><canvas id="bp0" width="96" height="96"></canvas></div>
+      <div><h3>U-Net с погодой (wx)</h3><canvas id="bp1" width="96" height="96"></canvas></div>
+      <div><h3>Сеть → скорость → решатель</h3><canvas id="bp2" width="96" height="96"></canvas></div>
+    </div>
+  </div>
+</section>
+</main>
+<script>
+const DATA = /*DATA*/null;
+const N = 96, HZ = [12, 24, 48, 72], K = (DATA && DATA.k_ros) || 0.01;
+const OFFS = [[0,1],[-1,1],[-1,0],[-1,-1],[0,-1],[1,-1],[1,0],[1,1],[-1,2],[-2,1],[-2,-1],[-1,-2],[1,-2],[2,-1],[2,1],[1,2]];
+const DIST = OFFS.map(([r,c]) => 0.5 * Math.hypot(r,c));
+const EV = OFFS.map(([r,c]) => [c/Math.hypot(r,c), -r/Math.hypot(r,c)]);
+const $ = id => document.getElementById(id);
+// ---- FBP O-1b ----
+const isi = (ws, ffmc, back) => { const m = 147.2*(101-ffmc)/(59.5+ffmc); const ff = 91.9*Math.exp(-0.1386*m)*(1+Math.pow(m,5.31)/4.93e7); return 0.208*Math.exp((back?-1:1)*0.05039*ws)*ff; };
+const ros = i => 250*Math.pow(1-Math.exp(-0.035*i),1.7);
+const cfac = C => { C = Math.max(0, Math.min(100, C)); return C < 58.8 ? 0.005*(Math.exp(0.061*C)-1) : 0.176+0.02*(C-58.8); };
+function ell(head, back, lb, ct){ const a=(head+back)/2, b=a/lb, c=a-back, s2=1-ct*ct; const A=ct*ct/(a*a)+s2/(b*b), B=-2*c*ct/(a*a), C=c*c/(a*a)-1; return (-B+Math.sqrt(Math.max(B*B-4*A*C,0)))/(2*A); }
+function landscape(kind){
+  const L = {grass:new Float32Array(N*N).fill(1), crop:new Float32Array(N*N), shrub:new Float32Array(N*N), nonb:new Float32Array(N*N), elev:new Float32Array(N*N).fill(300)};
+  const src = DATA && DATA.scenarios.find(s => s.kind === kind);
+  if (src){ for (const k of ["grass","crop","shrub","nonb","elev"]) L[k] = Float32Array.from(src.landscape[k].flat()); }
+  L.ndviMul = src ? Float32Array.from(src.landscape.ndvi.flat()).map(v => v - 0.3) : new Float32Array(N*N);
+  return L;
+}
+function simulate(L, burned, ws, wdDeg, ffmc, ndvi){
+  const wsk = ws*3.6, h0 = ros(isi(wsk, ffmc)), b0 = ros(isi(wsk, ffmc, true));
+  const lb = 1 + 8.729*Math.pow(1-Math.exp(-0.030*wsk), 2.155);
+  const th = wdDeg*Math.PI/180, hd = ws > 0.05 ? [Math.sin(th), Math.cos(th)] : [1,0];
+  const rel = EV.map(e => ell(1, b0/Math.max(h0,1e-9), lb, e[0]*hd[0]+e[1]*hd[1]));
+  const S = new Float32Array(N*N);
+  for (let i=0;i<N*N;i++){ const fuel = L.nonb[i] > 0.5 ? 0 : L.grass[i] + 0.6*L.crop[i] + 0.4*L.shrub[i]; const nd = ndvi + L.ndviMul[i];
+    S[i] = h0*cfac(100-150*(nd-0.2))*0.06*K*fuel; }
+  const T = new Float32Array(N*N).fill(1e9), done = new Uint8Array(N*N), heap = [];
+  const push = (t,i) => { heap.push([t,i]); let k=heap.length-1; while(k>0){ const p=(k-1)>>1; if(heap[p][0]<=heap[k][0]) break; [heap[p],heap[k]]=[heap[k],heap[p]]; k=p; } };
+  const pop = () => { const top=heap[0], last=heap.pop(); if(heap.length){ heap[0]=last; let k=0; for(;;){ const l=2*k+1, r=l+1; let m=k; if(l<heap.length&&heap[l][0]<heap[m][0]) m=l; if(r<heap.length&&heap[r][0]<heap[m][0]) m=r; if(m===k) break; [heap[m],heap[k]]=[heap[k],heap[m]]; k=m; } } return top; };
+  for (let i=0;i<N*N;i++) if (burned[i]){ T[i]=0; push(0,i); }
+  while (heap.length){ const [t,i] = pop(); if (done[i]) continue; done[i]=1; if (t > 72) break;
+    const r = (i/N)|0, c = i%N;
+    for (let k=0;k<16;k++){ const rr=r+OFFS[k][0], cc=c+OFFS[k][1]; if (rr<0||cc<0||rr>=N||cc>=N) continue; const j=rr*N+cc;
+      if (done[j] || S[i]<=0 || S[j]<=0) continue;
+      const rise = Math.max((L.elev[j]-L.elev[i])/(DIST[k]*1000), 0), sf = Math.exp(3.533*Math.pow(rise,1.2));
+      const v = 2/(1/(S[i]*rel[k]*sf)+1/(S[j]*rel[k]*sf)), nt = t + DIST[k]/v;
+      if (nt < T[j]){ T[j]=nt; push(nt,j); } } }
+  return {T, head: h0*cfac(100-150*(ndvi-0.2))*0.06*K, lb};
+}
+function baseImage(ctx, L){
+  const im = ctx.createImageData(N,N);
+  for (let i=0;i<N*N;i++){ let col = [217,207,154]; if (L.crop[i]>0.5) col=[156,194,122]; if (L.shrub[i]>0.5) col=[111,143,90]; if (L.nonb[i]>0.5) col=[143,179,217];
+    const sh = (L.elev[i]-300)/1200; im.data.set([col[0]*(1-sh), col[1]*(1-sh), col[2]*(1-sh), 255], 4*i); }
+  return im;
+}
+// ---- песочница ----
+let L, burned, res, timer;
+const ctx = $("cv").getContext("2d");
+function ignite(r, c){ burned = new Uint8Array(N*N); for (let y=-2;y<=2;y++) for (let x=-2;x<=2;x++) if (x*x+y*y<=4){ const i=(r+y)*N+(c+x); if (i>=0&&i<N*N) burned[i]=1; } }
+function run(){ res = simulate(L, burned, +$("ws").value, +$("wd").value, +$("ffmc").value, +$("ndvi").value); draw(); }
+function draw(){
+  const t = +$("t").value, im = baseImage(ctx, L); let a = 0;
+  for (let i=0;i<N*N;i++) if (res.T[i] <= t){ a++; const f = Math.min(res.T[i]/72, 1); im.data.set([193-80*f, 18+10*f, 31, 255], 4*i); }
+  ctx.putImageData(im,0,0);
+  $("area").textContent = (a*0.25).toFixed(1) + " км²"; $("ros").textContent = res.head.toFixed(2) + " км/ч"; $("lb").textContent = res.lb.toFixed(2);
+}
+function labels(){ $("wsv").textContent=$("ws").value; const d=+$("wd").value; $("wdv").textContent = ["С","СВ","В","ЮВ","Ю","ЮЗ","З","СЗ"][Math.round(d/45)%8]+" ("+d+"°)";
+  $("ffv").textContent=$("ffmc").value; $("ndv").textContent=$("ndvi").value; $("tv").textContent=$("t").value; $("kv").textContent=K; }
+const kinds = [["flat","ровная степь"],["river","река-барьер"],["cropbreak","полоса зелёной пашни"],["road","дорога"],["mosaic","мозаика топлива"],["hill","холм"]];
+$("land").innerHTML = kinds.map(([k,n]) => `<option value="${k}">${n}</option>`).join("");
+$("land").onchange = () => { L = landscape($("land").value); run(); };
+for (const id of ["ws","wd","ffmc","ndvi"]) $(id).oninput = () => { labels(); run(); };
+$("t").oninput = () => { labels(); draw(); };
+$("cv").onclick = e => { const b = e.target.getBoundingClientRect(); ignite(Math.floor((e.clientY-b.top)/b.height*N), Math.floor((e.clientX-b.left)/b.width*N)); run(); };
+$("play").onclick = () => { clearInterval(timer); $("t").value = 0; timer = setInterval(() => { const v = +$("t").value + 1; $("t").value = v; labels(); draw(); if (v >= 72) clearInterval(timer); }, 60); };
+$("reset").onclick = () => { clearInterval(timer); ignite(48, 36); $("t").value = 72; labels(); run(); };
+L = landscape("flat"); ignite(48, 36); labels(); run();
+// ---- модели против физики ----
+const COLS = [[244,162,97],[231,111,81],[193,18,31],[106,4,15]];
+function contours(cv, L, masks){
+  const c = cv.getContext("2d"), im = baseImage(c, L);
+  for (let h=3;h>=0;h--) for (let i=0;i<N*N;i++) if (masks[h][i]) im.data.set([...COLS[h],255], 4*i);
+  c.putImageData(im,0,0);
+}
+if (DATA){
+  $("scn").innerHTML = DATA.scenarios.map((s,i) => `<option value="${i}">${s.name}</option>`).join("");
+  const show = () => { const s = DATA.scenarios[+$("scn").value], Ls = landscape(s.kind), b = s.burned.flat(), T = s.phys_T.flat();
+    contours($("cv0"), Ls, HZ.map(H => T.map((t,i) => t <= H || b[i])));
+    ["wx","swxh"].forEach((r,k) => { const m = s.model[r]; if (!m) return; contours($("cv"+(k+1)), Ls, HZ.map((H,h) => m.P[h].flat().map((p,i) => p >= m.level[h] || b[i]))); });
+    const rows = (DATA.metrics || []).filter(r => r.scenario === s.name);
+    $("mt").innerHTML = "<tr><th>модель</th><th>горизонт</th><th>Sørensen</th><th>площадь модели, км²</th><th>площадь физики, км²</th><th>L/B модель</th><th>L/B физика</th></tr>" +
+      rows.map(r => `<tr><td>${r.model}</td><td>${r.horizon_h} ч</td><td>${(+r.sorensen).toFixed(2)}</td><td>${(+r.area_model_km2).toFixed(1)}</td><td>${(+r.area_phys_km2).toFixed(1)}</td><td>${(+r.LB_model).toFixed(2)}</td><td>${(+r.LB_phys).toFixed(2)}</td></tr>`).join("");
+  };
+  $("scn").onchange = show; show();
+  if (DATA.burnprob){ const Lr = {grass:Float32Array.from(DATA.landscape.grass.flat()), crop:Float32Array.from(DATA.landscape.crop.flat()), shrub:new Float32Array(N*N), nonb:Float32Array.from(DATA.landscape.nonb.flat()), elev:new Float32Array(N*N).fill(300)};
+    ["phys","wx","swxh"].forEach((k,j) => { const cv = $("bp"+j), c = cv.getContext("2d"), im = baseImage(c, Lr), A = DATA.burnprob[k].flat(), mx = Math.max(...DATA.burnprob.phys.flat(), 0.05);
+      A.forEach((p,i) => { if (p > 0){ const f = Math.min(p/mx,1); im.data.set([255, 220-200*f, 60-60*f, 255], 4*i); } }); c.putImageData(im,0,0); }); }
+}
+document.querySelectorAll("nav button").forEach(b => b.onclick = () => {
+  document.querySelectorAll("nav button").forEach(x => x.classList.toggle("on", x===b));
+  for (const t of ["play","models","bp"]) $("tab-"+t).classList.toggle("hidden", t !== b.dataset.tab);
+});
+</script>
+</body>
+</html>

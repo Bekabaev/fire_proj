@@ -1,0 +1,2 @@
+val: slices 7069, labels unchanged 0.867, area72 old 49164 km² -> img 49057 km², cells refined (src6) 2532, added (src7) 1227
+test: slices 8059, labels unchanged 0.891, area72 old 41556 km² -> img 41424 km², cells refined (src6) 3478, added (src7) 669

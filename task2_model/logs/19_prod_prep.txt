@@ -1,0 +1,3 @@
+saved C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task2_model\out_v3\phys_T_val_era5.npy
+saved C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task2_model\out_v3\phys_T_val_gfsa.npy
+done

@@ -1,0 +1,4 @@
+train: slices 43576, labels unchanged 0.896, area72 old 457036 km² -> img 456935 km², cells refined (src6) 24822, added (src7) 10673
+trainx: slices 7752, labels unchanged 0.606, area72 old 559559 km² -> img 558301 km², cells refined (src6) 27758, added (src7) 13747
+val: slices 7069, labels unchanged 0.867, area72 old 49164 km² -> img 49057 km², cells refined (src6) 2532, added (src7) 1227
+test: slices 8059, labels unchanged 0.891, area72 old 41556 km² -> img 41424 km², cells refined (src6) 3478, added (src7) 669

@@ -9,6 +9,8 @@ import numpy as np, pandas as pd, torch, torch.nn as nn, torch.nn.functional as 
 ROOT = r"C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov"
 sys.path.insert(0, os.path.join(ROOT, "task1_dataset", "scripts"))
 from v3_loader import CH, TARGETS, UNC, KZ, load_index        # noqa: E402
+UNC.update({6: 12, 7: 24})                                     # метки v4: 6 - время уточнено по снимку, 7 - гарь добавлена по снимку
+LAB = "i" if os.environ.get("LABELS") == "img" else ""       # LABELS=img - метки v4 (шаг 16): <часть>_Yi / _Li
 
 T2 = os.path.join(ROOT, "task2_model")
 CACHE = os.path.join(T2, "cache_v3"); os.makedirs(CACHE, exist_ok=True)
@@ -135,7 +137,7 @@ def cell_weights(L, Yb, dev):
     wt = torch.ones(256, device=dev)
     for k, u in UNC.items():
         wt[k] = 1 / (1 + u / 12)
-    wt12 = wt.clone(); wt12[4] = 0
+    wt12 = wt.clone(); wt12[4] = 0; wt12[7] = 0
     Ll = L.long(); valid = (L != INVALID).float()
     W = []
     for h in range(len(HZ)):

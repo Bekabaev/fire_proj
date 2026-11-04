@@ -1,0 +1,19 @@
+wx val levels [174, 70, 111, 66]
+swxh val levels [96, 66, 77, 126]
+flat_w0 [('wx', 72, np.float64(0.0), np.float64(1.0), np.float64(1.0)), ('swxh', 72, np.float64(0.0), np.float64(1.0), np.float64(1.0))]
+flat_w3 [('wx', 72, np.float64(0.0), np.float64(1.0), np.float64(1.05)), ('swxh', 72, np.float64(0.0), np.float64(1.0), np.float64(1.05))]
+flat_w6 [('wx', 72, np.float64(0.0), np.float64(1.0), np.float64(1.21)), ('swxh', 72, np.float64(0.0), np.float64(1.0), np.float64(1.21))]
+flat_w10 [('wx', 72, np.float64(0.0), np.float64(1.0), np.float64(1.68)), ('swxh', 72, np.float64(0.01), np.float64(1.12), np.float64(1.68))]
+shift_W_to_S [('wx', 72, np.float64(0.0), np.float64(1.0), np.float64(1.05)), ('swxh', 72, np.float64(0.0), np.float64(1.0), np.float64(1.05))]
+river_w6 [('wx', 72, np.float64(0.0), np.float64(1.0), np.float64(1.21)), ('swxh', 72, np.float64(0.0), np.float64(1.0), np.float64(1.21))]
+cropbreak_w6 [('wx', 72, np.float64(0.0), np.float64(1.0), np.float64(1.21)), ('swxh', 72, np.float64(0.0), np.float64(1.0), np.float64(1.21))]
+road_w6 [('wx', 72, np.float64(0.0), np.float64(1.0), np.float64(1.21)), ('swxh', 72, np.float64(0.0), np.float64(1.0), np.float64(1.21))]
+mosaic_w6 [('wx', 72, np.float64(0.0), np.float64(1.0), np.float64(1.21)), ('swxh', 72, np.float64(0.0), np.float64(1.0), np.float64(1.21))]
+hill_w3 [('wx', 72, np.float64(0.0), np.float64(1.0), np.float64(1.05)), ('swxh', 72, np.float64(0.0), np.float64(1.0), np.float64(1.05))]
+wind sensitivity
+          cos_mean  share_downwind  area_calm  area_wind8
+model                                                   
+physics     0.884           0.858      1.875       8.250
+swxh       -0.160           0.288      3.625       6.250
+wx          0.063           0.362      6.875       7.625
+done

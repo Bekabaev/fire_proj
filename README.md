@@ -7,6 +7,7 @@
 - `task2_model/out_v3/` — метрики (`eval_all.csv`, `ceiling.csv`, `tolerant_metrics.csv`) и лучшие чекпойнты моделей (`*_best.pt`).
 
 Документы:
+- **`DOCUMENTATION.md` — полная техническая документация: данные, код, модели, прод-движок, все результаты (начинать с неё)**;
 - `ОБЪЯСНЕНИЕ_на_пальцах.md` — объяснение данных, моделей, формул и результатов простым языком;
 - `PROGRESS.md`, `CHECKPOINT_task1_dataset.md`, `CHECKPOINT_task2_model.md` — журнал работ;
 - `FireSpread_Dataset_Presentation.pptx`, `FireSpread_Dataset_Report.docx` — презентация и отчёт по датасету.

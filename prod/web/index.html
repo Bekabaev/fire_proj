@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Симулятор пожаров</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+:root{--bg:#f6f4ef;--panel:#fff;--ink:#1d1d1b;--muted:#6b6a65;--line:#e2ded4;--accent:#c1440e}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#171614;--panel:#211f1c;--ink:#ece9e2;--muted:#9c988e;--line:#36332e;--accent:#ff7a3d}}
+:root[data-theme="dark"]{--bg:#171614;--panel:#211f1c;--ink:#ece9e2;--muted:#9c988e;--line:#36332e;--accent:#ff7a3d}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{display:grid;grid-template-columns:minmax(0,1fr) 320px;height:100vh}
+@media (max-width:820px){.wrap{grid-template-columns:1fr;grid-template-rows:60vh auto;height:auto}}
+#map{height:100%;min-height:360px}
+aside{padding:14px 16px;border-left:1px solid var(--line);background:var(--panel);overflow:auto}
+h1{font-size:18px;margin:0 0 4px}
+p.note{font-size:13px;color:var(--muted);margin:4px 0 10px}
+label{display:block;font-size:13px;color:var(--muted);margin:10px 0 2px}
+input[type=range],select{width:100%}
+select{padding:6px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:inherit}
+.row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.btn{border:0;background:var(--accent);color:#fff;padding:8px 14px;border-radius:8px;cursor:pointer;font:inherit}
+.btn.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn:disabled{opacity:.5;cursor:default}
+.stat{display:grid;grid-template-columns:1fr auto;gap:2px 10px;font-size:14px;margin-top:12px;font-variant-numeric:tabular-nums}
+#msg{font-size:13px;color:var(--muted);margin-top:10px;min-height:1.4em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="map"></div>
+  <aside>
+    <h1>Симулятор степного пожара</h1>
+    <p class="note">Кликните по карте, чтобы поставить точку возгорания. Модель: U-Net и физика FBP с ветром, сетка 500 м.</p>
+    <label for="mode">Погода</label>
+    <select id="mode"><option value="gfs">Прогноз GFS (реальная погода)</option><option value="scen">Сценарий</option></select>
+    <div id="scen">
+      <label>Ветер, м/с: <b id="wsv">8</b></label><input id="ws" type="range" min="0" max="20" step="1" value="8">
+      <label>Откуда дует, °: <b id="wdv">270</b> (0 — с севера)</label><input id="wd" type="range" min="0" max="350" step="10" value="270">
+      <label>Температура, °C: <b id="tv">30</b></label><input id="T" type="range" min="5" max="42" step="1" value="30">
+      <label>Влажность, %: <b id="rhv">20</b></label><input id="RH" type="range" min="5" max="90" step="5" value="20">
+    </div>
+    <label for="pm">Режим</label>
+    <select id="pm"><option value="active">Пожар не гаснет (сценарий)</option><option value="expected">Ожидаемый исход (с учётом затухания)</option></select>
+    <label>Длительность, ч: <b id="hv">72</b></label><input id="hours" type="range" min="12" max="168" step="12" value="72">
+    <div class="row"><button class="btn" id="run" disabled>Запустить</button><button class="btn alt" id="clear">Очистить</button></div>
+    <label>Кадр: <b id="fv">—</b></label><input id="frame" type="range" min="0" max="0" value="0" disabled>
+    <div class="stat"><span>Площадь</span><b id="area">—</b><span>Время</span><b id="when">—</b></div>
+    <div id="msg"></div>
+  </aside>
+</div>
+<script>
+const API = location.origin.startsWith("http") ? location.origin : "http://localhost:8000";
+const map = L.map("map").setView([50.5, 68], 5);
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom: 13, attribution: "© OpenStreetMap"}).addTo(map);
+let pt = null, marker = null, layer = null, frames = [];
+const $ = id => document.getElementById(id);
+for (const [i, o] of [["ws", "wsv"], ["wd", "wdv"], ["T", "tv"], ["RH", "rhv"], ["hours", "hv"]]) $(i).oninput = () => $(o).textContent = $(i).value;
+$("mode").onchange = () => $("scen").style.display = $("mode").value === "scen" ? "" : "none";
+map.on("click", e => {
+  pt = e.latlng; if (marker) marker.remove();
+  marker = L.circleMarker(pt, {radius: 6, color: "#c1440e", fillOpacity: 1}).addTo(map); $("run").disabled = false;
+});
+$("clear").onclick = () => { if (layer) layer.remove(); frames = []; $("frame").disabled = true; $("area").textContent = $("when").textContent = $("fv").textContent = "—"; };
+function show(i) {
+  const f = frames[i]; if (!f) return; if (layer) layer.remove();
+  layer = L.geoJSON(f.contour, {style: {color: "#c1440e", weight: 1, fillColor: "#ff7a3d", fillOpacity: 0.45}}).addTo(map);
+  $("fv").textContent = `${i + 1} / ${frames.length}`; $("area").textContent = f.area_km2.toFixed(1) + " км²"; $("when").textContent = "+" + f.hour + " ч";
+}
+$("frame").oninput = () => show(+$("frame").value);
+$("run").onclick = async () => {
+  if (!pt) return; $("run").disabled = true; $("msg").textContent = "Считаю…";
+  const weather = $("mode").value === "gfs" ? "gfs" : {winds: [+$("ws").value, +$("wd").value], T: +$("T").value, RH: +$("RH").value};
+  try {
+    const r = await fetch(API + "/simulate", {method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({lon: pt.lng, lat: pt.lat, hours: +$("hours").value, weather, mode: $("pm").value})});
+    const d = await r.json(); if (!r.ok) throw new Error(d.detail || r.status);
+    frames = d.frames; $("frame").max = frames.length - 1; $("frame").value = frames.length - 1; $("frame").disabled = false;
+    show(frames.length - 1); $("msg").textContent = `Погода: ${d.first_pass.weather.weather_src || "сценарий"}`;
+  } catch (e) { $("msg").textContent = "Ошибка: " + e.message; }
+  $("run").disabled = false;
+};
+</script>
+</body>
+</html>
