@@ -23,3 +23,9 @@ task2_model/out_v3/sim_web.json
 task2_model/out_v3/labels_img_stats.csv
 task2_model/sim_web/fire_simulator.html
 prod/server_log.txt
+
+# мониторинг и бот: токен, подписчики, база точек
+prod/.tg_token
+prod/tg_subs.json
+prod/live.db*
+prod/monitor_log.txt

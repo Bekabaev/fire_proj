@@ -21,10 +21,16 @@ ACTIVE_H = 24                                                   # пожар «�
 GAP = 2                                                         # ячеек: точки ближе 1 км - один пожар
 
 
+HIST_DAYS = 7                                                   # история точек из базы мониторинга (API отдаёт только 3 сут)
+STATIC_SHARE = 0.5                                              # доля клеток пожара в маске постоянных источников -> «промышленный»
+
+
 class Live:
-    def __init__(self, engine):
-        self.E = engine; self._cache = {}; self._lock = threading.Lock()
+    def __init__(self, engine, store=None):
+        from .static_mask import load
+        self.E = engine; self._cache = {}; self._lock = threading.Lock(); self.store = store
         self._key = open(os.path.join(ROOT, "task1_dataset", ".firms_key")).read().strip()
+        self.static = load()                                    # клетки заводов / факелов / ТЭЦ (архив VIIRS type 2-3)
 
     # ---------- FIRMS ----------
     def _get(self, src, days, date=None):
@@ -60,6 +66,13 @@ class Live:
             d = d[(d.r >= 0) & (d.r < GH) & (d.c >= 0) & (d.c < GW)]
             d = d.rename(columns={"longitude": "lon", "latitude": "lat"})[["lon", "lat", "t", "frp", "r", "c"]].drop_duplicates()
         now = pd.Timestamp.utcnow().tz_localize(None).floor("h")
+        if date is None and self.store is not None:             # сейчас: свежие точки -> в базу; история пожара - из базы за HIST_DAYS
+            if len(d):
+                self.store.add_points(d)
+            h = self.store.points_since(now - pd.Timedelta(days=HIST_DAYS))
+            if len(h):
+                d = pd.concat([d, h[["lon", "lat", "t", "frp", "r", "c"]]], ignore_index=True) if len(d) else h[["lon", "lat", "t", "frp", "r", "c"]]
+                d = d.assign(lon=d.lon.round(5), lat=d.lat.round(5)).drop_duplicates(["lon", "lat", "t"])
         t_ref = now if date is None else min(pd.Timestamp(date) + pd.Timedelta(hours=23), now)
         return d, t_ref
 
@@ -82,15 +95,22 @@ class Live:
                 continue
             days = g.t.dt.date.nunique(); ncell = g.groupby(["r", "c"]).ngroups
             flare = ncell <= 2 and days >= 3                           # точка на одном месте все 3 дня - факел / промышленный источник
+            uc = set(zip(g.r.tolist(), g.c.tolist()))
+            static = sum(x in self.static for x in uc) >= STATIC_SHARE * len(uc)   # завод / факел / ТЭЦ по архиву VIIRS
             fires.append(dict(id=int(k), lon=round(float(g.lon.mean()), 4), lat=round(float(g.lat.mean()), 4), n_points=int(len(g)),
                               cells=int(ncell), area_km2=ncell * (CELL / 1000) ** 2, first_utc=str(g.t.min()), last_utc=str(last),
-                              frp_sum=round(float(g.frp.sum()), 1), flare=bool(flare)))
+                              frp_sum=round(float(g.frp.sum()), 1), flare=bool(flare or static), industrial=bool(static)))
         fires.sort(key=lambda f: (f["flare"], -f["cells"], -f["n_points"]))
         return dict(t_utc=str(t), fires=fires, after=bool(date is not None and (d.t > t).any())), past, d[d.t > t] if len(d) else d
 
-    def forecast(self, cid, date=None, mode="expected"):
+    def forecast(self, cid, date=None, mode="expected", near=None):
+        """near=(lat, lon): пожар у этой точки (номера кластеров меняются при обновлении данных, координаты - нет)."""
         E = self.E
         info, past, after = self.clusters(date)
+        if past is not None and near is not None and len(past):
+            dist = (past.lat - near[0]) ** 2 + ((past.lon - near[1]) * np.cos(np.radians(near[0]))) ** 2
+            if dist.min() <= (3 / 111) ** 2:                    # ближайшая точка не дальше 3 км
+                cid = int(past.cl.iloc[int(np.argmin(dist.values))])
         if past is None or cid not in set(past.cl):
             raise KeyError("нет такого активного пожара")
         g = past[past.cl == cid]; t = pd.Timestamp(info["t_utc"])
