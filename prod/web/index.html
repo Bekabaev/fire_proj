@@ -43,7 +43,7 @@ select{padding:6px;border-radius:6px;border:1px solid var(--line);background:var
 <div class="wrap">
   <div id="map"></div>
   <aside>
-    <div class="tabs"><button class="tab on" id="t_sim">Симулятор</button><button class="tab" id="t_demo">Известные пожары</button></div>
+    <div class="tabs"><button class="tab on" id="t_sim">Симулятор</button><button class="tab" id="t_demo">Известные пожары</button><button class="tab" id="t_live">Пожары сейчас</button></div>
     <div id="p_sim">
     <h1>Симулятор степного пожара</h1>
     <p class="note">Кликните по карте, чтобы поставить точку возгорания. Модель: U-Net и физика FBP с ветром, сетка 500 м.</p>
@@ -80,6 +80,27 @@ select{padding:6px;border-radius:6px;border:1px solid var(--line);background:var
       <div id="dmsg"></div>
       <p class="note" id="pooled"></p>
     </div>
+    <div id="p_live" hidden>
+      <h1>Пожары по спутнику</h1>
+      <p class="note">Термоточки VIIRS (FIRMS, 3 спутника) за последние 3 суток → активные пожары. Из точек собираются входы модели как в датасете: гарь и её возраст, точки за 12/24 ч, начало пожара. Погода — прогноз GFS.</p>
+      <label for="ldate">Дата (пусто — сейчас; прошлая дата за 60 дней — с проверкой по точкам следующих 72 ч)</label>
+      <input id="ldate" type="date" style="width:100%;padding:6px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:inherit">
+      <div class="row"><button class="btn" id="lfind">Найти пожары</button></div>
+      <label for="lfire">Пожар (крупные сверху; можно кликнуть кружок на карте)</label><select id="lfire" disabled></select>
+      <label for="lmode">Режим</label>
+      <select id="lmode"><option value="expected">Ожидаемый исход (с учётом затухания)</option><option value="active">Если пожар не погаснет</option></select>
+      <div class="row"><button class="btn" id="lrun" disabled>Прогноз</button></div>
+      <label>Горизонт</label>
+      <div class="hz" id="lhz"><button data-h="12h">12 ч</button><button data-h="24h">24 ч</button><button data-h="48h">48 ч</button><button data-h="72h" class="on">72 ч</button></div>
+      <div class="stat"><span>Гарь сейчас</span><b id="lstate">—</b><span>Прогноз новой гари</span><b id="lpred">—</b><span>Сгорело на деле</span><b id="ltrue">—</b><span>F1</span><b id="lf1">—</b></div>
+      <div class="leg">
+        <span><i class="sw" style="background:#3a3a3a"></i>гарь по термоточкам</span>
+        <span><i class="sw" style="background:#ffd23f;border-radius:50%"></i>термоточки до срока</span>
+        <span><i class="sw" style="background:rgba(46,134,171,.55);border:2px solid #2e86ab"></i>прогноз модели</span>
+        <span><i class="sw" style="background:#e4572e"></i>сгорело после (только для прошлой даты)</span>
+      </div>
+      <div id="lmsg"></div>
+    </div>
   </aside>
 </div>
 <script>
@@ -91,6 +112,7 @@ const $ = id => document.getElementById(id);
 for (const [i, o] of [["ws", "wsv"], ["wd", "wdv"], ["T", "tv"], ["RH", "rhv"], ["hours", "hv"]]) $(i).oninput = () => $(o).textContent = $(i).value;
 $("mode").onchange = () => $("scen").style.display = $("mode").value === "scen" ? "" : "none";
 map.on("click", e => {
+  if ($("p_sim").hidden) return;
   pt = e.latlng; if (marker) marker.remove();
   marker = L.circleMarker(pt, {radius: 6, color: "#c1440e", fillOpacity: 1}).addTo(map); $("run").disabled = false;
 });
@@ -117,10 +139,14 @@ $("run").onclick = async () => {
 let demoLayers = [], cur = null, hz = "72h";
 const clearDemo = () => { demoLayers.forEach(l => l.remove()); demoLayers = []; };
 function tab(d) {
-  $("t_sim").classList.toggle("on", !d); $("t_demo").classList.toggle("on", d); $("p_sim").hidden = d; $("p_demo").hidden = !d;
-  if (d) { if (layer) layer.remove(); if (marker) marker.remove(); loadCases(); } else clearDemo();
+  const w = d === true ? "demo" : d === false ? "sim" : d;
+  for (const k of ["sim", "demo", "live"]) { $("t_" + k).classList.toggle("on", k === w); $("p_" + k).hidden = k !== w; }
+  if (w !== "sim") { if (layer) layer.remove(); if (marker) marker.remove(); }
+  if (w !== "demo") clearDemo();
+  if (w !== "live") clearLive();
+  if (w === "demo") loadCases();
 }
-$("t_sim").onclick = () => tab(false); $("t_demo").onclick = () => tab(true);
+$("t_sim").onclick = () => tab("sim"); $("t_demo").onclick = () => tab("demo"); $("t_live").onclick = () => tab("live");
 if (location.hash.startsWith("#demo")) setTimeout(() => tab(true), 0);
 let casesLoaded = false;
 async function loadCases() {
@@ -154,6 +180,51 @@ $("drun").onclick = async () => {
   } catch (e) { $("dmsg").textContent = "Ошибка: " + e.message; }
   $("drun").disabled = false;
 };
+// ---- вкладка «Пожары сейчас» (термоточки FIRMS) ----
+let liveDots = [], liveLayers = [], lcur = null, lhz = "72h", lfires = [];
+function clearLive() { liveDots.forEach(l => l.remove()); liveLayers.forEach(l => l.remove()); liveDots = []; liveLayers = []; }
+const ldq = () => ($("ldate").value ? "date=" + $("ldate").value : "");
+$("lfind").onclick = async () => {
+  $("lfind").disabled = true; $("lmsg").textContent = "Загружаю термоточки FIRMS…"; clearLive(); lcur = null;
+  try {
+    const r = await fetch(API + "/live/fires?" + ldq()); const d = await r.json(); if (!r.ok) throw new Error(d.detail || r.status);
+    lfires = d.fires.filter(f => !f.flare);
+    $("lfire").innerHTML = lfires.slice(0, 80).map(f => `<option value="${f.id}">${f.area_km2.toFixed(1)} км² · ${f.n_points} точек · ${f.lat.toFixed(2)}°, ${f.lon.toFixed(2)}° · последняя ${f.last_utc.slice(5, 16)}</option>`).join("");
+    $("lfire").disabled = $("lrun").disabled = !lfires.length;
+    for (const f of lfires) {
+      const m = L.circleMarker([f.lat, f.lon], {radius: Math.min(3 + Math.sqrt(f.cells) * 1.5, 14), color: "#c1440e", weight: 1, fillColor: "#ff7a3d", fillOpacity: 0.8})
+        .bindTooltip(`${f.area_km2.toFixed(1)} км², ${f.n_points} точек`).addTo(map);
+      m.on("click", () => { $("lfire").value = f.id; $("lrun").click(); }); liveDots.push(m);
+    }
+    if (lfires.length) map.setView([48, 67], 5);
+    $("lmsg").textContent = `Срок ${d.t_utc} UTC · активных пожаров: ${lfires.length}` + (lfires.length ? "" : " (за сутки точек нет)");
+  } catch (e) { $("lmsg").textContent = "Ошибка: " + e.message; }
+  $("lfind").disabled = false;
+};
+function drawLive() {
+  liveLayers.forEach(l => l.remove()); liveLayers = []; if (!lcur) return; const H = lcur.horizons[lhz];
+  if (H.true) liveLayers.push(L.geoJSON(H.true, {style: {weight: 0, fillColor: "#e4572e", fillOpacity: 0.85}}).addTo(map));
+  liveLayers.push(L.geoJSON(lcur.start, {style: {weight: 0, fillColor: "#3a3a3a", fillOpacity: 0.9}}).addTo(map));
+  liveLayers.push(L.geoJSON(H.pred, {style: {color: "#2e86ab", weight: 2, fillColor: "#2e86ab", fillOpacity: 0.3}}).addTo(map));
+  for (const [lo, la] of lcur.hotspots) liveLayers.push(L.circleMarker([la, lo], {radius: 2.5, color: "#8a6d00", weight: 1, fillColor: "#ffd23f", fillOpacity: 1}).addTo(map));
+  $("lstate").textContent = lcur.state_km2.toFixed(1) + " км²"; $("lpred").textContent = H.pred_km2.toFixed(1) + " км²";
+  $("ltrue").textContent = H.true ? H.true_km2.toFixed(1) + " км²" : "—"; $("lf1").textContent = H.F1 != null ? H.F1.toFixed(2) : "—";
+}
+$("lhz").onclick = e => { const b = e.target.closest("button"); if (!b) return; lhz = b.dataset.h;
+  for (const x of $("lhz").children) x.classList.toggle("on", x === b); drawLive(); };
+$("lrun").onclick = async () => {
+  $("lrun").disabled = true; $("lmsg").textContent = "Модель считает…";
+  try {
+    const r = await fetch(API + `/live/forecast/${$("lfire").value}?mode=${$("lmode").value}&` + ldq()); const d = await r.json(); if (!r.ok) throw new Error(d.detail || r.status);
+    lcur = d; drawLive();
+    const b = L.geoJSON(d.start).getBounds(); const t = L.geoJSON(d.horizons["72h"].pred).getBounds(); if (t.isValid()) b.extend(t);
+    if (d.horizons["72h"].true) { const u = L.geoJSON(d.horizons["72h"].true).getBounds(); if (u.isValid()) b.extend(u); }
+    map.fitBounds(b.pad(0.6));
+    $("lmsg").textContent = `Пожар с ${d.fire_start_utc} UTC · срок ${d.t_utc} UTC · погода ${d.weather_src}`;
+  } catch (e) { $("lmsg").textContent = "Ошибка: " + e.message; }
+  $("lrun").disabled = false;
+};
+if (location.hash === "#live") setTimeout(() => tab("live"), 0);
 </script>
 </body>
 </html>

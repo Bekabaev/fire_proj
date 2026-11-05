@@ -11,6 +11,7 @@
 """
 import os
 import numpy as np
+import pandas as pd
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
@@ -97,6 +98,50 @@ def demo_run(i: int):
     if not 0 <= i < len(d.rows):
         raise HTTPException(404, "нет такого пожара")
     return d.run(i)
+
+
+LIVE = None
+
+
+def live():
+    global LIVE
+    if LIVE is None:
+        from .live import Live
+        LIVE = Live(engine())
+    return LIVE
+
+
+def _date(date):
+    if not date:
+        return None
+    try:
+        d = pd.Timestamp(date)
+    except Exception:
+        raise HTTPException(422, "дата: ГГГГ-ММ-ДД")
+    now = pd.Timestamp.utcnow().tz_localize(None)
+    if not now - pd.Timedelta(days=60) <= d <= now:
+        raise HTTPException(422, "дата: за последние 60 дней (оперативные данные FIRMS)")
+    return str(d.date())
+
+
+@app.get("/live/fires")
+def live_fires(date: str | None = None):                      # активные пожары по термоточкам FIRMS (сейчас или на дату)
+    try:
+        return live().clusters(_date(date))[0]
+    except RuntimeError as ex:
+        raise HTTPException(502, str(ex))
+
+
+@app.get("/live/forecast/{cid}")
+def live_forecast(cid: int, date: str | None = None, mode: str = "expected"):
+    if mode not in ("expected", "active"):
+        raise HTTPException(422, "mode: expected | active")
+    try:
+        return live().forecast(cid, _date(date), mode)
+    except KeyError as ex:
+        raise HTTPException(404, str(ex))
+    except RuntimeError as ex:
+        raise HTTPException(502, str(ex))
 
 
 @app.get("/health")
