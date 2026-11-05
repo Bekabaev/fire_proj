@@ -39,7 +39,7 @@ class Bot:
     def __init__(self, status_fn=None, fires_fn=None):
         self.token = open(F_TOKEN).read().strip() if os.path.exists(F_TOKEN) else None
         self.status_fn, self.fires_fn = status_fn, fires_fn
-        self._lock = threading.Lock(); self.err = None
+        self._lock = threading.Lock(); self.err = None; self.username = None
         self.subs = set(json.load(open(F_SUBS))) if os.path.exists(F_SUBS) else set()
 
     @property
@@ -80,6 +80,8 @@ class Bot:
 
     # ---- приём команд (long polling в отдельном потоке) ----
     def start(self):
+        me = self._api("getMe") if self.enabled else None
+        self.username = me.get("username") if me else None
         if self.enabled:
             threading.Thread(target=self._loop, daemon=True, name="tgbot").start()
 

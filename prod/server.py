@@ -103,12 +103,38 @@ def demo_run(i: int):
 LIVE = None
 
 
+STORE = BOT = MON = None
+
+
 def live():
-    global LIVE
+    global LIVE, STORE
     if LIVE is None:
         from .live import Live
-        LIVE = Live(engine())
+        from .store import Store
+        STORE = STORE or Store()
+        LIVE = Live(engine(), STORE)
     return LIVE
+
+
+@app.on_event("startup")
+def _start_monitor():                                          # фоновый опрос FIRMS + Telegram-бот (FIRE_MONITOR=0 - выключить)
+    global BOT, MON
+    if os.environ.get("FIRE_MONITOR", "1") == "0":
+        return
+    from .monitor import Monitor
+    from .tgbot import Bot
+    L = live()
+    BOT = Bot(status_fn=lambda: MON.status(), fires_fn=lambda: MON.fires)
+    MON = Monitor(L, STORE, BOT)
+    MON.start(); BOT.start()
+
+
+@app.get("/live/status")
+def live_status():                                             # состояние мониторинга (без секретов)
+    if MON is None:
+        return dict(monitor=False)
+    from .tgbot import site_url
+    return dict(MON.status(), monitor=True, bot_username=BOT.username if BOT else None, site=site_url())
 
 
 def _date(date):
@@ -133,11 +159,11 @@ def live_fires(date: str | None = None):                      # активные
 
 
 @app.get("/live/forecast/{cid}")
-def live_forecast(cid: int, date: str | None = None, mode: str = "expected"):
+def live_forecast(cid: int, date: str | None = None, mode: str = "expected", lat: float | None = None, lon: float | None = None):
     if mode not in ("expected", "active"):
         raise HTTPException(422, "mode: expected | active")
     try:
-        return live().forecast(cid, _date(date), mode)
+        return live().forecast(cid, _date(date), mode, near=(lat, lon) if lat is not None and lon is not None else None)
     except KeyError as ex:
         raise HTTPException(404, str(ex))
     except RuntimeError as ex:

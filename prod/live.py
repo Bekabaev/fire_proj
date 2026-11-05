@@ -31,6 +31,12 @@ class Live:
         self.E = engine; self._cache = {}; self._lock = threading.Lock(); self.store = store
         self._key = open(os.path.join(ROOT, "task1_dataset", ".firms_key")).read().strip()
         self.static = load()                                    # клетки заводов / факелов / ТЭЦ (архив VIIRS type 2-3)
+        import json
+        from shapely.geometry import shape, Point
+        from shapely.prepared import prep
+        gj = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "kz_boundary.geojson"), encoding="utf-8"))
+        kz = prep(shape(gj["features"][0]["geometry"]))
+        self.in_kz = lambda lon, lat: kz.contains(Point(lon, lat))   # охват FIRMS - прямоугольник, в нём и соседние страны
 
     # ---------- FIRMS ----------
     def _get(self, src, days, date=None):
@@ -99,8 +105,9 @@ class Live:
             static = sum(x in self.static for x in uc) >= STATIC_SHARE * len(uc)   # завод / факел / ТЭЦ по архиву VIIRS
             fires.append(dict(id=int(k), lon=round(float(g.lon.mean()), 4), lat=round(float(g.lat.mean()), 4), n_points=int(len(g)),
                               cells=int(ncell), area_km2=ncell * (CELL / 1000) ** 2, first_utc=str(g.t.min()), last_utc=str(last),
-                              frp_sum=round(float(g.frp.sum()), 1), flare=bool(flare or static), industrial=bool(static)))
-        fires.sort(key=lambda f: (f["flare"], -f["cells"], -f["n_points"]))
+                              frp_sum=round(float(g.frp.sum()), 1), flare=bool(flare or static), industrial=bool(static),
+                              in_kz=bool(self.in_kz(float(g.lon.mean()), float(g.lat.mean())))))
+        fires.sort(key=lambda f: (f["flare"], not f["in_kz"], -f["cells"], -f["n_points"]))
         return dict(t_utc=str(t), fires=fires, after=bool(date is not None and (d.t > t).any())), past, d[d.t > t] if len(d) else d
 
     def forecast(self, cid, date=None, mode="expected", near=None):

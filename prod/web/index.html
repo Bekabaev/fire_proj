@@ -82,7 +82,7 @@ select{padding:6px;border-radius:6px;border:1px solid var(--line);background:var
     </div>
     <div id="p_live" hidden>
       <h1>Пожары по спутнику</h1>
-      <p class="note">Термоточки VIIRS (FIRMS, 3 спутника) за последние 3 суток → активные пожары. Из точек собираются входы модели как в датасете: гарь и её возраст, точки за 12/24 ч, начало пожара. Погода — прогноз GFS.</p>
+      <p class="note">Термоточки VIIRS (FIRMS, 3 спутника) за последние 3 суток (история пожара — до 7 суток из базы мониторинга) → активные пожары; заводы, факелы и пожары вне Казахстана скрыты. Из точек собираются входы модели как в датасете: гарь и её возраст, точки за 12/24 ч, начало пожара. Погода — прогноз GFS.</p>
       <label for="ldate">Дата (пусто — сейчас; прошлая дата за 60 дней — с проверкой по точкам следующих 72 ч)</label>
       <input id="ldate" type="date" style="width:100%;padding:6px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:inherit">
       <div class="row"><button class="btn" id="lfind">Найти пожары</button></div>
@@ -100,6 +100,7 @@ select{padding:6px;border-radius:6px;border:1px solid var(--line);background:var
         <span><i class="sw" style="background:#e4572e"></i>сгорело после (только для прошлой даты)</span>
       </div>
       <div id="lmsg"></div>
+      <p class="note" id="lstat"></p>
     </div>
   </aside>
 </div>
@@ -145,6 +146,7 @@ function tab(d) {
   if (w !== "demo") clearDemo();
   if (w !== "live") clearLive();
   if (w === "demo") loadCases();
+  if (w === "live") liveStatus();
 }
 $("t_sim").onclick = () => tab("sim"); $("t_demo").onclick = () => tab("demo"); $("t_live").onclick = () => tab("live");
 if (location.hash.startsWith("#demo")) setTimeout(() => tab(true), 0);
@@ -188,7 +190,7 @@ $("lfind").onclick = async () => {
   $("lfind").disabled = true; $("lmsg").textContent = "Загружаю термоточки FIRMS…"; clearLive(); lcur = null;
   try {
     const r = await fetch(API + "/live/fires?" + ldq()); const d = await r.json(); if (!r.ok) throw new Error(d.detail || r.status);
-    lfires = d.fires.filter(f => !f.flare);
+    lfires = d.fires.filter(f => !f.flare && f.in_kz !== false);
     $("lfire").innerHTML = lfires.slice(0, 80).map(f => `<option value="${f.id}">${f.area_km2.toFixed(1)} км² · ${f.n_points} точек · ${f.lat.toFixed(2)}°, ${f.lon.toFixed(2)}° · последняя ${f.last_utc.slice(5, 16)}</option>`).join("");
     $("lfire").disabled = $("lrun").disabled = !lfires.length;
     for (const f of lfires) {
@@ -197,7 +199,10 @@ $("lfind").onclick = async () => {
       m.on("click", () => { $("lfire").value = f.id; $("lrun").click(); }); liveDots.push(m);
     }
     if (lfires.length) map.setView([48, 67], 5);
-    $("lmsg").textContent = `Срок ${d.t_utc} UTC · активных пожаров: ${lfires.length}` + (lfires.length ? "" : " (за сутки точек нет)");
+    const nind = d.fires.filter(f => f.flare && f.in_kz !== false).length;
+    $("lmsg").textContent = `Срок ${d.t_utc} UTC · активных пожаров: ${lfires.length}` + (lfires.length ? "" : " (за сутки точек нет)") +
+      (nind ? ` · скрыто заводов и факелов: ${nind}` : "");
+    liveStatus();
   } catch (e) { $("lmsg").textContent = "Ошибка: " + e.message; }
   $("lfind").disabled = false;
 };
@@ -215,7 +220,8 @@ $("lhz").onclick = e => { const b = e.target.closest("button"); if (!b) return; 
 $("lrun").onclick = async () => {
   $("lrun").disabled = true; $("lmsg").textContent = "Модель считает…";
   try {
-    const r = await fetch(API + `/live/forecast/${$("lfire").value}?mode=${$("lmode").value}&` + ldq()); const d = await r.json(); if (!r.ok) throw new Error(d.detail || r.status);
+    const sel = lfires.find(f => String(f.id) === $("lfire").value);
+    const r = await fetch(API + `/live/forecast/${$("lfire").value}?mode=${$("lmode").value}` + (sel ? `&lat=${sel.lat}&lon=${sel.lon}` : "") + "&" + ldq()); const d = await r.json(); if (!r.ok) throw new Error(d.detail || r.status);
     lcur = d; drawLive();
     const b = L.geoJSON(d.start).getBounds(); const t = L.geoJSON(d.horizons["72h"].pred).getBounds(); if (t.isValid()) b.extend(t);
     if (d.horizons["72h"].true) { const u = L.geoJSON(d.horizons["72h"].true).getBounds(); if (u.isValid()) b.extend(u); }
@@ -224,7 +230,24 @@ $("lrun").onclick = async () => {
   } catch (e) { $("lmsg").textContent = "Ошибка: " + e.message; }
   $("lrun").disabled = false;
 };
-if (location.hash === "#live") setTimeout(() => tab("live"), 0);
+async function liveStatus() {
+  try {
+    const s = await (await fetch(API + "/live/status")).json(); if (!s.monitor) { $("lstat").textContent = ""; return; }
+    $("lstat").innerHTML = `Автообновление каждые ${s.poll_min} мин, последний опрос FIRMS: ${s.last_poll_utc ? s.last_poll_utc.slice(5, 16) + " UTC" : "идёт…"}.` +
+      (s.bot_username ? ` Оповещения о новых пожарах — Telegram-бот <a href="https://t.me/${s.bot_username}" target="_blank" rel="noopener">@${s.bot_username}</a>.` : "");
+  } catch (e) { }
+}
+// ссылка из бота: #live@lat,lon - открыть вкладку, найти пожары и показать прогноз по ближайшему
+async function liveDeep(lat, lon) {
+  tab("live"); await $("lfind").onclick();
+  let best = null, bd = 1e9;
+  for (const f of lfires) { const dd = (f.lat - lat) ** 2 + ((f.lon - lon) * Math.cos(lat * Math.PI / 180)) ** 2; if (dd < bd) { bd = dd; best = f; } }
+  if (best && bd < (5 / 111) ** 2) { $("lfire").value = best.id; $("lrun").click(); }
+  else $("lmsg").textContent = "Пожар по ссылке уже не активен (точек за сутки нет).";
+}
+{ const m = location.hash.match(/^#live@(-?[\d.]+),(-?[\d.]+)/);
+  if (m) setTimeout(() => liveDeep(+m[1], +m[2]), 0);
+  else if (location.hash === "#live") setTimeout(() => { tab("live"); liveStatus(); }, 0); }
 </script>
 </body>
 </html>

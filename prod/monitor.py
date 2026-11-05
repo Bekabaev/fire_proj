@@ -54,9 +54,9 @@ class Monitor:
         L._cache.clear()                                          # свежие данные FIRMS
         info, past, _ = L.clusters(None)
         now = pd.Timestamp.utcnow().tz_localize(None)
-        fires = [f for f in info["fires"] if not f["flare"]]
+        fires = [f for f in info["fires"] if not f["flare"] and f["in_kz"]]     # только Казахстан, без заводов и факелов
         self.fires = fires
-        self.state.update(last_poll_utc=str(now.floor("s")), n_fires=len(fires), n_industrial=sum(f["flare"] for f in info["fires"]),
+        self.state.update(last_poll_utc=str(now.floor("s")), n_fires=len(fires), n_industrial=sum(f["flare"] and f["in_kz"] for f in info["fires"]),
                           error=None, polls=self.state["polls"] + 1)
         first = self.store.meta("initialized") is None
         tracked = self.store.fires(since=now - pd.Timedelta(days=3))
