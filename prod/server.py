@@ -74,6 +74,31 @@ def index():                                                   # демо-стр
     return FileResponse(os.path.join(os.path.dirname(__file__), "web", "index.html"))
 
 
+DEMO = None
+
+
+def demo():
+    global DEMO
+    if DEMO is None:
+        from .demo import Demo
+        DEMO = Demo(engine())
+    return DEMO
+
+
+@app.get("/demo/cases")
+def demo_cases():                                              # известные пожары теста 2023-24 (полные входы, как офлайн)
+    d = demo(); return dict(pooled_F1=d.meta["pooled_F1"], n=d.meta["n"],
+                            cases=[dict(id=i, title=c["title"], F1=c["F1"], lon=c["lon"], lat=c["lat"]) for i, c in enumerate(d.rows)])
+
+
+@app.get("/demo/run/{i}")
+def demo_run(i: int):
+    d = demo()
+    if not 0 <= i < len(d.rows):
+        raise HTTPException(404, "нет такого пожара")
+    return d.run(i)
+
+
 @app.get("/health")
 def health():
     e = engine()
