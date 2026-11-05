@@ -82,6 +82,13 @@ class Bot:
     def start(self):
         me = self._api("getMe") if self.enabled else None
         self.username = me.get("username") if me else None
+        if self.enabled:                                          # меню команд в Telegram
+            self._api("setMyCommands", commands=[dict(command="fires", description="Крупнейшие активные пожары"),
+                                                 dict(command="status", description="Последний опрос FIRMS"),
+                                                 dict(command="start", description="Подписаться на оповещения"),
+                                                 dict(command="stop", description="Отписаться")])
+            self._api("setMyDescription", description="Оповещения о степных пожарах Казахстана по спутнику VIIRS (NASA FIRMS) с прогнозом "
+                                                      "распространения на 24–72 ч. Нажмите «Запустить», чтобы подписаться.")
         if self.enabled:
             threading.Thread(target=self._loop, daemon=True, name="tgbot").start()
 
