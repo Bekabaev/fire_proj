@@ -1,0 +1,18 @@
+{
+  "v": 4,
+  "createdOnFiles": {"v": 1, "at": "2026-11-05T05:50:00Z"},
+  "lists": "css",
+  "title": "Прогноз распространения степных пожаров",
+  "order": ["cover", "task", "why-hard", "data-sources", "data-parts", "data-slice", "data-labels", "data-split", "models-map", "physics", "unet", "hybrid", "ensemble", "res-main", "res-quality", "res-ceiling", "res-prod", "outro"],
+  "sections": {
+    "intro": {"description": "Задача: куда пойдёт степной пожар за 12–72 часа", "start": "cover"},
+    "data": {"description": "Данные: из чего собран датасет и чем он отличается", "start": "data-sources"},
+    "models": {"description": "Модели: физика, нейросеть U-Net и их гибрид", "start": "models-map"},
+    "results": {"description": "Результаты итоговой модели и что они значат", "start": "res-main"}
+  },
+  "faces": {
+    "rubik": {"family": "Rubik", "href": "https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"},
+    "ibm-plex-sans": {"family": "IBM Plex Sans", "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"}
+  },
+  "designSystems": []
+}

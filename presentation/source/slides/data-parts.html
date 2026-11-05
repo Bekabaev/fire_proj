@@ -1,0 +1,19 @@
+<section id="data-parts" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Датасет из двух частей</h2>
+<div style="display:flex;gap:40px">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:48px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#C2501E">A · заповедники</p>
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:80px;font-weight:600;line-height:1">44 пожара</p>
+<p style="font-size:30px;line-height:1.45;color:#4F4A43">Алтын-Дала, Коргалжын, Наурзум, Миргород, 2014–2023. Контур нарисован экспертом по снимку 30 м.</p>
+<p style="font-size:30px;line-height:1.45;color:#4F4A43"><b>Роль:</b> независимый эталон, на нём модели не учатся (393 среза).</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:24px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:48px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#2F5F80">B · весь Казахстан</p>
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:80px;font-weight:600;line-height:1">14 247 пожаров</p>
+<p style="font-size:30px;line-height:1.45;color:#4F4A43">Global Fire Atlas + термоточки VIIRS, 2013–2024: <b>111 215 срезов</b> «пожар в момент t».</p>
+<p style="font-size:30px;line-height:1.45;color:#4F4A43"><b>Роль:</b> обучение, подбор и тест.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Данные · 5</p>
+<aside>Датасет из двух частей. Часть A: 44 пожара четырёх заповедников с экспертными контурами. Это маленький, но точно размеченный набор, на нём модели не учатся, это независимая проверка. Часть B: все пожары Казахстана из Global Fire Atlas с уточнением по термоточкам VIIRS, 14 тысяч пожаров и 111 тысяч срезов. Пожары, которые совпадают с заповедниками, из обучения исключены, чтобы проверка была честной.</aside>
+</section>

@@ -1,0 +1,14 @@
+ gbm fold 0 (gfsa): fit 3399 slices
+  candidate area keeps positives: [0.879, 0.881, 0.861, 0.854]
+  gbm 12h: 172210 cells, 17324 pos, 300 iter
+  gbm 24h: 190629 cells, 36570 pos, 300 iter
+  gbm 48h: 220162 cells, 61777 pos, 300 iter
+  gbm 72h: 243193 cells, 80697 pos, 300 iter
+ gbm fold 1 (gfsa): fit 3670 slices
+  candidate area keeps positives: [0.89, 0.889, 0.883, 0.869]
+  gbm 12h: 187465 cells, 17800 pos, 300 iter
+  gbm 24h: 209103 cells, 39392 pos, 300 iter
+  gbm 48h: 243059 cells, 68211 pos, 300 iter
+  gbm 72h: 268574 cells, 88739 pos, 300 iter
+[3a gbm1 gbm_val_oof] gfsa val      12h 0.278[0.245,0.311] A 1.19 24h 0.291[0.266,0.316] A 1.15 48h 0.301[0.280,0.320] A 1.32 72h 0.319[0.301,0.336] A 1.35 | downwind 24h 0.51 72h 0.39
+ gbm (gfsa) ready, 2514 s

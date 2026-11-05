@@ -1,5 +1,5 @@
 {
- "variant": "val",
+ "variant": "iter",
  "ignition_wind8": [
   {
    "mode": "active",
@@ -40,38 +40,38 @@
   {
    "mode": "expected",
    "h": 12,
-   "area_med": 0.25,
-   "grows": 0.556,
-   "cos": 0.865,
-   "downwind": 0.456,
-   "cos_unet": 0.484
+   "area_med": 1.5,
+   "grows": 0.931,
+   "cos": 0.976,
+   "downwind": 0.931,
+   "cos_unet": 0.06
   },
   {
    "mode": "expected",
    "h": 24,
-   "area_med": 1.25,
-   "grows": 0.8,
-   "cos": 0.945,
-   "downwind": 0.75,
-   "cos_unet": 0.424
+   "area_med": 1.5,
+   "grows": 0.944,
+   "cos": 0.973,
+   "downwind": 0.944,
+   "cos_unet": 0.018
   },
   {
    "mode": "expected",
    "h": 48,
-   "area_med": 1.25,
-   "grows": 0.812,
-   "cos": 0.925,
-   "downwind": 0.75,
-   "cos_unet": 0.342
+   "area_med": 2.125,
+   "grows": 0.956,
+   "cos": 0.971,
+   "downwind": 0.95,
+   "cos_unet": 0.079
   },
   {
    "mode": "expected",
    "h": 72,
-   "area_med": 1.25,
-   "grows": 0.819,
-   "cos": 0.917,
-   "downwind": 0.744,
-   "cos_unet": 0.359
+   "area_med": 2.25,
+   "grows": 0.975,
+   "cos": 0.963,
+   "downwind": 0.95,
+   "cos_unet": 0.177
   }
  ],
  "wind_speed": [
@@ -102,16 +102,16 @@
  ],
  "nonburnable_burnt_share": 0.0,
  "test400_F1_engine": {
-  "12h": 0.214,
-  "24h": 0.178,
-  "48h": 0.309,
-  "72h": 0.29
+  "12h": 0.222,
+  "24h": 0.191,
+  "48h": 0.321,
+  "72h": 0.307
  },
  "test400_F1_offline": {
-  "12h": 0.214,
-  "24h": 0.178,
-  "48h": 0.309,
-  "72h": 0.29
+  "12h": 0.223,
+  "24h": 0.191,
+  "48h": 0.321,
+  "72h": 0.307
  },
  "test400_F1_engine_active_on_growing": {
   "12h": 0.082,
@@ -119,5 +119,5 @@
   "48h": 0.168,
   "72h": 0.162
  },
- "sec": 1275.8
+ "sec": 1372.0
 }

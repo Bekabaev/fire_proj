@@ -1,0 +1,5 @@
+=== it4_pred 01:56 : RUNS=wxphys VAL_ERA5=1 ../../.venv/Scripts/python.exe -X utf8 -W ignore scripts/25_iter_predict.py
+ok it4_pred 01:58
+=== it4_eval 01:58 : ITER=4 NAME=phys UNET=wxphys_tta HEAD=unet,hybrid ../../.venv/Scripts/python.exe -X utf8 -W ignore scripts/26_iter_eval.py
+ok it4_eval 02:01
+all done 02:01

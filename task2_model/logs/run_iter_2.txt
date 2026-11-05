@@ -1,0 +1,5 @@
+=== it2_pred 01:18 : RUNS=wxs1,wxs2 VAL_ERA5=1 ../../.venv/Scripts/python.exe -X utf8 -W ignore scripts/25_iter_predict.py
+ok it2_pred 01:20
+=== it2_eval 01:20 : ITER=2 NAME=ens3 UNET=wx_tta,wxs1_tta,wxs2_tta HEAD=unet,hybrid ../../.venv/Scripts/python.exe -X utf8 -W ignore scripts/26_iter_eval.py
+ok it2_eval 01:24
+all done 01:24

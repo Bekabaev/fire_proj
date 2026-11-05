@@ -1,0 +1,22 @@
+<section id="data-slice" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Один пример: сцена 48 × 48 км</h2>
+<div style="display:flex;gap:56px;align-items:center">
+<svg aria-label="Сетка сцены 96 на 96 клеток: в центре гарь, вокруг вероятные зоны роста по горизонтам" width="440" height="440" viewBox="0 0 440 440">
+<defs><pattern id="g" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M22 0H0V22" fill="none" stroke="#DCD2C2" stroke-width="1"/></pattern></defs>
+<rect width="440" height="440" rx="16" fill="#FFFDF8"/><rect width="440" height="440" rx="16" fill="url(#g)"/>
+<ellipse cx="250" cy="200" rx="150" ry="105" fill="#F9E3D4"/>
+<ellipse cx="235" cy="205" rx="105" ry="75" fill="#F4C3A3"/>
+<ellipse cx="220" cy="210" rx="68" ry="50" fill="#EC9A6A"/>
+<ellipse cx="205" cy="215" rx="38" ry="30" fill="#E2622B"/>
+<path d="M160 228 Q185 196 215 204 Q232 226 200 240 Q172 246 160 228Z" fill="#1B1A18"/>
+<path d="M60 380 L140 330" stroke="#2F5F80" stroke-width="6" stroke-linecap="round"/><path d="M140 330 L118 332 M140 330 L130 350" stroke="#2F5F80" stroke-width="6" stroke-linecap="round"/>
+</svg>
+<div style="flex:1;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:36px;font-weight:600">96 × 96 клеток по 500 м</h3><p style="font-size:28px;line-height:1.4;color:#4F4A43">каждые 12 ч жизни пожара (00 и 12 UTC)</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:36px;font-weight:600">28 карт</h3><p style="font-size:28px;line-height:1.4;color:#4F4A43">гарь и её возраст, термоточки, доли травы, пашни, кустов, NDVI и его аномалия, рельеф, прошлые гари, дороги и посёлки</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:36px;font-weight:600">49 чисел</h3><p style="font-size:28px;line-height:1.4;color:#4F4A43">погода на 12 / 24 / 48 / 72 ч вперёд, прошлая неделя, индексы FWI, сезон, размер пожара</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Данные · 6</p>
+<aside>Один обучающий пример — это срез: пожар в момент t, сцена 96 на 96 клеток по 500 метров вокруг пожара. Срезы берутся каждые 12 часов жизни пожара. На каждую клетку 28 карт: гарь и её возраст, термоточки, растительность, NDVI, рельеф, прошлые гари, дороги и посёлки. Плюс 49 чисел на всю сцену: погода на окна 12, 24, 48, 72 часа вперёд, погода прошлой недели, индексы пожарной опасности, сезон и размер пожара. Цель — 4 маски: что сгорит в каждом горизонте.</aside>
+</section>

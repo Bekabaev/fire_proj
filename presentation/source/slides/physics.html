@@ -1,0 +1,29 @@
+<section id="physics" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Физика: скорость, форма и время прихода</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:36px">
+<div style="display:flex;flex-direction:column;gap:16px;border-top:6px solid #2F5F80;padding:28px 0 0 0">
+<h3 style="font-size:36px;font-weight:600">1. Скорость</h3>
+<p style="font-size:28px;line-height:1.45;color:#4F4A43">Канадская система <b>FBP, тип O-1b</b> «сплошная сухая трава».</p>
+<p style="font-size:26px;line-height:1.4;color:#2F5F80;font-weight:600">ветер + сухость (FFMC, NDVI) + склон → м/мин</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;border-top:6px solid #2F5F80;padding:28px 0 0 0">
+<h3 style="font-size:36px;font-weight:600">2. Форма</h3>
+<p style="font-size:28px;line-height:1.45;color:#4F4A43">Огонь растёт <b>эллипсом по ветру</b>: голова быстрая, тыл медленный. При ветре 8 м/с эллипс вытянут в 2,4 раза.</p>
+<svg aria-label="Эллипс распространения, вытянутый по ветру, очаг ближе к тылу" width="336" height="120" viewBox="0 0 420 150"><ellipse cx="230" cy="75" rx="170" ry="62" fill="#F9E3D4" stroke="#E2622B" stroke-width="4"/><circle cx="110" cy="75" r="12" fill="#1B1A18"/><path d="M20 140 L120 140" stroke="#2F5F80" stroke-width="6"/><path d="M120 140 L104 130 M120 140 L104 150" stroke="#2F5F80" stroke-width="6"/></svg>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;border-top:6px solid #2F5F80;padding:28px 0 0 0">
+<h3 style="font-size:36px;font-weight:600">3. Время прихода</h3>
+<p style="font-size:28px;line-height:1.45;color:#4F4A43">По <b>принципу Гюйгенса</b> каждая точка кромки — новый маленький эллипс. На сетке это кратчайший путь по 16 соседям: время = расстояние / скорость.</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:24px 32px">
+<p style="font-size:26px;font-weight:600;color:#C2501E">Почему FBP, а не Ротермел</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+<p style="font-size:24px;line-height:1.4;color:#4F4A43"><b>Ротермел</b> требует подробных параметров топлива (запас, плотность, теплота горения). Для Казахстана их нет — пришлось бы угадывать.</p>
+<p style="font-size:24px;line-height:1.4;color:#4F4A43"><b>FBP O-1b</b> создана для степной травы и берёт только ветер, сухость (FFMC) и NDVI — они есть всегда. Точность близкая, но модель проще и надёжнее.</p>
+</div>
+</div>
+<p style="font-size:28px;line-height:1.45;color:#4F4A43;width:1600px">Сильная сторона: направление по ветру верно в <b>93–95 %</b> случаев. Слабая: не знает про тушение и затухание и завышает площадь.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Модели · 10</p>
+<aside>Физическая модель строится в три шага. Скорость считаем по канадской системе FBP, тип топлива O-1b, сплошная сухая трава. Начинали с классической модели Ротермела, но ей нужны подробные параметры топлива: запас травы, плотность, теплота горения. Для Казахстана таких карт нет, и каждый параметр пришлось бы угадывать. FBP O-1b создана именно для травы и берёт только ветер, сухость тонкого топлива FFMC и высыхание травы по NDVI, а эти данные есть всегда, и в обучении, и на сайте. По точности модели близки, поэтому выбрали ту, что проще и надёжнее. Форма: при ветре пожар растёт эллипсом, голова быстрая, тыл медленный. Время прихода: по принципу Гюйгенса каждая точка кромки порождает новый эллипс; на сетке это задача кратчайшего пути по 16 соседям. Физика почти всегда правильно выбирает направление, но не знает про тушение и затухание, поэтому одна она завышает площадь.</aside>
+</section>

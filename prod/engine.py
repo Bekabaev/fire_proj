@@ -18,7 +18,7 @@ from .landscape import Landscape
 from . import scene as sc, weather as wx
 
 sys.path.insert(0, SCRIPTS_T2)
-from common_v3 import FrontV3, nn_maps, base_scalars, weather_vec, CH   # noqa: E402
+from common_v3 import FrontV3, nn_maps, base_scalars, weather_vec, CH, UV, rot_wind, phys_maps   # noqa: E402
 import sim_physics as sp                                                # noqa: E402
 
 TMAX = 1000.0
@@ -28,10 +28,16 @@ SIM_N = 192                                                    # окно сим
 class FireEngine:
     def __init__(self, models=MODELS, device=None, landscape=None):
         self.dev = device or ("cuda" if torch.cuda.is_available() else "cpu")
-        ck = torch.load(os.path.join(models, "wx_best.pt"), map_location=self.dev, weights_only=False)
-        self.net = FrontV3(ck["cin"], ck["ns"]).to(self.dev); self.net.load_state_dict(ck["state"]); self.net.eval()
-        self.stats = json.load(open(os.path.join(models, "weather_stats.json")))
         cfg = json.load(open(os.path.join(models, "prod_hybrid.json")))
+        # U-Net: одна модель или ансамбль (итерации 05.11, ITERATIONS.md) - блок deploy.unet {models, tta}; по умолчанию wx без TTA
+        uc = cfg["deploy"].get("unet", {"models": ["wx"], "tta": False}); self.tta = bool(uc.get("tta"))
+        self.nets = []
+        for run in uc["models"]:
+            ck = torch.load(os.path.join(models, f"{run}_best.pt"), map_location=self.dev, weights_only=False)
+            net = FrontV3(ck["cin"], ck["ns"]).to(self.dev); net.load_state_dict(ck["state"]); net.eval()
+            self.nets.append((net, bool(ck.get("phys"))))
+        self.unet_models = list(uc["models"])
+        self.stats = json.load(open(os.path.join(models, "weather_stats.json")))
         self.k_ros = cfg["k_ros"]; self.variant = cfg["deploy"]["variant"]
         # expected - гибрид U-Net + физика (шаг 21); active - физика, откалиброванная по растущим пожарам (шаг 22, блок "sim")
         self.heads = {"expected": self._head(cfg["deploy"]), "active": self._head(cfg.get("sim", cfg["deploy"]))}
@@ -45,12 +51,25 @@ class FireEngine:
                     lut=[np.array(d["lut"][f"{h}h"], np.float32) for h in HZ], level=[int(d["level"][f"{h}h"]) for h in HZ])
 
     # ---------- одна сцена ----------
-    def _unet(self, X, valid, row):
+    def _unet(self, X, valid, row, T=None):
+        """Среднее вероятностей моделей ансамбля; tta - ещё и по 8 поворотам/отражениям (ветер поворачивается с картой).
+        Модели с физическим каналом получают log(T/h) от физики (T - время прихода, ч)."""
         M = nn_maps(X, valid).astype(np.float32)
         si = pd.DataFrame([row])
-        Z = np.c_[base_scalars(si), weather_vec(si, self.stats, "gfsa")].astype(np.float32)
+        Z = torch.from_numpy(np.c_[base_scalars(si), weather_vec(si, self.stats, "gfsa")].astype(np.float32)).to(self.dev)
+        uv = [(6 + iu, 6 + iv) for iu, iv in UV]
+        tf = [(k, fl) for k in range(4) for fl in (False, True)] if self.tta else [(0, False)]
+        acc = 0
         with torch.no_grad():
-            p = torch.sigmoid(self.net(torch.from_numpy(M).to(self.dev), torch.from_numpy(Z).to(self.dev)))[0].cpu().numpy()
+            for net, phys in self.nets:
+                x0 = np.concatenate([M, phys_maps(T[None])], 1) if phys else M
+                x0 = torch.from_numpy(x0).to(self.dev)
+                for k, fl in tf:
+                    x = torch.rot90(x0, k, (2, 3)); x = x.flip(3) if fl else x
+                    p = torch.sigmoid(net(x, rot_wind(Z, k, fl, uv)))
+                    p = p.flip(3) if fl else p
+                    acc = acc + torch.rot90(p, -k, (2, 3))[0].cpu().numpy()
+        p = acc / (len(self.nets) * len(tf))
         return np.round(p * 255).astype(np.uint8)
 
     def _physics(self, X, row):
@@ -68,7 +87,7 @@ class FireEngine:
         "active" - физика, откалиброванная на срезах, где пожар рос (≥ 1 км²): «куда пойдёт огонь, если не погаснет» - для симулятора."""
         H = self.heads[mode]
         T = self._physics(X, row)
-        P = self._unet(X, valid, row) if any(w[0] != 0 for w in H["W"]) else np.zeros((len(HZ),) + T.shape, np.uint8)   # sim: без U-Net
+        P = self._unet(X, valid, row, T) if any(w[0] != 0 for w in H["W"]) else np.zeros((len(HZ),) + T.shape, np.uint8)   # sim: без U-Net
         t = np.asarray(T, np.float32); far = t >= TMAX
         lt = np.log(np.clip(np.where(far, TMAX, t), 0.5, TMAX)[None] / np.array(HZ, np.float32)[:, None, None])
         p = np.clip(P.astype(np.float32) / 255, 0.5 / 255, 254.5 / 255); lp = np.log(p / (1 - p))

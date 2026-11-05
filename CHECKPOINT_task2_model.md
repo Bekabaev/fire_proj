@@ -349,3 +349,20 @@ prod/landscape.py: гари текущего года до t → prior_burn = 1 
   ≥ 20 ячеек + закрытие 3 × 3: IoU 0,174, площадь ×1,10, точность 0,28, полнота 0,31 (2024, месяцы 5, 8–10). Гари 2025: MCD64A1
   15 354 км² + FIRMS 5 659 км² = 21 012 км²; чистый MCD64A1 — `doy_2025_mcd64.npy`; last_burn_2025/2026 пересчитаны.
   Флаги в ответе API: `burn_history_year`, `burns_known_until`, `burns_filled_from_firms`, `ndvi_stale_days`.
+
+## 11. Итерации улучшения (ночь 04→05.11.2026) — подробно в ITERATIONS.md
+
+- Скрипты:
+  - `25_iter_predict.py` — TTA, 8 поворотов, ветер поворачивается вместе с картой;
+  - `26_iter_eval.py` — оценка, головы unet / hybrid / gbm, пишет `out_v3/iter_eval.csv`;
+  - `27_phys_train.py` — физика на train, `out_v3/phys_T_train_era5.npy`;
+  - `07_train_v3.py` — добавлены `SEED`, `PHYS=1`.
+- Очереди: `run_iter.sh it0..it5`, `run_iter_train.sh seeds phys`; готовые шаги — `logs/iter_done/`.
+- Обучены: `wxs1`, `wxs2` (seed 1/2, val 0,284/0,299), `wxphys` (физический канал, val 0,300).
+- Сработало: TTA и ансамбль разных моделей wx + wxbig.
+  - U-Net, тест GFS: 0,260/0,244/0,288/0,302 (было 0,232/0,236/0,280/0,294).
+- Не сработало: бустинг по ячейкам (val хуже на 0,01–0,02), физика как вход сети (тест 72 ч 0,270), ансамбль seed (+0,005).
+- Прод:
+  - `deploy.unet = {models: [wx, wxbig], tta: true}`, веса гибрида — из `iter_hybrid_final_gfsa.json`;
+  - гибрид, тест: 0,232/0,237/0,273/0,294 (было 0,214/0,227/0,266/0,283), по ветру 84–87 %;
+  - откат: `cp out_v3/prod_hybrid_before_iter.json out_v3/prod_hybrid.json` (движок читает `deploy.unet`, без него — wx как раньше).

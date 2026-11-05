@@ -1,0 +1,5 @@
+=== it5_eval 02:03 : ITER=5 NAME=final UNET=wx_tta,wxbig_tta HEAD=unet,hybrid ../../.venv/Scripts/python.exe -X utf8 -W ignore scripts/26_iter_eval.py
+ok it5_eval 02:06
+=== it5_export 02:06 : VARIANT=iter NAME=final UNET=wx_tta,wxbig_tta MODELS=wx,wxbig TTA=1 ../../.venv/Scripts/python.exe -X utf8 -W ignore scripts/21_prod_export.py
+ok it5_export 02:07
+all done 02:07

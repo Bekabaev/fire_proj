@@ -226,3 +226,10 @@ def load_train(load_part):
         return ps[0]
     si = pd.concat([p[0] for p in ps], ignore_index=True)
     return (si, *(CatArr([p[k] for p in ps]) for k in (1, 2, 3)))
+
+
+# --- физический канал (итерация 4, ITERATIONS.md): время прихода огня по физике (шаг 14/27) -> 4 карты log(T/h) ---
+def phys_maps(T):
+    """T [n,96,96] f16 (ч) -> [n,4,96,96] f32: clip(log(T/h), −3, 3)/3 по горизонтам (недостижимо -> 1)."""
+    t = np.clip(np.nan_to_num(np.asarray(T, np.float32), nan=1000.0, posinf=1000.0), 0.5, 1000.0)
+    return np.stack([np.clip(np.log(t / h), -3, 3) / 3 for h in HZ], 1).astype(np.float32)

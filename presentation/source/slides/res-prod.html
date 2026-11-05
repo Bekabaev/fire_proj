@@ -1,0 +1,23 @@
+<section id="res-prod" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Готово к работе на сайте</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px;border-top:6px solid #2F5F80;padding:28px 0 0 0">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:96px;font-weight:600;line-height:1;color:#2F5F80">~1 с</p>
+<p style="font-size:28px;line-height:1.45;color:#4F4A43">весь запрос прогноза; почти всё время — загрузка прогноза погоды</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;border-top:6px solid #2F5F80;padding:28px 0 0 0">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:96px;font-weight:600;line-height:1;color:#2F5F80">0,3 с</p>
+<p style="font-size:28px;line-height:1.45;color:#4F4A43">весь ансамбль на обычном процессоре, без видеокарты (0,1 с на GPU)</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;border-top:6px solid #2F5F80;padding:28px 0 0 0">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:96px;font-weight:600;line-height:1;color:#2F5F80">8,6 МБ</p>
+<p style="font-size:28px;line-height:1.45;color:#4F4A43">все 4 нейросети вместе</p>
+</div>
+</div>
+<div style="display:flex;gap:40px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:36px"><h3 style="font-size:32px;font-weight:600">Прогноз реального пожара</h3><p style="font-size:26px;line-height:1.4;color:#4F4A43">текущая гарь и термоточки → карты на 12–72 ч (гибрид)</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:36px"><h3 style="font-size:32px;font-weight:600">Симуляция «что если»</h3><p style="font-size:26px;line-height:1.4;color:#4F4A43">точка и свой ветер → рост огня по кадрам до 10 суток (физика, откалиброванная по данным)</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Результаты · 17 · замер на GTX 1070 Ti, сервер FastAPI</p>
+<aside>Система уже работает как сервер. Весь запрос прогноза занимает около секунды, и почти всё это время уходит на загрузку прогноза погоды. Сами модели считают 0,1 секунды на видеокарте и около 0,3 секунды на обычном процессоре, так что для сайта видеокарта не нужна. Все четыре нейросети вместе весят около 9 мегабайт. Два режима: прогноз реального пожара по текущей гари и термоточкам и симуляция что если от точки возгорания с заданным ветром, до 10 суток.</aside>
+</section>

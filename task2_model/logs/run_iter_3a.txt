@@ -1,0 +1,2 @@
+=== it3a_eval 00:07 : ITER=3a NAME=gbm1 UNET=wx_tta HEAD=gbm ../../.venv/Scripts/python.exe -X utf8 -W ignore scripts/26_iter_eval.py
+FAIL it3a_eval
