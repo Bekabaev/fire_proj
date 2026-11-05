@@ -124,7 +124,8 @@ def _start_monitor():                                          # фоновый 
     from .monitor import Monitor
     from .tgbot import Bot
     L = live()
-    BOT = Bot(status_fn=lambda: MON.status(), fires_fn=lambda: MON.fires)
+    BOT = Bot(status_fn=lambda: MON.status(), fires_fn=lambda: MON.fires,
+              detail_fn=lambda f: MON._message("info", f, dict(first_seen=f["first_utc"], n_cells=f["cells"], alerted_cells=0)))
     MON = Monitor(L, STORE, BOT)
     MON.start(); BOT.start()
 

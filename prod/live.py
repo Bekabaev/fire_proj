@@ -25,6 +25,28 @@ HIST_DAYS = 7                                                   # история
 STATIC_SHARE = 0.5                                              # доля клеток пожара в маске постоянных источников -> «промышленный»
 
 
+RUMB = ["север", "северо-восток", "восток", "юго-восток", "юг", "юго-запад", "запад", "северо-запад"]
+RUMB_ADJ = ["северный", "северо-восточный", "восточный", "юго-восточный", "южный", "юго-западный", "западный", "северо-западный"]
+
+
+def rumb(deg):
+    return int(((deg % 360) + 22.5) // 45) % 8
+
+
+def wind_info(row):
+    """Ветер GFS по окнам [t, t+H): скорость, порывы, откуда дует и куда гонит огонь (u, v в строке - вектор «откуда»)."""
+    out = {}
+    for h in HZ:
+        u, v, ws = row.get(f"fc_gfsa_wind_u_{h}h"), row.get(f"fc_gfsa_wind_v_{h}h"), row.get(f"fc_gfsa_ws_mean_{h}h")
+        if u is None or ws is None or not np.isfinite(u):
+            continue
+        frm = float(np.degrees(np.arctan2(u, v)) % 360); steady = float(np.hypot(u, v) / max(ws, 0.1))   # 1 - ветер ровный, 0 - крутится
+        out[f"{h}h"] = dict(speed_ms=round(float(ws), 1), gust_ms=round(float(row.get(f"fc_gfsa_gust_max_{h}h") or np.nan), 1),
+                            from_deg=round(frm), from_name=RUMB_ADJ[rumb(frm)], to_name=RUMB[rumb(frm + 180)], steady=round(steady, 2),
+                            T_max=round(float(row.get(f"fc_gfsa_T_max_{h}h") or np.nan), 1), RH_min=round(float(row.get(f"fc_gfsa_RH_min_{h}h") or np.nan)))
+    return out
+
+
 class Live:
     def __init__(self, engine, store=None):
         from .static_mask import load
@@ -149,9 +171,21 @@ class Live:
                         Yk[k, r - r0, c - c0] = True
             res["after_points"] = [[round(p.lon, 5), round(p.lat, 5), round((p.t - t).total_seconds() / 3600, 1)] for p in a.itertuples()
                                    if (p.t - t).total_seconds() <= 72 * 3600]
+        res["wind"] = wind_info(row)
+        br, bc = np.nonzero(burned)
+        blon, blat = (float(np.mean(v)) for v in E.land.lonlat(r0 + br, c0 + bc))
+        kf = np.cos(np.radians(30)) / np.cos(np.radians(blat))  # EPSG:6933 (равновеликая, 30°): клетка 500 м по сетке = 0,5·kf км С-Ю, 0,5/kf км В-З
+        dist_edge = ndimage.distance_transform_edt(~burned, sampling=(CELL / 1000 * kf, CELL / 1000 / kf))   # км до текущей гари
         for k, h in enumerate(HZ):
             p = out["mask"][k] & ~burned
             H = dict(pred=dict(type="FeatureCollection", features=E.geojson(p, r0, c0)), pred_km2=float(p.sum()) * (CELL / 1000) ** 2)
+            if p.any():                                         # куда смещается огонь: центр новой гари относительно текущей, дальний край
+                pr, pc = np.nonzero(p); plon, plat = E.land.lonlat(r0 + pr, c0 + pc)
+                kx = 111.32 * np.cos(np.radians(blat))
+                dx, dy = (np.mean(plon) - blon) * kx, (np.mean(plat) - blat) * 111.32
+                far = float(dist_edge[pr, pc].max())
+                deg = float(np.degrees(np.arctan2(dx, dy)) % 360)
+                H["move"] = dict(to_deg=round(deg), to_name=RUMB[rumb(deg)], shift_km=round(float(np.hypot(dx, dy)), 1), reach_km=round(far, 1))
             if Yk is not None:
                 y = Yk[k] & valid[0]; pp = p & valid[0]; tp = int((pp & y).sum())
                 H.update(true=dict(type="FeatureCollection", features=E.geojson(Yk[k], r0, c0)), true_km2=float(Yk[k].sum()) * (CELL / 1000) ** 2,

@@ -15,7 +15,7 @@ F_TUNNEL = os.path.join(os.path.dirname(os.path.dirname(HERE)), "tools", "tunnel
 HELP = ("Бот прогноза степных пожаров Казахстана.\n"
         "Каждые 20 минут сервер забирает термоточки VIIRS из NASA FIRMS, отбрасывает заводы и факелы "
         "и присылает сюда новые и быстро растущие пожары с прогнозом площади на 24 и 72 ч.\n\n"
-        "/fires — крупнейшие активные пожары сейчас\n/status — когда был последний опрос\n/stop — отписаться\n/start — подписаться снова")
+        "/fires — крупнейшие активные пожары сейчас\n/fire 1 — прогноз по пожару №1 из списка: площадь, ветер, направление\n/status — когда был последний опрос\n/stop — отписаться\n/start — подписаться снова")
 
 
 def site_url():
@@ -36,9 +36,9 @@ def fire_link(lat, lon):
 
 
 class Bot:
-    def __init__(self, status_fn=None, fires_fn=None):
+    def __init__(self, status_fn=None, fires_fn=None, detail_fn=None):
         self.token = open(F_TOKEN).read().strip() if os.path.exists(F_TOKEN) else None
-        self.status_fn, self.fires_fn = status_fn, fires_fn
+        self.status_fn, self.fires_fn, self.detail_fn = status_fn, fires_fn, detail_fn
         self._lock = threading.Lock(); self.err = None; self.username = None
         self.subs = set(json.load(open(F_SUBS))) if os.path.exists(F_SUBS) else set()
 
@@ -84,6 +84,7 @@ class Bot:
         self.username = me.get("username") if me else None
         if self.enabled:                                          # меню команд в Telegram
             self._api("setMyCommands", commands=[dict(command="fires", description="Крупнейшие активные пожары"),
+                                                 dict(command="fire", description="Прогноз по пожару из списка: /fire 1"),
                                                  dict(command="status", description="Последний опрос FIRMS"),
                                                  dict(command="start", description="Подписаться на оповещения"),
                                                  dict(command="stop", description="Отписаться")])
@@ -119,6 +120,12 @@ class Bot:
             self.send(chat, f"Последний опрос FIRMS: {s.get('last_poll_utc') or '—'} UTC\nАктивных пожаров: {s.get('n_fires', '—')} "
                             f"(ещё {s.get('n_industrial', '—')} источников — заводы и факелы, скрыты)\n"
                             f"Сайт: {site_url() or 'туннель не запущен'}" + (f"\nОшибка: {s['error']}" if s.get("error") else ""))
+        elif txt.startswith("/fire ") or txt.rstrip() == "/fire":
+            parts = txt.split(); fs = self.fires_fn() if self.fires_fn else []
+            i = int(parts[1]) - 1 if len(parts) > 1 and parts[1].isdigit() else 0
+            if not 0 <= i < len(fs) or not self.detail_fn:
+                self.send(chat, "Номер пожара из списка /fires, например: /fire 1"); return
+            self.send(chat, "Считаю прогноз…"); self.send(chat, self.detail_fn(fs[i]))
         elif txt.startswith("/fires") and self.fires_fn:
             fs = self.fires_fn()[:10]
             if not fs:

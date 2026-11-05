@@ -102,7 +102,7 @@ class Monitor:
 
     def _message(self, kind, f, t):
         km2 = t["n_cells"] * (CELL / 1000) ** 2
-        head = "🔥 <b>Новый пожар</b>" if kind == "new" else f"📈 <b>Пожар растёт</b>: было {t['alerted_cells'] * (CELL / 1000) ** 2:.1f} км²"
+        head = "🔥 <b>Новый пожар</b>" if kind == "new" else "🔥 <b>Пожар</b>" if kind == "info" else f"📈 <b>Пожар растёт</b>: было {t['alerted_cells'] * (CELL / 1000) ** 2:.1f} км²"
         lines = [f"{head} · {km2:.1f} км² по термоточкам",
                  f"📍 {f['lat']:.3f}° с. ш., {f['lon']:.3f}° в. д.",
                  f"Первая точка {_kz(t['first_seen'])}, последняя {_kz(f['last_utc'])} (время Астаны)"]
@@ -112,6 +112,17 @@ class Monitor:
             H, A = e["horizons"], a["horizons"]
             lines.append(f"Прогноз новой гари: +{H['24h']['pred_km2']:.1f} км² за 24 ч, +{H['72h']['pred_km2']:.1f} км² за 72 ч"
                          f" (если не погаснет: +{A['72h']['pred_km2']:.1f} км²)")
+            w = e.get("wind", {}).get("24h")
+            if w:
+                gust = f", порывы до {w['gust_ms']:.0f} м/с" if np.isfinite(w["gust_ms"]) else ""
+                if w["steady"] >= 0.5:
+                    lines.append(f"💨 Ветер на сутки: {w['from_name']}, {w['speed_ms']:.0f} м/с{gust} — гонит огонь на {w['to_name']}")
+                else:
+                    lines.append(f"💨 Ветер на сутки: переменный, {w['speed_ms']:.0f} м/с{gust}")
+                lines.append(f"🌡 до {w['T_max']:.0f} °C, влажность от {w['RH_min']:.0f}%")
+            mv, how = (H["72h"].get("move"), "") if H["72h"].get("move") else (A["72h"].get("move"), " (если не погаснет)")
+            if mv:
+                lines.append(f"➡️ Направление{how}: на {mv['to_name']}, за 72 ч — до {mv['reach_km']:.1f} км от нынешней кромки")
         except Exception as ex:
             lines.append(f"Прогноз не посчитан: {html.escape(type(ex).__name__)}")
         from .tgbot import fire_link
