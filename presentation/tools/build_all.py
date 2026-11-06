@@ -68,7 +68,12 @@ m = re.search(r'<pre id="out">(.*?)</pre>', dom, re.S)
 assert m, "замеры слайдов не получены"
 open(os.path.join(WORK, "layout.json"), "w", encoding="utf-8").write(html.unescape(m.group(1)))
 edge("--no-pdf-header-footer", f"--print-to-pdf={os.path.join(WORK, 'svg.pdf')}", pathlib.Path(WORK, "svgonly.html").as_uri())
-subprocess.run([PY, "-X", "utf8", os.path.join(T, "build.py"), WORK, SRC, os.path.join(HERE, "presentation_editable.pptx")], check=True)
+ed = os.path.join(HERE, "presentation_editable.pptx")
+try:
+    open(ed, "ab").close()
+except PermissionError:                                          # файл открыт в PowerPoint - пишем рядом
+    ed = os.path.join(HERE, "presentation_editable_new.pptx"); print("presentation_editable.pptx открыт в PowerPoint -> пишу", ed)
+subprocess.run([PY, "-X", "utf8", os.path.join(T, "build.py"), WORK, SRC, ed], check=True)
 print("готово; служебные файлы:", WORK)
 
 # 5. speaker_notes.md: заголовок и заметки каждого слайда
