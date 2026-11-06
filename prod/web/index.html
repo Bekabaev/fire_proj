@@ -159,7 +159,11 @@ async function loadCases() {
     $("case").innerHTML = d.cases.map(c => `<option value="${c.id}">${c.title} · F1 72 ч ${c.F1[3].toFixed(2)}</option>`).join("");
     const p = d.pooled_F1; $("pooled").textContent = `По всем ${d.n} пожарам набора F1: 12 ч ${p["12h"]} · 24 ч ${p["24h"]} · 48 ч ${p["48h"]} · 72 ч ${p["72h"]} (то же, что офлайн-тест на этих срезах).`;
     $("dmsg").textContent = "";
-    const m = location.hash.match(/^#demo-(\d+)$/); if (m) { $("case").value = m[1]; $("drun").click(); }
+    const m = location.hash.match(/^#demo-(\d+)(?:@(12h|24h|48h|72h))?$/);   // #demo-7@24h - сразу нужный горизонт
+    if (m) {
+      if (m[2]) { hz = m[2]; for (const x of $("hz").children) x.classList.toggle("on", x.dataset.h === hz); }
+      $("case").value = m[1]; $("drun").click();
+    }
   } catch (e) { $("dmsg").textContent = "Ошибка: " + e.message; }
 }
 function drawDemo() {
