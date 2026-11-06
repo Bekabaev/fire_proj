@@ -1,22 +1,44 @@
-<section id="data-slice" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
-<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Один пример: сцена 48 × 48 км</h2>
-<div style="display:flex;gap:56px;align-items:center">
-<svg aria-label="Сетка сцены 96 на 96 клеток: в центре гарь, вокруг вероятные зоны роста по горизонтам" width="440" height="440" viewBox="0 0 440 440">
-<defs><pattern id="g" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M22 0H0V22" fill="none" stroke="#DCD2C2" stroke-width="1"/></pattern></defs>
-<rect width="440" height="440" rx="16" fill="#FFFDF8"/><rect width="440" height="440" rx="16" fill="url(#g)"/>
-<ellipse cx="250" cy="200" rx="150" ry="105" fill="#F9E3D4"/>
-<ellipse cx="235" cy="205" rx="105" ry="75" fill="#F4C3A3"/>
-<ellipse cx="220" cy="210" rx="68" ry="50" fill="#EC9A6A"/>
-<ellipse cx="205" cy="215" rx="38" ry="30" fill="#E2622B"/>
-<path d="M160 228 Q185 196 215 204 Q232 226 200 240 Q172 246 160 228Z" fill="#1B1A18"/>
-<path d="M60 380 L140 330" stroke="#2F5F80" stroke-width="6" stroke-linecap="round"/><path d="M140 330 L118 332 M140 330 L130 350" stroke="#2F5F80" stroke-width="6" stroke-linecap="round"/>
-</svg>
-<div style="flex:1;display:flex;flex-direction:column;gap:28px">
-<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:36px;font-weight:600">96 × 96 клеток по 500 м</h3><p style="font-size:28px;line-height:1.4;color:#4F4A43">каждые 12 ч жизни пожара (00 и 12 UTC)</p></div>
-<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:36px;font-weight:600">28 карт</h3><p style="font-size:28px;line-height:1.4;color:#4F4A43">гарь и её возраст, термоточки, доли травы, пашни, кустов, NDVI и его аномалия, рельеф, прошлые гари, дороги и посёлки</p></div>
-<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:36px;font-weight:600">49 чисел</h3><p style="font-size:28px;line-height:1.4;color:#4F4A43">погода на 12 / 24 / 48 / 72 ч вперёд, прошлая неделя, индексы FWI, сезон, размер пожара</p></div>
+<section id="data-slice" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Один пример для обучения: вход и ответ</h2>
+<div style="display:flex;gap:40px;align-items:flex-start">
+<div style="display:flex;flex-direction:column;gap:16px">
+<h3 style="font-size:30px;font-weight:600">28 карт · здесь 8 из них</h3>
+<div style="display:grid;grid-template-columns:200px 200px 200px 200px;gap:16px">
+<div style="display:flex;flex-direction:column;gap:6px"><img src="/_blob/6ee72944d73e1a3e2ebb1acfec2709f4" alt="Гарь сейчас" style="width:200px;height:200px;object-fit:contain;border:1px solid #E4DCCF;border-radius:8px"><p style="font-size:24px;color:#4F4A43">гарь сейчас</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><img src="/_blob/6e8753db102554263c1f2a9bfd8d8555" alt="Возраст гари" style="width:200px;height:200px;object-fit:contain;border:1px solid #E4DCCF;border-radius:8px"><p style="font-size:24px;color:#4F4A43">возраст гари</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><img src="/_blob/d9c20777c92bad7af2c7edc80eab7ecd" alt="Термоточки за 24 часа" style="width:200px;height:200px;object-fit:contain;border:1px solid #E4DCCF;border-radius:8px"><p style="font-size:24px;color:#4F4A43">термоточки 24 ч</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><img src="/_blob/3c48b7cde5eb78c8d74d779ece6c619f" alt="Доля травы" style="width:200px;height:200px;object-fit:contain;border:1px solid #E4DCCF;border-radius:8px"><p style="font-size:24px;color:#4F4A43">доля травы</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><img src="/_blob/cca8d5e60f3a0ec4ebdb6bdb4a8c29e5" alt="NDVI" style="width:200px;height:200px;object-fit:contain;border:1px solid #E4DCCF;border-radius:8px"><p style="font-size:24px;color:#4F4A43">NDVI</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><img src="/_blob/0f555483c4c9a2a266863016a76aad2e" alt="Высота рельефа" style="width:200px;height:200px;object-fit:contain;border:1px solid #E4DCCF;border-radius:8px"><p style="font-size:24px;color:#4F4A43">рельеф</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><img src="/_blob/44b2d4c46d206855751caf07d11297fb" alt="Прошлые гари" style="width:200px;height:200px;object-fit:contain;border:1px solid #E4DCCF;border-radius:8px"><p style="font-size:24px;color:#4F4A43">прошлые гари</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><img src="/_blob/3d767c3b525d86650097804d1140a946" alt="Расстояние до дорог" style="width:200px;height:200px;object-fit:contain;border:1px solid #E4DCCF;border-radius:8px"><p style="font-size:24px;color:#4F4A43">до дорог</p></div>
 </div>
 </div>
-<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Данные · 6</p>
-<aside>Один обучающий пример — это срез: пожар в момент t, сцена 96 на 96 клеток по 500 метров вокруг пожара. Срезы берутся каждые 12 часов жизни пожара. На каждую клетку 28 карт: гарь и её возраст, термоточки, растительность, NDVI, рельеф, прошлые гари, дороги и посёлки. Плюс 49 чисел на всю сцену: погода на окна 12, 24, 48, 72 часа вперёд, погода прошлой недели, индексы пожарной опасности, сезон и размер пожара. Цель — 4 маски: что сгорит в каждом горизонте.</aside>
+<div style="width:380px;display:flex;flex-direction:column;gap:16px">
+<h3 style="font-size:30px;font-weight:600">49 чисел · здесь 7</h3>
+<table style="font-size:24px;color:#1B1A18;width:380px">
+<tr><th style="width:52%">Признак</th><th style="width:48%">Значение</th></tr>
+<tr><td>ветер, 24 ч</td><td>10,9 м/с, с ВСВ</td></tr>
+<tr><td>порывы</td><td>до 22 м/с</td></tr>
+<tr><td>температура</td><td>до 11 °C</td></tr>
+<tr><td>влажность</td><td>от 14 %</td></tr>
+<tr><td>осадки</td><td>0 мм</td></tr>
+<tr><td>индекс FWI</td><td>49</td></tr>
+<tr><td>пожар идёт</td><td>2 сут, 4 км²</td></tr>
+</table>
+</div>
+<div style="width:336px;display:flex;flex-direction:column;gap:16px">
+<h3 style="font-size:30px;font-weight:600">Ответ: что сгорит</h3>
+<img src="/_blob/a2c8cafb79b4cc07a5d8aa36b7bf0ceb" alt="Ответ: клетки, сгоревшие за 12, 24, 48 и 72 часа" style="width:336px;height:336px;object-fit:contain;border:1px solid #E4DCCF;border-radius:8px">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 16px">
+<div style="display:flex;gap:10px;align-items:center"><div style="width:22px;height:22px;background:#7A1E05;border-radius:4px"></div><p style="font-size:24px">12 ч</p></div>
+<div style="display:flex;gap:10px;align-items:center"><div style="width:22px;height:22px;background:#C2501E;border-radius:4px"></div><p style="font-size:24px">24 ч</p></div>
+<div style="display:flex;gap:10px;align-items:center"><div style="width:22px;height:22px;background:#F2A541;border-radius:4px"></div><p style="font-size:24px">48 ч</p></div>
+<div style="display:flex;gap:10px;align-items:center"><div style="width:22px;height:22px;background:#F7D98C;border-radius:4px"></div><p style="font-size:24px">72 ч</p></div>
+</div>
+</div>
+</div>
+<p style="font-size:28px;line-height:1.4;color:#4F4A43;width:1600px">Таких примеров 111 тыс.: каждый пожар даёт срез каждые 12 часов своей жизни, сцена 96 × 96 клеток по 500 м.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Данные · 7 · пожар 3 апреля 2023, 45,36° с. ш., 75,03° в. д.; показан участок 17,5 × 17,5 км из сцены 48 × 48 км</p>
+<aside>Так выглядит один реальный пример, на котором учится модель: пожар 3 апреля 2023 года, тест. Слева карты на входе, восемь из двадцати восьми: что уже сгорело, сколько часов назад сгорела каждая клетка, где были термоточки за последние сутки, сколько в клетке травы, зелень NDVI, рельеф, прошлые гари и расстояние до дорог. В середине числа на всю сцену, семь из сорока девяти: прогноз ветра на сутки — почти 11 метров в секунду с востока-северо-востока, порывы до 22, сухо, влажность 14 процентов, осадков нет, индекс пожарной опасности 49 — это высокая опасность. Пожар горит уже двое суток, сгорело 4 квадратных километра. Справа ответ, который модель должна угадать: какие клетки сгорят за 12, 24, 48 и 72 часа. Таких примеров 111 тысяч.</aside>
 </section>
