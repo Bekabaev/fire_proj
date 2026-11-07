@@ -3,7 +3,7 @@
   "createdOnFiles": {"v": 1, "at": "2026-11-05T05:50:00Z"},
   "lists": "css",
   "title": "Прогноз распространения степных пожаров",
-  "order": ["cover", "task", "why-hard", "data-sources", "data-parts", "data-expert", "data-slice", "data-labels", "data-split", "models-map", "physics", "phys-output", "unet", "unet-train", "unet-output", "hybrid", "hybrid-output", "ensemble", "res-main", "res-quality", "res-ceiling", "res-prod", "site-cases", "site-horizons", "outro"],
+  "order": ["cover", "task", "why-hard", "data-sources", "data-parts", "data-expert", "data-slice", "data-labels", "data-split", "models-map", "physics", "phys-output", "unet", "unet-train", "unet-output", "hybrid", "hybrid-output", "ensemble", "res-main", "res-quality", "res-ceiling", "res-prod", "site-cases", "site-horizons", "site-fireskz", "outro"],
   "sections": {
     "intro": {"description": "Задача: куда пойдёт степной пожар за 12–72 часа", "start": "cover"},
     "data": {"description": "Данные: из чего собран датасет и чем он отличается", "start": "data-sources"},

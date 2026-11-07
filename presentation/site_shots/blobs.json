@@ -22,5 +22,10 @@
  "95082a4087fd5ac8a62664dee065fb81": "unet_P.png",
  "2d3792616bfe2c07df4074dbf9908c0a": "cmp_phys.png",
  "5368baa69b52dc498e68cd2bf658eac0": "cmp_unet.png",
- "5479456d7677506eb4429e3008a55a73": "cmp_hybrid.png"
+ "5479456d7677506eb4429e3008a55a73": "cmp_hybrid.png",
+ "878e6f6b5de5bab7e5ae849151a3fc09": "fk_A.png",
+ "7dcbcb0e11aacc7695bb54a779f4f130": "fk_B.png",
+ "2504a79f00601fc02261950a99d36961": "fk_C.png",
+ "5e64124c771ef045adbb1828a44a9c5c": "fk_D.png",
+ "faa08c1a02819d0261def68eaea8e558": "fk_E.png"
 }

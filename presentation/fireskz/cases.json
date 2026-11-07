@@ -1,0 +1,142 @@
+{
+ "A": {
+  "their_start": "06.11 08:28",
+  "their_km2": 137.1,
+  "their_steps": 24,
+  "our_start": "2026-11-06 23:00:00",
+  "state_km2": 2.25,
+  "our_exp_km2": 0.0,
+  "our_act_km2": 0.75,
+  "true_km2": 0.0,
+  "n_after": 0,
+  "last_after": null,
+  "wind": {
+   "speed_ms": 2.7,
+   "gust_ms": 12.1,
+   "from_deg": 289,
+   "from_name": "западный",
+   "to_name": "восток",
+   "steady": 0.18,
+   "T_max": 7.9,
+   "RH_min": 56
+  },
+  "offset_px": [
+   -22,
+   -100
+  ],
+  "lat": 49.5757,
+  "lon": 71.7547
+ },
+ "B": {
+  "their_start": "05.11 10:19",
+  "their_km2": 27.8,
+  "their_steps": 24,
+  "our_start": "2026-11-05 23:00:00",
+  "state_km2": 4.75,
+  "our_exp_km2": 0.0,
+  "our_act_km2": 8.25,
+  "true_km2": 0.0,
+  "n_after": 0,
+  "last_after": null,
+  "wind": {
+   "speed_ms": 7.2,
+   "gust_ms": 17.2,
+   "from_deg": 186,
+   "from_name": "южный",
+   "to_name": "север",
+   "steady": 0.98,
+   "T_max": 12.3,
+   "RH_min": 41
+  },
+  "offset_px": [
+   -38,
+   124
+  ],
+  "lat": 49.8845,
+  "lon": 70.6954
+ },
+ "C": {
+  "their_start": "06.11 08:28",
+  "their_km2": 70.3,
+  "their_steps": 20,
+  "our_start": "2026-11-06 23:00:00",
+  "state_km2": 2.25,
+  "our_exp_km2": 0.0,
+  "our_act_km2": 3.75,
+  "true_km2": 0.0,
+  "n_after": 0,
+  "last_after": null,
+  "wind": {
+   "speed_ms": 2.9,
+   "gust_ms": 13.5,
+   "from_deg": 209,
+   "from_name": "юго-западный",
+   "to_name": "северо-восток",
+   "steady": 0.31,
+   "T_max": 6.9,
+   "RH_min": 75
+  },
+  "offset_px": [
+   -5,
+   -67
+  ],
+  "lat": 49.5965,
+  "lon": 72.3138
+ },
+ "D": {
+  "their_start": "06.11 07:43",
+  "their_km2": 28.2,
+  "their_steps": 24,
+  "our_start": "2026-11-06 23:00:00",
+  "state_km2": 2.0,
+  "our_exp_km2": 0.0,
+  "our_act_km2": 1.5,
+  "true_km2": 0.0,
+  "n_after": 0,
+  "last_after": null,
+  "wind": {
+   "speed_ms": 2.8,
+   "gust_ms": 6.0,
+   "from_deg": 270,
+   "from_name": "западный",
+   "to_name": "восток",
+   "steady": 0.9,
+   "T_max": 6.3,
+   "RH_min": 39
+  },
+  "offset_px": [
+   53,
+   -22
+  ],
+  "lat": 51.2612,
+  "lon": 70.5195
+ },
+ "E": {
+  "their_start": "05.11 08:05",
+  "their_km2": 85.1,
+  "their_steps": 24,
+  "our_start": "2026-11-05 23:00:00",
+  "state_km2": 1.5,
+  "our_exp_km2": 0.0,
+  "our_act_km2": 0.5,
+  "true_km2": 1.0,
+  "n_after": 7,
+  "last_after": "2026-11-07 07:26:00",
+  "wind": {
+   "speed_ms": 7.9,
+   "gust_ms": 20.1,
+   "from_deg": 203,
+   "from_name": "юго-западный",
+   "to_name": "северо-восток",
+   "steady": 0.88,
+   "T_max": 10.6,
+   "RH_min": 47
+  },
+  "offset_px": [
+   -22,
+   -14
+  ],
+  "lat": 54.2408,
+  "lon": 70.0349
+ }
+}
