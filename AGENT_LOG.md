@@ -16,6 +16,19 @@
 
 ---
 
+## 2026-11-07 19:04 · laptop
+**Сделано:** HANDOFF §4 — ELMFIRE 1.1 прогнан на всех 40 тестовых пожарах (сетка 500 м, погода GFS кусочно-постоянная,
+старт = зажигания во всех клетках границы стартовой гари). F1 по всем вместе 12/24/48/72 ч: ELMFIRE 0,041/0,047/0,062/0,064;
+FBP 0,063/0,101/0,216/0,323; гибрид 0,160/0,224/0,360/0,542. Площадь ELMFIRE ×19–24 (упор в окно 48 км): 30 из 40 пожаров
+> 5× факта, 4 без роста (влажное/зелёное топливо). Направление по ветру верное. Гипотеза HANDOFF подтверждена.
+Слайд добавлен в `presentation_final.pptx` (25-й из 26, перед «Итогом», подпись «Результаты · 27»).
+**Изменённые файлы:** `elmfire_bench/` (`run_elmfire.py`, `make_figs.py`, `add_slide.py`, `setup_conda.sh`, `results.*`,
+`fig_elmfire_cases.png`, `cases/*/elmfire_toa.tif`), `PROGRESS.md` (строка хронологии), `presentation/presentation_final.pptx`
+**Коммит:** «ELMFIRE benchmark: 40 test fires run, results, figure, slide 25» + этот agent-log
+**Для другого агента:** `setup_debian.sh` на Debian не проходит без sudo — рабочий путь `setup_conda.sh`. Начальный периметр
+через phi в ELMFIRE 1.1 не даёт фронта (огонь не идёт) — не возвращать. Если правишь `presentation_final.pptx` на Windows,
+сначала сделай pull: слайд ELMFIRE уже в нём (бинарный файл, конфликт не смержится). Дальше по HANDOFF §5 (модель «вырастет ли пожар»).
+
 ## 2026-11-07 · win-pc
 **Сделано:** Заведён канал связи между агентами: этот журнал, скилл `/sync`, `CLAUDE.md`.
 **Изменённые файлы:** `AGENT_LOG.md`, `.claude/skills/sync/SKILL.md`, `CLAUDE.md`
