@@ -33,3 +33,7 @@ prod/monitor_log.txt
 # рабочая копия облачной презентации (канонические исходники - presentation/source)
 presentation/deck_edit/
 presentation/presentation_editable_new.pptx
+
+# бенчмарк ELMFIRE: окружение и рабочие папки прогонов
+elmfire_bench/.venv/
+elmfire_bench/cases/*/elmfire_run/
