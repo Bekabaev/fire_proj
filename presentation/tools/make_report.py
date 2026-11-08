@@ -30,8 +30,8 @@ for rel_id, rel in list(d.part.rels.items()):                  # картинк�
     if rel.reltype.endswith("/image"):
         d.part.drop_rel(rel_id)
 cp = d.core_properties
-cp.author = "Beibars Kurmanbaev"; cp.title = "Прогноз распространения степных пожаров Казахстана"; cp.subject = ""; cp.keywords = ""
-cp.last_modified_by = "Beibars Kurmanbaev"; cp.comments = ""
+cp.author = ""; cp.title = "Прогноз распространения степных пожаров Казахстана"; cp.subject = ""; cp.keywords = ""
+cp.last_modified_by = ""; cp.comments = ""
 
 n_tab = n_fig = 0
 
@@ -155,7 +155,6 @@ para("НАУЧНО-ТЕХНИЧЕСКИЙ ОТЧЕТ", align=WD_ALIGN_PARAGRAPH.
 d.add_paragraph("Прогноз распространения степных пожаров Казахстана", style="Title")
 p = para("Спутниковые данные, физика огня и нейросеть", align=WD_ALIGN_PARAGRAPH.CENTER, before=20, after=65)
 p.add_run().add_break(); p.add_run("Гибридная модель «ИИ + физика» и сравнение с физическими моделями")
-para("Автор Beibars Kurmanbaev", align=WD_ALIGN_PARAGRAPH.CENTER)
 para("Краткий отчет о выполненной работе", align=WD_ALIGN_PARAGRAPH.CENTER)
 para("8 ноября 2026 года", align=WD_ALIGN_PARAGRAPH.CENTER)
 
@@ -390,26 +389,6 @@ for t in ("1. Собран датасет по 14 247 пожарам Казах�
           "5. Слабое место — крупные летние пожары; следующий шаг — модель «вырастет ли пожар» и дообучение на крупных пожарах.",
           "6. Модель работает как сайт с мониторингом FIRMS и Telegram-ботом."):
     para(t)
-
-# ============================ источники ============================
-h1("Список использованных источников")
-for t in (
-    "[1] Rothermel R. C. A Mathematical Model for Predicting Fire Spread in Wildland Fuels. USDA Forest Service, Research Paper INT-115, 1972.",
-    "[2] Forestry Canada Fire Danger Group. Development and Structure of the Canadian Forest Fire Behavior Prediction System. Information Report ST-X-3, 1992.",
-    "[3] Van Wagner C. E. Development and Structure of the Canadian Forest Fire Weather Index System. Forestry Technical Report 35, 1987.",
-    "[4] Lautenberger C. Wildland fire modeling with an Eulerian level set method and automated calibration. Fire Safety Journal, 2013, 62: 289–298.",
-    "[5] Scott J. H., Burgan R. E. Standard Fire Behavior Fuel Models: A Comprehensive Set for Use with Rothermel’s Surface Fire Spread Model. USDA Forest Service, RMRS-GTR-153, 2005.",
-    "[6] Giglio L., Boschetti L., Roy D. P., Humber M. L., Justice C. O. The Collection 6 MODIS burned area mapping algorithm and product. Remote Sensing of Environment, 2018, 217: 72–85.",
-    "[7] Schroeder W., Oliva P., Giglio L., Csiszar I. A. The New VIIRS 375 m active fire detection data product: Algorithm description and initial assessment. Remote Sensing of Environment, 2014, 143: 85–96.",
-    "[8] Andela N. et al. The Global Fire Atlas of individual fire size, duration, speed and direction. Earth System Science Data, 2019, 11: 529–552.",
-    "[9] Hersbach H. et al. The ERA5 global reanalysis. Quarterly Journal of the Royal Meteorological Society, 2020, 146: 1999–2049.",
-    "[10] Field R. D. et al. Development of a Global Fire Weather Database. Natural Hazards and Earth System Sciences, 2015, 15: 1407–1423.",
-    "[11] Zanaga D. et al. ESA WorldCover 10 m 2020 v100. Zenodo, 2021.",
-    "[12] Ronneberger O., Fischer P., Brox T. U-Net: Convolutional Networks for Biomedical Image Segmentation. MICCAI, 2015.",
-    "[13] Perez E., Strub F., de Vries H., Dumoulin V., Courville A. FiLM: Visual Reasoning with a General Conditioning Layer. AAAI, 2018."):
-    p = para(t, align=WD_ALIGN_PARAGRAPH.LEFT)
-    for r in p.runs:
-        r.font.size = Pt(11)
 
 # ============================ приложение ============================
 h1("Приложение А Где что лежит")
