@@ -3,7 +3,7 @@
   python -X utf8 elmfire_bench/export_viz.py <template.html> <out.html>
 
 Слои на клетку (uint8, 96 x 96): flags (бит0 негорючее, бит1 старт, бит2 в области данных),
-fact / hyb = первый горизонт (1..4 = 12/24/48/72 ч, 0 = нет), fbp / elm = время прихода, ч (ceil, 255 = нет).
+fact / hyb = первый горизонт (1..4 = 12/24/48/72 ч, 0 = нет), fbp / elm / adj = время прихода, ч (ceil, 255 = нет); adj = ELMFIRE со скоростью x0,05.
 Все 40 кейсов сжаты zlib и встроены в страницу base64 (страница разжимает DecompressionStream).
 """
 import base64, csv, json, os, sys, zlib
@@ -25,6 +25,14 @@ def hours(a):
     return np.clip(a, 1, 255).astype(np.uint8)
 
 
+def read_toa(f):
+    with rasterio.open(f) as r:
+        a = r.read(1).astype(np.float64); nod = r.nodata
+    if nod is not None:
+        a[a == nod] = -1
+    return a
+
+
 res = {}
 for r in csv.DictReader(open(os.path.join(HERE, "results.csv"), encoding="utf-8")):
     res.setdefault(int(r["case"]), {}).setdefault(r["model"], {})[r["h"]] = dict(
@@ -37,17 +45,15 @@ for i in range(40):
     t, o = np.load(os.path.join(d, "truth.npz")), np.load(os.path.join(d, "ours.npz"))
     with rasterio.open(os.path.join(d, "fbfm40.tif")) as r:
         fb = r.read(1)
-    with rasterio.open(os.path.join(d, "elmfire_toa.tif")) as r:
-        toa = r.read(1).astype(np.float64); nod = r.nodata
-    if nod is not None:
-        toa[toa == nod] = -1
+    toa, toa2 = (read_toa(os.path.join(d, f)) for f in ("elmfire_toa.tif", "elmfire_adj0.05_toa.tif"))
     start = t["start"] > 0
     flags = (fb == 99).astype(np.uint8) | (start.astype(np.uint8) << 1) | (t["valid"].astype(np.uint8) << 2)
     fact = first_h((t["Y"] > 0) & ~start[None])
     hyb = first_h(o["hybrid_mask"].astype(bool) & ~start[None])
     fbp = hours(o["fbp_arrival_h"].astype(np.float64)); fbp[start] = 255
     elm = hours(toa / 3600.0); elm[start] = 255
-    for a in (flags, fact, hyb, fbp, elm):
+    adj = hours(toa2 / 3600.0); adj[start] = 255
+    for a in (flags, fact, hyb, fbp, elm, adj):
         blob += a.tobytes()
     wx = []
     for w in m["weather_windows"]:
