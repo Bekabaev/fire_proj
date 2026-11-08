@@ -50,6 +50,7 @@ class Demo:
                     start=dict(type="FeatureCollection", features=E.geojson(burned, r0, c0)),
                     hotspots=np.c_[lon, lat].round(5).tolist(),
                     horizons={f"{h}h": dict(pred=dict(type="FeatureCollection", features=E.geojson(o["mask"][k] & ~burned, r0, c0)),
+                                            total=dict(type="FeatureCollection", features=E.geojson(o["mask"][k] | burned, r0, c0)),   # общий контур: старт + прогноз
                                             true=dict(type="FeatureCollection", features=E.geojson((Y[0, k] > 0) & ~burned, r0, c0)),
                                             F1=float(f1(cnt[k])), pred_km2=round(float((o["mask"][k] & ~burned).sum()) * (CELL / 1000) ** 2, 2),
                                             true_km2=round(float(((Y[0, k] > 0) & ~burned).sum()) * (CELL / 1000) ** 2, 2))

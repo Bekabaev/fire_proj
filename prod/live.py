@@ -178,7 +178,8 @@ class Live:
         dist_edge = ndimage.distance_transform_edt(~burned, sampling=(CELL / 1000 * kf, CELL / 1000 / kf))   # км до текущей гари
         for k, h in enumerate(HZ):
             p = out["mask"][k] & ~burned
-            H = dict(pred=dict(type="FeatureCollection", features=E.geojson(p, r0, c0)), pred_km2=float(p.sum()) * (CELL / 1000) ** 2)
+            H = dict(pred=dict(type="FeatureCollection", features=E.geojson(p, r0, c0)), pred_km2=float(p.sum()) * (CELL / 1000) ** 2,
+                     total=dict(type="FeatureCollection", features=E.geojson(p | burned, r0, c0)))   # общий контур: старт + прогноз
             if p.any():                                         # куда смещается огонь: центр новой гари относительно текущей, дальний край
                 pr, pc = np.nonzero(p); plon, plat = E.land.lonlat(r0 + pr, c0 + pc)
                 kx = 111.32 * np.cos(np.radians(blat))

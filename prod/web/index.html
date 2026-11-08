@@ -75,6 +75,7 @@ select{padding:6px;border-radius:6px;border:1px solid var(--line);background:var
         <span><i class="sw" style="background:#3a3a3a"></i>гарь на старте</span>
         <span><i class="sw" style="background:#e4572e"></i>реально сгорело за горизонт</span>
         <span><i class="sw" style="background:rgba(46,134,171,.55);border:2px solid #2e86ab"></i>прогноз модели</span>
+        <span><i class="sw" style="background:none;border:2px dashed #0b3c5d"></i>общая гарь по прогнозу (старт + прогноз)</span>
         <span><i class="sw" style="background:#ffd23f;border-radius:50%"></i>термоточки VIIRS (24 ч до старта)</span>
       </div>
       <div id="dmsg"></div>
@@ -97,6 +98,7 @@ select{padding:6px;border-radius:6px;border:1px solid var(--line);background:var
         <span><i class="sw" style="background:#3a3a3a"></i>гарь по термоточкам</span>
         <span><i class="sw" style="background:#ffd23f;border-radius:50%"></i>термоточки до срока</span>
         <span><i class="sw" style="background:rgba(46,134,171,.55);border:2px solid #2e86ab"></i>прогноз модели</span>
+        <span><i class="sw" style="background:none;border:2px dashed #0b3c5d"></i>общая гарь по прогнозу (старт + прогноз)</span>
         <span><i class="sw" style="background:#e4572e"></i>сгорело после (только для прошлой даты)</span>
         <span><i class="sw" style="border:2px dashed #d1495b"></i>если не погаснет (когда ожидаемый прогноз пуст)</span>
       </div>
@@ -171,6 +173,7 @@ function drawDemo() {
   demoLayers.push(L.geoJSON(H.true, {style: {color: "#e4572e", weight: 0, fillColor: "#e4572e", fillOpacity: 0.85}}).addTo(map));
   demoLayers.push(L.geoJSON(cur.start, {style: {color: "#3a3a3a", weight: 0, fillColor: "#3a3a3a", fillOpacity: 0.9}}).addTo(map));
   demoLayers.push(L.geoJSON(H.pred, {style: {color: "#2e86ab", weight: 2, fillColor: "#2e86ab", fillOpacity: 0.3}}).addTo(map));
+  if (H.total) demoLayers.push(L.geoJSON(H.total, {style: {color: "#0b3c5d", weight: 2.5, dashArray: "6 4", fill: false}, interactive: false}).addTo(map));
   for (const [lo, la] of cur.hotspots) demoLayers.push(L.circleMarker([la, lo], {radius: 2.5, color: "#8a6d00", weight: 1, fillColor: "#ffd23f", fillOpacity: 1}).addTo(map));
   $("df1").textContent = H.F1.toFixed(2); $("dtrue").textContent = H.true_km2.toFixed(1) + " км²"; $("dpred").textContent = H.pred_km2.toFixed(1) + " км²";
 }
@@ -216,6 +219,7 @@ function drawLive() {
   if (H.true) liveLayers.push(L.geoJSON(H.true, {style: {weight: 0, fillColor: "#e4572e", fillOpacity: 0.85}}).addTo(map));
   liveLayers.push(L.geoJSON(lcur.start, {style: {weight: 0, fillColor: "#3a3a3a", fillOpacity: 0.9}}).addTo(map));
   liveLayers.push(L.geoJSON(H.pred, {style: {color: "#2e86ab", weight: 2, fillColor: "#2e86ab", fillOpacity: 0.3}}).addTo(map));
+  if (H.total) liveLayers.push(L.geoJSON(H.total, {style: {color: "#0b3c5d", weight: 2.5, dashArray: "6 4", fill: false}, interactive: false}).addTo(map));
   const A = lalt ? lalt.horizons[lhz] : null;
   if (A) liveLayers.push(L.geoJSON(A.pred, {style: {color: "#d1495b", weight: 2, dashArray: "5 4", fillColor: "#d1495b", fillOpacity: 0.08}}).addTo(map));
   for (const [lo, la] of lcur.hotspots) liveLayers.push(L.circleMarker([la, lo], {radius: 2.5, color: "#8a6d00", weight: 1, fillColor: "#ffd23f", fillOpacity: 1}).addTo(map));
