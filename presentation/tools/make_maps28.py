@@ -27,7 +27,7 @@ BG, INK, BODY, ACC, CARD, LINE, FOOT, ASH = "F7F3EC", "1B1A18", "4F4A43", "C2501
 GROUPS = {"fire": ("D7263D", "огонь сейчас"), "veg": ("3E9B4F", "растительность"), "prior": ("8E5BB5", "прошлые гари"),
           "relief": ("3E7CB1", "рельеф"), "people": ("E0A100", "люди"), "svc": ("8C8377", "служебные")}
 HOT = LinearSegmentedColormap.from_list("hot", ["#F2A541", "#C2501E", "#7A1E05"])
-FLAG = ListedColormap(["#E4DDD1", "#4F4A43"])
+FLAG = ListedColormap(["#4F4A43", "#EFE8DC"])            # 0 - пропуск (тёмное), 1 - данные есть (светлое)
 FIRE = ("burn_age_h", "af_count_12h", "af_frp_12h", "af_count_24h", "af_count_all")
 # канал, подпись на карте, строка списка, источник, группа, шкала
 MAPS = [("burned_frac", "гарь сейчас", "Доля гари в клетке", "VIIRS, MODIS, GFA", "fire", "ash"),
@@ -171,11 +171,15 @@ gx = 5.99
 sl.shapes.add_picture(png, Inches(gx), Inches(1.55), Inches(GW_IN), Inches(GH_IN))
 lx = gx
 for grp, (col, lab) in GROUPS.items():
-    box(lx, 6.73, 0.13, 0.13, col)
-    txt(lx + 0.19, 6.66, 1.3, 0.27, lab, 10, BODY)
+    box(lx, 6.69, 0.13, 0.13, col)
+    txt(lx + 0.19, 6.62, 1.3, 0.27, lab, 10, BODY)
     lx += 0.36 + len(lab) * 0.075
-txt(gx, 6.95, GW_IN, 0.25, "Пожар 3 апреля 2023 (тест) · участок 18 × 18 км из сцены 48 × 48 км · + 49 чисел погоды и состояния пожара",
-    10, FOOT)
+txt(gx, 6.87, GW_IN, 0.22, "Пожар 3 апреля 2023 (тест) · участок 18 × 18 км из сцены 48 × 48 км · + 49 чисел погоды и состояния пожара",
+    9.5, FOOT)
+txt(gx, 7.06, GW_IN, 0.22, "Флаги: 1 — данные есть (светлое), 0 — пропуск (тёмное). Здесь пропусков нет, поэтому флаги сплошные.",
+    9.5, FOOT)
+txt(gx, 7.24, GW_IN, 0.22, "При облаках и снеге флаг подсказывает сети: ноль в NDVI — «нет данных», а не «нет травы».",
+    9.5, FOOT)
 out = os.path.join(OUT, "slide9_28maps.pptx")
 prs.save(out)
 print("saved", png, out)
