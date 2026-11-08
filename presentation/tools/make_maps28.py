@@ -111,21 +111,37 @@ fig.savefig(png, dpi=300, facecolor="#" + BG)
 plt.close(fig)
 
 # ---------------- слайд ----------------
-prs = Presentation(os.path.join(P, "presentation_final2_rev1.pptx"))
-lst = prs.slides._sldIdLst
-ids = list(lst)
-for k, sid in enumerate(ids):
-    if k != 8:                                                          # оставляем слайд 9 «Один пример» - его фон и заголовок
-        prs.part.drop_rel(sid.rId); lst.remove(sid)
-sl = prs.slides[0]
-for sh in list(sl.shapes):
-    if not (sh.has_text_frame and sh.text_frame.text.startswith("Один пример")):
+INTO = os.environ.get("INTO")                                          # INTO=<deck.pptx>: вставить слайд после слайда 9 этой презентации
+if INTO:
+    import copy
+    prs = Presentation(INTO)
+    src = prs.slides[8]
+    assert src.shapes.title is None or True
+    sl = prs.slides.add_slide(src.slide_layout)
+    for sh in list(sl.shapes):                                          # пустые плейсхолдеры макета убираем
         sh._element.getparent().remove(sh._element)
+    bg = src._element.cSld.bg                                          # фон как у слайда 9
+    if bg is not None:
+        sl._element.cSld.insert(0, copy.deepcopy(bg))
+    t0 = [sh for sh in src.shapes if sh.has_text_frame and sh.text_frame.text.startswith("Один пример")][0]
+    sl.shapes._spTree.append(copy.deepcopy(t0._element))
+    lst = prs.slides._sldIdLst; new = lst[-1]; lst.remove(new); lst.insert(9, new)   # сразу после слайда 9
+else:
+    prs = Presentation(os.path.join(P, "presentation_final2_rev1.pptx"))
+    lst = prs.slides._sldIdLst
+    ids = list(lst)
+    for k, sid in enumerate(ids):
+        if k != 8:                                                      # оставляем слайд 9 «Один пример» - его фон и заголовок
+            prs.part.drop_rel(sid.rId); lst.remove(sid)
+    sl = prs.slides[0]
+    for sh in list(sl.shapes):
+        if not (sh.has_text_frame and sh.text_frame.text.startswith("Один пример")):
+            sh._element.getparent().remove(sh._element)
 title = [sh for sh in sl.shapes if sh.has_text_frame][0]
 rs = title.text_frame.paragraphs[0].runs; rs[0].text = "Один пример: 28 карт на входе"
 for x in rs[1:]:
     x.text = ""
-if sl.has_notes_slide:
+if True:                                                                # заметка докладчика (создаётся, если её нет)
     sl.notes_slide.notes_text_frame.text = (
         "Это все 28 карт, которые получает нейросеть для одного примера: пожар 3 апреля 2023 года из теста, показан участок 18 на 18 "
         "километров вокруг гари. Красная рамка - сам пожар: что уже сгорело, когда, термоточки и их мощность. Зелёная - растительность "
@@ -180,6 +196,6 @@ txt(gx, 7.06, GW_IN, 0.22, "Флаги: 1 — данные есть (светл�
     9.5, FOOT)
 txt(gx, 7.24, GW_IN, 0.22, "При облаках и снеге флаг подсказывает сети: ноль в NDVI — «нет данных», а не «нет травы».",
     9.5, FOOT)
-out = os.path.join(OUT, "slide9_28maps.pptx")
+out = INTO or os.path.join(OUT, "slide9_28maps.pptx")
 prs.save(out)
 print("saved", png, out)
