@@ -7,9 +7,11 @@ import os, io, json
 import numpy as np, ee
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-D = os.path.join(ROOT, "presentation", "fireskz_0907")
+FIRE = os.environ.get("FIRE", "0907")
+D = os.path.join(ROOT, "presentation", f"fireskz_{FIRE}")
 ee.Initialize(project=os.environ.get("EE_PROJECT", "mindful-hull-445505-f7"))
-W, S, E, N = 74.55, 48.98, 75.02, 49.26
+LAT0, LON0 = {"0907": (49.12, 74.785), "0906": (50.23, 64.38), "0919": (47.085, 79.225)}[FIRE]
+W, S, E, N = LON0 - 0.235, LAT0 - 0.14, LON0 + 0.235, LAT0 + 0.14
 RES = 0.0004
 aoi = ee.Geometry.Rectangle([W, S, E, N])
 
@@ -22,7 +24,7 @@ def coll(a, b):
     return c, c.map(mask).median()
 
 
-cpre, pre = coll("2026-08-20", "2026-09-08")
+cpre, pre = coll(os.environ.get("PRE_A", "2026-08-20"), os.environ.get("PRE_B", "2026-09-08"))
 cpost, post = coll(os.environ.get("POST_A", "2026-09-10"), os.environ.get("POST_B", "2026-09-26"))
 info = dict(n_pre=cpre.size().getInfo(), n_post=cpost.size().getInfo(),
             dates_pre=sorted(set(cpre.aggregate_array("system:index").getInfo()))[:20],

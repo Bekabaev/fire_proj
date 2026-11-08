@@ -12,8 +12,8 @@ from matplotlib.lines import Line2D
 from scipy import ndimage
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-D = os.path.join(ROOT, "presentation", "fireskz_0907")
 g = runpy.run_path(os.path.join(ROOT, "presentation", "tools", "make_fireskz_0907.py"))
+D = g["D"]
 B, Z, SC, CX, CY, MX0, MY0 = g["B"], g["Z"], g["SC"], g["CX"], g["CY"], g["MX0"], g["MY0"]
 burned, hyb, kz_lay = g["burned"], g["hyb"], g["lay"]
 cx, cy, half = g["FRAME_ALL"]
@@ -60,7 +60,7 @@ ax.contour(np.arange(W_), np.arange(H_), kz_lay.astype(float), levels=[0.5], col
 g["cells"](ax, burned, fc="#3a3a3a", ec="none", alpha=0.95)
 g["outline"](ax, hyb[3] | burned, "#2E86AB", 2.6)
 g["outline"](ax, hyb[3] | burned, "white", 0.9, (0, (3, 3)))
-ax.legend(handles=[Patch(fc="#e4572e", label="реальная гарь по снимку Sentinel-2 (11.09), клетки 500 м"),
+ax.legend(handles=[Patch(fc="#e4572e", label=f"реальная гарь по снимку Sentinel-2 ({os.environ.get('S2_DATE', '11.09')}), клетки 500 м"),
                    Patch(fc="#3a3a3a", label="гарь на старте (VIIRS)"),
                    Line2D([], [], c="#2E86AB", lw=2.6, label="гибрид: старт + прогноз 72 ч"),
                    Line2D([], [], c="#FFD23F", lw=2.2, ls="--", label="fires.kz")],
