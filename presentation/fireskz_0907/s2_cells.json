@@ -1,0 +1,19 @@
+{
+ "s2_new_km2": 13.75,
+ "s2_start_overlap": 0.07,
+ "viirs72_in_s2": 0.33,
+ "F1_vs_s2": {
+  "viirs_fact": 0.277,
+  "hybrid": 0.115,
+  "unet": 0.105,
+  "fireskz": 0.006
+ },
+ "km2": {
+  "viirs_fact": 9.75,
+  "hybrid": 16.75,
+  "unet": 10.0,
+  "fireskz": 68.5
+ },
+ "kz_in_s2": 0.004,
+ "hyb_in_s2": 0.104
+}
