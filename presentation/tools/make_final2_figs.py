@@ -147,7 +147,7 @@ print("готово:", OUT)
 def fire_panels(case, out):
     d = os.path.join(EB, "cases", f"case_{case:02d}")
     t, o = np.load(os.path.join(d, "truth.npz")), np.load(os.path.join(d, "ours.npz"))
-    toa = rd(os.path.join(d, "elmfire_toa.tif")) / 3600
+    toa = rd(os.path.join(d, "elmfire_adj0.05_toa.tif")) / 3600
     with rasterio.open(os.path.join(d, "fbfm40.tif")) as r:
         nb = r.read(1) == 99
     start = t["start"] > 0
@@ -195,19 +195,19 @@ def rep_bars(ax, series, ymax, title):
 fig, (a1, a2) = plt.subplots(1, 2, figsize=(13, 4.6), facecolor="white")
 rep_bars(a1, [("Ротермел", GD, [0.034, 0.065, 0.080, 0.083]), ("Гибрид ИИ + физика", HY, [0.238, 0.239, 0.276, 0.300])], 0.34,
          "Тест 2023–2024 (959 пожаров): ×3,6 на 72 ч")
-rep_bars(a2, [("ELMFIRE как есть", GL, pooled["elmfire"]), ("ELMFIRE ×0,05", GD, pooled["elmfire_adj0.05"]),
+rep_bars(a2, [("ELMFIRE (×0,05)", GD, pooled["elmfire_adj0.05"]),
               ("Гибрид ИИ + физика", HY, pooled["hybrid"])], 0.62, "40 тестовых пожаров: ×2,9 на 72 ч")
 fig.subplots_adjust(left=.01, right=.99, top=.84, bottom=.08, wspace=.08)
 fig.savefig(os.path.join(OUT, "rep_compare.png"), dpi=200, facecolor="white"); plt.close(fig)
 
 d4 = os.path.join(EB, "cases", "case_04")
 t4, o4 = np.load(os.path.join(d4, "truth.npz")), np.load(os.path.join(d4, "ours.npz"))
-toa4 = rd(os.path.join(d4, "elmfire_toa.tif")) / 3600
+toa4 = rd(os.path.join(d4, "elmfire_adj0.05_toa.tif")) / 3600
 with rasterio.open(os.path.join(d4, "fbfm40.tif")) as r:
     nb4 = r.read(1) == 99
 st4 = t4["start"] > 0; fact4 = (t4["Y"][3] > 0) & ~st4
 panels = (("Реально сгорело", "23 км² за 72 ч", fact4, "#D7263D"),
-          ("ELMFIRE", "1 584 км² · F1 0,03", (toa4 > 0) & (toa4 <= 72) & ~st4, GD),
+          ("ELMFIRE", "62 км² · F1 0,40", (toa4 > 0) & (toa4 <= 72) & ~st4, GD),
           ("Гибрид", "22 км² · F1 0,69", o4["hybrid_mask"][3].astype(bool) & ~st4, "#3E7CB1"))
 fig, axs = plt.subplots(1, 3, figsize=(13, 5.0), facecolor="white")
 for ax, (name, sub, m, col) in zip(axs, panels):
