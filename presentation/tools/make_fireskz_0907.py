@@ -59,6 +59,12 @@ def ras(fc):
 
 burned = ras(res["start"])
 Y = np.stack([ras(res["horizons"][f"{h}h"].get("true", {})) for h in HZ])
+Yv = Y.copy()                                                           # факт по термоточкам VIIRS (кадр считается по нему)
+FACT = os.environ.get("FACT", "viirs")                                 # FACT=s2: факт за 72 ч - гарь по снимку Sentinel-2 11.09 (клетки 500 м)
+SUF = "_s2" if FACT == "s2" else ""
+F_S2 = os.path.join(D, "fact_s2_cells.npy")
+if FACT == "s2" and os.path.exists(F_S2):
+    Y[3] = np.load(F_S2)
 hyb = np.stack([o["mask"][k] & ~burned for k in range(len(HZ))])
 unetP = o["unet"]; unet = (unetP >= 0.5) & ~burned[None]
 
@@ -106,17 +112,17 @@ num = dict(date=DATE, t_utc=res["t_utc"], fire_start=res["fire_start_utc"], stat
            true_km2={f"{h}h": km2(Y[k]) for k, h in enumerate(HZ)}, hyb_km2={f"{h}h": km2(hyb[k]) for k, h in enumerate(HZ)},
            hyb_F1={f"{h}h": f1(hyb[k], Y[k]) for k, h in enumerate(HZ)}, unet_km2_72=km2(unet[3]), unet_F1_72=f1(unet[3], Y[3]),
            kz_F1={f"{h}h": f1(kz_new, Y[k]) for k, h in enumerate(HZ)}, wind=res.get("wind"))
-json.dump(num, open(os.path.join(D, "numbers.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1, default=str)
+json.dump(num, open(os.path.join(D, f"numbers{SUF}.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1, default=str)
 print(json.dumps(num, ensure_ascii=False, default=str))
 
 # ---------- кадр: квадрат вокруг всего интересного ----------
-anyc = burned | Y.any(0) | hyb.any(0) | unet[3] | kz_new
+anyc = burned | Yv.any(0) | hyb.any(0) | unet[3] | kz_new
 ar, ac = np.nonzero(anyc)
 xx = np.concatenate([PX[ar, ac], PX[ar + 1, ac + 1]]); yy = np.concatenate([PY[ar, ac], PY[ar + 1, ac + 1]])
 cx, cy = (xx.min() + xx.max()) / 2, (yy.min() + yy.max()) / 2
 half = max(xx.max() - xx.min(), yy.max() - yy.min()) / 2 * 1.12
 FRAME_ALL = (cx, cy, half)
-tc = burned | Y.any(0) | hyb.any(0) | unet[3]                         # плотный кадр: только наш пожар, без эллипса fires.kz
+tc = burned | Yv.any(0) | hyb.any(0) | unet[3]                         # плотный кадр: только наш пожар, без эллипса fires.kz
 tr_, tcc = np.nonzero(tc)
 tx = np.concatenate([PX[tr_, tcc], PX[tr_ + 1, tcc + 1]]); ty = np.concatenate([PY[tr_, tcc], PY[tr_ + 1, tcc + 1]])
 FRAME_TIGHT = ((tx.min() + tx.max()) / 2, (ty.min() + ty.max()) / 2, max(tx.max() - tx.min(), ty.max() - ty.min()) / 2 * 1.35)
@@ -156,14 +162,14 @@ def vs(pred, y, name, img=B, fr=None):
     cells(ax, pred & y, fc=OVER, ec="none", alpha=0.9)
     cells(ax, burned, fc=ASH, ec="none", alpha=0.92)
     outline(ax, pred | burned, "#0b3c5d", 1.8, (0, (3, 2)))
-    fig.savefig(os.path.join(D, name), facecolor="black"); plt.close(fig)
+    fig.savefig(os.path.join(D, name.replace(".png", SUF + ".png")), facecolor="black"); plt.close(fig)
 
 
 # слайд 15: физика fires.kz (их слой как есть) + реальная гарь контуром
 fig, ax = frame(A)
 outline(ax, Y[3], "#FF2A2A", 2.4)
 cells(ax, burned, fc=ASH, ec="none", alpha=0.92)
-fig.savefig(os.path.join(D, "phys_kz.png"), facecolor="black"); plt.close(fig)
+fig.savefig(os.path.join(D, f"phys_kz{SUF}.png"), facecolor="black"); plt.close(fig)
 
 # слайд 16: вероятность U-Net
 fig, ax = frame(B, fr=FRAME_TIGHT)
@@ -173,7 +179,7 @@ for r, c in zip(*np.nonzero((unetP[3] >= 0.1) & ~burned)):
 outline(ax, unet[3], "black", 1.8)
 outline(ax, Y[3], "#FF2A2A", 2.2, (0, (4, 3)))
 cells(ax, burned, fc=ASH, ec="none", alpha=0.92)
-fig.savefig(os.path.join(D, "unet_P.png"), facecolor="black"); plt.close(fig)
+fig.savefig(os.path.join(D, f"unet_P{SUF}.png"), facecolor="black"); plt.close(fig)
 
 # слайд 20: три модели на 72 ч
 vs(kz_new, Y[3], "cmp_kz.png"); vs(unet[3], Y[3], "cmp_unet.png"); vs(hyb[3], Y[3], "cmp_hybrid.png")
