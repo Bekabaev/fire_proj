@@ -7,7 +7,7 @@
 Новые: главный вывод, метки (VIIRS/MODIS/MCD64A1), 28 карт, 49 чисел, физические модели, ИИ против физики (график),
 ELMFIRE: точность и площадь, ELMFIRE по часам. Числа и источники — в make_final2_figs.py.
 """
-import copy, os, re
+import copy, os, re, sys
 from pptx import Presentation
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
@@ -354,12 +354,41 @@ order = [o[1], o[2], o[3], N["thesis"], o[4], o[5], o[6], N["labels"], o[7], N["
          o[10], N["phys"], o[11], o[12], o[13], o[14], o[15], o[16], o[17], o[18],
          N["ai_vs_phys"], o[19], o[20], o[25], N["elm_charts"], N["elm_time"], N["honest"], o[21], o[22], o[23], o[24], o[26]]
 assert len(order) == len(prs.slides) and len({id(s) for s in order}) == len(order)
+SHORT = "--short" in sys.argv                                     # короткая версия: 15 слайдов, только суть
+if SHORT:
+    order = [o[1], o[2], N["thesis"], o[5], N["maps"], N["scalars"], o[9], o[10], N["phys"], o[17],
+             N["ai_vs_phys"], N["elm_time"], N["honest"], o[21], o[26]]
 lst = prs.slides._sldIdLst; ids = {s.slide_id: el for s, el in zip(prs.slides, list(lst))}
+rid = {s.slide_id: el.get(qn("r:id")) for s, el in zip(prs.slides, list(lst))}
 want = [ids[s.slide_id] for s in order]
+drop = [rid[s.slide_id] for s in prs.slides if s not in order]
 for el in list(lst):
     lst.remove(el)
 for el in want:
     lst.append(el)
+for r in drop:
+    prs.part.drop_rel(r)
+
+
+def replace_all(slide, old, new):
+    for sh in slide.shapes:
+        if sh.has_text_frame:
+            for p in sh.text_frame.paragraphs:
+                for r in p.runs:
+                    if old in r.text:
+                        r.text = r.text.replace(old, new)
+    if slide.has_notes_slide and slide.notes_slide.notes_placeholder is not None:
+        tf = slide.notes_slide.notes_placeholder.text_frame
+        for p in tf.paragraphs:
+            for r in p.runs:
+                r.text = r.text.replace(old, new)
+
+
+replace_all(N["thesis"], "слайд 30", f"слайд {order.index(N['honest']) + 1}")
+if o[24] in order:
+    replace_all(N["honest"], "(слайд 34)", f"(слайд {order.index(o[24]) + 1})")
+else:
+    replace_all(N["honest"], "(слайд 34)", "(сравнение с fires.kz, август 2026)")
 
 for pos, s in enumerate(order, 1):
     for sh in s.shapes:
@@ -376,5 +405,5 @@ for pos, s in enumerate(order, 1):
         elif re.match(r"^[^·]+ · ", t) and s in N.values():
             mm = re.match(r"^([^·]+?) · (.*)$", t, re.S); set_text(sh, f"{mm.group(1)} · {pos} · {mm.group(2)}")
 
-out = os.path.join(P, "presentation_final2.pptx")
+out = os.path.join(P, "presentation_short.pptx" if SHORT else "presentation_final2.pptx")
 prs.save(out); print("готово:", out, len(order), "слайдов")

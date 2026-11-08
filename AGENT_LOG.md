@@ -17,6 +17,16 @@
 ---
 
 ## 2026-11-08 · win-pc
+**Сделано:** короткая презентация `presentation/presentation_short.pptx` (15 слайдов, только суть; `make_final2.py --short`) и
+отчёт `FireSpread_ML_Report.docx` (17 стр.) в формате `Jafar_ML_Report.docx` (его стили, поля, таблицы и подписи), простым языком:
+данные, метки, 28 карт + 49 чисел, модели, ИИ против физики (что доказано и что нет), ELMFIRE, fires.kz, ограничения.
+Сборка: `presentation/tools/make_report.py`, затем `update_toc.ps1` (Word обновляет содержание).
+**Изменённые файлы:** `presentation/presentation_short.pptx`, `FireSpread_ML_Report.docx`, `presentation/tools/make_report.py`,
+`update_toc.ps1`, `make_final2.py` (флаг --short), `presentation/final2_figs/report/*.png`, `AGENT_LOG.md`
+**Коммит:** «Short deck + report in Jafar format» + agent-log
+**Для другого агента:** автор в отчёте — Beibars Kurmanbaev (поменять, если нужно, в make_report.py).
+
+## 2026-11-08 · win-pc
 **Сделано:** честная проверка тезиса «ИИ точнее физики» в `presentation_final2.pptx` (теперь 35 слайдов). Доказано: тест 2023–24
 (U-Net 0,31 [0,25–0,34] против FBP 0,12 [0,10–0,14], бутстрэп по пожарам, `prod_eval.csv`); ELMFIRE на 40 пожарах — на 48–72 ч
 (парное сравнение по пожарам). Не доказано: заповедники 48–72 ч (35 пожаров, интервалы перекрываются), ELMFIRE на 12 ч (8 побед / 10 поражений).
