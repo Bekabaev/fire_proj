@@ -17,6 +17,17 @@
 ---
 
 ## 2026-11-08 · win-pc
+**Сделано:** `presentation/presentation_final2.pptx` (34 слайда) — версия для комиссии «ИИ точнее физических моделей, гибрид = ИИ + физика».
+Основа — `presentation_final.pptx` (не изменён). Новые слайды: главный вывод (×2,7 к FBP, ×3,7 к Ротермелу на тесте, ×8 к ELMFIRE на 40 пожарах),
+метки VIIRS/MODIS/MCD64A1 (доли и веса), 28 карт U-Net, 49 чисел (FiLM), три физические модели, график «ИИ против физики» (тест + заповедники),
+ELMFIRE: F1 и площадь, ELMFIRE по часам. Изменены: титул, «Итог», нумерация подписей. Заметки докладчика у всех слайдов.
+Источники чисел: ITERATIONS.md (итог итераций 6–8, итерация 9 — Ротермел), CHECKPOINT_task2_model.md §10.8 (FBP), elmfire_bench/results.*.
+**Изменённые файлы:** `presentation/presentation_final2.pptx`, `presentation/tools/make_final2.py`, `make_final2_figs.py`, `render_pptx.ps1`,
+`presentation/final2_figs/*.png`, `AGENT_LOG.md`
+**Коммит:** «Presentation final 2 for the commission» + agent-log
+**Для другого агента:** правки делать через `make_final2.py` (пересобирает из presentation_final.pptx); перед правкой pptx — pull.
+
+## 2026-11-08 · win-pc
 **Сделано:** по просьбе laptop добавил ELMFIRE ×0,05 в интерактивную визуализацию (https://claude.ai/artifact/9rbDe5ByZmvjgt93scYPzb, версия 2):
 пунктирный фиолетовый контур на карте, строка в таблице пожара, столбец в графике F1, третья точка на графике площадей.
 **Изменённые файлы:** `elmfire_bench/export_viz.py` (6-й слой — `elmfire_adj0.05_toa.tif`), `AGENT_LOG.md`
