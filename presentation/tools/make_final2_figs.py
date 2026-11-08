@@ -141,3 +141,32 @@ fig.legend(handles=leg, loc="lower center", ncol=6, frameon=False, fontsize=12, 
 fig.subplots_adjust(left=.03, right=.995, top=.95, bottom=.13, wspace=.05, hspace=.42)
 fig.savefig(os.path.join(OUT, "elm_time.png"), dpi=170); plt.close(fig)
 print("готово:", OUT)
+
+
+# ---------- 4. один пожар, 72 ч: факт / ELMFIRE / гибрид (без текста, подписи - на слайде) ----------
+def fire_panels(case, out):
+    d = os.path.join(EB, "cases", f"case_{case:02d}")
+    t, o = np.load(os.path.join(d, "truth.npz")), np.load(os.path.join(d, "ours.npz"))
+    toa = rd(os.path.join(d, "elmfire_toa.tif")) / 3600
+    with rasterio.open(os.path.join(d, "fbfm40.tif")) as r:
+        nb = r.read(1) == 99
+    start = t["start"] > 0
+    fact = (t["Y"][3] > 0) & ~start
+    pred = {"fact": fact, "elm": (toa > 0) & (toa <= 72) & ~start, "hyb": o["hybrid_mask"][3].astype(bool) & ~start}
+    col = {"fact": "#D7263D", "elm": "#8C8377", "hyb": "#3E7CB1"}
+    fig, axs = plt.subplots(1, 3, figsize=(12, 4))
+    for ax, k in zip(axs, ("fact", "elm", "hyb")):
+        img = np.ones((96, 96, 3)) * np.array([0xFF, 0xFD, 0xF9]) / 255
+        img[nb] = np.array([0xE4, 0xDD, 0xD1]) / 255
+        img[pred[k]] = np.array(matplotlib.colors.to_rgb(col[k]))
+        img[start] = np.array([0x1B, 0x1A, 0x18]) / 255
+        ax.imshow(img, interpolation="nearest")
+        if k != "fact":
+            ax.contour(fact.astype(float), [.5], colors=C["fact"], linewidths=1.6)
+        ax.set_xticks([]); ax.set_yticks([]); [s.set_visible(False) for s in ax.spines.values()]
+    fig.subplots_adjust(left=0, right=1, top=1, bottom=0, wspace=.08)
+    fig.savefig(os.path.join(OUT, out), dpi=200, facecolor="#F7F3EC"); plt.close(fig)
+
+
+fire_panels(4, "fire_case4.png")
+print("fire_case4.png")

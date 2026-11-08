@@ -309,6 +309,107 @@ bullets(s, M, 4.75, 11.4, [
     [("Слабое место модели — крупные летние пожары: ", True, LIGHT["ink"]), ("основной прогноз занижает их рост в десятки раз (слайд 34).", False)]], th, size=13)
 N["honest"] = s
 
+
+# ======================= v3: минималистичные слайды сравнения (по скиллам pptx + dataviz) =======================
+from pptx.chart.data import CategoryChartData
+from pptx.enum.chart import XL_CHART_TYPE, XL_LEGEND_POSITION, XL_LABEL_POSITION
+
+
+def col_chart(sl, x, y, w, h, series, vmax):
+    """Нативная столбчатая диаграмма: 4 горизонта, серии [(имя, цвет, значения)], подписи значений, без сетки."""
+    cd = CategoryChartData(); cd.categories = ["12 ч", "24 ч", "48 ч", "72 ч"]
+    for name, _, vals in series:
+        cd.add_series(name, vals)
+    ch = sl.shapes.add_chart(XL_CHART_TYPE.COLUMN_CLUSTERED, Inches(x), Inches(y), Inches(w), Inches(h), cd).chart
+    ch.font.name = "Arial"; ch.font.size = Pt(13); ch.font.color.rgb = rgb(LIGHT["body"])
+    ch.has_legend = True; ch.legend.position = XL_LEGEND_POSITION.TOP; ch.legend.include_in_layout = False
+    ch.legend.font.size = Pt(13); ch.legend.font.color.rgb = rgb(LIGHT["body"])
+    va = ch.value_axis; va.maximum_scale = vmax; va.minimum_scale = 0; va.has_major_gridlines = False; va.visible = False
+    ca = ch.category_axis; ca.tick_labels.font.size = Pt(14); ca.tick_labels.font.color.rgb = rgb(LIGHT["ink"])
+    ca.format.line.color.rgb = rgb(LIGHT["line"]); ca.has_major_gridlines = False
+    plot = ch.plots[0]; plot.gap_width = 70; plot.overlap = -8
+    plot.has_data_labels = True; dl = plot.data_labels
+    dl.number_format = "0.00"; dl.number_format_is_linked = False; dl.position = XL_LABEL_POSITION.OUTSIDE_END
+    dl.font.size = Pt(12); dl.font.color.rgb = rgb(LIGHT["ink"])
+    for ser, (_, col, _) in zip(plot.series, series):
+        ser.format.fill.solid(); ser.format.fill.fore_color.rgb = rgb(col); ser.format.line.fill.background()
+    return ch
+
+
+def stat(sl, x, y, w, big, small, th=LIGHT):
+    text(sl, x, y, w, 0.95, big, size=60, bold=True, color=th["acc"], th=th)
+    text(sl, x, y + 1.05, w, 1.4, small, size=15, th=th)
+
+
+GREY_L, GREY_D, HYB = "CFC6B8", "8C8377", "C2501E"
+
+# --- гибрид против Ротермела (тест 2023–24) ---
+s = new_slide("Гибрид против модели Ротермела", "Результаты · тест 2023–2024: 8 059 ситуаций, 959 пожаров, прогноз погоды GFS; F1 по всем клеткам новой гари", LIGHT,
+              notes="Первое сравнение с физикой — модель Ротермела, классика, на которой построены FARSITE и ELMFIRE. Мы дали ей карту "
+                    "топлива со спутников и подобрали скорость на 2022 году. На всём тесте, почти тысяча пожаров, она даёт F1 от 0,03 до "
+                    "0,08, а наш гибрид — от 0,24 до 0,30. На 72 часа гибрид точнее в 3,6 раза, и это статистически надёжно.")
+col_chart(s, M - 0.1, 1.55, 8.0, 4.9, [("Ротермел", GREY_D, [0.034, 0.065, 0.080, 0.083]),
+                                     ("Гибрид ИИ + физика", HYB, [0.238, 0.239, 0.276, 0.300])], 0.34)
+stat(s, 9.2, 2.1, 3.3, "×3,6", "гибрид точнее Ротермела на 72 ч: F1 0,30 против 0,08")
+text(s, 9.2, 4.35, 3.3, 1.2, "Разница надёжна на всех горизонтах: 95 % интервалы по пожарам не пересекаются.", size=13, color=FOOT)
+N["roth"] = s
+
+# --- гибрид против ELMFIRE (40 пожаров) ---
+s = new_slide("Гибрид против симулятора ELMFIRE", "Результаты · тест: 40 пожаров 2023–2024, сетка 500 м, прогноз GFS; ×0,05 — та же поправка скорости, что у нашей физики", LIGHT,
+              notes="Второе сравнение — ELMFIRE, открытый симулятор того же класса, что моделирование fires.kz. Мы запустили его на 40 "
+                    "тестовых пожарах с теми же входами. Без настройки он выжигает почти всё окно и даёт F1 около 0,05. Честнее сравнивать "
+                    "с замедленным вариантом — с той же поправкой скорости, что у нашей физики: он попадает в масштаб, но на 72 часа "
+                    "гибрид всё равно точнее в 2,9 раза. На 12 часов разницы нет — за полсуток большинство пожаров почти не растут.")
+col_chart(s, M - 0.1, 1.55, 8.0, 4.9, [("ELMFIRE как есть", GREY_L, [0.041, 0.047, 0.062, 0.064]),
+                                     ("ELMFIRE ×0,05", GREY_D, [0.100, 0.153, 0.198, 0.189]),
+                                     ("Гибрид ИИ + физика", HYB, [0.160, 0.224, 0.360, 0.542])], 0.62)
+stat(s, 9.2, 2.1, 3.3, "×2,9", "гибрид точнее настроенного ELMFIRE на 72 ч: F1 0,54 против 0,19")
+text(s, 9.2, 4.35, 3.3, 1.2, "Без настройки ELMFIRE сжигает примерно в 20 раз больше, чем сгорело на самом деле.", size=13, color=FOOT)
+N["elm"] = s
+
+# --- один пожар: факт / ELMFIRE / гибрид ---
+s = new_slide("Один пожар за 72 часа", "Результаты · пожар 3 апреля 2023, окно 48 × 48 км; красный контур — реальная гарь, чёрное — гарь на старте", LIGHT,
+              notes="Как это выглядит на карте. Весенний пожар 3 апреля 2023 года. Слева — что реально сгорело за трое суток: 23 "
+                    "квадратных километра. В центре — ELMFIRE без настройки: полторы тысячи квадратных километров, почти всё окно. "
+                    "Справа — наш гибрид: 22 квадратных километра, и он лежит там же, где реальная гарь, F1 0,69. Физика без ИИ "
+                    "не знает, что этот пожар скоро погаснет; нейросеть знает это по тысячам похожих пожаров.")
+pic(s, "fire_case4.png", M, 1.6, w=11.56)
+for k, (name, num, sub, col) in enumerate((("Реально сгорело", "23 км²", "за 72 часа", "D7263D"),
+                                           ("ELMFIRE", "1 584 км²", "в 70 раз больше факта · F1 0,03", GREY_D),
+                                           ("Гибрид", "22 км²", "там же, где факт · F1 0,69", "3E7CB1"))):
+    x = M + k * 3.93
+    rect(s, x, 5.62, 0.18, 0.18, col)
+    text(s, x + 0.3, 5.52, 3.4, 0.4, [[(name + "  ", True, LIGHT["ink"]), (num, True, col)]], size=17, th=LIGHT)
+    text(s, x + 0.3, 5.95, 3.4, 0.35, sub, size=13, color=FOOT)
+N["fire"] = s
+
+# --- что доказано, а что нет (три карточки) ---
+s = new_slide("Что доказано, а что нет", "Результаты · интервалы 95 % — бутстрэп по пожарам; на 40 пожарах — сравнение по каждому пожару", LIGHT,
+              notes="Честно о границах результата. Доказано: на тесте из почти тысячи пожаров ИИ точнее физики на всех горизонтах, и "
+                    "на 48–72 часа гибрид точнее ELMFIRE. Не доказано: на 35 экспертных пожарах заповедников на 48–72 часа гибрид "
+                    "впереди, но пожаров мало, и интервалы перекрываются; на 12 часов против ELMFIRE разницы нет. Оговорки: спутник "
+                    "видит около половины гари, а нейросеть училась на таких же метках — это даёт ей фору; физика у нас упрощённая; "
+                    "крупные летние пожары модель пока занижает.")
+cards = (("+", "Доказано", HYB, ["тест 2023–24, 959 пожаров: ИИ точнее физики на 12–72 ч",
+                                 "40 пожаров: гибрид точнее ELMFIRE на 48–72 ч"]),
+         ("?", "Не доказано", GREY_D, ["заповедники, 35 пожаров: на 2–3 сутки разница в пределах разброса",
+                                        "ELMFIRE на 12 ч: разницы нет"]),
+         ("!", "Оговорки", LIGHT["ink"], ["спутник видит ~51 % гари — это фора ИИ на тесте",
+                                           "физика упрощённая: сетка 500 м, без суточного хода",
+                                           "крупные летние пожары модель занижает"]))
+for k, (icon, head, col, items) in enumerate(cards):
+    x = M + k * 3.93
+    rect(s, x, 1.75, 3.7, 3.95, LIGHT["card"], rounded=True, line=LIGHT["line"])
+    circ = s.shapes.add_shape(9, Inches(x + 0.3), Inches(2.05), Inches(0.62), Inches(0.62))     # 9 = овал
+    circ.fill.solid(); circ.fill.fore_color.rgb = rgb(col); circ.line.fill.background(); circ.shadow.inherit = False
+    tf = circ.text_frame; tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0
+    pp = tf.paragraphs[0]; pp.alignment = PP_ALIGN.CENTER; r = pp.add_run(); r.text = icon
+    r.font.name = "Arial"; r.font.size = Pt(24); r.font.bold = True; r.font.color.rgb = rgb("FFFFFF")
+    tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+    text(s, x + 0.3, 2.9, 3.2, 0.45, head, size=20, bold=True, color=LIGHT["ink"], th=LIGHT)
+    text(s, x + 0.3, 3.5, 3.15, 2.4, [[(it, False)] for it in items], size=14, th=LIGHT, spacing=10)
+N["honest2"] = s
+
 # ======================= правки старых слайдов =======================
 def set_text(shape, new):
     p0 = shape.text_frame.paragraphs[0]
@@ -352,12 +453,12 @@ for sh in o20.shapes:
 o = {i + 1: s for i, s in enumerate(orig)}
 order = [o[1], o[2], o[3], N["thesis"], o[4], o[5], o[6], N["labels"], o[7], N["maps"], N["scalars"], o[8], o[9],
          o[10], N["phys"], o[11], o[12], o[13], o[14], o[15], o[16], o[17], o[18],
-         N["ai_vs_phys"], o[19], o[20], o[25], N["elm_charts"], N["elm_time"], N["honest"], o[21], o[22], o[23], o[24], o[26]]
-assert len(order) == len(prs.slides) and len({id(s) for s in order}) == len(order)
+         o[19], N["roth"], N["elm"], N["fire"], N["honest2"], o[21], o[22], o[26]]
+assert len({id(s) for s in order}) == len(order)
 SHORT = "--short" in sys.argv                                     # короткая версия: 15 слайдов, только суть
 if SHORT:
     order = [o[1], o[2], N["thesis"], o[5], N["maps"], N["scalars"], o[9], o[10], N["phys"], o[17],
-             N["ai_vs_phys"], N["elm_time"], N["honest"], o[21], o[26]]
+             N["roth"], N["elm"], N["fire"], N["honest2"], o[21], o[26]]
 lst = prs.slides._sldIdLst; ids = {s.slide_id: el for s, el in zip(prs.slides, list(lst))}
 rid = {s.slide_id: el.get(qn("r:id")) for s, el in zip(prs.slides, list(lst))}
 want = [ids[s.slide_id] for s in order]
@@ -384,7 +485,7 @@ def replace_all(slide, old, new):
                 r.text = r.text.replace(old, new)
 
 
-replace_all(N["thesis"], "слайд 30", f"слайд {order.index(N['honest']) + 1}")
+replace_all(N["thesis"], "слайд 30", f"слайд {order.index(N['honest2']) + 1}")
 if o[24] in order:
     replace_all(N["honest"], "(слайд 34)", f"(слайд {order.index(o[24]) + 1})")
 else:

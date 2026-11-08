@@ -17,6 +17,17 @@
 ---
 
 ## 2026-11-08 · win-pc
+**Сделано:** `presentation_final2.pptx` почищен по замечаниям пользователя (теперь 31 слайд): убраны «ИИ против физики» (график),
+«Направление и масштаб», чёрный слайд ELMFIRE, «ELMFIRE: точность и площадь», «по часам», оба слайда fires.kz. Вместо них —
+4 минималистичных слайда по скиллам pptx + dataviz: «Гибрид против Ротермела» (нативная диаграмма, ×3,6), «Гибрид против ELMFIRE» (×2,9),
+«Один пожар за 72 часа» (факт / ELMFIRE / гибрид, `final2_figs/fire_case4.png`), «Что доказано, а что нет» (3 карточки).
+`presentation_short.pptx` пересобран с теми же слайдами (16).
+**Изменённые файлы:** `presentation/presentation_final2.pptx`, `presentation_short.pptx`, `presentation/tools/make_final2.py`, `make_final2_figs.py`,
+`presentation/final2_figs/fire_case4.png`, `AGENT_LOG.md`
+**Коммит:** «final2: minimal comparison slides» + agent-log
+**Для другого агента:** подпись внизу слайда не начинать с числа — автонумерация его заменит.
+
+## 2026-11-08 · win-pc
 **Сделано:** короткая презентация `presentation/presentation_short.pptx` (15 слайдов, только суть; `make_final2.py --short`) и
 отчёт `FireSpread_ML_Report.docx` (17 стр.) в формате `Jafar_ML_Report.docx` (его стили, поля, таблицы и подписи), простым языком:
 данные, метки, 28 карт + 49 чисел, модели, ИИ против физики (что доказано и что нет), ELMFIRE, fires.kz, ограничения.
