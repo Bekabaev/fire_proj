@@ -48,6 +48,9 @@ for r in range(n):
         if okk.any() and burn[iy_[okk], ix_[okk]].mean() >= 0.3:
             s2c[r, c] = True
 fact = s2c & ~burned
+# только наш пожар: пятна гари, которые (с допуском 3 клетки ~ 1,5 км) связаны с гарью на старте; соседний пожар на западе - убираем
+grp, _ = ndimage.label(ndimage.binary_dilation(fact | burned, iterations=3), structure=np.ones((3, 3)))
+fact = fact & np.isin(grp, np.unique(grp[burned]))
 f1 = g["f1"]; km2 = g["km2"]
 print("S2 fact km2", km2(fact), "F1 hybrid", f1(hyb[3], fact), "U-Net", f1(g["unet"][3], fact), "fires.kz", f1(g["kz_new"], fact),
       "VIIRS", f1(g["Y"][3], fact))
