@@ -16,6 +16,10 @@
 
 ---
 
+## 2026-11-08 22:20 · win-pc
+**Сделано:** rev1 по правкам пользователя. Презентация `presentation/presentation_final2_rev1.pptx` = его `presentation_final2(2)(1).pptx` + только удаление несостыковок (заметки со ссылками на удалённые слайды, «для обучения» у тестового примера, «карта топлива в разработке / точность близкая» у Ротермела, остаток подписи «Модели · 20») и новые скриншоты сайта с контуром «старт + прогноз» на слайде 25. Отчёт `FireSpread_ML_Report_rev1.docx` = его `_REV` + новый рисунок 5 и рисунок 6 (пожар 1.10.2024 на 4 горизонтах). Скриншоты пересняты headless Edge.
+**Изменённые файлы:** presentation/presentation_final2_rev1.pptx, FireSpread_ML_Report_rev1.docx, presentation/site_shots/{site_case4,crop39_*,rep_site_hz}.png
+
 ## 2026-11-08 22:10 · win-pc
 **Сделано:** сайт — пунктирный контур «общая гарь по прогнозу = старт + прогноз» (поле `total` в horizons, demo + live, легенда); сервер перезапущен, туннель тот же. Скачана правка презентации пользователя `presentation/presentation_final2(2)(1).pptx` (26 слайдов, редактировалась в Google Slides).
 **Изменённые файлы:** prod/demo.py, prod/live.py, prod/web/index.html
