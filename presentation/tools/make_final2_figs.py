@@ -170,3 +170,56 @@ def fire_panels(case, out):
 
 fire_panels(4, "fire_case4.png")
 print("fire_case4.png")
+
+
+# ---------- 5. для отчёта: те же графики, что в презентации (белый фон, подписи на рисунке) ----------
+GL, GD, HY = "#CFC6B8", "#8C8377", "#C2501E"
+
+
+def rep_bars(ax, series, ymax, title):
+    n = len(series); w = 0.8 / n
+    for j, (name, col, vals) in enumerate(series):
+        xs = np.arange(4) + (j - (n - 1) / 2) * w
+        ax.bar(xs, vals, w * 0.9, color=col, label=name, zorder=3)
+        for x, v in zip(xs, vals):
+            ax.text(x, v + ymax * 0.015, dec(v), ha="center", va="bottom", fontsize=10.5, color=INK)
+    ax.set_xticks(range(4)); ax.set_xticklabels([f"{h} ч" for h in HZ], fontsize=12, color=INK)
+    ax.set_ylim(0, ymax); ax.set_yticks([]); ax.set_facecolor("white")
+    for sname in ("top", "right", "left"):
+        ax.spines[sname].set_visible(False)
+    ax.spines["bottom"].set_color(GRID)
+    ax.set_title(title, loc="left", fontsize=13, color=INK, pad=26)
+    ax.legend(loc="upper left", bbox_to_anchor=(0, 1.08), ncol=n, frameon=False, fontsize=10.5, handlelength=1, columnspacing=1.2)
+
+
+fig, (a1, a2) = plt.subplots(1, 2, figsize=(13, 4.6), facecolor="white")
+rep_bars(a1, [("Ротермел", GD, [0.034, 0.065, 0.080, 0.083]), ("Гибрид ИИ + физика", HY, [0.238, 0.239, 0.276, 0.300])], 0.34,
+         "Тест 2023–2024 (959 пожаров): ×3,6 на 72 ч")
+rep_bars(a2, [("ELMFIRE как есть", GL, pooled["elmfire"]), ("ELMFIRE ×0,05", GD, pooled["elmfire_adj0.05"]),
+              ("Гибрид ИИ + физика", HY, pooled["hybrid"])], 0.62, "40 тестовых пожаров: ×2,9 на 72 ч")
+fig.subplots_adjust(left=.01, right=.99, top=.84, bottom=.08, wspace=.08)
+fig.savefig(os.path.join(OUT, "rep_compare.png"), dpi=200, facecolor="white"); plt.close(fig)
+
+d4 = os.path.join(EB, "cases", "case_04")
+t4, o4 = np.load(os.path.join(d4, "truth.npz")), np.load(os.path.join(d4, "ours.npz"))
+toa4 = rd(os.path.join(d4, "elmfire_toa.tif")) / 3600
+with rasterio.open(os.path.join(d4, "fbfm40.tif")) as r:
+    nb4 = r.read(1) == 99
+st4 = t4["start"] > 0; fact4 = (t4["Y"][3] > 0) & ~st4
+panels = (("Реально сгорело", "23 км² за 72 ч", fact4, "#D7263D"),
+          ("ELMFIRE", "1 584 км² · F1 0,03", (toa4 > 0) & (toa4 <= 72) & ~st4, GD),
+          ("Гибрид", "22 км² · F1 0,69", o4["hybrid_mask"][3].astype(bool) & ~st4, "#3E7CB1"))
+fig, axs = plt.subplots(1, 3, figsize=(13, 5.0), facecolor="white")
+for ax, (name, sub, m, col) in zip(axs, panels):
+    img = np.ones((96, 96, 3)) * np.array([0xFF, 0xFD, 0xF9]) / 255
+    img[nb4] = np.array([0xE4, 0xDD, 0xD1]) / 255
+    img[m] = np.array(matplotlib.colors.to_rgb(col)); img[st4] = np.array([0x1B, 0x1A, 0x18]) / 255
+    ax.imshow(img, interpolation="nearest")
+    if name != "Реально сгорело":
+        ax.contour(fact4.astype(float), [.5], colors="#D7263D", linewidths=1.5)
+    ax.set_xticks([]); ax.set_yticks([]); [sp.set_color(GRID) for sp in ax.spines.values()]
+    ax.set_title(name, loc="left", fontsize=14, fontweight="bold", color=INK)
+    ax.text(0, -0.05, sub, transform=ax.transAxes, va="top", fontsize=12.5, color=col)
+fig.subplots_adjust(left=.01, right=.99, top=.92, bottom=.09, wspace=.06)
+fig.savefig(os.path.join(OUT, "rep_fire.png"), dpi=200, facecolor="white"); plt.close(fig)
+print("rep_compare.png, rep_fire.png")
