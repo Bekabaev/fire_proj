@@ -2,11 +2,12 @@
 
   python elmfire_bench/run_elmfire.py                 все кейсы (уже посчитанные пропускаются, --force - пересчитать)
   python elmfire_bench/run_elmfire.py 4 21            только case_04 и case_21
+  python elmfire_bench/run_elmfire.py --adj=0.05      множитель скорости фронта (как k_ros нашей FBP) -> elmfire_adj0.05_toa.tif
 
 Нужны: бинарник elmfire_<версия> в PATH (или $ELMFIRE_BIN), утилиты GDAL в PATH, numpy, rasterio.
 Входы ELMFIRE собираются по образцу tutorials/02-transient-wind:
   landscape.tif - 8 слоёв Int16: dem, slp, asp, fbfm40, cc, ch, cbh, cbd (крона = 0, степь)
-  adj.tif = 1; phi.tif = 1. Начальный фронт - точечные зажигания (t = 0) во всех клетках границы стартовой гари: путь
+  adj.tif = --adj (по умолчанию 1: ELMFIRE как есть); phi.tif = 1. Начальный фронт - точечные зажигания (t = 0) во всех клетках границы стартовой гари: путь
   через phi <= 0 в ELMFIRE 1.1 помечает клетки сгоревшими, но не ставит вокруг них фронт (огонь не идёт); лимит 300 точек.
   ws/wd/m1/m10/m100/lh/lw.tif - по 73 слоя через 1 ч (0..72 ч), кусочно-постоянно: 0-12 ч из окна 12, 12-24 из 24,
   24-48 из 48, 48-72 из 72 (meta.json -> weather_windows[k].elmfire; ws - миль/ч на 20 фт, wd - откуда дует, °).
@@ -90,9 +91,9 @@ def weather_bands(meta):
     return {q: np.array([w[k][WX_KEY[q]] for k in win], np.float32) for q in WX}
 
 
-def run_case(d, force=False):
+def run_case(d, force=False, adj=1.0):
     meta = json.load(open(os.path.join(d, "meta.json"), encoding="utf-8"))
-    out_tif = os.path.join(d, "elmfire_toa.tif")
+    out_tif = os.path.join(d, "elmfire_toa.tif" if adj == 1 else f"elmfire_adj{adj:g}_toa.tif")
     if os.path.exists(out_tif) and not force:
         return "есть"
     if not all(x["ok"] for x in meta["weather_windows"]):
@@ -117,7 +118,7 @@ def run_case(d, force=False):
     slp, asp = np.clip(slp, 0, 89), np.mod(asp, 360)
     z = np.zeros_like(fb)
     write(os.path.join(run, "inputs/landscape.tif"), np.stack([dem, slp, asp, fb, z, z, z, z]), prof, "int16")
-    write(os.path.join(run, "inputs/adj.tif"), np.ones(fb.shape), prof, "float32")
+    write(os.path.join(run, "inputs/adj.tif"), np.full(fb.shape, adj), prof, "float32")
     write(os.path.join(run, "inputs/phi.tif"), np.ones(fb.shape), prof, "float32")
     for q, v in weather_bands(meta).items():
         write(os.path.join(run, f"inputs/{q}.tif"), np.broadcast_to(v[:, None, None], (len(v),) + fb.shape), prof, "float32")
@@ -147,12 +148,13 @@ def run_case(d, force=False):
 if __name__ == "__main__":
     args = [a for a in sys.argv[1:] if not a.startswith("-")]
     force = "--force" in sys.argv
+    adj = float(next((a.split("=")[1] for a in sys.argv if a.startswith("--adj=")), 1))
     dirs = sorted(glob.glob(os.path.join(HERE, "cases", "case_*")))
     if args:
         dirs = [os.path.join(HERE, "cases", f"case_{int(a):02d}") for a in args]
     skipped = []
     for d in dirs:
-        res = run_case(d, force)
+        res = run_case(d, force, adj)
         print(os.path.basename(d), res, flush=True)
         if res == "нет погоды":
             skipped.append(os.path.basename(d))

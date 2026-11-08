@@ -5,7 +5,7 @@
 Модели:
   hybrid  - наш прод-гибрид (ours.npz: hybrid_mask)
   fbp     - наша физика FBP (ours.npz: fbp_arrival_h <= H)
-  elmfire - ELMFIRE: case_XX/elmfire_toa.tif = время прихода огня в СЕКУНДАХ от t0 на сетке кейса (96 x 96, 500 м);
+  elmfire - ELMFIRE: case_XX/elmfire_toa.tif (elmfire_adj<k>_toa.tif -> модель elmfire_adj<k>, скорость × k) = время прихода огня в СЕКУНДАХ от t0 на сетке кейса (96 x 96, 500 м);
             не сгорело / нет данных -> <= 0 или nodata. Нет файла -> кейс пропускается для ELMFIRE.
 Цель: новая гарь за 12/24/48/72 ч (без стартовой); на 12 ч ячейки с меткой только по дате MCD64A1 (lsrc 4) не считаются.
 Метрики: F1 по всем кейсам вместе (суммы TP/FP/FN, как pooled_F1 сайта), медиана F1 по кейсам, F1 с допуском 1 км
@@ -45,14 +45,13 @@ def models(d, start):
     o = np.load(os.path.join(d, "ours.npz"))
     out = {"hybrid": [o["hybrid_mask"][k] & ~start for k in range(4)],
            "fbp": [(o["fbp_arrival_h"] <= h) & ~start for h in HZ]}
-    f = os.path.join(d, "elmfire_toa.tif")
-    if os.path.exists(f):
+    for f in sorted(glob.glob(os.path.join(d, "elmfire*_toa.tif")), key=len):                # сначала ELMFIRE как есть
         with rasterio.open(f) as r:
             toa = r.read(1).astype(np.float64); nod = r.nodata
         if nod is not None:
             toa[toa == nod] = -1
         burned = np.isfinite(toa) & (toa > 0)
-        out["elmfire"] = [burned & (toa <= h * 3600) & ~start for h in HZ]
+        out[os.path.basename(f)[:-8]] = [burned & (toa <= h * 3600) & ~start for h in HZ]
     return out
 
 
@@ -69,7 +68,7 @@ for d in sorted(glob.glob(os.path.join(HERE, "cases", "case_*"))):
 
 with open(os.path.join(HERE, "results.csv"), "w", newline="", encoding="utf-8") as f:
     w = csv.DictWriter(f, fieldnames=list(rows[0])); w.writeheader(); w.writerows(rows)
-names = [m for m in ("hybrid", "fbp", "elmfire") if (m, 12) in pooled]
+names = list(dict.fromkeys(m for m, _ in pooled))
 n_cases = {m: len({r["case"] for r in rows if r["model"] == m}) for m in names}
 lines = ["| Модель | Кейсов | Горизонт | F1 (все вместе) | F1 медиана | F1 с допуском 1 км | Площадь прогноз / факт |", "|---|---|---|---|---|---|---|"]
 for m in names:
