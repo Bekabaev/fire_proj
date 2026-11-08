@@ -23,9 +23,14 @@ live.SOURCES = ("VIIRS_SNPP_NRT", "VIIRS_NOAA20_NRT", "VIIRS_NOAA21_NRT")
 from prod.engine import FireEngine
 from prod.config import CELL, CRS, X0, Y1, HZ
 
-D = os.path.join(ROOT, "presentation", "fireskz_0907")
-DATE, NEAR = "2026-09-07", (49.1146, 74.8734)
-Z, CLAT, CLON, SC, CX, CY, MW, MH = 12, 49.1142, 74.82312, 0.595, 630, 392, 1260, 625
+# пожары: дата нашего прогноза (23:00 UTC), точка пожара, центр вида скриншота fires.kz (z = 12), заплатка курсора
+FIRES = {"0907": ("2026-09-07", (49.1146, 74.8734), (49.1142, 74.82312), True),
+         "0906": ("2026-09-06", (50.2310, 64.3802), (50.2015, 64.3851), False),
+         "0919": ("2026-09-19", (47.0852, 79.2253), None, False)}
+FIRE = os.environ.get("FIRE", "0907")
+DATE, NEAR, (CLAT, CLON), CURSOR = FIRES[FIRE]
+D = os.path.join(ROOT, "presentation", f"fireskz_{FIRE}")
+Z, SC, CX, CY, MW, MH = 12, 0.595, 630, 392, 1260, 625
 RED, BLUE, OVER, ASH = "#e4572e", "#2e86ab", "#b07566", "#3a3a3a"
 
 
@@ -82,7 +87,8 @@ def cell_poly(r, c):
 # ---------- маска fires.kz на нашей сетке: разница скриншотов со слоем и без ----------
 A = np.asarray(Image.open(os.path.join(D, "kz_model.jpg")).convert("RGB")).astype(int)[:MH, :MW]
 B = np.asarray(Image.open(os.path.join(D, "kz_plain.jpg")).convert("RGB")).astype(int)[:MH, :MW]
-A[340:380, 565:595] = A[340:380, 525:555]; B[340:380, 565:595] = B[340:380, 525:555]   # курсор мыши на скриншоте - заплатка
+if CURSOR:
+    A[340:380, 565:595] = A[340:380, 525:555]; B[340:380, 565:595] = B[340:380, 525:555]   # курсор мыши на скриншоте - заплатка
 A = A.astype(np.uint8); B = B.astype(np.uint8)
 lay = np.abs(A.astype(int) - B.astype(int)).sum(2) > 60
 from scipy import ndimage
