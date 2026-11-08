@@ -26,7 +26,7 @@ from prod.config import CELL, CRS, X0, Y1, HZ
 # пожары: дата нашего прогноза (23:00 UTC), точка пожара, центр вида скриншота fires.kz (z = 12), заплатка курсора
 FIRES = {"0907": ("2026-09-07", (49.1146, 74.8734), (49.1142, 74.82312), True),
          "0906": ("2026-09-06", (50.2310, 64.3802), (50.2015, 64.3851), False),
-         "0919": ("2026-09-19", (47.0852, 79.2253), None, False)}
+         "0919": ("2026-09-19", (47.0852, 79.2253), (47.02797, 79.23055), False)}
 FIRE = os.environ.get("FIRE", "0907")
 DATE, NEAR, (CLAT, CLON), CURSOR = FIRES[FIRE]
 D = os.path.join(ROOT, "presentation", f"fireskz_{FIRE}")
@@ -94,6 +94,9 @@ lay = np.abs(A.astype(int) - B.astype(int)).sum(2) > 60
 from scipy import ndimage
 lay = ndimage.binary_closing(ndimage.binary_opening(lay, iterations=1), iterations=3)
 lay = ndimage.binary_fill_holes(lay)
+_lb, _k = ndimage.label(lay)                                          # только самое большое пятно: слой моделирования
+if _k > 1:
+    lay = _lb == 1 + int(np.argmax(ndimage.sum(lay, _lb, range(1, _k + 1))))
 px_km2 = (156543.03 * math.cos(math.radians(CLAT)) / 2 ** Z / SC / 1000) ** 2
 kz = np.zeros((n, n), bool)
 for r in range(n):
