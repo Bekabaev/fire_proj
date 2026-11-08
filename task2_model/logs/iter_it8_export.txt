@@ -1,0 +1,2 @@
+active levels {'12h': 25, '24h': 17, '48h': 20, '72h': 24} share of val slices active 24h 0.313
+iter levels [35, 31, 26, 27]

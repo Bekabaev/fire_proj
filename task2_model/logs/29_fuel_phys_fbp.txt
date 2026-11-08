@@ -1,0 +1,8 @@
+fbp k 0.01: val F1 [np.float64(0.011), np.float64(0.026), np.float64(0.052), np.float64(0.071)] area [np.float64(0.11), np.float64(0.25), np.float64(0.47), np.float64(0.65)]
+fbp k 0.018: val F1 [np.float64(0.028), np.float64(0.061), np.float64(0.083), np.float64(0.102)] area [np.float64(0.44), np.float64(0.82), np.float64(1.09), np.float64(1.43)]
+fbp k 0.03: val F1 [np.float64(0.053), np.float64(0.079), np.float64(0.102), np.float64(0.117)] area [np.float64(1.25), np.float64(1.7), np.float64(2.16), np.float64(2.78)]
+fbp k 0.05: val F1 [np.float64(0.061), np.float64(0.084), np.float64(0.104), np.float64(0.107)] area [np.float64(2.77), np.float64(3.37), np.float64(4.17), np.float64(5.49)]
+fbp k 0.08: val F1 [np.float64(0.061), np.float64(0.08), np.float64(0.089), np.float64(0.086)] area [np.float64(5.27), np.float64(6.17), np.float64(7.79), np.float64(10.45)]
+fbp best k 0.05
+fbp test gfsa F1 [np.float64(0.049), np.float64(0.081), np.float64(0.102), np.float64(0.104)] tol1 [np.float64(0.092), np.float64(0.153), np.float64(0.187), np.float64(0.188)] area [np.float64(2.48), np.float64(2.86), np.float64(3.9), np.float64(4.92)]
+fbp reserves era5 F1 [np.float64(0.106), np.float64(0.224), np.float64(0.26), np.float64(0.273)] tol1 [np.float64(0.151), np.float64(0.292), np.float64(0.314), np.float64(0.32)] area [np.float64(1.7), np.float64(1.9), np.float64(2.46), np.float64(2.78)]

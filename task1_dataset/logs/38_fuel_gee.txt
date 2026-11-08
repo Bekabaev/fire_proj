@@ -1,0 +1,21 @@
+C:\Users\Ionos Tech\Desktop\burned_area\.venv\Lib\site-packages\ee\deprecation.py:215: DeprecationWarning: 
+
+Attention required for COPERNICUS/DEM/GLO30! You are using a deprecated asset.
+To make sure your code keeps working, please update it.
+This dataset has been superseded by COPERNICUS/DEM/GLO30_2024_1
+
+Learn more: https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_DEM_GLO30
+
+  warnings.warn(warning, category=DeprecationWarning)
+C:\Users\Ionos Tech\Desktop\burned_area\.venv\Lib\site-packages\ee\deprecation.py:215: DeprecationWarning: 
+
+Attention required for UMD/hansen/global_forest_change_2023_v1_11! You are using a deprecated asset.
+To make sure your code keeps working, please update it.
+This dataset has been superseded by UMD/hansen/global_forest_change_2025_v1_13
+
+Learn more: https://developers.google.com/earth-engine/datasets/catalog/UMD_hansen_global_forest_change_2023_v1_11
+
+  warnings.warn(warning, category=DeprecationWarning)
+тайлов: 346
+[1/346] r0 c4000 0.5 мин
+[2/346] r0 c4200 1.0 мин

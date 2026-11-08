@@ -1,0 +1,17 @@
+<section id="unet-output" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Что выдаёт U-Net: вероятность сгореть</h2>
+<div style="display:flex;gap:64px;align-items:flex-start">
+<img src="/_blob/95082a4087fd5ac8a62664dee065fb81" alt="Карта вероятности U-Net на 72 часа: синее пятно к западу от гари, линия 50 процентов, красный пунктир — реальная гарь" style="width:600px;height:600px;object-fit:contain;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:16px">
+<div style="flex:1;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:32px;font-weight:600">Карта вероятностей</h3><p style="font-size:26px;line-height:1.4;color:#4F4A43">для каждой клетки — шанс сгореть за 72 ч. Тёмно-синее — почти наверняка, чёрная линия — 50 %. Красный пунктир — что сгорело на деле.</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:32px;font-weight:600">Сильная сторона</h3><p style="font-size:26px;line-height:1.4;color:#4F4A43">знает по тысячам пожаров, где и сколько обычно догорает рядом с такой гарью и в такую погоду</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:32px;font-weight:600">Слабая сторона</h3><p style="font-size:26px;line-height:1.4;color:#4F4A43">осторожна с площадью и слабо слушает ветер: на всём тесте лишь 26 % её прогнозов роста идут по ветру</p></div>
+<div style="display:flex;gap:40px;border-top:6px solid #2E86AB;padding:24px 0 0 0">
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1;color:#2E86AB">15,3 км²</p><p style="font-size:24px;color:#4F4A43">за 72 ч при пороге 50 % (на деле 22,8)</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1;color:#2E86AB">0,64</p><p style="font-size:24px;color:#4F4A43">F1 на 72 ч</p></div>
+</div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Модели · 15 · ансамбль 4 U-Net, тот же пожар 3 апреля 2023</p>
+<aside>А это результат нейросети на том же пожаре. Она выдаёт не время, а вероятность: для каждой клетки — шанс сгореть за 72 часа. Тёмно-синее — почти наверняка, линия — 50 процентов, красный пунктир — что сгорело на деле. Пятно в правильном месте, и F1 0,64 — выше, чем у физики. Сила нейросети в том, что она по тысячам пожаров знает, где и сколько обычно догорает. Но она осторожна: при пороге 50 процентов даёт 15 квадратных километров вместо 23, и плохо слушает ветер — на всём тесте лишь четверть её прогнозов роста идёт по ветру.</aside>
+</section>

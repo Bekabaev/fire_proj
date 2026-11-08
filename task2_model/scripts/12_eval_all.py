@@ -14,12 +14,13 @@ from common_v3 import *
 from common_solver import SolverNet
 
 dev = "cuda" if torch.cuda.is_available() else "cpu"
+SUF = os.environ.get("OUTSUF", "_img" if LAB else "")                                   # LABELS=img - оценка на метках v4, отдельные файлы
 ST = {t: np.ones((2 * t + 1,) * 2, bool) for t in (1, 2)}
 
 
 def load_part(part):
     si = pd.read_csv(os.path.join(CACHE, f"{part}_idx.csv"), low_memory=False)
-    return si, *(np.load(os.path.join(CACHE, f"{part}_{k}.npy"), mmap_mode="r") for k in "MYL")
+    return si, *(np.load(os.path.join(CACHE, f"{part}_{k}{LAB if k != 'M' and os.path.exists(os.path.join(CACHE, f'{part}_{k}{LAB}.npy')) else ''}.npy"), mmap_mode="r") for k in "MYL")
 
 
 def load_model(run):
@@ -44,7 +45,7 @@ def predict(model, M, Z, bs=48):
 def eval_mask(Y, L, h):
     m = L != INVALID
     if h == 0:
-        m = m & ~((Y[:, 0] > 0) & (L == 4))
+        m = m & ~((Y[:, 0] > 0) & ((L == 4) | (L == 7)))
     return m
 
 
@@ -95,9 +96,10 @@ def score(P, Y, L, si, cal, ib_maps):
 if __name__ == "__main__":
     stats = json.load(open(os.path.join(OUT, "weather_stats.json")))
     parts = {p: load_part(p) for p in ("val", "test", "reserves")}
-    runs = [r for r in ("nowx", "wx", "wxbig", "snowx", "swx", "swxh", "swx_res") if os.path.exists(os.path.join(OUT, f"{r}_best.pt"))]
+    runs = [r for r in os.environ.get("RUNS", "nowx,wx,wxbig,snowx,swx,swxh,swx_res").split(",") if os.path.exists(os.path.join(OUT, f"{r}_best.pt"))]
     rows, rels = [], []; rng = np.random.default_rng(0)
-    KEEP = {}; ENS = [("wx_gfsa", "swx_gfsa"), ("wx_era5", "swx_era5"), ("wxbig_gfsa", "swx_gfsa"), ("wx_gfsa", "swxh_gfsa"), ("wx_era5", "swxh_era5")]
+    KEEP = {}; ENS = [("wx_gfsa", "swx_gfsa"), ("wx_era5", "swx_era5"), ("wxbig_gfsa", "swx_gfsa"), ("wx_gfsa", "swxh_gfsa"), ("wx_era5", "swxh_era5"),
+           ("wximg_gfsa", "swxhimg_gfsa"), ("wximg_era5", "swxhimg_era5")]
     need = {n for e in ENS for n in e}
 
     def evaluate(name, Pv, get_part):
@@ -119,7 +121,7 @@ if __name__ == "__main__":
                         rels.append(dict(model=name, part=part, horizon_h=HZ[h], bin=b, n=int(rel[h, 0, b]),
                                          p=rel[h, 1, b] / rel[h, 0, b], obs=rel[h, 2, b] / rel[h, 0, b]))
             print(f"  {part:8s} " + " ".join(f"{r['horizon_h']}h {r['F1']:.3f}/{r['F1_tol1']:.3f} BSS {r['BSS']:.3f}" for r in rr), flush=True)
-        pd.DataFrame(rows).round(4).to_csv(os.path.join(OUT, "eval_all.csv"), index=False)
+        pd.DataFrame(rows).round(4).to_csv(os.path.join(OUT, f"eval_all{SUF}.csv"), index=False)
 
     for run in runs:
         model, ck = load_model(run)
@@ -133,7 +135,7 @@ if __name__ == "__main__":
                 KEEP[(name, "val")] = Pv
 
             def get_part(part, name=name, model=model, Zs=Zs, run=run):
-                f = os.path.join(OUT, f"probs_{name}_{part}.npy")
+                f = os.path.join(OUT, f"probs_{name}_{part}{SUF}.npy")
                 P = predict(model, parts[part][1], Zs[part])        # всегда из текущего чекпойнта - калибровка и тест от одной модели
                 np.save(f, P); return P
             evaluate(name, Pv, get_part)
@@ -141,7 +143,7 @@ if __name__ == "__main__":
         if (a, "val") in KEEP and (b, "val") in KEEP:
             mix = lambda part: ((KEEP[(a, part)].astype(np.uint16) + KEEP[(b, part)]) // 2).astype(np.uint8)
             evaluate(f"ens[{a}+{b}]", mix("val"), mix)
-    pd.DataFrame(rels).round(4).to_csv(os.path.join(OUT, "eval_reliability.csv"), index=False)
+    pd.DataFrame(rels).round(4).to_csv(os.path.join(OUT, f"eval_reliability{SUF}.csv"), index=False)
     t = pd.DataFrame(rows)
     pd.set_option("display.width", 250)
     print(t.pivot_table(index=["part", "model"], columns="horizon_h", values=["F1", "F1_tol1", "BSS", "ECE_p05"]).round(3).to_string())

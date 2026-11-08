@@ -1,0 +1,33 @@
+== it6_train 05:29
+ok it6_train 05:58
+== it6_pred 05:58
+ok it6_pred 06:00
+== it7_train 06:00
+--- restart 06:26
+skip it6_train
+skip it6_pred
+== it7_train 06:26
+FAIL it7_train
+== it7_pred 06:27
+FAIL it7_train
+FAIL it7_pred
+== it8_train 06:27
+== it7_pred 06:27
+--- restart2 06:27
+skip it6_train
+skip it6_pred
+== it7_train 06:27
+ok it7_pred 06:29
+== it8_train 06:29
+--- restart3 clean 06:31
+skip it6_train
+skip it6_pred
+== it7_train 06:31
+ok it7_train 06:41
+== it7_pred 06:41
+ok it7_pred 06:42
+== it8_train 06:42
+ok it8_train 07:12
+== it8_pred 07:12
+ok it8_pred 07:13
+all done 07:13

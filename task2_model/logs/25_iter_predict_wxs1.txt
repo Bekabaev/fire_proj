@@ -1,0 +1,5 @@
+saved C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task2_model\out_v3\probs_wxs1_tta_gfsa_val.npy
+saved C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task2_model\out_v3\probs_wxs1_tta_gfsa_test.npy
+saved C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task2_model\out_v3\probs_wxs1_tta_era5_reserves.npy
+saved C:\Users\Ionos Tech\Desktop\burned_area\project_till_nov\task2_model\out_v3\probs_wxs1_tta_era5_val.npy
+done

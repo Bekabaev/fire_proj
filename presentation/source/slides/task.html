@@ -1,0 +1,28 @@
+<section id="task" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Задача: какие клетки сгорят дальше</h2>
+<div style="display:flex;gap:40px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:44px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#C2501E">Вход · момент t</p>
+<ul style="font-size:30px;line-height:1.5;color:#4F4A43">
+<li>что уже сгорело</li>
+<li>термоточки спутников</li>
+<li>растительность, рельеф, прошлые гари</li>
+<li>прогноз погоды на 3 суток</li>
+</ul>
+</div>
+<x-shape kind="arrow-right" style="width:96px;height:56px;background:#E2622B;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:44px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#C2501E">Выход · карта</p>
+<p style="font-size:30px;line-height:1.5;color:#4F4A43">Вероятность сгореть для каждой клетки 500 × 500 м в окне 48 × 48 км</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<p style="font-size:28px;font-weight:600;background:#F9E3D4;color:#8A3410;padding:8px 20px;border-radius:999px">12 ч</p>
+<p style="font-size:28px;font-weight:600;background:#F9E3D4;color:#8A3410;padding:8px 20px;border-radius:999px">24 ч</p>
+<p style="font-size:28px;font-weight:600;background:#F9E3D4;color:#8A3410;padding:8px 20px;border-radius:999px">48 ч</p>
+<p style="font-size:28px;font-weight:600;background:#F9E3D4;color:#8A3410;padding:8px 20px;border-radius:999px">72 ч</p>
+</div>
+</div>
+</div>
+<p style="font-size:30px;line-height:1.45;color:#4F4A43;width:1500px">Для сайта два режима: <b>прогноз реального пожара</b> и <b>симуляция «что если»</b> от точки возгорания.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Введение · 2</p>
+<aside>Модель отвечает на один вопрос: пожар сейчас выглядит так, какие клетки сгорят за следующие 12, 24, 48 и 72 часа. На вход: что уже сгорело, термоточки спутников, растительность, рельеф, прошлые гари и прогноз погоды. На выходе карта вероятностей с клеткой 500 метров. Горизонты вложенные: что сгорит за 12 часов, сгорит и за 24. На сайте два режима: прогноз реального пожара и симуляция от точки.</aside>
+</section>

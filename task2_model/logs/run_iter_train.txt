@@ -1,0 +1,7 @@
+=== train wxs1 23:48
+ok wxs1 00:31
+=== train wxs2 00:31
+ok wxs2 01:15
+=== train wxphys 01:23
+ok wxphys 01:56
+train queue done 01:56

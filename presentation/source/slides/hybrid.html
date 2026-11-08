@@ -1,0 +1,26 @@
+<section id="hybrid" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Гибрид: нейросеть + физика в каждой клетке</h2>
+<div style="display:flex;align-items:center;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:36px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#2F5F80">U-Net</p>
+<p style="font-size:30px;line-height:1.4">вероятность по данным</p>
+</div>
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;color:#C2501E">+</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:36px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#2F5F80">Физика</p>
+<p style="font-size:30px;line-height:1.4">когда дойдёт огонь</p>
+</div>
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;color:#C2501E">=</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#1B1A18;border-radius:20px;padding:36px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#F2A541">Прогноз</p>
+<p style="font-size:30px;line-height:1.4;color:#F5F0E8">вероятность сгореть</p>
+</div>
+</div>
+<p style="font-size:34px;line-height:1.5;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:16px;padding:28px 40px;font-family:'IBM Plex Sans', Arial, sans-serif">logit p = a · logit(p U-Net) + b · log(T / h) + c · [T недостижимо] + d · log(T / h) · ветер + e</p>
+<ul style="font-size:28px;line-height:1.55;color:#4F4A43;width:1600px">
+<li>T — время прихода огня по физике, h — горизонт; веса a…e подобраны логистической регрессией на 2022 году.</li>
+<li>Затем калибровка: вероятность 30 % значит «сгорает 3 клетки из 10».</li>
+</ul>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Модели · 16</p>
+<aside>Гибрид устроен просто. В каждой клетке есть две подсказки: вероятность от нейросети и время, когда до клетки дойдёт огонь по физике. Логистическая регрессия объединяет их: чем раньше физика приводит огонь в клетку относительно горизонта, тем выше вероятность, а нейросеть поправляет по данным. Отдельный член учитывает ветер. Веса подобраны на 2022 году, затем вероятности откалиброваны, чтобы 30 процентов действительно означало 3 сгоревшие клетки из 10.</aside>
+</section>

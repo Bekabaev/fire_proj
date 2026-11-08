@@ -1,0 +1,7 @@
+=== it0_eval 23:46 : ITER=0 NAME=base UNET=wx HEAD=unet,hybrid ../../.venv/Scripts/python.exe -X utf8 -W ignore scripts/26_iter_eval.py
+ok it0_eval 23:50
+=== it1_pred 23:50 : RUNS=wx VAL_ERA5=1 ../../.venv/Scripts/python.exe -X utf8 -W ignore scripts/25_iter_predict.py
+ok it1_pred 23:52
+=== it1_eval 23:52 : ITER=1 NAME=tta UNET=wx_tta HEAD=unet,hybrid ../../.venv/Scripts/python.exe -X utf8 -W ignore scripts/26_iter_eval.py
+ok it1_eval 23:57
+all done 23:57

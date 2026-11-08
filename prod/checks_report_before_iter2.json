@@ -1,0 +1,123 @@
+{
+ "variant": "iter",
+ "ignition_wind8": [
+  {
+   "mode": "active",
+   "h": 12,
+   "area_med": 17.875,
+   "grows": 0.962,
+   "cos": 0.99,
+   "downwind": 0.95,
+   "cos_unet": NaN
+  },
+  {
+   "mode": "active",
+   "h": 24,
+   "area_med": 25.25,
+   "grows": 0.975,
+   "cos": 0.993,
+   "downwind": 0.969,
+   "cos_unet": NaN
+  },
+  {
+   "mode": "active",
+   "h": 48,
+   "area_med": 35.625,
+   "grows": 0.975,
+   "cos": 0.997,
+   "downwind": 0.975,
+   "cos_unet": NaN
+  },
+  {
+   "mode": "active",
+   "h": 72,
+   "area_med": 50.75,
+   "grows": 0.981,
+   "cos": 0.998,
+   "downwind": 0.981,
+   "cos_unet": NaN
+  },
+  {
+   "mode": "expected",
+   "h": 12,
+   "area_med": 1.25,
+   "grows": 0.938,
+   "cos": 0.96,
+   "downwind": 0.919,
+   "cos_unet": 0.01
+  },
+  {
+   "mode": "expected",
+   "h": 24,
+   "area_med": 1.25,
+   "grows": 0.956,
+   "cos": 0.966,
+   "downwind": 0.931,
+   "cos_unet": 0.149
+  },
+  {
+   "mode": "expected",
+   "h": 48,
+   "area_med": 1.5,
+   "grows": 0.956,
+   "cos": 0.965,
+   "downwind": 0.938,
+   "cos_unet": 0.122
+  },
+  {
+   "mode": "expected",
+   "h": 72,
+   "area_med": 1.5,
+   "grows": 0.962,
+   "cos": 0.964,
+   "downwind": 0.944,
+   "cos_unet": 0.133
+  }
+ ],
+ "wind_speed": [
+  {
+   "ws": 0.0,
+   "area72": 25.75,
+   "area24": 12.0,
+   "cos72": -0.351
+  },
+  {
+   "ws": 3.0,
+   "area72": 23.625,
+   "area24": 12.5,
+   "cos72": 0.999
+  },
+  {
+   "ws": 6.0,
+   "area72": 33.75,
+   "area24": 17.375,
+   "cos72": 1.0
+  },
+  {
+   "ws": 10.0,
+   "area72": 55.75,
+   "area24": 31.375,
+   "cos72": 1.0
+  }
+ ],
+ "nonburnable_burnt_share": 0.0,
+ "test400_F1_engine": {
+  "12h": 0.21,
+  "24h": 0.183,
+  "48h": 0.313,
+  "72h": 0.297
+ },
+ "test400_F1_offline": {
+  "12h": 0.21,
+  "24h": 0.184,
+  "48h": 0.313,
+  "72h": 0.297
+ },
+ "test400_F1_engine_active_on_growing": {
+  "12h": 0.082,
+  "24h": 0.112,
+  "48h": 0.168,
+  "72h": 0.162
+ },
+ "sec": 1331.4
+}

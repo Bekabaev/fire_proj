@@ -1,0 +1,255 @@
+fires: 5024 (test 267, val 270)
+C:\Users\Ionos Tech\Desktop\burned_area\.venv\Lib\site-packages\rasterio\warp.py:390: NotGeoreferencedWarning: Dataset has no geotransform, gcps, or rpcs. The identity matrix will be returned.
+  dest = _reproject(
+fires: 5024 (test 267, val 270)
+20 fires, 7 min, last {'fire_id': 202319243, 'status': 'ok', 'n_pre': 56, 'n_post': 11, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2023), 'split': 'test'}
+40 fires, 7 min, last {'fire_id': 202319285, 'status': 'ok', 'n_pre': 21, 'n_post': 9, 'snapshots': 3, 'reliable': 0, 'year': np.int64(2023), 'split': 'test'}
+60 fires, 8 min, last {'fire_id': 202319368, 'status': 'ok', 'n_pre': 9, 'n_post': 12, 'snapshots': 7, 'reliable': 0, 'year': np.int64(2023), 'split': 'test'}
+80 fires, 9 min, last {'fire_id': 202319292, 'status': 'ok', 'n_pre': 9, 'n_post': 8, 'snapshots': 4, 'reliable': 0, 'year': np.int64(2023), 'split': 'test'}
+100 fires, 11 min, last {'fire_id': 202319307, 'status': 'ok', 'n_pre': 12, 'n_post': 7, 'snapshots': 4, 'reliable': 3, 'year': np.int64(2023), 'split': 'test'}
+120 fires, 12 min, last {'fire_id': 202319446, 'status': 'ok', 'n_pre': 9, 'n_post': 11, 'snapshots': 4, 'reliable': 0, 'year': np.int64(2023), 'split': 'test'}
+140 fires, 13 min, last {'fire_id': 202319424, 'status': 'ok', 'n_pre': 19, 'n_post': 8, 'snapshots': 4, 'reliable': 2, 'year': np.int64(2023), 'split': 'test'}
+160 fires, 15 min, last {'fire_id': 202319511, 'status': 'ok', 'n_pre': 16, 'n_post': 25, 'snapshots': 0, 'reliable': 0, 'year': np.int64(2023), 'split': 'test'}
+180 fires, 17 min, last {'fire_id': 202419915, 'status': 'ok', 'n_pre': 12, 'n_post': 1, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2024), 'split': 'test'}
+200 fires, 17 min, last {'fire_id': 202419933, 'status': 'ok', 'n_pre': 8, 'n_post': 5, 'snapshots': 4, 'reliable': 0, 'year': np.int64(2024), 'split': 'test'}
+220 fires, 19 min, last {'fire_id': 202420006, 'status': 'ok', 'n_pre': 52, 'n_post': 23, 'snapshots': 7, 'reliable': 0, 'year': np.int64(2024), 'split': 'test'}
+240 fires, 19 min, last {'fire_id': 202420023, 'status': 'ok', 'n_pre': 9, 'n_post': 3, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2024), 'split': 'test'}
+260 fires, 23 min, last {'fire_id': 202218212, 'status': 'ok', 'n_pre': 49, 'n_post': 43, 'snapshots': 4, 'reliable': 2, 'year': np.int64(2022), 'split': 'val'}
+280 fires, 27 min, last {'fire_id': 202218233, 'status': 'ok', 'n_pre': 43, 'n_post': 8, 'snapshots': 4, 'reliable': 4, 'year': np.int64(2022), 'split': 'val'}
+300 fires, 27 min, last {'fire_id': 202218248, 'status': 'ok', 'n_pre': 24, 'n_post': 12, 'snapshots': 4, 'reliable': 3, 'year': np.int64(2022), 'split': 'val'}
+320 fires, 27 min, last {'fire_id': 202218264, 'status': 'ok', 'n_pre': 24, 'n_post': 10, 'snapshots': 2, 'reliable': 2, 'year': np.int64(2022), 'split': 'val'}
+340 fires, 30 min, last {'fire_id': 202218340, 'status': 'ok', 'n_pre': 14, 'n_post': 31, 'snapshots': 7, 'reliable': 0, 'year': np.int64(2022), 'split': 'val'}
+360 fires, 30 min, last {'fire_id': 202218284, 'status': 'ok', 'n_pre': 21, 'n_post': 4, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2022), 'split': 'val'}
+380 fires, 31 min, last {'fire_id': 202218317, 'status': 'ok', 'n_pre': 21, 'n_post': 7, 'snapshots': 3, 'reliable': 0, 'year': np.int64(2022), 'split': 'val'}
+400 fires, 32 min, last {'fire_id': 202218336, 'status': 'ok', 'n_pre': 48, 'n_post': 12, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2022), 'split': 'val'}
+420 fires, 33 min, last {'fire_id': 202218349, 'status': 'ok', 'n_pre': 24, 'n_post': 20, 'snapshots': 5, 'reliable': 4, 'year': np.int64(2022), 'split': 'val'}
+440 fires, 33 min, last {'fire_id': 202218422, 'status': 'ok', 'n_pre': 18, 'n_post': 7, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2022), 'split': 'val'}
+460 fires, 35 min, last {'fire_id': 202218393, 'status': 'ok', 'n_pre': 6, 'n_post': 3, 'snapshots': 0, 'reliable': 0, 'year': np.int64(2022), 'split': 'val'}
+480 fires, 35 min, last {'fire_id': 202218410, 'status': 'ok', 'n_pre': 16, 'n_post': 2, 'snapshots': 1, 'reliable': 1, 'year': np.int64(2022), 'split': 'val'}
+500 fires, 36 min, last {'fire_id': 202218434, 'status': 'ok', 'n_pre': 23, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2022), 'split': 'val'}
+520 fires, 37 min, last {'fire_id': 202218447, 'status': 'ok', 'n_pre': 8, 'n_post': 5, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2022), 'split': 'val'}
+540 fires, 38 min, last {'fire_id': 201303178, 'status': 'ok', 'n_pre': 2, 'n_post': 2, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2013), 'split': 'train'}
+560 fires, 38 min, last {'fire_id': 201303193, 'status': 'ok', 'n_pre': 6, 'n_post': 3, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2013), 'split': 'train'}
+580 fires, 38 min, last {'fire_id': 201303229, 'status': 'ok', 'n_pre': 3, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2013), 'split': 'train'}
+600 fires, 38 min, last {'fire_id': 201303291, 'status': 'no scenes', 'n_pre': 8, 'year': np.int64(2013), 'split': 'train'}
+620 fires, 39 min, last {'fire_id': 201303255, 'status': 'no pre', 'n_post': 1, 'year': np.int64(2013), 'split': 'train'}
+640 fires, 39 min, last {'fire_id': 201303262, 'status': 'ok', 'n_pre': 5, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2013), 'split': 'train'}
+660 fires, 39 min, last {'fire_id': 201303286, 'status': 'ok', 'n_pre': 6, 'n_post': 3, 'snapshots': 2, 'reliable': 2, 'year': np.int64(2013), 'split': 'train'}
+680 fires, 39 min, last {'fire_id': 201303349, 'status': 'no scenes', 'n_pre': 0, 'year': np.int64(2013), 'split': 'train'}
+700 fires, 39 min, last {'fire_id': 201303359, 'status': 'ok', 'n_pre': 2, 'n_post': 1, 'snapshots': 1, 'reliable': 1, 'year': np.int64(2013), 'split': 'train'}
+720 fires, 40 min, last {'fire_id': 201303371, 'status': 'no scenes', 'n_pre': 0, 'year': np.int64(2013), 'split': 'train'}
+740 fires, 57 min, last {'fire_id': 201404064, 'status': 'ok', 'n_pre': 8, 'n_post': 4, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2014), 'split': 'train'}
+760 fires, 57 min, last {'fire_id': 201404085, 'status': 'no scenes', 'n_pre': 4, 'year': np.int64(2014), 'split': 'train'}
+780 fires, 57 min, last {'fire_id': 201404106, 'status': 'ok', 'n_pre': 2, 'n_post': 1, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2014), 'split': 'train'}
+800 fires, 57 min, last {'fire_id': 201404157, 'status': 'no pre', 'n_post': 3, 'year': np.int64(2014), 'split': 'train'}
+820 fires, 57 min, last {'fire_id': 201404135, 'status': 'ok', 'n_pre': 4, 'n_post': 2, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2014), 'split': 'train'}
+840 fires, 57 min, last {'fire_id': 201404155, 'status': 'ok', 'n_pre': 5, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2014), 'split': 'train'}
+860 fires, 57 min, last {'fire_id': 201404183, 'status': 'ok', 'n_pre': 2, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2014), 'split': 'train'}
+880 fires, 57 min, last {'fire_id': 201404288, 'status': 'ok', 'n_pre': 2, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2014), 'split': 'train'}
+900 fires, 57 min, last {'fire_id': 201404218, 'status': 'no pre', 'n_post': 1, 'year': np.int64(2014), 'split': 'train'}
+920 fires, 57 min, last {'fire_id': 201404237, 'status': 'ok', 'n_pre': 2, 'n_post': 1, 'snapshots': 0, 'reliable': 0, 'year': np.int64(2014), 'split': 'train'}
+940 fires, 57 min, last {'fire_id': 201404251, 'status': 'ok', 'n_pre': 6, 'n_post': 2, 'snapshots': 0, 'reliable': 0, 'year': np.int64(2014), 'split': 'train'}
+960 fires, 57 min, last {'fire_id': 201404281, 'status': 'ok', 'n_pre': 3, 'n_post': 1, 'snapshots': 1, 'reliable': 1, 'year': np.int64(2014), 'split': 'train'}
+980 fires, 57 min, last {'fire_id': 201404282, 'status': 'ok', 'n_pre': 3, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2014), 'split': 'train'}
+1000 fires, 57 min, last {'fire_id': 201404315, 'status': 'ok', 'n_pre': 6, 'n_post': 3, 'snapshots': 1, 'reliable': 1, 'year': np.int64(2014), 'split': 'train'}
+1020 fires, 57 min, last {'fire_id': 201404324, 'status': 'ok', 'n_pre': 3, 'n_post': 1, 'snapshots': 0, 'reliable': 0, 'year': np.int64(2014), 'split': 'train'}
+1040 fires, 57 min, last {'fire_id': 201404349, 'status': 'ok', 'n_pre': 4, 'n_post': 1, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2014), 'split': 'train'}
+1060 fires, 57 min, last {'fire_id': 201404366, 'status': 'ok', 'n_pre': 3, 'n_post': 1, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2014), 'split': 'train'}
+1080 fires, 57 min, last {'fire_id': 201404576, 'status': 'no scenes', 'n_pre': 2, 'year': np.int64(2014), 'split': 'train'}
+1100 fires, 57 min, last {'fire_id': 201404403, 'status': 'no scenes', 'n_pre': 2, 'year': np.int64(2014), 'split': 'train'}
+1120 fires, 57 min, last {'fire_id': 201404430, 'status': 'no scenes', 'n_pre': 2, 'year': np.int64(2014), 'split': 'train'}
+1140 fires, 57 min, last {'fire_id': 201404455, 'status': 'ok', 'n_pre': 3, 'n_post': 1, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2014), 'split': 'train'}
+1160 fires, 57 min, last {'fire_id': 201404826, 'status': 'no scenes', 'n_pre': 6, 'year': np.int64(2014), 'split': 'train'}
+1180 fires, 57 min, last {'fire_id': 201404481, 'status': 'no scenes', 'n_pre': 3, 'year': np.int64(2014), 'split': 'train'}
+1200 fires, 57 min, last {'fire_id': 201404554, 'status': 'no scenes', 'n_pre': 3, 'year': np.int64(2014), 'split': 'train'}
+1220 fires, 57 min, last {'fire_id': 201404507, 'status': 'no scenes', 'n_pre': 1, 'year': np.int64(2014), 'split': 'train'}
+1240 fires, 57 min, last {'fire_id': 201404577, 'status': 'ok', 'n_pre': 2, 'n_post': 2, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2014), 'split': 'train'}
+1260 fires, 57 min, last {'fire_id': 201404800, 'status': 'ok', 'n_pre': 3, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2014), 'split': 'train'}
+1280 fires, 57 min, last {'fire_id': 201404626, 'status': 'ok', 'n_pre': 3, 'n_post': 1, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2014), 'split': 'train'}
+1300 fires, 57 min, last {'fire_id': 201404613, 'status': 'no scenes', 'n_pre': 5, 'year': np.int64(2014), 'split': 'train'}
+1320 fires, 73 min, last {'fire_id': 201505854, 'status': 'ok', 'n_pre': 6, 'n_post': 3, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2015), 'split': 'train'}
+1340 fires, 73 min, last {'fire_id': 201505892, 'status': 'ok', 'n_pre': 4, 'n_post': 6, 'snapshots': 3, 'reliable': 0, 'year': np.int64(2015), 'split': 'train'}
+1360 fires, 73 min, last {'fire_id': 201505891, 'status': 'ok', 'n_pre': 4, 'n_post': 3, 'snapshots': 3, 'reliable': 0, 'year': np.int64(2015), 'split': 'train'}
+1380 fires, 73 min, last {'fire_id': 201505972, 'status': 'ok', 'n_pre': 4, 'n_post': 2, 'snapshots': 1, 'reliable': 1, 'year': np.int64(2015), 'split': 'train'}
+1400 fires, 73 min, last {'fire_id': 201505958, 'status': 'ok', 'n_pre': 8, 'n_post': 2, 'snapshots': 1, 'reliable': 1, 'year': np.int64(2015), 'split': 'train'}
+1420 fires, 73 min, last {'fire_id': 201505983, 'status': 'no scenes', 'n_pre': 6, 'year': np.int64(2015), 'split': 'train'}
+1440 fires, 73 min, last {'fire_id': 201505966, 'status': 'ok', 'n_pre': 4, 'n_post': 1, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2015), 'split': 'train'}
+1460 fires, 73 min, last {'fire_id': 201505990, 'status': 'ok', 'n_pre': 8, 'n_post': 4, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2015), 'split': 'train'}
+1480 fires, 73 min, last {'fire_id': 201506009, 'status': 'ok', 'n_pre': 5, 'n_post': 2, 'snapshots': 1, 'reliable': 1, 'year': np.int64(2015), 'split': 'train'}
+1500 fires, 73 min, last {'fire_id': 201506103, 'status': 'ok', 'n_pre': 2, 'n_post': 3, 'snapshots': 3, 'reliable': 0, 'year': np.int64(2015), 'split': 'train'}
+1520 fires, 73 min, last {'fire_id': 201506135, 'status': 'ok', 'n_pre': 8, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2015), 'split': 'train'}
+1540 fires, 73 min, last {'fire_id': 201506072, 'status': 'no scenes', 'n_pre': 3, 'year': np.int64(2015), 'split': 'train'}
+1560 fires, 73 min, last {'fire_id': 201506091, 'status': 'ok', 'n_pre': 4, 'n_post': 1, 'snapshots': 1, 'reliable': 1, 'year': np.int64(2015), 'split': 'train'}
+1580 fires, 73 min, last {'fire_id': 201506100, 'status': 'no scenes', 'n_pre': 9, 'year': np.int64(2015), 'split': 'train'}
+1600 fires, 73 min, last {'fire_id': 201506098, 'status': 'ok', 'n_pre': 6, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2015), 'split': 'train'}
+1620 fires, 73 min, last {'fire_id': 201506137, 'status': 'no scenes', 'n_pre': 4, 'year': np.int64(2015), 'split': 'train'}
+1640 fires, 73 min, last {'fire_id': 201506162, 'status': 'no pre', 'n_post': 1, 'year': np.int64(2015), 'split': 'train'}
+1660 fires, 73 min, last {'fire_id': 201506166, 'status': 'no scenes', 'n_pre': 4, 'year': np.int64(2015), 'split': 'train'}
+1680 fires, 73 min, last {'fire_id': 201506202, 'status': 'ok', 'n_pre': 4, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2015), 'split': 'train'}
+1700 fires, 73 min, last {'fire_id': 201506225, 'status': 'no scenes', 'n_pre': 10, 'year': np.int64(2015), 'split': 'train'}
+1720 fires, 73 min, last {'fire_id': 201506239, 'status': 'no scenes', 'n_pre': 3, 'year': np.int64(2015), 'split': 'train'}
+1740 fires, 73 min, last {'fire_id': 201506268, 'status': 'ok', 'n_pre': 3, 'n_post': 2, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2015), 'split': 'train'}
+1760 fires, 73 min, last {'fire_id': 201506269, 'status': 'ok', 'n_pre': 2, 'n_post': 1, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2015), 'split': 'train'}
+1780 fires, 74 min, last {'fire_id': 201506305, 'status': 'ok', 'n_pre': 2, 'n_post': 1, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2015), 'split': 'train'}
+1800 fires, 74 min, last {'fire_id': 201506351, 'status': 'ok', 'n_pre': 6, 'n_post': 1, 'snapshots': 0, 'reliable': 0, 'year': np.int64(2015), 'split': 'train'}
+1820 fires, 74 min, last {'fire_id': 201506561, 'status': 'ok', 'n_pre': 3, 'n_post': 1, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2015), 'split': 'train'}
+1840 fires, 75 min, last {'fire_id': 201506335, 'status': 'ok', 'n_pre': 6, 'n_post': 1, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2015), 'split': 'train'}
+1860 fires, 75 min, last {'fire_id': 201506326, 'status': 'ok', 'n_pre': 7, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2015), 'split': 'train'}
+1880 fires, 75 min, last {'fire_id': 201506494, 'status': 'no scenes', 'n_pre': 2, 'year': np.int64(2015), 'split': 'train'}
+1900 fires, 82 min, last {'fire_id': 201607586, 'status': 'ok', 'n_pre': 10, 'n_post': 7, 'snapshots': 4, 'reliable': 0, 'year': np.int64(2016), 'split': 'train'}
+1920 fires, 82 min, last {'fire_id': 201607600, 'status': 'ok', 'n_pre': 9, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2016), 'split': 'train'}
+1940 fires, 82 min, last {'fire_id': 201607646, 'status': 'ok', 'n_pre': 10, 'n_post': 2, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2016), 'split': 'train'}
+1960 fires, 82 min, last {'fire_id': 201607635, 'status': 'ok', 'n_pre': 9, 'n_post': 1, 'snapshots': 1, 'reliable': 1, 'year': np.int64(2016), 'split': 'train'}
+1980 fires, 82 min, last {'fire_id': 201607661, 'status': 'ok', 'n_pre': 10, 'n_post': 6, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2016), 'split': 'train'}
+2000 fires, 82 min, last {'fire_id': 201607713, 'status': 'ok', 'n_pre': 10, 'n_post': 5, 'snapshots': 3, 'reliable': 2, 'year': np.int64(2016), 'split': 'train'}
+2020 fires, 82 min, last {'fire_id': 201607684, 'status': 'no pre', 'n_post': 3, 'year': np.int64(2016), 'split': 'train'}
+2040 fires, 82 min, last {'fire_id': 201607709, 'status': 'ok', 'n_pre': 10, 'n_post': 4, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2016), 'split': 'train'}
+2060 fires, 82 min, last {'fire_id': 201607753, 'status': 'ok', 'n_pre': 12, 'n_post': 4, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2016), 'split': 'train'}
+2080 fires, 82 min, last {'fire_id': 201607935, 'status': 'ok', 'n_pre': 4, 'n_post': 11, 'snapshots': 10, 'reliable': 0, 'year': np.int64(2016), 'split': 'train'}
+2100 fires, 83 min, last {'fire_id': 201607942, 'status': 'ok', 'n_pre': 4, 'n_post': 7, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2016), 'split': 'train'}
+2120 fires, 83 min, last {'fire_id': 201607788, 'status': 'ok', 'n_pre': 16, 'n_post': 10, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2016), 'split': 'train'}
+2140 fires, 83 min, last {'fire_id': 201607814, 'status': 'ok', 'n_pre': 12, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2016), 'split': 'train'}
+2160 fires, 84 min, last {'fire_id': 201607855, 'status': 'ok', 'n_pre': 9, 'n_post': 5, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2016), 'split': 'train'}
+2180 fires, 125 min, last {'fire_id': 201708739, 'status': 'ok', 'n_pre': 42, 'n_post': 31, 'snapshots': 6, 'reliable': 6, 'year': np.int64(2017), 'split': 'train'}
+2200 fires, 125 min, last {'fire_id': 201708762, 'status': 'ok', 'n_pre': 40, 'n_post': 26, 'snapshots': 6, 'reliable': 4, 'year': np.int64(2017), 'split': 'train'}
+2220 fires, 125 min, last {'fire_id': 201708772, 'status': 'ok', 'n_pre': 13, 'n_post': 15, 'snapshots': 3, 'reliable': 2, 'year': np.int64(2017), 'split': 'train'}
+2240 fires, 125 min, last {'fire_id': 201708891, 'status': 'ok', 'n_pre': 6, 'n_post': 4, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2017), 'split': 'train'}
+2260 fires, 125 min, last {'fire_id': 201708813, 'status': 'ok', 'n_pre': 8, 'n_post': 3, 'snapshots': 1, 'reliable': 1, 'year': np.int64(2017), 'split': 'train'}
+2280 fires, 125 min, last {'fire_id': 201708821, 'status': 'ok', 'n_pre': 14, 'n_post': 6, 'snapshots': 4, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2300 fires, 125 min, last {'fire_id': 201708847, 'status': 'ok', 'n_pre': 14, 'n_post': 1, 'snapshots': 1, 'reliable': 1, 'year': np.int64(2017), 'split': 'train'}
+2320 fires, 125 min, last {'fire_id': 201708870, 'status': 'ok', 'n_pre': 5, 'n_post': 2, 'snapshots': 2, 'reliable': 2, 'year': np.int64(2017), 'split': 'train'}
+2340 fires, 125 min, last {'fire_id': 201708905, 'status': 'ok', 'n_pre': 10, 'n_post': 6, 'snapshots': 4, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2360 fires, 125 min, last {'fire_id': 201708910, 'status': 'ok', 'n_pre': 14, 'n_post': 4, 'snapshots': 3, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2380 fires, 125 min, last {'fire_id': 201708926, 'status': 'ok', 'n_pre': 25, 'n_post': 10, 'snapshots': 4, 'reliable': 3, 'year': np.int64(2017), 'split': 'train'}
+2400 fires, 125 min, last {'fire_id': 201709104, 'status': 'ok', 'n_pre': 19, 'n_post': 12, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2420 fires, 125 min, last {'fire_id': 201709101, 'status': 'ok', 'n_pre': 10, 'n_post': 4, 'snapshots': 3, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2440 fires, 125 min, last {'fire_id': 201708971, 'status': 'ok', 'n_pre': 20, 'n_post': 7, 'snapshots': 3, 'reliable': 2, 'year': np.int64(2017), 'split': 'train'}
+2460 fires, 125 min, last {'fire_id': 201708996, 'status': 'ok', 'n_pre': 6, 'n_post': 6, 'snapshots': 5, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2480 fires, 125 min, last {'fire_id': 201709020, 'status': 'ok', 'n_pre': 18, 'n_post': 12, 'snapshots': 0, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2500 fires, 125 min, last {'fire_id': 201709218, 'status': 'ok', 'n_pre': 10, 'n_post': 3, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2017), 'split': 'train'}
+2520 fires, 125 min, last {'fire_id': 201709048, 'status': 'ok', 'n_pre': 9, 'n_post': 4, 'snapshots': 3, 'reliable': 1, 'year': np.int64(2017), 'split': 'train'}
+2540 fires, 125 min, last {'fire_id': 201709063, 'status': 'ok', 'n_pre': 16, 'n_post': 6, 'snapshots': 5, 'reliable': 1, 'year': np.int64(2017), 'split': 'train'}
+2560 fires, 125 min, last {'fire_id': 201709094, 'status': 'ok', 'n_pre': 8, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2580 fires, 125 min, last {'fire_id': 201709127, 'status': 'ok', 'n_pre': 10, 'n_post': 1, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2600 fires, 125 min, last {'fire_id': 201709229, 'status': 'ok', 'n_pre': 16, 'n_post': 5, 'snapshots': 3, 'reliable': 2, 'year': np.int64(2017), 'split': 'train'}
+2620 fires, 125 min, last {'fire_id': 201709152, 'status': 'ok', 'n_pre': 12, 'n_post': 3, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2640 fires, 125 min, last {'fire_id': 201709162, 'status': 'ok', 'n_pre': 14, 'n_post': 7, 'snapshots': 3, 'reliable': 3, 'year': np.int64(2017), 'split': 'train'}
+2660 fires, 125 min, last {'fire_id': 201709238, 'status': 'ok', 'n_pre': 6, 'n_post': 2, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2680 fires, 125 min, last {'fire_id': 201709226, 'status': 'ok', 'n_pre': 13, 'n_post': 3, 'snapshots': 3, 'reliable': 2, 'year': np.int64(2017), 'split': 'train'}
+2700 fires, 125 min, last {'fire_id': 201709243, 'status': 'ok', 'n_pre': 14, 'n_post': 4, 'snapshots': 2, 'reliable': 2, 'year': np.int64(2017), 'split': 'train'}
+2720 fires, 125 min, last {'fire_id': 201709275, 'status': 'ok', 'n_pre': 6, 'n_post': 4, 'snapshots': 1, 'reliable': 1, 'year': np.int64(2017), 'split': 'train'}
+2740 fires, 125 min, last {'fire_id': 201709268, 'status': 'ok', 'n_pre': 16, 'n_post': 9, 'snapshots': 5, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2760 fires, 125 min, last {'fire_id': 201709272, 'status': 'ok', 'n_pre': 8, 'n_post': 6, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2780 fires, 125 min, last {'fire_id': 201709312, 'status': 'ok', 'n_pre': 8, 'n_post': 3, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2017), 'split': 'train'}
+2800 fires, 125 min, last {'fire_id': 201710873, 'status': 'ok', 'n_pre': 10, 'n_post': 1, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2820 fires, 125 min, last {'fire_id': 201709382, 'status': 'ok', 'n_pre': 15, 'n_post': 2, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2840 fires, 126 min, last {'fire_id': 201709393, 'status': 'ok', 'n_pre': 12, 'n_post': 10, 'snapshots': 4, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2860 fires, 126 min, last {'fire_id': 201709442, 'status': 'ok', 'n_pre': 16, 'n_post': 8, 'snapshots': 5, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2880 fires, 127 min, last {'fire_id': 201709408, 'status': 'ok', 'n_pre': 22, 'n_post': 3, 'snapshots': 0, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2900 fires, 127 min, last {'fire_id': 201709793, 'status': 'ok', 'n_pre': 15, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2920 fires, 127 min, last {'fire_id': 201709533, 'status': 'ok', 'n_pre': 6, 'n_post': 2, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2017), 'split': 'train'}
+2940 fires, 128 min, last {'fire_id': 201709819, 'status': 'no scenes', 'n_pre': 6, 'year': np.int64(2017), 'split': 'train'}
+2960 fires, 135 min, last {'fire_id': 201811366, 'status': 'ok', 'n_pre': 46, 'n_post': 23, 'snapshots': 4, 'reliable': 2, 'year': np.int64(2018), 'split': 'train'}
+2980 fires, 135 min, last {'fire_id': 201811397, 'status': 'ok', 'n_pre': 15, 'n_post': 10, 'snapshots': 5, 'reliable': 4, 'year': np.int64(2018), 'split': 'train'}
+3000 fires, 135 min, last {'fire_id': 201811455, 'status': 'ok', 'n_pre': 28, 'n_post': 15, 'snapshots': 5, 'reliable': 0, 'year': np.int64(2018), 'split': 'train'}
+3020 fires, 135 min, last {'fire_id': 201811449, 'status': 'ok', 'n_pre': 20, 'n_post': 9, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2018), 'split': 'train'}
+3040 fires, 135 min, last {'fire_id': 201811435, 'status': 'ok', 'n_pre': 15, 'n_post': 4, 'snapshots': 0, 'reliable': 0, 'year': np.int64(2018), 'split': 'train'}
+3060 fires, 136 min, last {'fire_id': 201811453, 'status': 'ok', 'n_pre': 19, 'n_post': 12, 'snapshots': 4, 'reliable': 1, 'year': np.int64(2018), 'split': 'train'}
+3080 fires, 136 min, last {'fire_id': 201811470, 'status': 'ok', 'n_pre': 15, 'n_post': 3, 'snapshots': 3, 'reliable': 1, 'year': np.int64(2018), 'split': 'train'}
+3100 fires, 137 min, last {'fire_id': 201811508, 'status': 'ok', 'n_pre': 14, 'n_post': 6, 'snapshots': 6, 'reliable': 3, 'year': np.int64(2018), 'split': 'train'}
+3120 fires, 139 min, last {'fire_id': 201811512, 'status': 'ok', 'n_pre': 28, 'n_post': 6, 'snapshots': 3, 'reliable': 2, 'year': np.int64(2018), 'split': 'train'}
+3140 fires, 140 min, last {'fire_id': 201811623, 'status': 'ok', 'n_pre': 22, 'n_post': 6, 'snapshots': 3, 'reliable': 2, 'year': np.int64(2018), 'split': 'train'}
+3160 fires, 140 min, last {'fire_id': 201811609, 'status': 'ok', 'n_pre': 20, 'n_post': 4, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2018), 'split': 'train'}
+3180 fires, 140 min, last {'fire_id': 201811568, 'status': 'ok', 'n_pre': 14, 'n_post': 4, 'snapshots': 2, 'reliable': 2, 'year': np.int64(2018), 'split': 'train'}
+3200 fires, 140 min, last {'fire_id': 201811574, 'status': 'ok', 'n_pre': 15, 'n_post': 1, 'snapshots': 1, 'reliable': 1, 'year': np.int64(2018), 'split': 'train'}
+3220 fires, 141 min, last {'fire_id': 201811603, 'status': 'ok', 'n_pre': 13, 'n_post': 2, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2018), 'split': 'train'}
+3240 fires, 143 min, last {'fire_id': 201811726, 'status': 'ok', 'n_pre': 16, 'n_post': 3, 'snapshots': 2, 'reliable': 2, 'year': np.int64(2018), 'split': 'train'}
+3260 fires, 143 min, last {'fire_id': 201811644, 'status': 'ok', 'n_pre': 5, 'n_post': 1, 'snapshots': 0, 'reliable': 0, 'year': np.int64(2018), 'split': 'train'}
+3280 fires, 143 min, last {'fire_id': 201811664, 'status': 'ok', 'n_pre': 10, 'n_post': 2, 'snapshots': 2, 'reliable': 2, 'year': np.int64(2018), 'split': 'train'}
+3300 fires, 143 min, last {'fire_id': 201811684, 'status': 'ok', 'n_pre': 5, 'n_post': 5, 'snapshots': 3, 'reliable': 3, 'year': np.int64(2018), 'split': 'train'}
+3320 fires, 144 min, last {'fire_id': 201811677, 'status': 'ok', 'n_pre': 24, 'n_post': 12, 'snapshots': 3, 'reliable': 0, 'year': np.int64(2018), 'split': 'train'}
+3340 fires, 144 min, last {'fire_id': 201811744, 'status': 'ok', 'n_pre': 22, 'n_post': 3, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2018), 'split': 'train'}
+3360 fires, 145 min, last {'fire_id': 201811773, 'status': 'ok', 'n_pre': 26, 'n_post': 12, 'snapshots': 4, 'reliable': 0, 'year': np.int64(2018), 'split': 'train'}
+3380 fires, 145 min, last {'fire_id': 201811759, 'status': 'ok', 'n_pre': 26, 'n_post': 7, 'snapshots': 4, 'reliable': 2, 'year': np.int64(2018), 'split': 'train'}
+3400 fires, 146 min, last {'fire_id': 201811837, 'status': 'ok', 'n_pre': 9, 'n_post': 6, 'snapshots': 5, 'reliable': 0, 'year': np.int64(2018), 'split': 'train'}
+3420 fires, 194 min, last {'fire_id': 201912885, 'status': 'ok', 'n_pre': 24, 'n_post': 11, 'snapshots': 5, 'reliable': 4, 'year': np.int64(2019), 'split': 'train'}
+3440 fires, 194 min, last {'fire_id': 201912981, 'status': 'ok', 'n_pre': 8, 'n_post': 9, 'snapshots': 7, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+3460 fires, 194 min, last {'fire_id': 201912920, 'status': 'ok', 'n_pre': 28, 'n_post': 4, 'snapshots': 2, 'reliable': 2, 'year': np.int64(2019), 'split': 'train'}
+3480 fires, 194 min, last {'fire_id': 201912930, 'status': 'ok', 'n_pre': 29, 'n_post': 6, 'snapshots': 3, 'reliable': 2, 'year': np.int64(2019), 'split': 'train'}
+3500 fires, 194 min, last {'fire_id': 201912949, 'status': 'ok', 'n_pre': 12, 'n_post': 3, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2019), 'split': 'train'}
+3520 fires, 194 min, last {'fire_id': 201912994, 'status': 'ok', 'n_pre': 26, 'n_post': 20, 'snapshots': 9, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+3540 fires, 194 min, last {'fire_id': 201913038, 'status': 'ok', 'n_pre': 31, 'n_post': 6, 'snapshots': 0, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+3560 fires, 194 min, last {'fire_id': 201913000, 'status': 'ok', 'n_pre': 23, 'n_post': 6, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+3580 fires, 194 min, last {'fire_id': 201913024, 'status': 'ok', 'n_pre': 54, 'n_post': 14, 'snapshots': 3, 'reliable': 3, 'year': np.int64(2019), 'split': 'train'}
+3600 fires, 194 min, last {'fire_id': 201913124, 'status': 'ok', 'n_pre': 15, 'n_post': 2, 'snapshots': 0, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+3620 fires, 194 min, last {'fire_id': 201913073, 'status': 'ok', 'n_pre': 14, 'n_post': 2, 'snapshots': 1, 'reliable': 1, 'year': np.int64(2019), 'split': 'train'}
+3640 fires, 194 min, last {'fire_id': 201913279, 'status': 'ok', 'n_pre': 16, 'n_post': 10, 'snapshots': 8, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+3660 fires, 194 min, last {'fire_id': 201913141, 'status': 'ok', 'n_pre': 14, 'n_post': 1, 'snapshots': 0, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+3680 fires, 194 min, last {'fire_id': 201913142, 'status': 'ok', 'n_pre': 12, 'n_post': 5, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2019), 'split': 'train'}
+3700 fires, 194 min, last {'fire_id': 201913153, 'status': 'ok', 'n_pre': 50, 'n_post': 10, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+3720 fires, 194 min, last {'fire_id': 201913173, 'status': 'ok', 'n_pre': 21, 'n_post': 5, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2019), 'split': 'train'}
+3740 fires, 194 min, last {'fire_id': 201913289, 'status': 'ok', 'n_pre': 23, 'n_post': 10, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+3760 fires, 194 min, last {'fire_id': 201913189, 'status': 'ok', 'n_pre': 9, 'n_post': 3, 'snapshots': 2, 'reliable': 2, 'year': np.int64(2019), 'split': 'train'}
+3780 fires, 194 min, last {'fire_id': 201913229, 'status': 'ok', 'n_pre': 12, 'n_post': 1, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+3800 fires, 194 min, last {'fire_id': 201913236, 'status': 'ok', 'n_pre': 9, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+3820 fires, 194 min, last {'fire_id': 201913266, 'status': 'ok', 'n_pre': 16, 'n_post': 8, 'snapshots': 6, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+3840 fires, 194 min, last {'fire_id': 201913294, 'status': 'ok', 'n_pre': 11, 'n_post': 4, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+3860 fires, 194 min, last {'fire_id': 201913307, 'status': 'ok', 'n_pre': 17, 'n_post': 3, 'snapshots': 0, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+3880 fires, 194 min, last {'fire_id': 201912996, 'status': 'ok', 'n_pre': 6, 'n_post': 6, 'snapshots': 0, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+3900 fires, 194 min, last {'fire_id': 201913386, 'status': 'ok', 'n_pre': 26, 'n_post': 6, 'snapshots': 3, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+3920 fires, 194 min, last {'fire_id': 201913373, 'status': 'ok', 'n_pre': 22, 'n_post': 3, 'snapshots': 0, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+3940 fires, 194 min, last {'fire_id': 201913484, 'status': 'ok', 'n_pre': 5, 'n_post': 5, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+3960 fires, 194 min, last {'fire_id': 201913516, 'status': 'ok', 'n_pre': 19, 'n_post': 7, 'snapshots': 3, 'reliable': 1, 'year': np.int64(2019), 'split': 'train'}
+3980 fires, 194 min, last {'fire_id': 201913500, 'status': 'ok', 'n_pre': 24, 'n_post': 9, 'snapshots': 4, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+4000 fires, 194 min, last {'fire_id': 201913537, 'status': 'ok', 'n_pre': 12, 'n_post': 4, 'snapshots': 0, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+4020 fires, 194 min, last {'fire_id': 201913318, 'status': 'ok', 'n_pre': 15, 'n_post': 1, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2019), 'split': 'train'}
+4040 fires, 194 min, last {'fire_id': 201913471, 'status': 'ok', 'n_pre': 11, 'n_post': 3, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2019), 'split': 'train'}
+4060 fires, 209 min, last {'fire_id': 202015046, 'status': 'ok', 'n_pre': 15, 'n_post': 20, 'snapshots': 7, 'reliable': 0, 'year': np.int64(2020), 'split': 'train'}
+4080 fires, 209 min, last {'fire_id': 202015048, 'status': 'ok', 'n_pre': 25, 'n_post': 10, 'snapshots': 3, 'reliable': 1, 'year': np.int64(2020), 'split': 'train'}
+4100 fires, 209 min, last {'fire_id': 202015059, 'status': 'ok', 'n_pre': 31, 'n_post': 15, 'snapshots': 4, 'reliable': 0, 'year': np.int64(2020), 'split': 'train'}
+4120 fires, 209 min, last {'fire_id': 202015074, 'status': 'ok', 'n_pre': 12, 'n_post': 3, 'snapshots': 2, 'reliable': 2, 'year': np.int64(2020), 'split': 'train'}
+4140 fires, 209 min, last {'fire_id': 202015094, 'status': 'ok', 'n_pre': 24, 'n_post': 15, 'snapshots': 6, 'reliable': 0, 'year': np.int64(2020), 'split': 'train'}
+4160 fires, 209 min, last {'fire_id': 202015146, 'status': 'ok', 'n_pre': 7, 'n_post': 2, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2020), 'split': 'train'}
+4180 fires, 209 min, last {'fire_id': 202015142, 'status': 'ok', 'n_pre': 16, 'n_post': 5, 'snapshots': 3, 'reliable': 2, 'year': np.int64(2020), 'split': 'train'}
+4200 fires, 209 min, last {'fire_id': 202015250, 'status': 'ok', 'n_pre': 22, 'n_post': 14, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2020), 'split': 'train'}
+4220 fires, 209 min, last {'fire_id': 202015168, 'status': 'ok', 'n_pre': 42, 'n_post': 16, 'snapshots': 3, 'reliable': 1, 'year': np.int64(2020), 'split': 'train'}
+4240 fires, 209 min, last {'fire_id': 202015209, 'status': 'ok', 'n_pre': 10, 'n_post': 4, 'snapshots': 3, 'reliable': 1, 'year': np.int64(2020), 'split': 'train'}
+4260 fires, 209 min, last {'fire_id': 202015210, 'status': 'ok', 'n_pre': 22, 'n_post': 4, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2020), 'split': 'train'}
+4280 fires, 209 min, last {'fire_id': 202015278, 'status': 'ok', 'n_pre': 15, 'n_post': 6, 'snapshots': 4, 'reliable': 3, 'year': np.int64(2020), 'split': 'train'}
+4300 fires, 210 min, last {'fire_id': 202015233, 'status': 'ok', 'n_pre': 10, 'n_post': 3, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2020), 'split': 'train'}
+4320 fires, 211 min, last {'fire_id': 202015412, 'status': 'ok', 'n_pre': 30, 'n_post': 9, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2020), 'split': 'train'}
+4340 fires, 211 min, last {'fire_id': 202015299, 'status': 'ok', 'n_pre': 15, 'n_post': 4, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2020), 'split': 'train'}
+4360 fires, 211 min, last {'fire_id': 202015308, 'status': 'ok', 'n_pre': 10, 'n_post': 5, 'snapshots': 4, 'reliable': 0, 'year': np.int64(2020), 'split': 'train'}
+4380 fires, 212 min, last {'fire_id': 202015416, 'status': 'ok', 'n_pre': 29, 'n_post': 5, 'snapshots': 0, 'reliable': 0, 'year': np.int64(2020), 'split': 'train'}
+4400 fires, 212 min, last {'fire_id': 202015480, 'status': 'ok', 'n_pre': 22, 'n_post': 5, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2020), 'split': 'train'}
+4420 fires, 214 min, last {'fire_id': 202015364, 'status': 'ok', 'n_pre': 2, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2020), 'split': 'train'}
+4440 fires, 215 min, last {'fire_id': 202015654, 'status': 'ok', 'n_pre': 10, 'n_post': 3, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2020), 'split': 'train'}
+4460 fires, 215 min, last {'fire_id': 202015590, 'status': 'ok', 'n_pre': 11, 'n_post': 3, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2020), 'split': 'train'}
+4480 fires, 215 min, last {'fire_id': 202015607, 'status': 'ok', 'n_pre': 16, 'n_post': 4, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2020), 'split': 'train'}
+4500 fires, 272 min, last {'fire_id': 202116760, 'status': 'ok', 'n_pre': 54, 'n_post': 57, 'snapshots': 10, 'reliable': 9, 'year': np.int64(2021), 'split': 'train'}
+4520 fires, 272 min, last {'fire_id': 202116771, 'status': 'ok', 'n_pre': 56, 'n_post': 44, 'snapshots': 7, 'reliable': 1, 'year': np.int64(2021), 'split': 'train'}
+4540 fires, 272 min, last {'fire_id': 202116789, 'status': 'ok', 'n_pre': 35, 'n_post': 11, 'snapshots': 3, 'reliable': 2, 'year': np.int64(2021), 'split': 'train'}
+4560 fires, 272 min, last {'fire_id': 202116809, 'status': 'ok', 'n_pre': 28, 'n_post': 5, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2021), 'split': 'train'}
+4580 fires, 272 min, last {'fire_id': 202116907, 'status': 'ok', 'n_pre': 13, 'n_post': 4, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2021), 'split': 'train'}
+4600 fires, 272 min, last {'fire_id': 202116852, 'status': 'ok', 'n_pre': 16, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2021), 'split': 'train'}
+4620 fires, 272 min, last {'fire_id': 202116865, 'status': 'ok', 'n_pre': 17, 'n_post': 6, 'snapshots': 4, 'reliable': 4, 'year': np.int64(2021), 'split': 'train'}
+4640 fires, 272 min, last {'fire_id': 202116885, 'status': 'ok', 'n_pre': 23, 'n_post': 3, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2021), 'split': 'train'}
+4660 fires, 272 min, last {'fire_id': 202116943, 'status': 'no scenes', 'n_pre': 15, 'year': np.int64(2021), 'split': 'train'}
+4680 fires, 272 min, last {'fire_id': 202116925, 'status': 'ok', 'n_pre': 14, 'n_post': 6, 'snapshots': 4, 'reliable': 0, 'year': np.int64(2021), 'split': 'train'}
+4700 fires, 272 min, last {'fire_id': 202116949, 'status': 'ok', 'n_pre': 26, 'n_post': 9, 'snapshots': 3, 'reliable': 1, 'year': np.int64(2021), 'split': 'train'}
+4720 fires, 272 min, last {'fire_id': 202117039, 'status': 'ok', 'n_pre': 21, 'n_post': 5, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2021), 'split': 'train'}
+4740 fires, 272 min, last {'fire_id': 202117067, 'status': 'ok', 'n_pre': 17, 'n_post': 3, 'snapshots': 3, 'reliable': 1, 'year': np.int64(2021), 'split': 'train'}
+4760 fires, 272 min, last {'fire_id': 202116987, 'status': 'ok', 'n_pre': 5, 'n_post': 1, 'snapshots': 0, 'reliable': 0, 'year': np.int64(2021), 'split': 'train'}
+4780 fires, 272 min, last {'fire_id': 202117093, 'status': 'ok', 'n_pre': 11, 'n_post': 3, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2021), 'split': 'train'}
+4800 fires, 272 min, last {'fire_id': 202117042, 'status': 'ok', 'n_pre': 22, 'n_post': 9, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2021), 'split': 'train'}
+4820 fires, 272 min, last {'fire_id': 202117049, 'status': 'ok', 'n_pre': 6, 'n_post': 4, 'snapshots': 3, 'reliable': 0, 'year': np.int64(2021), 'split': 'train'}
+4840 fires, 272 min, last {'fire_id': 202117454, 'status': 'ok', 'n_pre': 7, 'n_post': 4, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2021), 'split': 'train'}
+4860 fires, 272 min, last {'fire_id': 202117167, 'status': 'ok', 'n_pre': 28, 'n_post': 17, 'snapshots': 5, 'reliable': 4, 'year': np.int64(2021), 'split': 'train'}
+4880 fires, 272 min, last {'fire_id': 202117273, 'status': 'ok', 'n_pre': 5, 'n_post': 3, 'snapshots': 2, 'reliable': 0, 'year': np.int64(2021), 'split': 'train'}
+4900 fires, 272 min, last {'fire_id': 202117152, 'status': 'ok', 'n_pre': 7, 'n_post': 6, 'snapshots': 4, 'reliable': 2, 'year': np.int64(2021), 'split': 'train'}
+4920 fires, 272 min, last {'fire_id': 202117161, 'status': 'ok', 'n_pre': 9, 'n_post': 1, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2021), 'split': 'train'}
+4940 fires, 272 min, last {'fire_id': 202117197, 'status': 'ok', 'n_pre': 34, 'n_post': 9, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2021), 'split': 'train'}
+4960 fires, 272 min, last {'fire_id': 202117249, 'status': 'ok', 'n_pre': 28, 'n_post': 4, 'snapshots': 2, 'reliable': 1, 'year': np.int64(2021), 'split': 'train'}
+4980 fires, 272 min, last {'fire_id': 202117397, 'status': 'ok', 'n_pre': 9, 'n_post': 3, 'snapshots': 3, 'reliable': 0, 'year': np.int64(2021), 'split': 'train'}
+5000 fires, 272 min, last {'fire_id': 202117227, 'status': 'ok', 'n_pre': 11, 'n_post': 2, 'snapshots': 1, 'reliable': 0, 'year': np.int64(2021), 'split': 'train'}
+done

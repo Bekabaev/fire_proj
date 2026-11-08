@@ -1,0 +1,661 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Прогноз распространения степных пожаров</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"><style>@page{size:1920px 1080px;margin:0}*{margin:0;padding:0;box-sizing:border-box}html,body{background:#555}
+.s{width:1920px;height:1080px;position:relative;overflow:hidden;page-break-after:always;break-after:page}
+.s>section{position:absolute;inset:0;width:1920px;height:1080px}
+aside{display:none!important}ul,ol{padding-left:1.2em}li{margin:.15em 0}
+table{border-collapse:collapse}th,td{padding:14px 16px;border-bottom:1px solid #D9D0C2;text-align:left}th{font-weight:600;color:#6E665B}
+@media screen{.s{margin:0 auto 24px}}</style></head><body><div class="s"><section id="cover" data-transition="fade" style="background:#1B1A18;color:#F5F0E8;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:space-between">
+<div style="position:absolute;left:0;top:0;width:1920px;height:16px;background:linear-gradient(90deg, #E2622B 0%, #F2A541 100%)"></div>
+<p style="font-size:28px;letter-spacing:4px;text-transform:uppercase;color:#F2A541">Fire Spread KZ · Казахстан</p>
+<div style="display:flex;flex-direction:column;gap:40px">
+<h1 style="font-family:'Rubik', Arial, sans-serif;font-size:112px;font-weight:600;line-height:1.05;width:1500px">Куда пойдёт степной пожар</h1>
+<p style="font-size:44px;line-height:1.35;color:#CFC6B8;width:1400px">Прогноз выгорания на 12, 24, 48 и 72 часа: спутниковые данные, физика огня и нейросеть</p>
+</div>
+<p style="font-size:28px;color:#A89F92">Ноябрь 2026</p>
+<aside>Тема: прогноз распространения степных пожаров в Казахстане. Расскажем в три шага: какие данные собрали, какие модели построили и как они работают вместе, какие результаты получили.</aside>
+</section>
+</div><div class="s"><section id="task" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Задача: какие клетки сгорят дальше</h2>
+<div style="display:flex;gap:40px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:44px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#C2501E">Вход · момент t</p>
+<ul style="font-size:30px;line-height:1.5;color:#4F4A43">
+<li>что уже сгорело</li>
+<li>термоточки спутников</li>
+<li>растительность, рельеф, прошлые гари</li>
+<li>прогноз погоды на 3 суток</li>
+</ul>
+</div>
+<x-shape kind="arrow-right" style="width:96px;height:56px;background:#E2622B;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:44px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#C2501E">Выход · карта</p>
+<p style="font-size:30px;line-height:1.5;color:#4F4A43">Вероятность сгореть для каждой клетки 500 × 500 м в окне 48 × 48 км</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<p style="font-size:28px;font-weight:600;background:#F9E3D4;color:#8A3410;padding:8px 20px;border-radius:999px">12 ч</p>
+<p style="font-size:28px;font-weight:600;background:#F9E3D4;color:#8A3410;padding:8px 20px;border-radius:999px">24 ч</p>
+<p style="font-size:28px;font-weight:600;background:#F9E3D4;color:#8A3410;padding:8px 20px;border-radius:999px">48 ч</p>
+<p style="font-size:28px;font-weight:600;background:#F9E3D4;color:#8A3410;padding:8px 20px;border-radius:999px">72 ч</p>
+</div>
+</div>
+</div>
+<p style="font-size:30px;line-height:1.45;color:#4F4A43;width:1500px">Для сайта два режима: <b>прогноз реального пожара</b> и <b>симуляция «что если»</b> от точки возгорания.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Введение · 2</p>
+<aside>Модель отвечает на один вопрос: пожар сейчас выглядит так, какие клетки сгорят за следующие 12, 24, 48 и 72 часа. На вход: что уже сгорело, термоточки спутников, растительность, рельеф, прошлые гари и прогноз погоды. На выходе карта вероятностей с клеткой 500 метров. Горизонты вложенные: что сгорит за 12 часов, сгорит и за 24. На сайте два режима: прогноз реального пожара и симуляция от точки.</aside>
+</section>
+</div><div class="s"><section id="why-hard" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:64px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Почему степной пожар трудно предсказать</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px;border-top:6px solid #E2622B;padding:32px 0 0 0">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:96px;font-weight:600;line-height:1;color:#C2501E">~10 ч</p>
+<p style="font-size:30px;line-height:1.45;color:#4F4A43">медиана, за которую сгорает половина площади: большинство пожаров догорают за сутки</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;border-top:6px solid #E2622B;padding:32px 0 0 0">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:96px;font-weight:600;line-height:1;color:#C2501E">~1 %</p>
+<p style="font-size:30px;line-height:1.45;color:#4F4A43">клеток сцены сгорает за горизонт, поэтому «точность» бесполезна, мерим F1</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;border-top:6px solid #E2622B;padding:32px 0 0 0">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:96px;font-weight:600;line-height:1;color:#C2501E">51 %</p>
+<p style="font-size:30px;line-height:1.45;color:#4F4A43">площади степного пожара в среднем видит спутниковый продукт MCD64A1</p>
+</div>
+</div>
+<p style="font-size:30px;line-height:1.45;color:#4F4A43;width:1500px">Огонь в степи быстрый, а спутниковые метки неточные и запаздывают. Поэтому главная работа — собрать <b>точные по времени</b> данные.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Введение · 3</p>
+<aside>Три факта, которые определили весь проект. Первое: степной пожар быстрый, половина площади обычно сгорает примерно за 10 часов. Второе: за горизонт сгорает около одного процента клеток сцены, поэтому метрика F1, а не точность. Третье: стандартный спутниковый продукт гарей MCD64A1 в среднем видит лишь половину площади степного пожара и знает дату только с точностью до суток. Отсюда главный упор на точные данные.</aside>
+</section>
+</div><div class="s"><section id="data-sources" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Данные: 12 открытых источников</h2>
+<table style="font-size:26px;color:#1B1A18;width:1664px">
+<tr><th style="width:24%">Что знаем</th><th style="width:40%">Источник</th><th style="width:36%">Зачем</th></tr>
+<tr><td>Пожары и гари</td><td>Global Fire Atlas v2, MODIS MCD64A1</td><td>какие клетки сгорели</td></tr>
+<tr><td>Термоточки</td><td>NASA FIRMS: VIIRS 375 м, MODIS 1 км</td><td>когда огонь пришёл в клетку</td></tr>
+<tr><td>Эталон</td><td>экспертные контуры 4 заповедников</td><td>независимая проверка</td></tr>
+<tr><td>Растительность</td><td>ESA WorldCover, MODIS NDVI</td><td>топливо и его сухость</td></tr>
+<tr><td>Рельеф, барьеры</td><td>Copernicus GLO-90, OpenStreetMap</td><td>склоны, дороги, посёлки</td></tr>
+<tr><td>Погода</td><td>ERA5, прогноз GFS, станции NOAA</td><td>ветер, жара, влажность</td></tr>
+<tr><td>Пожароопасность</td><td>NASA GFWED (индексы FWI)</td><td>сухость топлива</td></tr>
+<tr><td>Снимки</td><td>Sentinel-2, Landsat</td><td>уточнение контуров</td></tr>
+</table>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Данные · 4</p>
+<aside>Все данные открытые. Гари и отдельные пожары из Global Fire Atlas и MODIS. Термоточки NASA FIRMS: по ним восстанавливаем, когда огонь пришёл в каждую клетку. Экспертные контуры пожаров четырёх заповедников служат независимым эталоном. Растительность WorldCover и NDVI, рельеф GLO-90, дороги и посёлки из OpenStreetMap. Погода ERA5 для обучения и прогноз GFS для честной проверки и для сайта. Индексы пожарной опасности GFWED. Снимки Sentinel-2 и Landsat для уточнения контуров.</aside>
+</section>
+</div><div class="s"><section id="data-parts" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Датасет из двух частей</h2>
+<div style="display:flex;gap:40px">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:48px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#C2501E">A · заповедники</p>
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:80px;font-weight:600;line-height:1">44 пожара</p>
+<p style="font-size:30px;line-height:1.45;color:#4F4A43">Алтын-Дала, Коргалжын, Наурзум, Миргород, 2014–2023. Контур нарисован экспертом по снимку 30 м.</p>
+<p style="font-size:30px;line-height:1.45;color:#4F4A43"><b>Роль:</b> независимый эталон, на нём модели не учатся (393 среза).</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:24px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:48px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#2F5F80">B · весь Казахстан</p>
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:80px;font-weight:600;line-height:1">14 247 пожаров</p>
+<p style="font-size:30px;line-height:1.45;color:#4F4A43">Global Fire Atlas + термоточки VIIRS, 2013–2024: <b>111 215 срезов</b> «пожар в момент t».</p>
+<p style="font-size:30px;line-height:1.45;color:#4F4A43"><b>Роль:</b> обучение, подбор и тест.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Данные · 5</p>
+<aside>Датасет из двух частей. Часть A: 44 пожара четырёх заповедников с экспертными контурами. Это маленький, но точно размеченный набор, на нём модели не учатся, это независимая проверка. Часть B: все пожары Казахстана из Global Fire Atlas с уточнением по термоточкам VIIRS, 14 тысяч пожаров и 111 тысяч срезов. Пожары, которые совпадают с заповедниками, из обучения исключены, чтобы проверка была честной.</aside>
+</section>
+</div><div class="s"><section id="data-expert" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Один пожар глазами эксперта и спутника</h2>
+<div style="display:flex;gap:52px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<img src="site_shots/exp_image.png" alt="Снимок Sentinel-2 после пожара: гарь тёмная, оранжевая линия — контур эксперта" style="width:520px;height:397px;object-fit:contain;background:#F2EFE9;border-radius:12px">
+<h3 style="font-size:30px;font-weight:600">Эксперт: снимок и контур</h3>
+<p style="font-size:24px;line-height:1.4;color:#4F4A43">Sentinel-2 после пожара, гарь тёмная. Оранжевое — контур, который эксперт заповедника нарисовал по снимку 30 м.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<img src="site_shots/exp_mcd64.png" alt="Суточная метка MCD64A1 внутри контура эксперта: ступенчатые даты и пропуски" style="width:520px;height:397px;object-fit:contain;background:#F2EFE9;border-radius:12px">
+<h3 style="font-size:30px;font-weight:600">Стандарт: MCD64A1</h3>
+<p style="font-size:24px;line-height:1.4;color:#4F4A43">Видит 71 % этой гари (серое — пропуск; в среднем 51 %). Дата — только день, поэтому время идёт ступеньками.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<img src="site_shots/exp_ours.png" alt="Время прихода огня по термоточкам VIIRS в каждой клетке: плавный переход от очага к краям" style="width:520px;height:397px;object-fit:contain;background:#F2EFE9;border-radius:12px">
+<h3 style="font-size:30px;font-weight:600">Наш датасет</h3>
+<p style="font-size:24px;line-height:1.4;color:#4F4A43">Время прихода огня по термоточкам VIIRS в каждой клетке контура: видно, как огонь шёл от очага.</p>
+</div>
+</div>
+<div style="display:flex;gap:20px;align-items:center">
+<p style="font-size:24px;color:#4F4A43">0 ч</p>
+<img src="site_shots/exp_scale.png" alt="Шкала: от тёмно-красного (начало пожара) до светло-жёлтого (108 ч)" style="width:640px;height:28px;object-fit:cover;border-radius:6px">
+<p style="font-size:24px;color:#4F4A43">108 ч от возгорания</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Данные · 6 · Алтын-Дала, пожар 30 июня 2019, участок 37 × 49 км</p>
+<aside>Вот как это выглядит на одном пожаре в заповеднике Алтын-Дала, 30 июня 2019 года. Слева снимок Sentinel-2 после пожара: гарь тёмная, а оранжевая линия — контур, который эксперт заповедника нарисовал по снимку. Это наш эталон. В середине стандартный спутниковый продукт MCD64A1, на котором учатся большинство работ: внутри контура эксперта он видит 71 процент гари, серое — то, что он пропустил; в среднем по заповедникам он видит лишь половину. И дату он знает только днём, поэтому цвета идут крупными ступеньками. Справа наш датасет: время прихода огня в каждую клетку восстановлено по термоточкам VIIRS, и видно, как огонь шёл с запада на восток. Цвет — часы от возгорания, от тёмно-красного в начале до светлого через 4–5 суток.</aside>
+</section>
+</div><div class="s"><section id="data-slice" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Один пример для обучения: вход и ответ</h2>
+<div style="display:flex;gap:40px;align-items:flex-start">
+<div style="display:flex;flex-direction:column;gap:16px">
+<h3 style="font-size:30px;font-weight:600">28 карт · здесь 8 из них</h3>
+<div style="display:grid;grid-template-columns:200px 200px 200px 200px;gap:16px">
+<div style="display:flex;flex-direction:column;gap:6px"><img src="site_shots/in_burned_frac.png" alt="Гарь сейчас" style="width:200px;height:200px;object-fit:contain;border:1px solid #E4DCCF;border-radius:8px"><p style="font-size:24px;color:#4F4A43">гарь сейчас</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><img src="site_shots/in_burn_age_h.png" alt="Возраст гари" style="width:200px;height:200px;object-fit:contain;border:1px solid #E4DCCF;border-radius:8px"><p style="font-size:24px;color:#4F4A43">возраст гари</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><img src="site_shots/in_af_count_24h.png" alt="Термоточки за 24 часа" style="width:200px;height:200px;object-fit:contain;border:1px solid #E4DCCF;border-radius:8px"><p style="font-size:24px;color:#4F4A43">термоточки 24 ч</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><img src="site_shots/in_grass_frac.png" alt="Доля травы" style="width:200px;height:200px;object-fit:contain;border:1px solid #E4DCCF;border-radius:8px"><p style="font-size:24px;color:#4F4A43">доля травы</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><img src="site_shots/in_ndvi.png" alt="NDVI" style="width:200px;height:200px;object-fit:contain;border:1px solid #E4DCCF;border-radius:8px"><p style="font-size:24px;color:#4F4A43">NDVI</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><img src="site_shots/in_elev.png" alt="Высота рельефа" style="width:200px;height:200px;object-fit:contain;border:1px solid #E4DCCF;border-radius:8px"><p style="font-size:24px;color:#4F4A43">рельеф</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><img src="site_shots/in_prior_burn.png" alt="Прошлые гари" style="width:200px;height:200px;object-fit:contain;border:1px solid #E4DCCF;border-radius:8px"><p style="font-size:24px;color:#4F4A43">прошлые гари</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><img src="site_shots/in_dist_road_km.png" alt="Расстояние до дорог" style="width:200px;height:200px;object-fit:contain;border:1px solid #E4DCCF;border-radius:8px"><p style="font-size:24px;color:#4F4A43">до дорог</p></div>
+</div>
+</div>
+<div style="width:380px;display:flex;flex-direction:column;gap:16px">
+<h3 style="font-size:30px;font-weight:600">49 чисел · здесь 7</h3>
+<table style="font-size:24px;color:#1B1A18;width:380px">
+<tr><th style="width:52%">Признак</th><th style="width:48%">Значение</th></tr>
+<tr><td>ветер, 24 ч</td><td>10,9 м/с, с ВСВ</td></tr>
+<tr><td>порывы</td><td>до 22 м/с</td></tr>
+<tr><td>температура</td><td>до 11 °C</td></tr>
+<tr><td>влажность</td><td>от 14 %</td></tr>
+<tr><td>осадки</td><td>0 мм</td></tr>
+<tr><td>индекс FWI</td><td>49</td></tr>
+<tr><td>пожар идёт</td><td>2 сут, 4 км²</td></tr>
+</table>
+</div>
+<div style="width:336px;display:flex;flex-direction:column;gap:16px">
+<h3 style="font-size:30px;font-weight:600">Ответ: что сгорит</h3>
+<img src="site_shots/target.png" alt="Ответ: клетки, сгоревшие за 12, 24, 48 и 72 часа" style="width:336px;height:336px;object-fit:contain;border:1px solid #E4DCCF;border-radius:8px">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 16px">
+<div style="display:flex;gap:10px;align-items:center"><div style="width:22px;height:22px;background:#7A1E05;border-radius:4px"></div><p style="font-size:24px">12 ч</p></div>
+<div style="display:flex;gap:10px;align-items:center"><div style="width:22px;height:22px;background:#C2501E;border-radius:4px"></div><p style="font-size:24px">24 ч</p></div>
+<div style="display:flex;gap:10px;align-items:center"><div style="width:22px;height:22px;background:#F2A541;border-radius:4px"></div><p style="font-size:24px">48 ч</p></div>
+<div style="display:flex;gap:10px;align-items:center"><div style="width:22px;height:22px;background:#F7D98C;border-radius:4px"></div><p style="font-size:24px">72 ч</p></div>
+</div>
+</div>
+</div>
+<p style="font-size:28px;line-height:1.4;color:#4F4A43;width:1600px">Таких примеров 111 тыс.: каждый пожар даёт срез каждые 12 часов своей жизни, сцена 96 × 96 клеток по 500 м.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Данные · 7 · пожар 3 апреля 2023, 45,36° с. ш., 75,03° в. д.; показан участок 17,5 × 17,5 км из сцены 48 × 48 км</p>
+<aside>Так выглядит один реальный пример, на котором учится модель: пожар 3 апреля 2023 года, тест. Слева карты на входе, восемь из двадцати восьми: что уже сгорело, сколько часов назад сгорела каждая клетка, где были термоточки за последние сутки, сколько в клетке травы, зелень NDVI, рельеф, прошлые гари и расстояние до дорог. В середине числа на всю сцену, семь из сорока девяти: прогноз ветра на сутки — почти 11 метров в секунду с востока-северо-востока, порывы до 22, сухо, влажность 14 процентов, осадков нет, индекс пожарной опасности 49 — это высокая опасность. Пожар горит уже двое суток, сгорело 4 квадратных километра. Справа ответ, который модель должна угадать: какие клетки сгорят за 12, 24, 48 и 72 часа. Таких примеров 111 тысяч.</aside>
+</section>
+</div><div class="s"><section id="data-labels" data-transition="fade" style="background:#1B1A18;color:#F5F0E8;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<p style="font-size:28px;letter-spacing:4px;text-transform:uppercase;color:#F2A541">Главное отличие нашего датасета</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;width:1600px">Время прихода огня — по термоточкам, с точностью до часов</h2>
+<div style="display:flex;gap:80px;align-items:flex-end">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:120px;font-weight:600;line-height:1;color:#A89F92">14,7 ч</p>
+<p style="font-size:30px;color:#CFC6B8">ошибка суточной даты выгорания (обычный подход)</p>
+</div>
+<x-shape kind="arrow-right" style="width:120px;height:64px;background:#E2622B"></x-shape>
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:120px;font-weight:600;line-height:1;color:#F2A541">0,3 ч</p>
+<p style="font-size:30px;color:#CFC6B8">ошибка по термоточкам VIIRS (наш подход)</p>
+</div>
+</div>
+<p style="font-size:30px;line-height:1.45;color:#CFC6B8;width:1550px">Медиана по экспертным пожарам. Каждой клетке сохранён источник метки, и обучение доверяет точным меткам больше, чем суточным.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Данные · 8</p>
+<aside>Это главное отличие нашего датасета. Обычно для пожаров берут суточную дату выгорания MCD64A1: она ошибается в среднем почти на 15 часов, а для степи это половина жизни пожара. Мы восстановили время прихода огня в каждую клетку по термоточкам VIIRS, которые пролетают дважды в сутки, и ошибка упала до долей часа. Каждой клетке сохранён источник метки, и при обучении клетки с неточной меткой весят меньше. Поэтому мы можем честно прогнозировать на 12 часов, а не только на сутки.</aside>
+</section>
+</div><div class="s"><section id="data-split" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Честная проверка: разделение по годам</h2>
+<div style="display:flex;gap:0">
+<div style="flex:9;display:flex;flex-direction:column;gap:12px;background:#E9E2D6;padding:36px;border-radius:20px 0 0 20px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#4F4A43">Обучение</p>
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:56px;font-weight:600">2013–2021</p>
+<p style="font-size:28px;color:#4F4A43">43 576 + 7 752 крупных срезов<br>до 4 с пожара из 96 087</p>
+</div>
+<div style="flex:4;display:flex;flex-direction:column;gap:12px;background:#D9E4EC;padding:36px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#2F5F80">Подбор</p>
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:56px;font-weight:600">2022</p>
+<p style="font-size:28px;color:#4F4A43">7 069 срезов</p>
+</div>
+<div style="flex:5;display:flex;flex-direction:column;gap:12px;background:#F9E3D4;padding:36px;border-radius:0 20px 20px 0">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#C2501E">Тест</p>
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:56px;font-weight:600">2023–2024</p>
+<p style="font-size:28px;color:#4F4A43">8 059 срезов, 959 пожаров</p>
+</div>
+</div>
+<ul style="font-size:30px;line-height:1.55;color:#4F4A43;width:1600px">
+<li>Все пороги, веса и выбор моделей — только на 2022 году; тест открывается один раз.</li>
+<li>На тесте модель получает <b>прогноз погоды GFS</b>, а не фактическую погоду, как на сайте.</li>
+<li>Отдельно — экспертные пожары заповедников, исключённые из обучения.</li>
+<li>Из 111 тыс. срезов в работе ~66 тыс.: долгий пожар даёт десятки похожих срезов, поэтому берём до 4 с каждого.</li>
+</ul>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Данные · 9</p>
+<aside>Разделение строго по времени: учимся на 2013–2021, всё подбираем на 2022, а тест 2023–2024 открываем только для итоговой оценки. Важная деталь: на тесте модель получает не фактическую погоду, а прогноз GFS, который был доступен в момент прогноза, ровно как на сайте. Это делает задачу сложнее, но оценка честная. Плюс отдельная проверка на экспертных пожарах заповедников. Почему в обучении 43 тысячи срезов, а не 96: срез делается каждые 12 часов жизни пожара, и долгий пожар даёт десятки почти одинаковых примеров. Если брать все, модель училась бы в основном на нескольких больших пожарах, поэтому с каждого пожара берём не больше 4 случайных срезов. Часть отброшенных срезов крупных пожаров, 7 752, вернули отдельным набором для двух моделей ансамбля. Подбор и тест используются целиком.</aside>
+</section>
+</div><div class="s"><section id="models-map" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Три модели: физика, нейросеть и их гибрид</h2>
+<div style="display:flex;gap:32px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:44px">
+<x-icon name="Lightning" style="color:#2F5F80;width:64px;height:64px"></x-icon>
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:44px;font-weight:600">Физика</h3>
+<p style="font-size:30px;line-height:1.45;color:#4F4A43">знает <b>куда</b>: скорость огня от ветра, сухости, топлива и склона</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:44px">
+<x-icon name="Activity" style="color:#2F5F80;width:64px;height:64px"></x-icon>
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:44px;font-weight:600">U-Net</h3>
+<p style="font-size:30px;line-height:1.45;color:#4F4A43">знает <b>где и сколько</b>: выучила по 12 тыс. реальных пожаров</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#1B1A18;border-radius:20px;padding:44px">
+<x-icon name="Star" style="color:#F2A541;width:64px;height:64px"></x-icon>
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:44px;font-weight:600;color:#F5F0E8">Гибрид</h3>
+<p style="font-size:30px;line-height:1.45;color:#CFC6B8">объединяет обе вероятности в каждой клетке; работает на сайте</p>
+</div>
+</div>
+<p style="font-size:30px;line-height:1.45;color:#4F4A43;width:1550px">Каждая по отдельности ошибается по-своему. Вместе они дают и правильный масштаб, и правильное направление.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Модели · 10</p>
+<aside>У нас три модели. Физическая модель знает законы горения: куда и с какой скоростью пойдёт огонь при данном ветре, сухости и рельефе. Нейросеть U-Net выучила по тысячам реальных пожаров, где и сколько обычно сгорает, но почти не слушает направление ветра. Гибрид объединяет их вероятности в каждой клетке, и именно он работает на сайте.</aside>
+</section>
+</div><div class="s"><section id="physics" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Физика: скорость, форма и время прихода</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:36px">
+<div style="display:flex;flex-direction:column;gap:16px;border-top:6px solid #2F5F80;padding:28px 0 0 0">
+<h3 style="font-size:36px;font-weight:600">1. Скорость</h3>
+<p style="font-size:28px;line-height:1.45;color:#4F4A43">Канадская система <b>FBP, тип O-1b</b> «сплошная сухая трава».</p>
+<p style="font-size:26px;line-height:1.4;color:#2F5F80;font-weight:600">ветер + сухость (FFMC, NDVI) + склон → м/мин</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;border-top:6px solid #2F5F80;padding:28px 0 0 0">
+<h3 style="font-size:36px;font-weight:600">2. Форма</h3>
+<p style="font-size:28px;line-height:1.45;color:#4F4A43">Огонь растёт <b>эллипсом по ветру</b>: голова быстрая, тыл медленный. При ветре 8 м/с эллипс вытянут в 2,4 раза.</p>
+<svg aria-label="Эллипс распространения, вытянутый по ветру, очаг ближе к тылу" width="336" height="120" viewBox="0 0 420 150"><ellipse cx="230" cy="75" rx="170" ry="62" fill="#F9E3D4" stroke="#E2622B" stroke-width="4"/><circle cx="110" cy="75" r="12" fill="#1B1A18"/><path d="M20 140 L120 140" stroke="#2F5F80" stroke-width="6"/><path d="M120 140 L104 130 M120 140 L104 150" stroke="#2F5F80" stroke-width="6"/></svg>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;border-top:6px solid #2F5F80;padding:28px 0 0 0">
+<h3 style="font-size:36px;font-weight:600">3. Время прихода</h3>
+<p style="font-size:28px;line-height:1.45;color:#4F4A43">По <b>принципу Гюйгенса</b> каждая точка кромки — новый маленький эллипс. На сетке это кратчайший путь по 16 соседям: время = расстояние / скорость.</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:24px 32px">
+<p style="font-size:26px;font-weight:600;color:#C2501E">Почему FBP, а не Ротермел</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+<p style="font-size:24px;line-height:1.4;color:#4F4A43"><b>Ротермел</b> требует подробных параметров топлива (запас, плотность, теплота горения). Для Казахстана их нет — пришлось бы угадывать.</p>
+<p style="font-size:24px;line-height:1.4;color:#4F4A43"><b>FBP O-1b</b> создана для степной травы и берёт только ветер, сухость (FFMC) и NDVI — они есть всегда. Точность близкая, но модель проще и надёжнее.</p>
+</div>
+</div>
+<p style="font-size:28px;line-height:1.45;color:#4F4A43;width:1600px">Сильная сторона: направление по ветру верно в <b>93–95 %</b> случаев. Слабая: не знает про тушение и затухание и завышает площадь.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Модели · 11</p>
+<aside>Физическая модель строится в три шага. Скорость считаем по канадской системе FBP, тип топлива O-1b, сплошная сухая трава. Начинали с классической модели Ротермела, но ей нужны подробные параметры топлива: запас травы, плотность, теплота горения. Для Казахстана таких карт нет, и каждый параметр пришлось бы угадывать. FBP O-1b создана именно для травы и берёт только ветер, сухость тонкого топлива FFMC и высыхание травы по NDVI, а эти данные есть всегда, и в обучении, и на сайте. По точности модели близки, поэтому выбрали ту, что проще и надёжнее. Форма: при ветре пожар растёт эллипсом, голова быстрая, тыл медленный. Время прихода: по принципу Гюйгенса каждая точка кромки порождает новый эллипс; на сетке это задача кратчайшего пути по 16 соседям. Физика почти всегда правильно выбирает направление, но не знает про тушение и затухание, поэтому одна она завышает площадь.</aside>
+</section>
+</div><div class="s"><section id="phys-output" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Что выдаёт физика: когда огонь придёт в клетку</h2>
+<div style="display:flex;gap:64px;align-items:flex-start">
+<img src="site_shots/phys_T.png" alt="Карта времени прихода огня по физике: вытянутое по ветру пятно на запад от гари, линии 24 и 72 часа, синий пунктир — реальная гарь за 72 часа" style="width:600px;height:600px;object-fit:contain;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:16px">
+<div style="flex:1;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:32px;font-weight:600">На входе</h3><p style="font-size:26px;line-height:1.4;color:#4F4A43">ветер 10,9 м/с с ВСВ, сухость травы (FFMC 92), NDVI и доля травы в клетке, уклон, гарь сейчас</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:32px;font-weight:600">На выходе — карта часов</h3><p style="font-size:26px;line-height:1.4;color:#4F4A43">для каждой клетки: через сколько часов дойдёт огонь. Тёмное — скоро, светлое — до 4 суток. Чёрные линии — 24 и 72 ч, синий пунктир — что сгорело на деле.</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:32px;font-weight:600">В гибрид идёт</h3><p style="font-size:26px;line-height:1.4;color:#4F4A43">«успевает ли огонь дойти за горизонт»: log(T / h) и признак «недостижимо»</p></div>
+<div style="display:flex;gap:40px;border-top:6px solid #2F5F80;padding:24px 0 0 0">
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1;color:#2F5F80">33,8 км²</p><p style="font-size:24px;color:#4F4A43">по физике за 72 ч (на деле 22,8)</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1;color:#2F5F80">0,52</p><p style="font-size:24px;color:#4F4A43">F1 на 72 ч</p></div>
+</div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Модели · 12 · тот же пожар 3 апреля 2023, участок 17,5 × 17,5 км</p>
+<aside>Что физика даёт на этом пожаре. На вход: ветер почти 11 метров в секунду с востока-северо-востока, сухая трава, индекс FFMC 92, NDVI и доля травы, уклон и текущая гарь. На выходе карта: для каждой клетки — через сколько часов туда дойдёт огонь. Тёмное — скоро, светлое — через 3–4 суток, линии отмечают 24 и 72 часа. Видно, что огонь вытягивается по ветру на запад, и реальная гарь, синий пунктир, пошла туда же. Направление верное, но физика не знает про затухание и тушение, поэтому площадь завышена: почти 34 квадратных километра вместо 23. В гибрид эта карта входит как «успевает ли огонь дойти до клетки за горизонт».</aside>
+</section>
+</div><div class="s"><section id="unet" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Нейросеть: U-Net с погодой через FiLM</h2>
+<div style="display:flex;gap:56px;align-items:center">
+<div style="position:relative;width:860px;height:440px">
+<svg aria-label="Схема U-Net: энкодер сжимает карту, декодер восстанавливает, skip-связи, погода управляет каждым блоком" width="860" height="440" viewBox="0 0 860 440">
+<rect x="20" y="40" width="70" height="300" rx="10" fill="#D9E4EC"/><rect x="130" y="90" width="70" height="200" rx="10" fill="#B9CEDC"/><rect x="240" y="140" width="70" height="100" rx="10" fill="#8FB0C6"/><rect x="350" y="165" width="140" height="50" rx="10" fill="#2F5F80"/>
+<rect x="530" y="140" width="70" height="100" rx="10" fill="#F4C3A3"/><rect x="640" y="90" width="70" height="200" rx="10" fill="#EC9A6A"/><rect x="750" y="40" width="70" height="300" rx="10" fill="#E2622B"/>
+<path d="M90 60 H750" stroke="#8C8377" stroke-width="3" stroke-dasharray="10 8"/><path d="M200 110 H640" stroke="#8C8377" stroke-width="3" stroke-dasharray="10 8"/><path d="M310 160 H530" stroke="#8C8377" stroke-width="3" stroke-dasharray="10 8"/>
+<path d="M420 400 V230" stroke="#C2501E" stroke-width="4"/><path d="M420 400 H55 V345 M420 400 H785 V345 M165 400 V295 M275 400 V245 M565 400 V245 M675 400 V295" stroke="#C2501E" stroke-width="4" fill="none"/>
+</svg>
+<p style="position:absolute;left:0;top:0;width:200px;font-size:24px;color:#2F5F80;font-weight:600">28 карт</p>
+<p style="position:absolute;left:660px;top:0;width:200px;font-size:24px;color:#C2501E;font-weight:600;text-align:right">4 карты</p>
+<p style="position:absolute;left:250px;top:404px;width:360px;font-size:24px;color:#C2501E;font-weight:600;text-align:center">49 чисел погоды → FiLM</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:6px"><h3 style="font-size:32px;font-weight:600">Энкодер → декодер</h3><p style="font-size:26px;line-height:1.4;color:#4F4A43">видит весь пожар, а skip-связи сохраняют точное положение кромки</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><h3 style="font-size:32px;font-weight:600">FiLM</h3><p style="font-size:26px;line-height:1.4;color:#4F4A43">погода усиливает или гасит признаки в каждом блоке: сушь и ветер — «гори», дождь — «стоп»</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><h3 style="font-size:32px;font-weight:600">Вложенные выходы</h3><p style="font-size:26px;line-height:1.4;color:#4F4A43">12 ⊂ 24 ⊂ 48 ⊂ 72 ч гарантировано архитектурой</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Модели · 13 · 540 тыс. параметров, ~1 мин на эпоху на GTX 1070 Ti</p>
+<aside>Нейросеть — U-Net: стандарт для задач «карта на входе, карта на выходе». Энкодер сжимает 28 карт и видит весь пожар и окрестности, декодер восстанавливает разрешение, а skip-связи возвращают точное положение кромки. Погода — это не карта, а 49 чисел на сцену, поэтому она входит через FiLM: в каждом блоке сеть масштабирует и сдвигает свои признаки в зависимости от погоды. Выход — 4 карты вероятностей, и архитектура гарантирует, что вероятность сгореть за 72 часа не меньше, чем за 12. Обучение с поворотами карты вместе с вектором ветра. Модель маленькая, 540 тысяч параметров.</aside>
+</section>
+</div><div class="s"><section id="unet-train" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Как обучали U-Net</h2>
+<div style="display:flex;gap:56px;align-items:flex-start">
+<div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:28px 40px">
+<div style="display:flex;flex-direction:column;gap:6px"><h3 style="font-size:30px;font-weight:600">Примеры</h3><p style="font-size:24px;line-height:1.4;color:#4F4A43">43 576 срезов 2013–2021 (+7 752 крупных пожаров для U-Net 2 и 4)</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><h3 style="font-size:30px;font-weight:600">Вход и ответ</h3><p style="font-size:24px;line-height:1.4;color:#4F4A43">28 карт + 49 чисел погоды → 4 карты «сгорит за 12 / 24 / 48 / 72 ч»</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><h3 style="font-size:30px;font-weight:600">Ошибка</h3><p style="font-size:24px;line-height:1.4;color:#4F4A43">BCE (сгоревшая клетка весит в 5 раз больше) + Dice за форму пятна</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><h3 style="font-size:30px;font-weight:600">Доверие к меткам</h3><p style="font-size:24px;line-height:1.4;color:#4F4A43">чем неточнее время метки, тем меньше её вес; суточная дата на 12 ч не учитывается</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><h3 style="font-size:30px;font-weight:600">Больше примеров</h3><p style="font-size:24px;line-height:1.4;color:#4F4A43">куски 80 × 80 клеток, повороты и отражения — вектор ветра поворачивается вместе с картой</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><h3 style="font-size:30px;font-weight:600">Режим</h3><p style="font-size:24px;line-height:1.4;color:#4F4A43">AdamW, 24 эпохи по ~70 с на GTX 1070 Ti; берём эпоху с лучшим F1 на 2022 году</p></div>
+</div>
+<div style="width:680px;display:flex;flex-direction:column;gap:16px">
+<svg aria-label="Обучение U-Net: ошибка падает, F1 на проверочном 2022 году растёт и выходит на плато к 17-й эпохе" width="680" height="380" viewBox="0 0 680 380"><line x1="70" x2="660" y1="273.6" y2="273.6" stroke="#E4DCCF" stroke-width="1"/><text x="60" y="280.6" font-size="20" fill="#8C8377" text-anchor="end">0,15</text><line x1="70" x2="660" y1="211.2" y2="211.2" stroke="#E4DCCF" stroke-width="1"/><text x="60" y="218.2" font-size="20" fill="#8C8377" text-anchor="end">0,20</text><line x1="70" x2="660" y1="148.8" y2="148.8" stroke="#E4DCCF" stroke-width="1"/><text x="60" y="155.8" font-size="20" fill="#8C8377" text-anchor="end">0,25</text><line x1="70" x2="660" y1="86.4" y2="86.4" stroke="#E4DCCF" stroke-width="1"/><text x="60" y="93.4" font-size="20" fill="#8C8377" text-anchor="end">0,30</text><text x="70.0" y="366" font-size="20" fill="#8C8377" text-anchor="middle">1</text><text x="198.3" y="366" font-size="20" fill="#8C8377" text-anchor="middle">6</text><text x="352.2" y="366" font-size="20" fill="#8C8377" text-anchor="middle">12</text><text x="506.1" y="366" font-size="20" fill="#8C8377" text-anchor="middle">18</text><text x="660.0" y="366" font-size="20" fill="#8C8377" text-anchor="middle">24</text><polyline points="70.0,24.0 95.7,158.0 121.3,182.4 147.0,201.2 172.6,216.0 198.3,224.0 223.9,233.8 249.6,241.1 275.2,249.0 300.9,250.3 326.5,258.8 352.2,260.8 377.8,266.3 403.5,269.6 429.1,276.3 454.8,277.5 480.4,284.9 506.1,289.3 531.7,293.1 557.4,297.7 583.0,297.6 608.7,299.5 634.3,302.2 660.0,303.5" fill="none" stroke="#CFC6B8" stroke-width="4"/><polyline points="70.0,246.2 95.7,204.8 121.3,178.4 147.0,164.6 172.6,151.6 198.3,128.5 223.9,130.8 249.6,168.6 275.2,203.5 300.9,105.5 326.5,108.5 352.2,109.2 377.8,100.0 403.5,107.8 429.1,103.2 454.8,95.8 480.4,82.2 506.1,85.9 531.7,83.3 557.4,81.3 583.0,82.9 608.7,82.3 634.3,79.7 660.0,80.0" fill="none" stroke="#E2622B" stroke-width="5"/><circle cx="634.3" cy="79.7" r="9" fill="#E2622B"/></svg>
+<p style="font-size:24px;line-height:1.4;color:#4F4A43"><span style="color:#C2501E"><b>F1 на 2022 году</b></span> по эпохам: 0,17 → 0,31 (лучшая — 23-я). <span style="color:#8C8377"><b>Серая</b></span> — ошибка на обучении, она падает всё время.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Модели · 14 · график — U-Net 1 (погода ERA5); остальные три обучены так же на других данных</p>
+<aside>Как обучали нейросеть. Примеры — 43 с половиной тысячи срезов пожаров 2013–2021 годов; для второй и четвёртой моделей добавлены ещё почти 8 тысяч срезов крупных пожаров. На входе 28 карт и 49 чисел погоды, ответ — четыре карты: что сгорит за 12, 24, 48 и 72 часа. Ошибка — бинарная кросс-энтропия, где сгоревшая клетка весит в 5 раз больше, потому что их мало, плюс Dice, который штрафует за неправильную форму пятна. Метки с неточным временем весят меньше, а суточную дату MCD64A1 на горизонте 12 часов мы вообще не учитываем — её ошибка больше горизонта. Чтобы примеров было больше, режем куски 80 на 80 клеток и поворачиваем их, поворачивая вместе с картой и вектор ветра. 24 эпохи, около минуты каждая на GTX 1070 Ti. Справа график: F1 на проверочном 2022 годе растёт с 0,17 до 0,31 и выходит на плато; берём лучшую эпоху по этому году, тест в выборе не участвует.</aside>
+</section>
+</div><div class="s"><section id="unet-output" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Что выдаёт U-Net: вероятность сгореть</h2>
+<div style="display:flex;gap:64px;align-items:flex-start">
+<img src="site_shots/unet_P.png" alt="Карта вероятности U-Net на 72 часа: синее пятно к западу от гари, линия 50 процентов, красный пунктир — реальная гарь" style="width:600px;height:600px;object-fit:contain;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:16px">
+<div style="flex:1;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:32px;font-weight:600">Карта вероятностей</h3><p style="font-size:26px;line-height:1.4;color:#4F4A43">для каждой клетки — шанс сгореть за 72 ч. Тёмно-синее — почти наверняка, чёрная линия — 50 %. Красный пунктир — что сгорело на деле.</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:32px;font-weight:600">Сильная сторона</h3><p style="font-size:26px;line-height:1.4;color:#4F4A43">знает по тысячам пожаров, где и сколько обычно догорает рядом с такой гарью и в такую погоду</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><h3 style="font-size:32px;font-weight:600">Слабая сторона</h3><p style="font-size:26px;line-height:1.4;color:#4F4A43">осторожна с площадью и слабо слушает ветер: на всём тесте лишь 26 % её прогнозов роста идут по ветру</p></div>
+<div style="display:flex;gap:40px;border-top:6px solid #2E86AB;padding:24px 0 0 0">
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1;color:#2E86AB">15,3 км²</p><p style="font-size:24px;color:#4F4A43">за 72 ч при пороге 50 % (на деле 22,8)</p></div>
+<div style="display:flex;flex-direction:column;gap:6px"><p style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1;color:#2E86AB">0,64</p><p style="font-size:24px;color:#4F4A43">F1 на 72 ч</p></div>
+</div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Модели · 15 · ансамбль 4 U-Net, тот же пожар 3 апреля 2023</p>
+<aside>А это результат нейросети на том же пожаре. Она выдаёт не время, а вероятность: для каждой клетки — шанс сгореть за 72 часа. Тёмно-синее — почти наверняка, линия — 50 процентов, красный пунктир — что сгорело на деле. Пятно в правильном месте, и F1 0,64 — выше, чем у физики. Сила нейросети в том, что она по тысячам пожаров знает, где и сколько обычно догорает. Но она осторожна: при пороге 50 процентов даёт 15 квадратных километров вместо 23, и плохо слушает ветер — на всём тесте лишь четверть её прогнозов роста идёт по ветру.</aside>
+</section>
+</div><div class="s"><section id="hybrid" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Гибрид: нейросеть + физика в каждой клетке</h2>
+<div style="display:flex;align-items:center;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:36px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#2F5F80">U-Net</p>
+<p style="font-size:30px;line-height:1.4">вероятность по данным</p>
+</div>
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;color:#C2501E">+</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:36px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#2F5F80">Физика</p>
+<p style="font-size:30px;line-height:1.4">когда дойдёт огонь</p>
+</div>
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;color:#C2501E">=</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#1B1A18;border-radius:20px;padding:36px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#F2A541">Прогноз</p>
+<p style="font-size:30px;line-height:1.4;color:#F5F0E8">вероятность сгореть</p>
+</div>
+</div>
+<p style="font-size:34px;line-height:1.5;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:16px;padding:28px 40px;font-family:'IBM Plex Sans', Arial, sans-serif">logit p = a · logit(p U-Net) + b · log(T / h) + c · [T недостижимо] + d · log(T / h) · ветер + e</p>
+<ul style="font-size:28px;line-height:1.55;color:#4F4A43;width:1600px">
+<li>T — время прихода огня по физике, h — горизонт; веса a…e подобраны логистической регрессией на 2022 году.</li>
+<li>Затем калибровка: вероятность 30 % значит «сгорает 3 клетки из 10».</li>
+</ul>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Модели · 16</p>
+<aside>Гибрид устроен просто. В каждой клетке есть две подсказки: вероятность от нейросети и время, когда до клетки дойдёт огонь по физике. Логистическая регрессия объединяет их: чем раньше физика приводит огонь в клетку относительно горизонта, тем выше вероятность, а нейросеть поправляет по данным. Отдельный член учитывает ветер. Веса подобраны на 2022 году, затем вероятности откалиброваны, чтобы 30 процентов действительно означало 3 сгоревшие клетки из 10.</aside>
+</section>
+</div><div class="s"><section id="hybrid-output" data-transition="fade" style="background:#1B1A18;color:#F5F0E8;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Один пожар, три модели: прогноз на 72 часа</h2>
+<div style="display:flex;gap:112px">
+<div style="display:flex;flex-direction:column;gap:14px">
+<img src="site_shots/cmp_phys.png" alt="Прогноз физики против факта: площадь завышена" style="width:480px;height:480px;object-fit:contain;background:#FFFDF8;border-radius:12px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:40px;font-weight:600;color:#CFC6B8">Физика · F1 0,52</p>
+<p style="font-size:26px;line-height:1.4;color:#CFC6B8">33,8 км²: направление верное, площадь завышена</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px">
+<img src="site_shots/cmp_unet.png" alt="Прогноз U-Net против факта: площадь занижена" style="width:480px;height:480px;object-fit:contain;background:#FFFDF8;border-radius:12px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:40px;font-weight:600;color:#CFC6B8">U-Net · F1 0,64</p>
+<p style="font-size:26px;line-height:1.4;color:#CFC6B8">15,3 км²: место верное, площадь занижена</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px">
+<img src="site_shots/cmp_hybrid.png" alt="Прогноз гибрида против факта: площадь почти точная" style="width:480px;height:480px;object-fit:contain;background:#FFFDF8;border-radius:12px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:40px;font-weight:600;color:#F2A541">Гибрид · F1 0,69</p>
+<p style="font-size:26px;line-height:1.4;color:#CFC6B8">21,8 км² при факте 22,8: лучшее из обеих</p>
+</div>
+</div>
+<div style="display:flex;gap:40px;align-items:center">
+<div style="display:flex;gap:12px;align-items:center"><div style="width:24px;height:24px;background:#3A3A3A;border:1px solid #8C8377;border-radius:4px"></div><p style="font-size:24px;color:#CFC6B8">гарь на старте</p></div>
+<div style="display:flex;gap:12px;align-items:center"><div style="width:24px;height:24px;background:#E4572E;border-radius:4px"></div><p style="font-size:24px;color:#CFC6B8">сгорело, не предсказано</p></div>
+<div style="display:flex;gap:12px;align-items:center"><div style="width:24px;height:24px;background:#A9CCE0;border-radius:4px"></div><p style="font-size:24px;color:#CFC6B8">предсказано, не сгорело</p></div>
+<div style="display:flex;gap:12px;align-items:center"><div style="width:24px;height:24px;background:#B07566;border-radius:4px"></div><p style="font-size:24px;color:#CFC6B8">совпало</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Модели · 17 · пожар 3 апреля 2023, тест; у U-Net порог 50 %, у физики — «огонь дошёл за 72 ч»</p>
+<aside>Вот зачем нужен гибрид, на одном пожаре. Слева физика: направление по ветру верное, но она не знает про затухание и даёт 34 квадратных километра — голубое, это лишнее. В середине нейросеть: место верное, но она осторожна, 15 квадратных километров, и много красного — пропущенная гарь. Справа гибрид: он берёт направление у физики и масштаб у нейросети, получается почти 22 квадратных километра при факте 23, и F1 0,69 — выше, чем у каждой по отдельности. На всём тесте эффект тот же: гибрид даёт правильный масштаб и направление по ветру в 86 процентах случаев.</aside>
+</section>
+</div><div class="s"><section id="ensemble" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Итоговая модель на сайте</h2>
+<div style="display:flex;gap:28px;align-items:center">
+<div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:20px">
+<div style="display:flex;flex-direction:column;gap:8px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:16px;padding:28px"><h3 style="font-size:30px;font-weight:600">U-Net 1</h3><p style="font-size:24px;line-height:1.4;color:#4F4A43">базовая, погода ERA5</p></div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:16px;padding:28px"><h3 style="font-size:30px;font-weight:600">U-Net 2</h3><p style="font-size:24px;line-height:1.4;color:#4F4A43">+ 7 752 примера крупных пожаров</p></div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:16px;padding:28px"><h3 style="font-size:30px;font-weight:600">U-Net 3</h3><p style="font-size:24px;line-height:1.4;color:#4F4A43">учится на погоде с ошибками прогноза GFS</p></div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:16px;padding:28px"><h3 style="font-size:30px;font-weight:600">U-Net 4</h3><p style="font-size:24px;line-height:1.4;color:#4F4A43">крупные пожары + ошибки прогноза</p></div>
+</div>
+<x-shape kind="arrow-right" style="width:80px;height:48px;background:#E2622B"></x-shape>
+<div style="width:300px;display:flex;flex-direction:column;gap:8px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:16px;padding:28px"><h3 style="font-size:30px;font-weight:600">× 8 поворотов</h3><p style="font-size:24px;line-height:1.4;color:#4F4A43">карта и ветер поворачиваются вместе, 32 прогноза усредняются</p></div>
+<x-shape kind="arrow-right" style="width:80px;height:48px;background:#E2622B"></x-shape>
+<div style="width:300px;display:flex;flex-direction:column;gap:8px;background:#1B1A18;border-radius:16px;padding:28px"><h3 style="font-size:30px;font-weight:600;color:#F5F0E8">+ физика</h3><p style="font-size:24px;line-height:1.4;color:#CFC6B8">гибрид даёт итоговую карту вероятностей</p></div>
+</div>
+<p style="font-size:30px;line-height:1.45;color:#4F4A43;width:1600px">Разные модели ошибаются в разных местах, поэтому среднее точнее любой из них. Состав ансамбля выбран на 2022 году, тест в выборе не участвовал.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Модели · 18</p>
+<aside>На сайте работает ансамбль из четырёх U-Net, обученных по-разному: базовая, с дополнительными примерами крупных пожаров, обученная на погоде с ошибками прогноза GFS (как на сайте, где будущая погода известна только из прогноза), и сочетание двух последних. Каждая модель смотрит на сцену в 8 поворотах вместе с вектором ветра, 32 прогноза усредняются, а затем гибрид с физикой даёт итоговую карту. Состав выбран только по 2022 году.</aside>
+</section>
+</div><div class="s"><section id="res-main" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Результат на тесте 2023–2024</h2>
+<table style="font-size:30px;color:#1B1A18;width:1664px">
+<tr><th style="width:34%">F1 по клеткам</th><th style="width:16%;text-align:right">12 ч</th><th style="width:16%;text-align:right">24 ч</th><th style="width:16%;text-align:right">48 ч</th><th style="width:18%;text-align:right">72 ч</th></tr>
+<tr><td>Ансамбль U-Net</td><td style="text-align:right">0,264</td><td style="text-align:right">0,251</td><td style="text-align:right">0,295</td><td style="text-align:right">0,311</td></tr>
+<tr style="background:#F9E3D4"><td><b>Гибрид (на сайте)</b></td><td style="text-align:right"><b>0,238</b></td><td style="text-align:right"><b>0,239</b></td><td style="text-align:right"><b>0,276</b></td><td style="text-align:right"><b>0,300</b></td></tr>
+<tr><td>Гибрид, допуск 1 км</td><td style="text-align:right">0,418</td><td style="text-align:right">0,433</td><td style="text-align:right">0,506</td><td style="text-align:right">0,542</td></tr>
+</table>
+<ul style="font-size:28px;line-height:1.55;color:#4F4A43;width:1600px">
+<li>8 059 ситуаций, 959 пожаров; погода — только прогноз GFS, как на сайте. Одна физика: 0,05–0,12.</li>
+<li>U-Net чуть выше по строгому F1, но направление почти не угадывает; гибрид отдаёт 1–3 пункта F1 за правильное направление.</li>
+<li>С допуском в 1 км F1 почти вдвое выше: основная ошибка — сдвиг кромки на 1–2 клетки.</li>
+</ul>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Результаты · 19 · F1 суммарный по всем клеткам; пороги подобраны на 2022 году</p>
+<aside>Итог на тесте 2023–2024 годов: восемь тысяч ситуаций, около тысячи пожаров, и модель получает только прогноз погоды GFS, как на сайте. Физика в одиночку слабая: F1 от 0,05 до 0,12. Ансамбль нейросетей даёт 0,26–0,31. Гибрид, который работает на сайте, на 1–3 пункта ниже по строгому F1, но он правильно выбирает направление по ветру, а нейросеть нет. Если допустить ошибку на 1 километр, то есть на две клетки, F1 гибрида 0,42–0,54: основная ошибка модели — небольшой сдвиг кромки, а не промах с направлением или масштабом.</aside>
+</section>
+</div><div class="s"><section id="res-quality" data-transition="fade" style="background:#1B1A18;color:#F5F0E8;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:64px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Направление и масштаб — верно</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px">
+<div style="display:flex;flex-direction:column;gap:20px;border-top:6px solid #F2A541;padding:32px 0 0 0">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:120px;font-weight:600;line-height:1;color:#F2A541">86 %</p>
+<p style="font-size:30px;line-height:1.45;color:#CFC6B8">прогнозов роста идут по ветру (72 ч). У одной нейросети — лишь 26 %, почти как случайно.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px;border-top:6px solid #F2A541;padding:32px 0 0 0">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:120px;font-weight:600;line-height:1;color:#F2A541">0,98</p>
+<p style="font-size:30px;line-height:1.45;color:#CFC6B8">отношение площади прогноза к факту на 12–24 ч; на 48–72 ч — 1,2–1,3</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px;border-top:6px solid #F2A541;padding:32px 0 0 0">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:120px;font-weight:600;line-height:1;color:#F2A541">0,54</p>
+<p style="font-size:30px;line-height:1.45;color:#CFC6B8">F1 на 72 ч, если допустить ошибку кромки в 1 км</p>
+</div>
+</div>
+<p style="font-size:30px;line-height:1.45;color:#CFC6B8;width:1550px">Негорючие участки (вода, город) не горят никогда; при штиле пожар растёт почти кругом, при ветре — вытянутым эллипсом.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Результаты · 20 · гибрид, тест 2023–2024</p>
+<aside>Для пользователя сайта важнее всего, что прогноз выглядит правдоподобно. 86 процентов прогнозов роста идут по ветру, у одной нейросети было лишь 26 процентов. Площадь на 12–24 часа почти точная, на 48–72 часа завышена на 20–30 процентов. С допуском в 1 километр F1 на 72 часа 0,54. Проверки движка: негорючие участки не горят, при штиле пожар растёт кругом, при ветре эллипсом.</aside>
+</section>
+</div><div class="s"><section id="res-ceiling" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Экспертные пожары: до 80 % от потолка</h2>
+<div style="display:flex;gap:64px;align-items:center">
+<div style="position:relative;width:1000px;height:480px">
+<svg aria-label="Столбцы F1 гибрида на экспертных пожарах рядом с потолком разметки по горизонтам" width="1000" height="480" viewBox="0 0 1000 480">
+<path d="M0 420 H1000" stroke="#BDB3A4" stroke-width="2"/>
+<rect x="40" y="247" width="100" height="173" rx="6" fill="#E2622B"/><rect x="150" y="132" width="100" height="288" rx="6" fill="#CFC6B8"/>
+<rect x="290" y="182" width="100" height="238" rx="6" fill="#E2622B"/><rect x="400" y="90" width="100" height="330" rx="6" fill="#CFC6B8"/>
+<rect x="540" y="158" width="100" height="262" rx="6" fill="#E2622B"/><rect x="650" y="66" width="100" height="354" rx="6" fill="#CFC6B8"/>
+<rect x="790" y="140" width="100" height="280" rx="6" fill="#E2622B"/><rect x="900" y="72" width="100" height="348" rx="6" fill="#CFC6B8"/>
+</svg>
+<p style="position:absolute;left:40px;top:203px;width:100px;font-size:26px;font-weight:600;text-align:center;color:#C2501E">0,29</p>
+<p style="position:absolute;left:150px;top:88px;width:100px;font-size:26px;text-align:center;color:#6E665B">0,48</p>
+<p style="position:absolute;left:290px;top:138px;width:100px;font-size:26px;font-weight:600;text-align:center;color:#C2501E">0,40</p>
+<p style="position:absolute;left:400px;top:46px;width:100px;font-size:26px;text-align:center;color:#6E665B">0,55</p>
+<p style="position:absolute;left:540px;top:114px;width:100px;font-size:26px;font-weight:600;text-align:center;color:#C2501E">0,44</p>
+<p style="position:absolute;left:650px;top:22px;width:100px;font-size:26px;text-align:center;color:#6E665B">0,59</p>
+<p style="position:absolute;left:790px;top:96px;width:100px;font-size:26px;font-weight:600;text-align:center;color:#C2501E">0,47</p>
+<p style="position:absolute;left:900px;top:28px;width:100px;font-size:26px;text-align:center;color:#6E665B">0,58</p>
+<p style="position:absolute;left:40px;top:432px;width:210px;font-size:26px;text-align:center">12 ч</p>
+<p style="position:absolute;left:290px;top:432px;width:210px;font-size:26px;text-align:center">24 ч</p>
+<p style="position:absolute;left:540px;top:432px;width:210px;font-size:26px;text-align:center">48 ч</p>
+<p style="position:absolute;left:790px;top:432px;width:210px;font-size:26px;text-align:center">72 ч</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:28px">
+<p style="font-size:28px;line-height:1.45;color:#4F4A43"><span style="color:#C2501E"><b>Оранжевый</b></span> — наш гибрид на 35 пожарах заповедников, которых не было в обучении.</p>
+<p style="font-size:28px;line-height:1.45;color:#4F4A43"><b>Серый</b> — потолок: насколько спутниковая разметка тех же пожаров совпадает с экспертной. Выше него модель, обученная на спутниковых данных, стабильно не прыгнет.</p>
+<p style="font-size:28px;line-height:1.45;color:#4F4A43">Слабое место: площадь здесь завышена примерно в 1,9 раза.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Результаты · 21 · F1 по экспертным контурам, погода ERA5</p>
+<aside>Самая показательная проверка — экспертные пожары заповедников, которых модель не видела. Оранжевые столбцы — наш гибрид: от 0,29 на 12 часов до 0,47 на 72 часа. Серые — потолок: если в качестве прогноза взять саму спутниковую разметку тех же пожаров, она совпадает с экспертной только на 0,48–0,59. Модель, обученная на спутниковых метках, стабильно выше этого не прыгнет. Значит, мы берём 60–80 процентов от достижимого, и чем длиннее горизонт, тем ближе к потолку. Честно о слабом месте: на этих пожарах площадь завышена примерно в 1,9 раза.</aside>
+</section>
+</div><div class="s"><section id="res-prod" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Готово к работе на сайте</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px;border-top:6px solid #2F5F80;padding:28px 0 0 0">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:96px;font-weight:600;line-height:1;color:#2F5F80">~1 с</p>
+<p style="font-size:28px;line-height:1.45;color:#4F4A43">весь запрос прогноза; почти всё время — загрузка прогноза погоды</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;border-top:6px solid #2F5F80;padding:28px 0 0 0">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:96px;font-weight:600;line-height:1;color:#2F5F80">0,3 с</p>
+<p style="font-size:28px;line-height:1.45;color:#4F4A43">весь ансамбль на обычном процессоре, без видеокарты (0,1 с на GPU)</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;border-top:6px solid #2F5F80;padding:28px 0 0 0">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:96px;font-weight:600;line-height:1;color:#2F5F80">8,6 МБ</p>
+<p style="font-size:28px;line-height:1.45;color:#4F4A43">все 4 нейросети вместе</p>
+</div>
+</div>
+<div style="display:flex;gap:40px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:36px"><h3 style="font-size:32px;font-weight:600">Прогноз реального пожара</h3><p style="font-size:26px;line-height:1.4;color:#4F4A43">текущая гарь и термоточки → карты на 12–72 ч (гибрид)</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:20px;padding:36px"><h3 style="font-size:32px;font-weight:600">Симуляция «что если»</h3><p style="font-size:26px;line-height:1.4;color:#4F4A43">точка и свой ветер → рост огня по кадрам до 10 суток (физика, откалиброванная по данным)</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Результаты · 22 · замер на GTX 1070 Ti, сервер FastAPI</p>
+<aside>Система уже работает как сервер. Весь запрос прогноза занимает около секунды, и почти всё это время уходит на загрузку прогноза погоды. Сами модели считают 0,1 секунды на видеокарте и около 0,3 секунды на обычном процессоре, так что для сайта видеокарта не нужна. Все четыре нейросети вместе весят около 9 мегабайт. Два режима: прогноз реального пожара по текущей гари и термоточкам и симуляция что если от точки возгорания с заданным ветром, до 10 суток.</aside>
+</section>
+</div><div class="s"><section id="site-cases" data-transition="fade" style="background:#F7F3EC;color:#1B1A18;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Сайт: прогноз против факта</h2>
+<div style="display:flex;gap:64px">
+<div style="display:flex;flex-direction:column;gap:20px">
+<img src="site_shots/site_case4.png" alt="Скриншот сайта: пожар 3 апреля 2023, прогноз на 72 часа против реальной гари, F1 0,69" style="width:800px;height:450px;object-fit:contain;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:12px">
+<p style="font-size:28px;line-height:1.4;color:#4F4A43"><b style="color:#1B1A18">3 апреля 2023, 72 ч · F1 0,69</b><br>сгорело 22,8 км², прогноз 21,8 км²</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px">
+<img src="site_shots/site_case7.png" alt="Скриншот сайта: пожар 9 апреля 2023, прогноз на 72 часа против реальной гари, F1 0,75" style="width:800px;height:450px;object-fit:contain;background:#FFFDF8;border:1px solid #E4DCCF;border-radius:12px">
+<p style="font-size:28px;line-height:1.4;color:#4F4A43"><b style="color:#1B1A18">9 апреля 2023, 72 ч · F1 0,75</b><br>сгорело 8,3 км², прогноз 7,0 км²</p>
+</div>
+</div>
+<div style="display:flex;gap:40px;align-items:center;font-size:24px;color:#4F4A43">
+<div style="display:flex;gap:12px;align-items:center"><div style="width:24px;height:24px;background:#3A3A3A;border-radius:4px"></div><p style="font-size:24px">гарь на старте</p></div>
+<div style="display:flex;gap:12px;align-items:center"><div style="width:24px;height:24px;background:#E4572E;border-radius:4px"></div><p style="font-size:24px">реально сгорело</p></div>
+<div style="display:flex;gap:12px;align-items:center"><div style="width:24px;height:24px;background:#B9D3DD;border:2px solid #2E86AB;border-radius:4px"></div><p style="font-size:24px">прогноз модели</p></div>
+<div style="display:flex;gap:12px;align-items:center"><div style="width:24px;height:24px;background:#B07566;border-radius:4px"></div><p style="font-size:24px">совпало</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Результаты · 23 · вкладка «Известные пожары»: 40 пожаров теста 2023–24, по всем F1 на 72 ч 0,54</p>
+<aside>Это скриншоты с нашего сайта, вкладка «Известные пожары». Здесь пожары из теста 2023–2024 года, модель их не видела при обучении. Сайт получает те же входы, что и в офлайн-оценке: гарь с возрастом, термоточки и прогноз погоды на момент старта, и считает прогноз прямо при нажатии. Тёмное — гарь на старте, красное — что реально сгорело за 72 часа, синее — прогноз. Слева пожар 3 апреля 2023: сгорело 22,8 квадратных километра, модель дала 21,8, F1 0,69. Справа пожар 9 апреля: 8,3 против 7, F1 0,75. Это удачные примеры; по всем 40 пожарам набора F1 на 72 часа 0,54, и примерно у каждого пятого прогноз промахивается.</aside>
+</section>
+</div><div class="s"><section id="site-horizons" data-transition="fade" style="background:#1B1A18;color:#F5F0E8;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.1">Один пожар: от 12 до 72 часов</h2>
+<div style="display:flex;gap:32px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<img src="site_shots/crop39_12h.png" alt="Прогноз на 12 часов против факта" style="width:392px;height:257px;object-fit:contain;background:#F2EFE9;border-radius:12px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:40px;font-weight:600;color:#F2A541">12 ч · F1 0,30</p>
+<p style="font-size:26px;line-height:1.4;color:#CFC6B8">сгорело 1,0 км²<br>прогноз 5,8 км²</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<img src="site_shots/crop39_24h.png" alt="Прогноз на 24 часа против факта" style="width:392px;height:257px;object-fit:contain;background:#F2EFE9;border-radius:12px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:40px;font-weight:600;color:#F2A541">24 ч · F1 0,60</p>
+<p style="font-size:26px;line-height:1.4;color:#CFC6B8">сгорело 8,3 км²<br>прогноз 11,0 км²</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<img src="site_shots/crop39_48h.png" alt="Прогноз на 48 часов против факта" style="width:392px;height:257px;object-fit:contain;background:#F2EFE9;border-radius:12px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:40px;font-weight:600;color:#F2A541">48 ч · F1 0,57</p>
+<p style="font-size:26px;line-height:1.4;color:#CFC6B8">сгорело 8,3 км²<br>прогноз 18,0 км²</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<img src="site_shots/crop39_72h.png" alt="Прогноз на 72 часа против факта" style="width:392px;height:257px;object-fit:contain;background:#F2EFE9;border-radius:12px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:40px;font-weight:600;color:#F2A541">72 ч · F1 0,54</p>
+<p style="font-size:26px;line-height:1.4;color:#CFC6B8">сгорело 8,3 км²<br>прогноз 22,5 км²</p>
+</div>
+</div>
+<p style="font-size:30px;line-height:1.45;color:#CFC6B8;width:1500px">Направление модель угадала: огонь пошёл на север у восточного края старой гари. Но пожар остановился через сутки, а прогноз продолжал расти — отсюда завышение площади на 48–72 ч.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Результаты · 24 · пожар 1 октября 2024, 44,88° с. ш., 70,62° в. д.; скриншоты сайта</p>
+<aside>Тот же сайт, один пожар 1 октября 2024 года на всех четырёх горизонтах. Тёмное — гарь на старте, красное — что сгорело, синее — прогноз. Направление модель угадала: новая гарь появилась к северу от восточного края старой, и прогноз туда же. Через 24 часа совпадение лучшее, F1 0,6. Дальше пожар остановился: за 48 и 72 часа ничего нового не сгорело, а модель продолжала его растить до 22 квадратных километров. Это та же слабость, что видна на всём тесте: на 48–72 часа площадь завышена. Поэтому в планах отдельная модель, которая сначала решает, вырастет ли пожар вообще.</aside>
+</section>
+</div><div class="s"><section id="site-fireskz" data-transition="fade" style="background:#1B1A18;color:#F5F0E8;font-family:'IBM Plex Sans', Arial, sans-serif;padding:112px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:60px;font-weight:600;line-height:1.1">fires.kz и наша модель: 5 пожаров ноября</h2>
+<div style="display:flex;gap:41px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<img src="site_shots/fk_A.png" alt="Пожар у Пахотного 6 ноября: моделирование fires.kz тянется на 15 км к северу, наш прогноз роста нет" style="width:300px;height:300px;object-fit:cover;border-radius:10px">
+<p style="font-size:22px;color:#8C8377">Карагандинская · 06.11</p>
+<p style="font-size:24px;line-height:1.35;color:#CFC6B8">fires.kz <b style="color:#F2A541">137 км²</b><br>наша 0 <span style="color:#8C8377">(акт. 0,8)</span><br>факт <b style="color:#F5F0E8">0, погас</b></p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<img src="site_shots/fk_B.png" alt="Пожар у Кенжарыка 5 ноября: fires.kz 28 км², наш прогноз роста нет" style="width:300px;height:300px;object-fit:cover;border-radius:10px">
+<p style="font-size:22px;color:#8C8377">Карагандинская · 05.11</p>
+<p style="font-size:24px;line-height:1.35;color:#CFC6B8">fires.kz <b style="color:#F2A541">28 км²</b><br>наша 0 <span style="color:#8C8377">(акт. 8,3)</span><br>факт <b style="color:#F5F0E8">0, погас</b></p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<img src="site_shots/fk_C.png" alt="Пожар у Родников 6 ноября: fires.kz 70 км² узким языком на север, наш прогноз роста нет" style="width:300px;height:300px;object-fit:cover;border-radius:10px">
+<p style="font-size:22px;color:#8C8377">Карагандинская · 06.11</p>
+<p style="font-size:24px;line-height:1.35;color:#CFC6B8">fires.kz <b style="color:#F2A541">70 км²</b><br>наша 0 <span style="color:#8C8377">(акт. 3,8)</span><br>факт <b style="color:#F5F0E8">0, погас</b></p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<img src="site_shots/fk_D.png" alt="Пожар у Зелёного Гая 6 ноября: fires.kz 28 км² на восток через село, наш прогноз роста нет" style="width:300px;height:300px;object-fit:cover;border-radius:10px">
+<p style="font-size:22px;color:#8C8377">Акмолинская · 06.11</p>
+<p style="font-size:24px;line-height:1.35;color:#CFC6B8">fires.kz <b style="color:#F2A541">28 км²</b><br>наша 0 <span style="color:#8C8377">(акт. 1,5)</span><br>факт <b style="color:#F5F0E8">0, погас</b></p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<img src="site_shots/fk_E.png" alt="Пожар у Котовского 5 ноября: fires.kz 85 км², наш прогноз роста нет, факт плюс 1 км²" style="width:300px;height:300px;object-fit:cover;border-radius:10px">
+<p style="font-size:22px;color:#8C8377">СКО · 05.11</p>
+<p style="font-size:24px;line-height:1.35;color:#CFC6B8">fires.kz <b style="color:#F2A541">85 км²</b><br>наша 0 <span style="color:#8C8377">(акт. 0,5)</span><br>факт <b style="color:#E4572E">+1 км²</b></p>
+</div>
+</div>
+<div style="display:flex;gap:32px;align-items:center;font-size:21px;color:#CFC6B8;flex-wrap:wrap">
+<div style="display:flex;gap:10px;align-items:center"><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(90deg,#D7263D,#F2C230,#3BB273,#2E5BD9)"></div><p style="font-size:21px">моделирование fires.kz</p></div>
+<div style="display:flex;gap:10px;align-items:center"><div style="width:22px;height:22px;border:3px solid #F5F0E8;outline:2px solid #000;border-radius:3px"></div><p style="font-size:21px">наша гарь на старте</p></div>
+<div style="display:flex;gap:10px;align-items:center"><div style="width:22px;height:22px;border:2px dashed #F5F0E8;border-radius:3px"></div><p style="font-size:21px">наш режим «активный пожар», 72 ч</p></div>
+<div style="display:flex;gap:10px;align-items:center"><div style="width:16px;height:16px;background:#FF2A2A;border:2px solid #fff;border-radius:50%"></div><p style="font-size:21px">термоточки FIRMS после старта</p></div>
+</div>
+<p style="font-size:28px;line-height:1.45;color:#CFC6B8;width:1600px">Их симулятор растит каждый пожар на 28–137 км² по ветру. На деле 4 из 5 погасли, пятый прибавил 1 км². Наш основной прогноз — «роста нет»: верно в 4 случаях, в пятом промах на 1 км².</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Результаты · 25 · скриншоты fires.kz 07.11.2026 (последний шаг моделирования); наш прогноз и FIRMS наложены, точность привязки ~0,5–1 км</p>
+<aside>Мы сравнили себя с сайтом fires.kz: у него для термоточек есть кнопка «Показать моделирование», это физический симулятор распространения. Взяли пять самых крупных пожаров 5–6 ноября и на скриншот их моделирования наложили наш прогноз и то, что потом увидели спутники. Цветные контуры — их модель: она растит каждый пожар по ветру на 28–137 квадратных километров. Чёрный контур — наша гарь на старте. Красные точки — термоточки после старта: их почти нет. Четыре пожара из пяти погасли, пятый у Котовского прибавил около одного квадратного километра. Наш основной прогноз во всех пяти — «роста не будет», то есть четыре раза верно и один раз промах на один квадратный километр. Пунктир — наш режим «если пожар всё-таки активен»: он даёт от половины до восьми квадратных километров, на порядок меньше, чем fires.kz. Оговорки: в ноябре сыро и пожары мелкие, летом картина может быть другой; fires.kz считает от одной термоточки, мы — по всей гари и часов на 15 позже; привязка скриншотов — с точностью до километра. Вывод тот же, что и на нашей собственной физике: чистый симулятор не знает, будет ли пожар расти, и поэтому сильно завышает; гибрид с нейросетью это исправляет.</aside>
+</section>
+</div><div class="s"><section id="site-fireskz-summer" data-transition="fade" style="background:#1B1A18;color:#F5F0E8;font-family:'IBM Plex Sans', Arial, sans-serif;padding:112px 128px 160px;display:flex;flex-direction:column;gap:28px">
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:60px;font-weight:600;line-height:1.1">Летом наоборот: 5 пожаров августа</h2>
+<div style="display:flex;gap:41px">
+<div style="display:flex;flex-direction:column;gap:10px">
+<img src="site_shots/fk_S1.png" alt="Абайская область 15 августа: факт 316 км², fires.kz 56, наш основной прогноз почти ноль" style="width:300px;height:300px;object-fit:cover;border-radius:10px">
+<p style="font-size:22px;color:#8C8377">Абайская · 15.08</p>
+<p style="font-size:24px;line-height:1.35;color:#CFC6B8">факт <b style="color:#E4572E">316 км²</b><br>fires.kz <b style="color:#F2A541">56</b><br>наша 0,3 <span style="color:#8C8377">(акт. 180)</span></p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<img src="site_shots/fk_S2.png" alt="Карагандинская область 12 августа: факт 133 км², fires.kz 103, наш основной прогноз 0,8" style="width:300px;height:300px;object-fit:cover;border-radius:10px">
+<p style="font-size:22px;color:#8C8377">Карагандинская · 12.08</p>
+<p style="font-size:24px;line-height:1.35;color:#CFC6B8">факт <b style="color:#E4572E">133 км²</b><br>fires.kz <b style="color:#F2A541">103</b><br>наша 0,8 <span style="color:#8C8377">(акт. 44)</span></p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<img src="site_shots/fk_S3.png" alt="Карагандинская область 15 августа: факт 92 км², fires.kz 235, наш основной прогноз 5" style="width:300px;height:300px;object-fit:cover;border-radius:10px">
+<p style="font-size:22px;color:#8C8377">Карагандинская · 15.08</p>
+<p style="font-size:24px;line-height:1.35;color:#CFC6B8">факт <b style="color:#E4572E">92 км²</b><br>fires.kz <b style="color:#F2A541">235</b><br>наша 5 <span style="color:#8C8377">(акт. 33)</span></p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<img src="site_shots/fk_S4.png" alt="Абайская область 17 августа: факт 72 км², fires.kz 211, наш основной прогноз 0" style="width:300px;height:300px;object-fit:cover;border-radius:10px">
+<p style="font-size:22px;color:#8C8377">Абайская · 17.08</p>
+<p style="font-size:24px;line-height:1.35;color:#CFC6B8">факт <b style="color:#E4572E">72 км²</b><br>fires.kz <b style="color:#F2A541">211</b><br>наша 0 <span style="color:#8C8377">(акт. 21)</span></p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<img src="site_shots/fk_S5.png" alt="Акмолинская область 15 августа: факт 33 км², fires.kz 57, наш основной прогноз 11" style="width:300px;height:300px;object-fit:cover;border-radius:10px">
+<p style="font-size:22px;color:#8C8377">Акмолинская · 15.08</p>
+<p style="font-size:24px;line-height:1.35;color:#CFC6B8">факт <b style="color:#E4572E">33 км²</b><br>fires.kz <b style="color:#F2A541">57</b><br>наша 11 <span style="color:#8C8377">(акт. 65)</span></p>
+</div>
+</div>
+<div style="display:flex;gap:28px;align-items:center;font-size:21px;color:#CFC6B8;flex-wrap:wrap">
+<div style="display:flex;gap:10px;align-items:center"><div style="width:22px;height:22px;border-radius:4px;background:linear-gradient(90deg,#D7263D,#F2C230,#3BB273,#2E5BD9)"></div><p style="font-size:21px">fires.kz</p></div>
+<div style="display:flex;gap:10px;align-items:center"><div style="width:16px;height:16px;background:#FF2A2A;border-radius:3px"></div><p style="font-size:21px">сгорело за 72 ч (FIRMS)</p></div>
+<div style="display:flex;gap:10px;align-items:center"><div style="width:22px;height:22px;border:3px solid #F5F0E8;outline:2px solid #000;border-radius:3px"></div><p style="font-size:21px">наша гарь на старте</p></div>
+<div style="display:flex;gap:10px;align-items:center"><div style="width:22px;height:22px;background:rgba(46,134,171,0.6);border:2px solid #2E86AB;border-radius:3px"></div><p style="font-size:21px">наш прогноз</p></div>
+<div style="display:flex;gap:10px;align-items:center"><div style="width:22px;height:22px;border:2px dashed #F5F0E8;border-radius:3px"></div><p style="font-size:21px">«активный пожар»</p></div>
+</div>
+<p style="font-size:27px;line-height:1.45;color:#CFC6B8;width:1640px">Крупные летние пожары выросли на 33–316 км². fires.kz попадает в масштаб (56–235 км²), а наш основной прогноз занижает в десятки раз; режим «активный пожар» ближе (21–180 км²). Наша модель хорошо видит затухание, но пока недооценивает большие летние пожары.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8C8377">Результаты · 26 · скриншоты fires.kz (24 шага моделирования); факт — новые клетки FIRMS в окне 48 км за 72 ч; привязка ~1–3 км</p>
+<aside>Та же проверка на пяти крупных пожарах августа 2026 года, и картина обратная. Здесь пожары действительно разрослись: от 33 до 316 квадратных километров за трое суток, это красные точки спутников. Симулятор fires.kz даёт от 56 до 235 — в масштаб он попадает, где-то занижает, где-то завышает. Наш основной прогноз здесь почти ноль, от нуля до 11 квадратных километров, то есть он сильно недооценивает. Режим «активный пожар» ближе: от 21 до 180. Почему так: в обучении большинство пожаров быстро гаснут, и модель осторожна; крупные летние пожары, которые растут на сотни квадратных километров, — редкость. Вместе с ноябрьским слайдом вывод такой: fires.kz всегда растит пожар, и в ноябре это промах, а летом попадание; наша модель отлично угадывает затухание, но крупный рост пока пропускает. Отсюда план: отдельная модель «вырастет ли пожар» и дообучение на крупных пожарах. Оговорки: fires.kz считает от одной термоточки, а мы — по всей гари; факт посчитан по всем новым клеткам FIRMS в окне 48 на 48 километров, туда могут попасть соседние пожары; привязка скриншотов — с точностью до 1–3 км.</aside>
+</section>
+</div><div class="s"><section id="outro" data-transition="fade" style="background:#1B1A18;color:#F5F0E8;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:56px">
+<div style="position:absolute;left:0;top:0;width:1920px;height:16px;background:linear-gradient(90deg, #E2622B 0%, #F2A541 100%)"></div>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1">Итог</h2>
+<div style="display:flex;gap:64px">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#F2A541">Что сделано</p>
+<ul style="font-size:30px;line-height:1.55;color:#CFC6B8">
+<li>датасет 111 тыс. ситуаций с временем прихода огня по термоточкам</li>
+<li>гибрид «нейросеть + физика»: верный масштаб и направление</li>
+<li>до 80 % от потолка на экспертных пожарах</li>
+<li>сервер для сайта: ответ за ~1 с</li>
+</ul>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<p style="font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#F2A541">Что дальше</p>
+<ul style="font-size:30px;line-height:1.55;color:#CFC6B8">
+<li>калибровка площади по типу растительности</li>
+<li>модель «вырастет ли пожар» перед «куда»</li>
+<li>обучение на точных контурах со снимков</li>
+<li>кэш погоды: ответ быстрее в 5–10 раз</li>
+</ul>
+</div>
+</div>
+<aside>Подводим итог. Мы собрали датасет на 111 тысяч ситуаций, где время прихода огня восстановлено по термоточкам с точностью до часов. Построили гибрид нейросети и физики, который даёт правильный масштаб и правильное направление роста. На независимых экспертных пожарах модель берёт до 80 процентов от потолка, заданного качеством спутниковой разметки. Всё это работает как сервер для сайта с ответом около секунды. Дальше: калибровать площадь по типу растительности, добавить отдельную модель, вырастет ли пожар вообще, дообучить на точных контурах со снимков и ускорить ответ кэшем погоды.</aside>
+</section>
+</div></body></html>
