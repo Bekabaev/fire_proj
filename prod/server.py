@@ -93,11 +93,11 @@ def demo_cases():                                              # известн�
 
 
 @app.get("/demo/run/{i}")
-def demo_run(i: int):
+def demo_run(i: int, model: str = "hybrid"):
     d = demo()
     if not 0 <= i < len(d.rows):
         raise HTTPException(404, "нет такого пожара")
-    return d.run(i)
+    return d.run(i, model if model in ("phys", "unet") else "hybrid")
 
 
 LIVE = None

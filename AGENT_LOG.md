@@ -16,6 +16,10 @@
 
 ---
 
+## 2026-11-08 22:45 · win-pc
+**Сделано:** скриншоты сайта для слайда 20 (физика / U-Net / гибрид, пожар 3.04.2023, 72 ч) -> presentation/slide20_site/site_cmp_{phys,unet,hybrid}.png (800 × 800, кадр один). Для этого в демо добавлен скрытый режим отдельных моделей: /demo/run/{i}?model=phys|unet, на сайте хэш #demo-4@72h~phys. Цифры совпали со слайдом (F1 0,52 / 0,64 / 0,69). Презентацию пользователь меняет сам.
+**Изменённые файлы:** prod/demo.py, prod/server.py, prod/web/index.html, presentation/slide20_site/*
+
 ## 2026-11-08 22:20 · win-pc
 **Сделано:** rev1 по правкам пользователя. Презентация `presentation/presentation_final2_rev1.pptx` = его `presentation_final2(2)(1).pptx` + только удаление несостыковок (заметки со ссылками на удалённые слайды, «для обучения» у тестового примера, «карта топлива в разработке / точность близкая» у Ротермела, остаток подписи «Модели · 20») и новые скриншоты сайта с контуром «старт + прогноз» на слайде 25. Отчёт `FireSpread_ML_Report_rev1.docx` = его `_REV` + новый рисунок 5 и рисунок 6 (пожар 1.10.2024 на 4 горизонтах). Скриншоты пересняты headless Edge.
 **Изменённые файлы:** presentation/presentation_final2_rev1.pptx, FireSpread_ML_Report_rev1.docx, presentation/site_shots/{site_case4,crop39_*,rep_site_hz}.png

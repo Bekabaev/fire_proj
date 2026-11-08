@@ -140,7 +140,7 @@ $("run").onclick = async () => {
   $("run").disabled = false;
 };
 // ---- вкладка «Известные пожары» (ссылка на пожар: #demo-<номер>) ----
-let demoLayers = [], cur = null, hz = "72h";
+let demoLayers = [], cur = null, hz = "72h", demoModel = "";
 const clearDemo = () => { demoLayers.forEach(l => l.remove()); demoLayers = []; };
 function tab(d) {
   const w = d === true ? "demo" : d === false ? "sim" : d;
@@ -161,10 +161,10 @@ async function loadCases() {
     $("case").innerHTML = d.cases.map(c => `<option value="${c.id}">${c.title} · F1 72 ч ${c.F1[3].toFixed(2)}</option>`).join("");
     const p = d.pooled_F1; $("pooled").textContent = `По всем ${d.n} пожарам набора F1: 12 ч ${p["12h"]} · 24 ч ${p["24h"]} · 48 ч ${p["48h"]} · 72 ч ${p["72h"]} (то же, что офлайн-тест на этих срезах).`;
     $("dmsg").textContent = "";
-    const m = location.hash.match(/^#demo-(\d+)(?:@(12h|24h|48h|72h))?$/);   // #demo-7@24h - сразу нужный горизонт
+    const m = location.hash.match(/^#demo-(\d+)(?:@(12h|24h|48h|72h))?(?:~(phys|unet))?$/);   // ~phys / ~unet - отдельные модели (для иллюстраций)   // #demo-7@24h - сразу нужный горизонт
     if (m) {
       if (m[2]) { hz = m[2]; for (const x of $("hz").children) x.classList.toggle("on", x.dataset.h === hz); }
-      $("case").value = m[1]; $("drun").click();
+      demoModel = m[3] || ""; $("case").value = m[1]; $("drun").click();
     }
   } catch (e) { $("dmsg").textContent = "Ошибка: " + e.message; }
 }
@@ -182,7 +182,7 @@ $("hz").onclick = e => { const b = e.target.closest("button"); if (!b) return; h
 $("drun").onclick = async () => {
   $("drun").disabled = true; $("dmsg").textContent = "Модель считает…";
   try {
-    const r = await fetch(API + "/demo/run/" + $("case").value); const d = await r.json(); if (!r.ok) throw new Error(d.detail || r.status);
+    const r = await fetch(API + "/demo/run/" + $("case").value + (demoModel ? "?model=" + demoModel : "")); demoModel = ""; const d = await r.json(); if (!r.ok) throw new Error(d.detail || r.status);
     cur = d; drawDemo();
     const b = L.geoJSON(d.start).getBounds();
     for (const g of [d.horizons["72h"].true, d.horizons["72h"].pred]) { const t = L.geoJSON(g).getBounds(); if (t.isValid()) b.extend(t); }

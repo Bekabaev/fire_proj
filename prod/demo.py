@@ -38,11 +38,15 @@ class Demo:
         self.meta = json.load(open(F_JSON, encoding="utf-8"))
         self.rows = self.meta["cases"]
 
-    def run(self, i):
+    def run(self, i, model="hybrid"):
         c = self.rows[i]; E = self.E
         X = self.X[i:i + 1].astype(np.float32); Y, valid, lsrc = self.Y[i:i + 1], self.valid[i:i + 1], self.lsrc[i:i + 1]
         o = E.predict_scene(X, valid, c["row"])
         r0, c0 = c["r0"], c["c0"]; ib = CH.index("burned_frac"); burned = X[0, ib] > 0.5
+        if model == "phys":                                  # для иллюстраций: одна физика (огонь дошёл за горизонт)
+            o["mask"] = np.stack([o["arrival_h"] <= h for h in HZ]) & ~burned
+        elif model == "unet":                                # одна нейросеть, порог 50 %
+            o["mask"] = (o["unet"] >= 0.5) & ~burned[None]
         cnt = counts(o["mask"], Y, valid, lsrc)
         hs = np.argwhere(X[0, CH.index("af_count_24h")] > 0)
         lon, lat = E.land.lonlat(r0 + hs[:, 0], c0 + hs[:, 1]) if len(hs) else (np.array([]), np.array([]))
